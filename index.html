@@ -9,12 +9,18 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./fonts/fonts.css">
+    <link rel="stylesheet" href="./templates/css/header.css">
+    <link rel="stylesheet" href="./templates/css/sidebar.css">
 
     <script src="main.js"></script>
+    <script src="./templates/js/includeHTML.js"></script>
     
 </head>
-<body>
-    <h1>Log In</h1>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum sit molestias velit recusandae amet earum non dolore nisi quod, repellendus tempora, sunt voluptates eligendi nostrum similique officiis nam. Dicta, quibusdam.</p>
+<body onload="init()">
+    <div w3-include-html="./templates/html/header.html"></div>
+    <div w3-include-html="./templates/html/sidebar.html"></div>
+    <div class="ContentSection" id="ContentSection">
+        <h3>Content reinrendern (Summary, Board, Task, Contancts)</h3>
+    </div>
 </body>
 </html>
