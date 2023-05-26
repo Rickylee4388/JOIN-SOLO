@@ -1,0 +1,72 @@
+.logo {
+    position: absolute;
+    left: 5.35%;
+    right: 87.71%;
+    top: 7.81%;
+    bottom: 80.28%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.loginContent {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    background-color: #F6F7F8;
+}
+
+.textSignupButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 35px;
+    position: absolute;
+    width: 287px;
+    height: 51px;
+    right: 5.35%;
+    top: 67px;
+}
+
+.innerContentLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 50%;
+    height: 350px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    border-radius: 30px;
+}
+.emailAndPassword{
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px;
+    
+}
+.emailAndPassword input{
+    height: 25px;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    margin-bottom: 24px;
+    width: 250px;
+}
+.rememberAndAPassword{
+    display: inline-flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 24px;
+}
+.passwordLink{
+    margin-left: 24px;
+}
