@@ -1,9 +1,9 @@
 function initContacts() {
     includeHTML();
-    renderContentSection();
+    renderContentSectionContacts();
 }
 
-function renderContentSection() {
+function renderContentSectionContacts() {
     contentSection.innerHTML = generateContactsHTML();
 }
 
