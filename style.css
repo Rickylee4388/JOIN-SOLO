@@ -2,3 +2,11 @@ body {
     margin: 0;
     font-family: 'inter', 'sans-serif';
 }
+
+.contentSection {
+    position: fixed;
+    top: 89px;
+    left: 232px;
+    bottom: 0;
+    width: 100%;
+}
