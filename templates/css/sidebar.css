@@ -1,6 +1,6 @@
 .sidebar {
     height: 100vh;
-    background-color: darkgray;
+    background-color: #2A3647;
     color: white;
     position: fixed;
     width: 232px;
@@ -12,10 +12,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 66px 20px;
-    gap: 103px;
-    left: 0px;
-    top: 0px;
-    z-index: 5;
+    padding: 65px 0px 65px 0px;
+    gap: 90px;
 }
 
+.sidebarNav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+}
+
+/* sidebarBtn  background-color: #091931; nur wenn ausgewählt - kein hover*/
+
+.sidebarBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebarBtn img {
+    height: 22px;
+    width: 30px;
+    object-fit: contain;
+    margin-right: 15px;
+    margin-left: 50px;
+}
+
+.sidebarLegal {
+    width: 100%;
+    margin-top: 110px;
+}
