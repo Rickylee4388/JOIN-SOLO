@@ -1,3 +1,10 @@
+.contentSectionContacts {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
 .contactsSection {
     display: flex;
     flex-direction: row;
@@ -10,6 +17,66 @@
     border: solid transparent;
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.1);
     overflow-y: scroll;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contactsListLetterSectionHead {
+    width: 357px;
+    border-bottom: 1px solid;
+    border-color: #D1D1D1;
+    margin-bottom: 14px;
+}
+
+.contactsListLetterSectionHead p {
+    padding-left: 36px;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+
+.contactsListLetterSectionContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 79px;
+    border-radius: 10px;
+}
+
+.contactsListLetterSectionContent h4 {
+    border: 2px solid transparent;
+    width: 25px;
+    height: 25px;
+    padding: 10px;
+    border-radius: 100%;
+    font-size: 16px;
+    border-color: white;
+    background: rgb(42, 203, 150);
+    margin-left: 25px;
+    font-weight: 400;
+    color: white;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.contactsListLetterSectionContent div {
+    margin-left: 35px;
+}
+
+.contactsListLetterSectionContentName {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.contactsListLetterSectionContentMail {
+    color: #007CEE;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
 }
 
 .contactsDetail {
@@ -17,18 +84,20 @@
     flex-direction: column;
     width: 100%;
     background: #F5F5F5;
+    padding: 58px;
+    padding-top: 0;
+    justify-content: space-between;
 }
 
 .contactsDetailHead {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 58px;
-    margin-top: 20px;
+    justify-content: flex-start;
 }
 
 .contactsDetailHead h2 {
-    font-size: 50px;
+    font-size: 61px;
     font-weight: 700;
     margin-right: 30px;
 }
@@ -40,25 +109,61 @@
 }
 
 .contactsDetailInfo {
-
+    margin-top: 10px;
 }
 
-.contactsDetailBottom {
-
-}
-
-.contactsListLetterSectionContent {
+.contactsDetailInfoHead {
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: 79px;
+    border-radius: 10px;
 }
 
-.contactsListLetterSectionContent h4 {
+.contactsDetailInfoHead h4 {
     border: 2px solid transparent;
-    width: fit-content;
+    width: 100px;
+    height: 100px;
     padding: 10px;
     border-radius: 100%;
-    font-size: 20px;
-    background: aquamarine;
+    font-size: 50px;
+    border-color: white;
+    background: rgb(42, 203, 150);
+    font-weight: 500;
+    color: white;
+    line-height: 2;
+    text-align: center;
 }
 
+.contactsDetailInfoHead div {
+    margin-left: 54px;
+}
+
+.contactsDetailInfoHeadName {
+    font-size: 47px;
+    font-weight: 500;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.contactsDetailInfoHeadAddTask {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+    color: #29ABE2;
+}
+
+.contactsDetailInfoContent {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+
+.contactsDetailInfoContentLeft{
+    width: 250px;
+}
+
+.contactsDetailBottom {
+    display: flex;
+    justify-content: flex-end;
+}
