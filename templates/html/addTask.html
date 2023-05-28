@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,21 +16,77 @@
 
     <script src="../../main.js"></script>
     <script src="../../templates/js/includeHTML.js"></script>
-    
+
 </head>
+
 <body onload="init()">
     <div w3-include-html="../../templates/html/header.html"></div>
     <div w3-include-html="../../templates/html/sidebar.html"></div>
-    <div class="ContentSection" id="ContentSection">
+    <div class="contentSection" id="ContentSection">
         <h1>Add Task</h1>
 
-        <div class="buttonsContainer">
-            <div class="twoButtons">
-                <button class="clearButton">Clear</button>
+        <div class="contentLeftAndRight">
+            <div class="contentLeft">
+                <div class="titleAndInput">
+                    <span>Title</span>
+                    <input id="title" type="text" placeholder="Enter a title">
+                </div>
 
-                <button class="createTaskButton">Create Task</button>
+                <div class="descriptionAndTextarea">
+                    <span>Description</span>
+                    <textarea id="description" placeholder="Enter a Description"></textarea>
+                </div>
+
+                <div class="categoryAndSelect">
+                    <span>Category</span>
+                    <select id="category">
+                        <option>Select task category</option>
+                        <option value="NewCategory">New category</option>
+                        <option value="sales">Sales</option>
+                        <option value="backoffice">Backoffice</option>
+                    </select>
+                </div>
+
+                <div class="assignedToAndSelect">
+                    <span>Assigned to</span>
+                    <select id="assign">
+                        <option>Select contacts to assign</option>
+                        <option value="you">You</option>
+                        <option value="personxy">Person XY</option>
+                        <option value="invite new contact">Invite new contact</option>
+                    </select>
+                </div>
             </div>
+
+            <div class="borderline"></div>
+
+            <div class="contentRight">
+                <div class="dueDateAndInput">
+                    <span>Due Date</span>
+                    <input placeholder="dd/mm/yyyy">
+                </div>
+
+                <div class="prio">
+                    <span>Prio</span>
+                    <div class="prioButtons">
+                        <button>Urgent</button>
+                        <button>Medium</button>
+                        <button>Low</button>
+                    </div>
+                </div>
+
+                <div class="subtasksAndInput">
+                    <span>Subtasks</span>
+                    <input type="text" placeholder="Add new subtask">
+                </div>
+            </div>
+        </div>
+
+        <div class="twoButtons">
+            <button>Clear</button>
+            <button>Create Task</button>
         </div>
     </div>
 </body>
+
 </html>
