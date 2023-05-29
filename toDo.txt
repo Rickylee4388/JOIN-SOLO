@@ -1,4 +1,4 @@
-1. Login + Summary  => Denise
-2. Board            => Davide
-3. Add Task         => Jacob
-4. Contacts + SB/NB => Philipp
+1. Login + Summary      => Denise
+2. Add Task             => Davide
+3. Board                => Jacob
+4. Contacts + SB/NB     => Philipp

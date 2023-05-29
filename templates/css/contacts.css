@@ -185,7 +185,7 @@
     color: white;
     width: 80%;
     max-width: 1000px;
-    height: 500px;
+    height: 550px;
     border-radius: 20px;
     position: absolute;
     top: 50%;
@@ -198,8 +198,81 @@
     width: 38%;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.overlayAddContactLeftContent{
+    padding-bottom: 80px;
+}
+
+.overlayAddContactLeftContentLogo {
+    height: 65px;
+}
+
+.overlayAddContactLeftHeadline {
+    font-size: 50px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.overlayAddContactLeftCaption {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.overlayAddContactLeftContentLine {
+    width: 75px;
+}
+
+
 .overlayAddContactRight{
+    display: flex;
+    flex-direction: row;
+    width: 62%;
+}
+
+.overlayAddContactRightProfilepic{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 60px;
+}
+
+.overlayAddContactRightProfilepic img{
+   height: 120px;
+}
+
+.overlayAddContactRightInputSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 60px;
+}
+
+.overlayAddContactRightInputSection form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+   
+}
+
+.overlayAddContactRightInputSection input{
+    width: 320px;
+    height: 35px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    outline: none;
+}
+
+.overlayAddContactRightButtonSection button {
+    height: 35px;
 
 }
