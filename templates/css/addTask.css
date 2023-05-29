@@ -1,60 +1,183 @@
 .contentSection {
     background-color: #F6F7F8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 
 h1 {
-    
+    /* Add Task */
+    margin: 0;
+
+    /* Version 2/t1 */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 120%;
+    /* or 73px */
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    width: 100%;
+}
+
+span {
+    /* Version 2/t6 */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+    /* or 25px */
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    margin: 5px 0px 5px 0px;
 }
 
 input {
+    /* Frame 14 */
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 21px;
+    gap: 10px;
+
+    width: 422px;
+    height: 51px;
+
+    background: #FFFFFF;
+
+    /* Style */
     border: 1px solid #D1D1D1;
     border-radius: 10px;
-    padding: 5px 10px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+
+    font-weight: 400;
+    font-size: 21px;
 }
 
 textarea {
-    font-family: 'inter', 'sans-serif';
-    height: 50px;
+    /* Frame 17 */
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 18px 21px;
+    gap: 10px;
+    isolation: isolate;
+
+    width: 422px;
+    height: 119px;
+
+    background: #FFFFFF;
+
+    /* Style */
     border: 1px solid #D1D1D1;
     border-radius: 10px;
-    padding: 5px 10px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+
+    font-family: 'inter', 'sans-serif';
+    font-weight: 400;
+    font-size: 21px;
 }
 
 select {
+    /* Frame 14 */
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 10px;
+    isolation: isolate;
+
+    width: 422px;
+    height: 51px;
+
+    background: #FFFFFF;
+    /* Style */
+
     border: 1px solid #D1D1D1;
     border-radius: 10px;
-    padding: 5px 10px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    font-weight: 400;
+    font-size: 21px;
+}
+
+button {
+    font-weight: 400;
+    font-size: 21px;
 }
 
 .contentLeftAndRight {
     display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.borderline {
+    border: 1px solid #D1D1D1;
 }
 
 .contentLeft {}
 
-.borderline{
-    border: 1px solid #D1D1D1;
-}
 
 .titleAndInput {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 20px 0px 20px 0px;
 }
 
 .descriptionAndTextarea {
     display: flex;
     flex-direction: column;
+    margin: 20px 0px 20px 0px;
 }
 
 .categoryAndSelect {
     display: flex;
     flex-direction: column;
+    margin: 20px 0px 20px 0px;
 }
 
 .assignedToAndSelect {
     display: flex;
     flex-direction: column;
+    margin: 20px 0px 20px 0px;
 }
 
 .contentRight {}
@@ -62,9 +185,68 @@ select {
 .dueDateAndInput {
     display: flex;
     flex-direction: column;
+    margin: 20px 0px 20px 0px;
+}
+
+.dueDateAndInput input {
+    background-color: FFFFF;
+    background: url("../../img/calendarIcon.png") no-repeat right;
+    background-position: 380px;
+}
+
+.prio {
+    margin: 25px 0px 20px 0px;
+}
+
+.prioButtons {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+}
+
+.prioButtons button {
+    /* Frame 14 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    border: none;
+    width: 136px;
+    height: 51px;
+
+    /* white */
+
+    background: #FFFFFF;
+    /* nuevo */
+
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
 .subtasksAndInput {
     display: flex;
     flex-direction: column;
+    margin: 20px 0px 20px 0px;
+}
+
+.twoButtons {
+    width: 100%;
+    display: flex;
+    justify-content: end;
 }
