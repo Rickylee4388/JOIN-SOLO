@@ -1,3 +1,7 @@
+html {
+    overflow-y: hidden;
+}
+
 .contentSection {
     background-color: #F6F7F8;
     display: flex;
@@ -153,7 +157,9 @@ button {
     border: 1px solid #D1D1D1;
 }
 
+/*
 .contentLeft {}
+*/
 
 
 .titleAndInput {
@@ -174,13 +180,39 @@ button {
     margin: 20px 0px 20px 0px;
 }
 
+.categoryAndSelect select {
+    -webkit-appearance: none; /* Safari und Chrome */
+    -moz-appearance: none; /* Firefox */
+    appearance: none; /* Standardwert */
+    background: white url("../../img/dropdownArrow.png") no-repeat right center; /* Hintergrundbild für den angepassten Pfeil */
+    background-position: 390px;
+}
+
+.categoryAndSelect select:hover {
+    cursor: pointer;
+}
+
 .assignedToAndSelect {
     display: flex;
     flex-direction: column;
     margin: 20px 0px 20px 0px;
 }
 
+.assignedToAndSelect select {
+    -webkit-appearance: none; /* Safari und Chrome */
+    -moz-appearance: none; /* Firefox */
+    appearance: none; /* Standardwert */
+    background: white url("../../img/dropdownArrow.png") no-repeat right center; /* Hintergrundbild für den angepassten Pfeil */
+    background-position: 390px;
+}
+
+.assignedToAndSelect select:hover {
+    cursor: pointer;
+}
+
+/*
 .contentRight {}
+*/
 
 .dueDateAndInput {
     display: flex;
@@ -189,8 +221,7 @@ button {
 }
 
 .dueDateAndInput input {
-    background-color: FFFFF;
-    background: url("../../img/calendarIcon.png") no-repeat right;
+    background: white url("../../img/calendarIcon.png") no-repeat right;
     background-position: 380px;
 }
 
@@ -209,9 +240,6 @@ button {
 }
 
 .prioButtons button {
-    /* Frame 14 */
-
-
     /* Auto layout */
 
     display: flex;
@@ -237,6 +265,13 @@ button {
     flex: none;
     order: 0;
     flex-grow: 0;
+    transition: ease-in-out 125ms;
+}
+
+.prioButtons button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: ease-in-out 125ms;
 }
 
 .subtasksAndInput {
@@ -245,8 +280,63 @@ button {
     margin: 20px 0px 20px 0px;
 }
 
+.subtasksAndInput input {
+    background: white url("../../img/subtaskIcon.png") no-repeat right;
+    background-position: 390px;
+}
+
 .twoButtons {
     width: 100%;
     display: flex;
     justify-content: end;
+    padding: 0px;
+    gap: 25px;
+}
+
+.clearButton {
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+
+    width: 136px;
+    height: 55px;
+
+    /* Version 2/ main color  */
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.createTaskButton {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 15px;
+    gap: 10px;
+
+    font-weight: 700;
+    color: #FFFFFF;
+
+    width: 187px;
+    height: 55px;
+
+    background: #2A3647;
+    border-radius: 10px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }
