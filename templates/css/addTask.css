@@ -30,6 +30,10 @@ input {
     font-size: 21px;
 }
 
+input:focus {
+    outline: none;
+}
+
 textarea {
     box-sizing: border-box;
     padding: 18px 21px;
@@ -43,6 +47,10 @@ textarea {
     font-size: 21px;
 }
 
+textarea:focus {
+    outline: none;
+}
+
 select {
     box-sizing: border-box;
     padding: 5px 10px;
@@ -52,6 +60,10 @@ select {
     border-radius: 10px;
     font-weight: 400;
     font-size: 21px;
+}
+
+select:focus {
+    outline: none;
 }
 
 button {
@@ -208,7 +220,7 @@ button {
 
 .clearButton:hover {
     cursor: pointer;
-    /*color: rgb(83, 168, 223);*/
+    color: rgb(83, 168, 223);
     border: 1.5px solid rgb(83, 168, 223);
     transform: scale(1.02);
     box-shadow: 0px 3px 6px rgb(190, 190, 190);
@@ -226,6 +238,7 @@ button {
     width: 187px;
     height: 55px;
     background: #2A3647;
+    border: none;
     border-radius: 10px;
     transition: ease-in-out 125ms;
 }
