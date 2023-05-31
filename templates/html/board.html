@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.ico" />
+
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="../../fonts/fonts.css" />
+    <link rel="stylesheet" href="../../templates/css/header.css" />
+    <link rel="stylesheet" href="../../templates/css/sidebar.css" />
+    <link rel="stylesheet" href="../../templates/css/board.css" />
+
+    <script src="../../main.js"></script>
+    <script src="../../templates/js/includeHTML.js"></script>
+  </head>
+  <body onload="init()">
+    <div w3-include-html="../../templates/html/header.html"></div>
+    <div w3-include-html="../../templates/html/sidebar.html"></div>
+    
+    <div class="boardBody">
+
+        <section class="boardHeadlineContainer">
+
+            <div class="board">Board</div>
+    
+            <div class="boardHeadlineRightContainer">
+                <div class="searchContainer">
+                    <input class="searchInput" type="text" placeholder="Find task">
+    
+                    <div class="searchBtn">
+                        <img src="../../img/Vector.png" alt="">
+                    </div>
+                </div>
+                
+                <button class="addTaskBtn btn-bg">
+                  <span class="addTaskBtnText">Add task </span>
+                  <span class="addTaskBtnIcon">+</span>
+                </button>
+    
+            </div>
+        </section>
+    
+    
+        <section class="boardContentContainer">
+          
+            <div class="todoContainer">
+                <div class="boardStatusHeadContainer">
+                    <div class="boardStatus">To do</div>
+                    <div class="plusBtnContainer btn-border-color">
+                        <div class="plusLine1"></div>
+                        <div class="plusLine2"></div>
+                    </div>
+                </div>
+    
+                <div class="todoContent">
+    
+                    <div class="pinnedTaskContainer">
+                        <div class="taskCategory">
+                            Design
+                        </div>
+    
+                        <h3 class="pinnedTaskHeadline">Task-Überschrift</h3>
+                        <p class="pinnedTaskDiscription">Modify the content of the mainn website</p>
+    
+                    <div class="progressContainer">
+                        <div class="progressBar"></div>
+                        <div class="progressText">1/2 Done</div>
+                    </div>
+    
+                    <div class="pinnedTaskContactsArrowContainer">
+                        <div class="pinnedTaskContactsContainer">
+                            <div class="contactContainer red">SL</div>
+                            <div class="contactContainer blue">JH</div>
+                            <div class="contactContainer green">KL</div>
+                        </div>
+    
+                        <div class="arrowButton">
+                            <img src="../../img/greenArrow.png" alt="">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    
+            
+            <div class="inProgressContainer">
+                
+                <div class="boardStatusHeadContainer">
+                  <div class="boardStatus">In progress</div>
+                  <div class="plusBtnContainer btn-border-color">
+                    <div class="plusLine1"></div>
+                    <div class="plusLine2"></div>
+                </div>
+                </div>
+        
+                <div class="todoContent">
+        
+                </div>
+                  
+            </div>
+    
+    
+            <div class="awaitingFeedbackContainer">
+                
+                <div class="boardStatusHeadContainer">
+                  <div class="boardStatus">Awaiting Feedback</div>
+                  <div class="plusBtnContainer btn-border-color">
+                    <div class="plusLine1"></div>
+                    <div class="plusLine2"></div>
+                </div>
+                </div>
+        
+                <div class="awaitingFeedbackContent">
+        
+                </div>
+                  
+            </div>
+    
+    
+            <div class="doneContainer">
+                
+                <div class="boardStatusHeadContainer">
+                  <div class="boardStatus">Done</div>
+                  <div class="plusBtnContainer btn-border-color">
+                    <div class="plusLine1"></div>
+                    <div class="plusLine2"></div>
+                </div>
+                </div>
+        
+                <div class="doneContent">
+        
+                </div>
+                  
+            </div>
+        </section>
+    </div>
+
+
+    
+
+
+
+  </body>
+</html>
+
+
