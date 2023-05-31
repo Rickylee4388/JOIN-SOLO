@@ -116,6 +116,12 @@ button {
     cursor: pointer;
 }
 
+.categoryColor {
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+}
+
 .assignedToAndSelect {
     display: flex;
     flex-direction: column;
