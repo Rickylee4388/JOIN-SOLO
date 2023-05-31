@@ -23,24 +23,28 @@
       </div>
       <div id="textSignupButton" class="textSignupButton">
         <div>Not a Join user?</div>
-        <button>Sign up</button>
+        <button class="bluebutton signUpBtn">Sign up</button>
       </div>
       <div id="innerContentLogin" class="innerContentLogin">
-        <h1 id="loginHeadline">Log in</h1>
+        <div id="loginHeadlineDiv" class="loginHeadlineDiv">        
+          <h1 id="loginHeadline">Log in</h1>
+          <img src="../../img/blueline.png" alt="">
+        </div>
+
         <form id="emailAndPassword" class="emailAndPassword" action="">
-          <input type="email" />
-          <input type="password" />
+          <input class="email" type="email" placeholder="Email"/>
+          <input class="email" type="password" placeholder="Password"/>
         </form>
         <div id="rememberAndAPassword" class="rememberAndAPassword">
           <div class="d-flex">
-            <button></button>
+            <button class="rememberbtn"></button>
             <div>Remember me</div>
           </div>
           <div id="passwordLink" class="passwordLink">Forgot my password</div>
         </div>
-        <div id="loginButtons">
-          <button>Log in</button>
-          <button>Guest Log in</button>
+        <div id="loginButtons" class="loginButtons">
+          <button id="loginbtn" class="loginbtn bluebutton">Log in</button>
+          <button id="guest" class="guestbtn">Guest Log in</button>
         </div>
       </div>
     </div>
