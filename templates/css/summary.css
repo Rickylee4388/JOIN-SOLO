@@ -1,0 +1,95 @@
+.d-flex {
+    display: flex;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+.summarySection {
+    padding-top: 50px;
+    padding-left: 80px;
+    background: #F6F7F8;
+    height: 100%;
+}
+
+.summarySection p {
+    font-size: 22px;
+}
+
+.headlineDiv {
+    align-items: center;
+}
+
+.summaryHeadline {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 120%;
+    color: #000000;
+    border-right: 3px solid #29ABE2;
+    padding-right: 60px;
+    margin-right: 24px;
+
+}
+
+.taskbox {
+    margin-right: 32px;
+    height: 148px;
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    text-align: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.tasknumber {
+    padding-bottom: 8px;
+    font-weight: 600;
+    font-size: 50px;
+}
+
+.tasktext {
+    font-weight: 400;
+    font-size: 21px;
+    width: 100px;
+    height: 30px;
+    margin: 5px;
+}
+.newsAndDate{
+    margin-right: 32px;
+    height: 125px;
+    width: 580px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    text-align: center;
+    margin-top: 32px;
+}
+
+.personalTaskBox{
+    margin-right: 32px;
+    height: 125px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    text-align: center;
+    margin-top: 32px;
+}
