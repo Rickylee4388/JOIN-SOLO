@@ -16,7 +16,7 @@
 
     <script src="../../main.js"></script>
     <script src="../../templates/js/includeHTML.js"></script>
-
+    <script src="../../templates/js/addTask.js"></script>
 </head>
 
 <body onload="init()">
@@ -29,7 +29,7 @@
             <div class="contentLeft">
                 <div class="titleAndInput">
                     <span>Title</span>
-                    <input id="title" type="text" placeholder="Enter a title">
+                    <input id="title" placeholder="Enter a title">
                 </div>
 
                 <div class="descriptionAndTextarea">
@@ -66,7 +66,7 @@
             <div class="contentRight">
                 <div class="dueDateAndInput">
                     <span>Due Date</span>
-                    <input placeholder="dd/mm/yyyy">
+                    <input id="date" placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="prio">
@@ -91,13 +91,13 @@
 
                 <div class="subtasksAndInput">
                     <span>Subtasks</span>
-                    <input type="text" placeholder="Add new subtask">
+                    <input id="subtasks" placeholder="Add new subtask">
                 </div>
             </div>
         </div>
 
         <div class="twoButtons">
-            <button class="clearButton">
+            <button class="clearButton" onclick="clearFields()">
                 Clear
                 <img src="../../img/cancelIcon.png">
             </button>
