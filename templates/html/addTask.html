@@ -72,17 +72,17 @@
                 <div class="prio">
                     <span>Prio</span>
                     <div class="prioButtons">
-                        <button>
+                        <button id="urgent" onclick="urgent()">
                             Urgent
                             <img src="../../img/urgentIcon.png">
                         </button>
 
-                        <button>
+                        <button id="medium" onclick="medium()">
                             Medium
                             <img src="../../img/mediumIcon.png">
                         </button>
 
-                        <button>
+                        <button id="low" onclick="low()">
                             Low
                             <img src="../../img/lowIcon.png">
                         </button>
@@ -91,7 +91,11 @@
 
                 <div class="subtasksAndInput">
                     <span>Subtasks</span>
-                    <input id="subtasks" placeholder="Add new subtask">
+                    <input id="subtasks" placeholder="Add new subtask" ="addSubtask()">
+                </div>
+
+                <div class="subtasksList" id="subtasksList">
+
                 </div>
             </div>
         </div>

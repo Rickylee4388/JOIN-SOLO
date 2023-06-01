@@ -190,6 +190,24 @@ button {
     transition: ease-in-out 125ms;
 }
 
+.urgent {
+    color: white;
+    background-color: rgb(255, 61, 0) !important;
+    font-weight: bold;
+}
+
+.medium {
+    color: white;
+    background-color: rgb(255, 168, 0) !important;
+    font-weight: bold;
+}
+
+.low {
+    color: white;
+    background-color: rgb(122, 226, 41) !important;
+    font-weight: bold;
+}
+
 .subtasksAndInput {
     display: flex;
     flex-direction: column;
@@ -199,6 +217,11 @@ button {
 .subtasksAndInput input {
     background: white url("../../img/subtaskIcon.png") no-repeat right;
     background-position: 390px;
+}
+
+.subtasksList {
+    display: flex;
+    flex-direction: column;
 }
 
 .twoButtons {
