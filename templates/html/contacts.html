@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,40 +16,49 @@
 
     <script src="/../main.js"></script>
     <script src="/../templates/js/includeHTML.js"></script>
+    <script src="/../templates/js/contacts.js"></script>
     <script src="/../templates/js/contactsTemplates.js"></script>
-    
+    <script src="/../templates/js/backend.js"></script>
+
 </head>
+
 <body onload="initContacts()">
-    <div class="overlaySection" id="overlaySection">
-        <div class="overlayAddContact" id="overlayAddContact">
+    <div class="overlaySection d-none" id="overlaySection" onclick="addNewContactClose()">
+        <div class="overlayAddContact" id="overlayAddContact" onclick="doNotClose(event)">
             <div class="overlayAddContactLeft">
                 <div class="overlayAddContactLeftContent">
                     <img class="overlayAddContactLeftContentLogo" src="/../img/sidebarLogo.svg" alt="sidebarLogo">
                     <p class="overlayAddContactLeftHeadline">Add Contact</p>
-                    <p class="overlayAddContactLeftCaption">Tasks are better with a team!</p>    
-                    <img class="overlayAddContactLeftContentLine" src="/../img/addContactOverlayLine.svg" alt="underline">
+                    <p class="overlayAddContactLeftCaption">Tasks are better with a team!</p>
+                    <img class="overlayAddContactLeftContentLine" src="/../img/addContactOverlayLine.svg"
+                        alt="underline">
                 </div>
-                </div>
+            </div>
             <div class="overlayAddContactRight">
                 <div class="overlayAddContactRightProfilepic">
                     <img src="/../img/addContactOverlayEmptyProfile.svg" alt="ProfilePicEmpty">
                 </div>
                 <div class="overlayAddContactRightInputSection">
-                    <form>
-                        <input type="text" placeholder="Name">
-                        <input type="text" placeholder="Email">
-                        <input type="text" placeholder="Phone">
+                    <form onsubmit="createContact(); return false;">
+                        <input id="addContactName" required type="text" placeholder="Name">
+                        <input id="addContactEmail" required type="text" placeholder="Email">
+                        <input id="addContactPhone" required type="number" placeholder="Phone">
+                        <div class="overlayAddContactRightButtonSection">
+                            <button id="formResetButton" type="reset">Cancel</button>
+                            <button type="submit">Create Contact</button>
+                        </div>
                     </form>
-                    <div class="overlayAddContactRightButtonSection">
-                        <button>Cancel</button>
-                        <button>Create Contact</button>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <div class="contentSectionContacts" id="contentSection">
+    <div class="contentSectionContacts" >
+        <div class="contactsSection" id="contentSection">
 
-   
+        </div>
+    </div>
+
 </body>
+
 </html>
