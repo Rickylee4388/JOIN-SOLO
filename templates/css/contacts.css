@@ -43,6 +43,7 @@
     align-items: center;
     height: 79px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .contactsListGroupContact h4 {
@@ -168,6 +169,17 @@
     justify-content: flex-end;
 }
 
+.contactsDetailBottom img {
+    cursor: pointer;
+}
+
+.contactsDetailInfoContentRight h3 {
+    cursor: pointer;
+    background-color: #D1D1D1;
+    padding: 4px;
+    border-radius: 5px;
+}
+
 .overlaySection {
     position: fixed;
     top: 0;
@@ -236,15 +248,27 @@
     width: 62%;
 }
 
-.overlayAddContactRightProfilepic{
+.overlayAddContactRightProfilepic h4{
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-left: 60px;
+    border: 2px solid transparent;
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border-radius: 100%;
+    font-size: 50px;
+    border-color: white;
+    font-weight: 500;
+    text-align: center;
 }
 
-.overlayAddContactRightProfilepic img{
-   height: 120px;
+.overlayAddContactRightProfilepic {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .overlayAddContactRightInputSection {

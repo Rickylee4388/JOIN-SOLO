@@ -1,23 +1,18 @@
-let allContacts = [
-    { name: 'Jürger Jonas', email: 'testdev@web.de', phone: '34567534256', color: 'rgb(253,153,63)', initials: 'JJ', group: 'J' },
-    { name: 'Claudia Braun', email: 'testdev2@web.de', phone: '457445364535', color: 'rgb(38 201 140)', initials: 'CB', group: 'C' },
-    { name: 'Jarne Carlsson', email: 'testdev3@web.de', phone: '2435634635', color: 'rgb(201 38 68)', initials: 'JC', group: 'J' },
-    { name: 'Bertha Dübel', email: 'testdev4@web.de', phone: '24356534563', color: 'rgb(38 62 201)', initials: 'BD', group: 'B' }];
-
+let allContacts = []
+    
 async function initContacts() {
-    //includeHTML();
-    //await loadContacts();
+    await loadContacts();
     renderContactsSection();
     renderContactsList();
 }
 
-/*async function loadContacts() {
+async function loadContacts() {
     try {
         allContacts = JSON.parse(await getItem('contacts'));
     } catch (e) {
         console.error('Loading error:', e);
     }
-}*/
+}
 
 function sortContacts() {
     allContacts.sort(function(a, b) {
@@ -60,8 +55,17 @@ function renderContactsListGroupContact() {
         let color = allContacts[i]['color'];
         let initials = allContacts[i]['initials'];
         let group = allContacts[i]['group'];
-        document.getElementById(`contactsListGroup${group}`).innerHTML += generateContactsListGroupContact(name, email, color, initials, i);
+        document.getElementById(`contactsListGroup${group}`).innerHTML += generateContactsListGroupContactHTML(name, email, color, initials, i);
     }
+}
+
+function showContactDetails(i) {
+    let name = allContacts[i]['name'];
+    let email = allContacts[i]['email'];
+    let color = allContacts[i]['color'];
+    let initials = allContacts[i]['initials'];
+    let phone = allContacts[i]['phone'];
+    document.getElementById('contactsDetailInfo').innerHTML = generateContactsDetailContentHTML(name, email, phone, color, initials, i);
 }
 
 async function createContact() {
@@ -79,11 +83,38 @@ async function createContact() {
         initials: initials,
         group: group,
     })
-    //await setItem('contacts', JSON.stringify(allContacts));
+    await setItem('contacts', JSON.stringify(allContacts));
     document.getElementById('contactsList').innerHTML = '';
     renderContactsList();
     document.getElementById('overlaySection').classList.add('d-none');
     document.getElementById('formResetButton').click();
+}
+
+async function saveEditedContact(i) {
+    let editedName = document.getElementById('editContactName').value;
+    let editedEmail = document.getElementById('editContactEmail').value;
+    let editedPhone = document.getElementById('editContactPhone').value;
+
+    allContacts[i]['name'] = editedName;
+    allContacts[i]['email'] = editedEmail;
+    allContacts[i]['phone'] = editedPhone;
+
+    await setItem('contacts', JSON.stringify(allContacts));
+    document.getElementById('contactsList').innerHTML = '';
+    renderContactsList();
+    showContactDetails(i);
+    document.getElementById('overlaySection').classList.add('d-none');
+}
+
+async function deleteContact(i) {
+    let contactToDelete = allContacts[i];
+    delete contactToDelete;
+    allContacts.splice(i, 1);
+    await setItem('contacts', JSON.stringify(allContacts));
+    document.getElementById('contactsList').innerHTML = '';
+    document.getElementById('contactsDetailInfo').innerHTML = '';
+    document.getElementById('overlaySection').classList.add('d-none');
+    renderContactsList();
 }
 
 function getInitials(name) {
@@ -133,9 +164,20 @@ function countGroupObjects(x) {
 
 function addNewContact() {
     document.getElementById('overlaySection').classList.remove('d-none');
+    document.getElementById('overlaySection').innerHTML = generateContactsOverlayAddHTML();
 }
 
-function addNewContactClose() {
+function editContact(i) {
+    let name = allContacts[i]['name'];
+    let email = allContacts[i]['email'];
+    let phone = allContacts[i]['phone'];
+    let color = allContacts[i]['color'];
+    let initials = allContacts[i]['initials'];
+    document.getElementById('overlaySection').classList.remove('d-none');
+    document.getElementById('overlaySection').innerHTML = generateContactsOverlayEditHTML(name, email, phone, color, initials, i);
+}
+
+function closeContactOverlay() {
     document.getElementById('overlaySection').classList.add('d-none');
 }
 

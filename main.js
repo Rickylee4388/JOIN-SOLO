@@ -14,6 +14,6 @@ function renderAddTask() {
     contentSection.innerHTML = '<h2>Add Task</h2>';
 }
 
-function renderContacts() {
-    contentSection.innerHTML = generateContactsHTML();
+async function renderContacts() {
+    initContacts();
 }

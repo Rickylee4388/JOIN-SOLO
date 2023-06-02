@@ -23,6 +23,9 @@
 <body onload="init()">
     <div w3-include-html="./templates/html/header.html"></div>
     <div w3-include-html="./templates/html/sidebar.html"></div>
-    <div class="contentSection" id="contentSection"></div>
+    <div class="overlaySection d-none" id="overlaySection" onclick="closeContactOverlay()"></div>
+    <div class="contentSection">
+        <div class="contactsSection" id="contentSection"></div>
+    </div>
 </body>
 </html>
