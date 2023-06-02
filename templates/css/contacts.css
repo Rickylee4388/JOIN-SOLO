@@ -23,21 +23,21 @@
     align-items: center;
 }
 
-.contactsListLetterSectionHead {
+.contactsListGroupHead {
     width: 357px;
     border-bottom: 1px solid;
     border-color: #D1D1D1;
     margin-bottom: 14px;
 }
 
-.contactsListLetterSectionHead p {
+.contactsListGroupHead p {
     padding-left: 36px;
     font-weight: 400;
     font-size: 20px;
 }
 
 
-.contactsListLetterSectionContent {
+.contactsListGroupContact {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -45,7 +45,7 @@
     border-radius: 10px;
 }
 
-.contactsListLetterSectionContent h4 {
+.contactsListGroupContact h4 {
     border: 2px solid transparent;
     width: 25px;
     height: 25px;
@@ -61,18 +61,18 @@
     text-align: center;
 }
 
-.contactsListLetterSectionContent div {
+.contactsListGroupContact div {
     margin-left: 35px;
 }
 
-.contactsListLetterSectionContentName {
+.contactsListContactName {
     font-size: 20px;
     font-weight: 400;
     margin-bottom: 5px;
     margin-top: 0;
 }
 
-.contactsListLetterSectionContentMail {
+.contactsListContactMail {
     color: #007CEE;
     font-size: 16px;
     font-weight: 400;

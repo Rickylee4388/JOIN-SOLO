@@ -35,24 +35,27 @@ function generateContactsHTML() {
         <img onclick="addNewContact()" src="/../img/newContactIconBig.svg" alt="newContactIconBig">
     </div>
 </div>
+`
+}
 
+function generateContactsListGroupHTML(groupLetter) {
+    return /*html*/ `
+    <div class="contactsListGroup" id="contactsListGroup${groupLetter}">
+    <div class="contactsListGroupHead" id="contactsListGroupHead">
+            <p>${groupLetter}</p>
+        </div>   
+    </div>
     `
 }
 
-function generateContactsListHTML(name, email, color, initials) {
+function generateContactsListGroupContact(name, email, color, initials, i) {
     return /*html*/ `
-    <div class="contactsListLetterSection">
-        <div class="contactsListLetterSectionHead">
-            <p>A</p>
-        </div>
-        <div class="contactsListLetterSectionContent">
+    <div class="contactsListGroupContact" id="contactsListGroupContact${i}">
             <h4 style="background:${color}">${initials}</h4>
                 <div>
-                    <p class="contactsListLetterSectionContentName">${name}</p>
-                    <p class="contactsListLetterSectionContentMail">${email}</p>
+                    <p class="contactsListContactName">${name}</p>
+                    <p class="contactsListContactMail">${email}</p>
                 </div>
-        </div>
-    </div>`
+        </div>`
 }
-
 
