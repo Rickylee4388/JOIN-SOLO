@@ -29,7 +29,7 @@
             <div class="contentLeft">
                 <div class="titleAndInput">
                     <span>Title</span>
-                    <input id="title" placeholder="Enter a title">
+                    <input  id="title" placeholder="Enter a title">
                 </div>
 
                 <div class="descriptionAndTextarea">
@@ -52,7 +52,7 @@
 
                 <div class="assignedToAndSelect">
                     <span>Assigned to</span>
-                    <select id="assign">
+                    <select id="assignedTo">
                         <option>Select contacts to assign</option>
                         <option value="you">You</option>
                         <option value="personxy">Person XY</option>
@@ -66,32 +66,32 @@
             <div class="contentRight">
                 <div class="dueDateAndInput">
                     <span>Due Date</span>
-                    <input id="date" placeholder="dd/mm/yyyy">
+                    <input type="date" id="date" placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="prio">
                     <span>Prio</span>
                     <div class="prioButtons">
-                        <button id="urgent" onclick="urgent()">
+                        <button id="urgent" value="urgent" onclick="urgent()">
                             Urgent
-                            <img src="../../img/urgentIcon.png">
+                            <img id="urgentIcon" src="../../img/urgentIcon.png">
                         </button>
 
-                        <button id="medium" onclick="medium()">
+                        <button id="medium" value="medium" onclick="medium()">
                             Medium
-                            <img src="../../img/mediumIcon.png">
+                            <img id="mediumIcon" src="../../img/mediumIcon.png">
                         </button>
 
-                        <button id="low" onclick="low()">
+                        <button id="low" value="low" onclick="low()">
                             Low
-                            <img src="../../img/lowIcon.png">
+                            <img id="lowIcon" src="../../img/lowIcon.png">
                         </button>
                     </div>
                 </div>
 
                 <div class="subtasksAndInput">
                     <span>Subtasks</span>
-                    <input id="subtasks" placeholder="Add new subtask" ="addSubtask()">
+                    <input id="subtasks" placeholder="Add new subtask">
                 </div>
 
                 <div class="subtasksList" id="subtasksList">
@@ -106,7 +106,7 @@
                 <img src="../../img/cancelIcon.png">
             </button>
 
-            <button class="createTaskButton">
+            <button class="createTaskButton" id="createTask" onclick="createTask()">
                 Create Task
                 <img src="../../img/checkIcon.png">
             </button>

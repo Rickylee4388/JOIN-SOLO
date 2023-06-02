@@ -1,3 +1,7 @@
+.d-none {
+    display: none;
+}
+
 .contentSection {
     background-color: #F6F7F8;
     display: flex;
@@ -151,9 +155,7 @@ button {
 }
 
 .dueDateAndInput input {
-    background: white url("../../img/calendarIcon.png") no-repeat right;
-    background-position: 380px;
-}
+    font-family: 'inter', 'sans-serif';}
 
 .prio {
     margin: 25px 0px 20px 0px;
