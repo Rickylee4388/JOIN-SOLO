@@ -15,6 +15,7 @@ async function signUp(){
 
     setItem('userLogin', JSON.stringify(userLogin));
     resetForm();
+    window.location.href='login.html?msg=Du hast dich erfolgreich registriert';
 
 }
 

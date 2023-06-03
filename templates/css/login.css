@@ -8,18 +8,25 @@
     height: 100px;
 }
 
-.logo img{
+.logo img {
     height: 100px;
 }
+
 .d-flex {
     display: flex;
 }
-.column{
+
+.column {
     flex-direction: column;
 }
+
 .center {
     justify-content: center;
     align-items: center;
+}
+
+.d-none {
+    display: none;
 }
 
 .loginContent {
@@ -45,10 +52,12 @@
     right: 0px;
     top: 45px;
 }
-.signUpBtn{
+
+.signUpBtn {
     width: 70px;
-    height: 35px; 
+    height: 35px;
 }
+
 .innerContentLogin {
     display: flex;
     flex-direction: column;
@@ -61,15 +70,37 @@
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     border-radius: 30px;
 }
-.arrowblue{
+
+.msgBox {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 8%;
+    width: 100vw;
+    text-align: center;
+    height: 20vh;
+    z-index: 999;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.msgBoxContent {
+    width: 600px;
+    padding: 20px;
+}
+
+.arrowblue {
     position: absolute;
     width: 200px;
     margin-right: 18%;
     margin-top: 20px;
 }
-.arrowblue img{
+
+.arrowblue img {
     cursor: pointer;
 }
+
 .loginHeadlineDiv {
     display: flex;
     flex-direction: column;
@@ -99,26 +130,30 @@
     margin-bottom: 24px;
     width: 250px;
 }
-.emailimg{
+
+.emailimg {
     background-image: url('../../img/email.png') !important;
     background-position: 220px 8px !important;
     background-size: 10px !important;
     background-repeat: no-repeat !important;
 }
-.passwordimg{
+
+.passwordimg {
     background-image: url('../../img/lock.png') !important;
     background-position: 220px 8px !important;
     background-size: 10px !important;
     background-repeat: no-repeat !important;
 
 }
-.nameimg{
+
+.nameimg {
     background-image: url('../../img/nameimg.png') !important;
     background-position: 220px 8px !important;
     background-size: 10px !important;
     background-repeat: no-repeat !important;
 
 }
+
 .email {
 
     box-sizing: border-box;
@@ -141,13 +176,15 @@
     font-size: 12px;
     margin-bottom: 24px;
 }
-.rememberbtn{
+
+.rememberbtn {
     cursor: pointer;
     width: 15px;
     gap: 5px;
     height: 15px;
     margin-right: 11px;
 }
+
 .passwordLink {
     margin-left: 24px;
     text-decoration: none;
@@ -172,7 +209,8 @@
     font-size: 16px;
     line-height: 120%;
 }
-.bluebutton{
+
+.bluebutton {
     align-items: center;
     background: #2A3647;
     border-radius: 5px;
@@ -184,19 +222,22 @@
     flex-direction: row;
     justify-content: center;
 }
-.bluebutton:hover{
+
+.bluebutton:hover {
     background: #29ABE2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: none;
     cursor: pointer;
 }
-.bluebutton:active{
+
+.bluebutton:active {
     background: #091931;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: none;
     cursor: pointer;
 }
-.bluebutton:{
+
+.bluebutton: {
     background: #29ABE2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: none;
@@ -222,13 +263,15 @@
     border-radius: 5px;
     color: #2A3647;
 }
-.guestbtn:hover{
+
+.guestbtn:hover {
     border: 2px solid #29ABE2;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     color: rgba(41, 171, 226, 1);
     background: #FFFFFF;
 }
-.guestbtn:active{
+
+.guestbtn:active {
     border: 1px solid #091931;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     color: #091931;
