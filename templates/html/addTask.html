@@ -29,7 +29,7 @@
             <div class="contentLeft">
                 <div class="titleAndInput">
                     <span>Title</span>
-                    <input  id="title" placeholder="Enter a title">
+                    <input id="title" placeholder="Enter a title">
                 </div>
 
                 <div class="descriptionAndTextarea">
@@ -41,7 +41,6 @@
                     <span>Category</span>
                     <select id="category">
                         <option>Select task category</option>
-                        <option value="newCategory">New category</option>
                         <option value="design">Design</option>
                         <option value="sales">Sales</option>
                         <option value="backoffice">Backoffice</option>
@@ -54,9 +53,11 @@
                     <span>Assigned to</span>
                     <select id="assignedTo">
                         <option>Select contacts to assign</option>
-                        <option value="you">You</option>
-                        <option value="personxy">Person XY</option>
-                        <option value="invite new contact">Invite new contact</option>
+                        <option value="Denise Schmidt">Denise Schmidt</option>
+                        <option value="Davide Religioso">Davide Religioso</option>
+                        <option value="Jacob Hengsbach">Jacob Hengsbach</option>
+                        <option value="Philipp Klinger">Philipp Klinger</option>
+                        <option value="Max Mustermann">Max Mustermann</option>
                     </select>
                 </div>
             </div>
@@ -91,7 +92,13 @@
 
                 <div class="subtasksAndInput">
                     <span>Subtasks</span>
-                    <input id="subtasks" placeholder="Add new subtask">
+
+                    <div class="inputAndButton">
+                        <input id="subtasks" placeholder="Add new subtask">
+                        <button onclick="newSubtask()">
+                            <img src="../../img/subtaskIcon.png">
+                        </button>
+                    </div>
                 </div>
 
                 <div class="subtasksList" id="subtasksList">

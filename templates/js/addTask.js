@@ -1,6 +1,29 @@
 let allTasks = [];
 
 
+function newSubtask() {
+    let allSubtasks = [];
+    let newSubtask = document.getElementById('subtasks').value;
+    allSubtasks.push(newSubtask);
+
+    if (newSubtask == '') {
+        document.getElementById('subtasks').focus();
+    } else {
+        for (let i = 0; i < allSubtasks.length; i++) {
+            let subtask = allSubtasks[i];
+            document.getElementById('subtasksList').innerHTML += /*html*/ `
+            <div class="subtask">
+                <input type="checkbox">
+                <p>${subtask}</p>
+            </div>
+            `;
+        }
+    }
+
+    document.getElementById('subtasks').value = '';
+}
+
+
 function createTask() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
