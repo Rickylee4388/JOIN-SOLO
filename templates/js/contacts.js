@@ -16,8 +16,8 @@ async function loadContacts() {
 
 function sortContacts() {
     allContacts.sort(function(a, b) {
-        var nameA = a.name.toUpperCase(); // Großbuchstaben für Vergleich
-        var nameB = b.name.toUpperCase(); 
+        let nameA = a.name.toUpperCase(); // Großbuchstaben für Vergleich
+        let nameB = b.name.toUpperCase(); 
         if (nameA < nameB) {
             return -1; // a kommt vor b
         }
@@ -40,7 +40,6 @@ function renderContactsList() {
 
 function renderContactsListGroup() {
     let groupCounts = countGroupObjects(allContacts);   //Gibt Objekt mit allen Gruppenbuchstaben und deren Anzahl aus Array zurück
-    console.log(groupCounts);
     let groupLetters = Object.keys(groupCounts);    //Filtert nur die Buchstaben aus Objekt
     for (let i = 0; i < groupLetters.length; i++) {
         let groupLetter = groupLetters[i];
@@ -86,8 +85,13 @@ async function createContact() {
     await setItem('contacts', JSON.stringify(allContacts));
     document.getElementById('contactsList').innerHTML = '';
     renderContactsList();
-    document.getElementById('overlaySection').classList.add('d-none');
     document.getElementById('formResetButton').click();
+    document.getElementById('overlaySection').innerHTML += `<img class="overlayAddContactSuccess" src="/../img/newContactSuccess.svg">`;
+    setTimeout(function() {
+        document.getElementById('overlaySection').classList.add('d-none');
+    }, 1000);
+    let index =  getCreatedContact(name);
+    showContactDetails(index);
 }
 
 async function saveEditedContact(i) {
@@ -139,6 +143,15 @@ function getBgColor() {
     let z = Math.floor(Math.random() * 256);
     let bgColor = "rgb(" + x + "," + y + "," + z + ")";
     return bgColor;
+}
+
+function getCreatedContact(name) {
+    let index = allContacts.findIndex(function(contact) {
+        return contact.name === name;
+      });
+      
+      return index;
+
 }
 
 function countGroupObjects(x) {
