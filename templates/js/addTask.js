@@ -1,4 +1,4 @@
-let allTasks = [];
+let newTaskArray = [];
 let prio = undefined;
 
 
@@ -31,6 +31,7 @@ function createTask() {
     let category = document.getElementById('category').value;
     let assignedTo = document.getElementById('assignedTo').value;
     let date = document.getElementById('date').value;
+    let subtasks = document.getElementById('subtaksList').innerText;
 
     let newTask = {
         'title': title,
@@ -38,10 +39,11 @@ function createTask() {
         'category': category,
         'assignedTo': assignedTo,
         'date': date,
-        'prio': prio
+        'prio': prio,
+        'subtasks': subtasks
     };
 
-    allTasks.push(newTask);
+    newTaskArray.push(newTask);
     clearFields();
 }
 
@@ -51,7 +53,6 @@ function clearFields() {
     document.getElementById('description').value = '';
     document.getElementById('date').value = '';
     document.getElementById('subtasks').value = '';
-    document.getElementById('subtasksList').value = '';
     clearPrioButtons();
 }
 

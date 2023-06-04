@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join</title>
+    <title>Join | Add Task</title>
     <link rel="icon" type="image/x-icon" href="/../favicon/favicon.ico">
 
     <link rel="stylesheet" href="../../style.css">
@@ -29,17 +29,17 @@
             <div class="contentLeft">
                 <div class="titleAndInput">
                     <span>Title</span>
-                    <input id="title" placeholder="Enter a title">
+                    <input required id="title" placeholder="Enter a title">
                 </div>
 
                 <div class="descriptionAndTextarea">
                     <span>Description</span>
-                    <textarea id="description" placeholder="Enter a Description"></textarea>
+                    <textarea required id="description" placeholder="Enter a Description"></textarea>
                 </div>
 
                 <div class="categoryAndSelect">
                     <span>Category</span>
-                    <select id="category">
+                    <select required id="category">
                         <option>Select task category</option>
                         <option value="design">Design</option>
                         <option value="sales">Sales</option>
@@ -51,7 +51,7 @@
 
                 <div class="assignedToAndSelect">
                     <span>Assigned to</span>
-                    <select id="assignedTo">
+                    <select required id="assignedTo">
                         <option>Select contacts to assign</option>
                         <option value="Denise Schmidt">Denise Schmidt</option>
                         <option value="Davide Religioso">Davide Religioso</option>
@@ -67,12 +67,12 @@
             <div class="contentRight">
                 <div class="dueDateAndInput">
                     <span>Due Date</span>
-                    <input type="date" id="date" placeholder="dd/mm/yyyy">
+                    <input required type="date" id="date" placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="prio">
                     <span>Prio</span>
-                    <div class="prioButtons">
+                    <div required class="prioButtons">
                         <button id="urgent" value="urgent" onclick="urgent()">
                             Urgent
                             <img id="urgentIcon" src="../../img/urgentIcon.png">
@@ -94,7 +94,7 @@
                     <span>Subtasks</span>
 
                     <div class="inputAndButton">
-                        <input id="subtasks" placeholder="Add new subtask">
+                        <input required id="subtasks" placeholder="Add new subtask">
                         <button onclick="newSubtask()">
                             <img src="../../img/subtaskIcon.png">
                         </button>
