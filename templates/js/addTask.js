@@ -1,4 +1,5 @@
 let allTasks = [];
+let prio = undefined;
 
 
 function newSubtask() {
@@ -36,7 +37,8 @@ function createTask() {
         'description': description,
         'category': category,
         'assignedTo': assignedTo,
-        'date': date
+        'date': date,
+        'prio': prio
     };
 
     allTasks.push(newTask);
@@ -49,11 +51,14 @@ function clearFields() {
     document.getElementById('description').value = '';
     document.getElementById('date').value = '';
     document.getElementById('subtasks').value = '';
+    document.getElementById('subtasksList').value = '';
     clearPrioButtons();
 }
 
 
 function clearPrioButtons() {
+    prio = undefined;
+
     document.getElementById('urgent').classList.remove('urgent');
     document.getElementById('medium').classList.remove('medium');
     document.getElementById('low').classList.remove('low');
@@ -65,6 +70,9 @@ function clearPrioButtons() {
 
 
 function urgent() {
+    let prioValue = document.getElementById('urgent').value;
+    prio = prioValue;
+
     document.getElementById('urgent').classList.add('urgent');
     document.getElementById('urgentIcon').src = '../../img/urgentWhiteIcon.png';
 
@@ -77,6 +85,9 @@ function urgent() {
 
 
 function medium() {
+    let prioValue = document.getElementById('medium').value;
+    prio = prioValue;
+
     document.getElementById('medium').classList.add('medium');
     document.getElementById('mediumIcon').src = '../../img/mediumWhiteIcon.png';
 
@@ -89,6 +100,9 @@ function medium() {
 
 
 function low() {
+    let prioValue = document.getElementById('low').value;
+    prio = prioValue;
+
     document.getElementById('low').classList.add('low');
     document.getElementById('lowIcon').src = '../../img/lowWhiteIcon.png';
 
