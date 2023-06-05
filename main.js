@@ -7,7 +7,8 @@ function renderSummary() {
 }
 
 function renderBoard() {
-    contentSection.innerHTML = '<h2>Board</h2>';
+    renderBoardHTML();
+    document.getElementById('body').classList.add('showScrollBarY')
 }
 
 function renderAddTask() {

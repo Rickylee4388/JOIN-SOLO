@@ -4,7 +4,7 @@ body {
 }
 
 .contentSection {
-    position: fixed;
+    position: absolute;
     top: 89px;
     left: 232px;
     bottom: 0;

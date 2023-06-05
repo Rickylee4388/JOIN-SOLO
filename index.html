@@ -12,15 +12,18 @@
     <link rel="stylesheet" href="./templates/css/header.css">
     <link rel="stylesheet" href="./templates/css/sidebar.css">
     <link rel="stylesheet" href="./templates/css/contacts.css">
+    <link rel="stylesheet" href="./templates/css/board.css">
 
     <script src="main.js"></script>
     <script src="./templates/js/includeHTML.js"></script>
     <script src="/../templates/js/contacts.js"></script>
     <script src="./templates/js/contactsTemplates.js"></script>
     <script src="./templates/js/backend.js"></script>
+    <script src="./templates/js/board.js"></script>
+
     
 </head>
-<body onload="init()">
+<body id="body" onload="init()">
     <div w3-include-html="./templates/html/header.html"></div>
     <div w3-include-html="./templates/html/sidebar.html"></div>
     <div class="overlaySection d-none" id="overlaySection" onclick="closeContactOverlay()"></div>
