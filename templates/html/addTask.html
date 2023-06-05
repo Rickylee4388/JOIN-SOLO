@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join</title>
+    <title>Join | Add Task</title>
     <link rel="icon" type="image/x-icon" href="/../favicon/favicon.ico">
 
     <link rel="stylesheet" href="../../style.css">
@@ -29,19 +29,18 @@
             <div class="contentLeft">
                 <div class="titleAndInput">
                     <span>Title</span>
-                    <input id="title" placeholder="Enter a title">
+                    <input required id="title" placeholder="Enter a title">
                 </div>
 
                 <div class="descriptionAndTextarea">
                     <span>Description</span>
-                    <textarea id="description" placeholder="Enter a Description"></textarea>
+                    <textarea required id="description" placeholder="Enter a Description"></textarea>
                 </div>
 
                 <div class="categoryAndSelect">
                     <span>Category</span>
-                    <select id="category">
+                    <select required id="category">
                         <option>Select task category</option>
-                        <option value="newCategory">New category</option>
                         <option value="design">Design</option>
                         <option value="sales">Sales</option>
                         <option value="backoffice">Backoffice</option>
@@ -52,11 +51,13 @@
 
                 <div class="assignedToAndSelect">
                     <span>Assigned to</span>
-                    <select id="assign">
+                    <select required id="assignedTo">
                         <option>Select contacts to assign</option>
-                        <option value="you">You</option>
-                        <option value="personxy">Person XY</option>
-                        <option value="invite new contact">Invite new contact</option>
+                        <option value="Denise Schmidt">Denise Schmidt</option>
+                        <option value="Davide Religioso">Davide Religioso</option>
+                        <option value="Jacob Hengsbach">Jacob Hengsbach</option>
+                        <option value="Philipp Klinger">Philipp Klinger</option>
+                        <option value="Max Mustermann">Max Mustermann</option>
                     </select>
                 </div>
             </div>
@@ -66,32 +67,38 @@
             <div class="contentRight">
                 <div class="dueDateAndInput">
                     <span>Due Date</span>
-                    <input id="date" placeholder="dd/mm/yyyy">
+                    <input required type="date" id="date" placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="prio">
                     <span>Prio</span>
-                    <div class="prioButtons">
-                        <button id="urgent" onclick="urgent()">
+                    <div required class="prioButtons">
+                        <button id="urgent" value="urgent" onclick="urgent()">
                             Urgent
-                            <img src="../../img/urgentIcon.png">
+                            <img id="urgentIcon" src="../../img/urgentIcon.png">
                         </button>
 
-                        <button id="medium" onclick="medium()">
+                        <button id="medium" value="medium" onclick="medium()">
                             Medium
-                            <img src="../../img/mediumIcon.png">
+                            <img id="mediumIcon" src="../../img/mediumIcon.png">
                         </button>
 
-                        <button id="low" onclick="low()">
+                        <button id="low" value="low" onclick="low()">
                             Low
-                            <img src="../../img/lowIcon.png">
+                            <img id="lowIcon" src="../../img/lowIcon.png">
                         </button>
                     </div>
                 </div>
 
                 <div class="subtasksAndInput">
                     <span>Subtasks</span>
-                    <input id="subtasks" placeholder="Add new subtask" ="addSubtask()">
+
+                    <div class="inputAndButton">
+                        <input required id="subtasks" placeholder="Add new subtask">
+                        <button onclick="newSubtask()">
+                            <img src="../../img/subtaskIcon.png">
+                        </button>
+                    </div>
                 </div>
 
                 <div class="subtasksList" id="subtasksList">
@@ -106,7 +113,7 @@
                 <img src="../../img/cancelIcon.png">
             </button>
 
-            <button class="createTaskButton">
+            <button class="createTaskButton" id="createTask" onclick="createTask()">
                 Create Task
                 <img src="../../img/checkIcon.png">
             </button>
