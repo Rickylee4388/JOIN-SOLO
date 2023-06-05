@@ -18,3 +18,8 @@ body {
 .d-block {
     display: block;
 }
+
+
+.hideScrollBarY {
+    overflow-y: hidden;
+}

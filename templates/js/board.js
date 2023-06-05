@@ -14,7 +14,7 @@ let tasksOnBoard = [
         'category': 'Code',
         'headline': 'Clean up code',
         'discription': 'ioenfgpiqen pgnp qengvnepgnpeng pnaepgnpaeng pvn',
-        'stat': 'in progress'
+        'stat': 'inProgress'
     }
 ];
 let currentDraggedTask;
@@ -26,12 +26,14 @@ function renderBoardHTML() {
 
     content.innerHTML = '';
     content.innerHTML += /*html*/`
-    <div class="boardBody">
+    <div class="boardBody" id="boardBody">
     <section id="boardHeadlineContainer" class="boardHeadlineContainer"></section>
 
     <section id="boardContentContainer" class="boardContentContainer"></section>
     </div>
     `
+    document.getElementById('body').classList.add('hideScrollBarY');
+    document.getElementById('boardBody').classList.add('showScrollBarY');
     renderBoardHeaderHTML();
     renderStatusFieldsHTML();
 }
@@ -75,6 +77,7 @@ function renderStatusFieldsHTML() {
     for (let i = 0; i < taskStatus.length; i++) {
         const stat = taskStatus[i];
         const statClass = taskStatusClasses[i];
+        let nextStat = taskStatusClasses[i + 1];
 
         content.innerHTML += /*html*/`
             <div class="${statClass}Container">
@@ -87,7 +90,7 @@ function renderStatusFieldsHTML() {
             </div>
             </div>
 
-        <div id="${statClass}Content" class="statusContent" ondrag="moveTo('${dragTargets[i+1]}')" ondragover="allowDrop(event)"></div>
+        <div id="${statClass}Content" class="statusContent" ondrag="moveTo('${nextStat}')" ondragover="allowDrop(event)" ></div>
           
     </div>
         `
@@ -123,7 +126,7 @@ function renderTodoTasksHTML() {
 
 function renderInProgressHTML() {
     let content = document.getElementById('inProgressContent');
-    let inProgress = tasksOnBoard.filter(task => task['stat'] == 'in progress');
+    let inProgress = tasksOnBoard.filter(task => task['stat'] == 'inProgress');
 
     content.innerHTML = '';
 
@@ -138,7 +141,7 @@ function renderInProgressHTML() {
 
 function renderAwaitingFeedbackHTML() {
     let content = document.getElementById('awaitingFeedbackContent');
-    let awaitingFeedback = tasksOnBoard.filter(task => task['stat'] == 'awaiting feedback');
+    let awaitingFeedback = tasksOnBoard.filter(task => task['stat'] == 'awaitingFeedback');
 
     content.innerHTML = '';
 
@@ -168,7 +171,7 @@ function renderDoneHTML() {
 
 function generatePinnedTaskHTML(task) {
     return `
-    <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer">
+    <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task}">
     <div class="taskCategory">
         ${task['category']}
     </div>
@@ -207,13 +210,23 @@ function startDragging(id) {
 
 function allowDrop(ev) {
     ev.preventDefault();
+    updateBoardTasks();
 }
+
+
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData(`pinnedTaskContainer${currentDraggedTask}`);
+    ev.target.appendChild(document.getElementById(data));
+
+  }
 
 
 
 function moveTo(stat) {
     tasksOnBoard[currentDraggedTask]['stat']  = stat;
-    updateBoardTasks();
+
 }
 
 
