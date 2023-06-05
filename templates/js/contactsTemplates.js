@@ -10,11 +10,13 @@ function generateContactsHTML() {
             <p>Better with a team</p>
         </div>
         <div class="contactsDetailInfo" id="contactsDetailInfo">
-            
         </div>
     </div>
     <div class="contactsDetailBottom">
-        <img onclick="addNewContact()" src="/../img/newContactIconBig.svg" alt="newContactIconBig">
+        <div class="contactsDetailBottomBtn" onclick="addNewContact()">
+            <p>New Contact</p>
+            <img src="/../img/newContactIcon.svg" alt="newContactIconBig">
+        </div>
     </div>
 </div>
 `
@@ -32,17 +34,21 @@ function generateContactsDetailContentHTML(name, email, phone, color, initials, 
             <div class="contactsDetailInfoContent">
                 <div class="contactsDetailInfoContentLeft">
                     <h3>Contact Information</h3>
-                    <p>Email</p>
-                    <p>${email}</p>
-                    <p>Phone</p>
+                    <h4>Email</h4>
+                    <p class="contactsListContactMail">${email}</p>
+                    <h4>Phone</h4>
                     <p>${phone}</p>
                 </div>
                 <div class="contactsDetailInfoContentRight">
-                    <h3 onclick="editContact(${i})">Edit Contact</h3>
-                    <h3 onclick="deleteContact(${i})">Delete Contact</h3>
+                    <div class="contactsDetailInfoContentRightEdit" onclick="editContact(${i})">
+                    <img src="/../img/editContactIcon.svg" alt="editContactIcon">
+                        <h3>Edit Contact</h3>
+                    </div>
                 </div>
             </div>`
 }
+
+// <h3 onclick="">Delete Contact</h3>
 
 function generateContactsListGroupHTML(groupLetter) {
     return /*html*/ `
@@ -56,7 +62,7 @@ function generateContactsListGroupHTML(groupLetter) {
 
 function generateContactsListGroupContactHTML(name, email, color, initials, i) {
     return /*html*/ `
-    <div onclick="showContactDetails(${i})" class="contactsListGroupContact" id="contactsListGroupContact${i}">
+    <div onclick="showContactDetails(${i})" class="contactsListGroupContact contactsListGroupContactBgInactive" id="contactsListGroupContact${i}">
             <h4 style="background:${color}">${initials}</h4>
                 <div>
                     <p class="contactsListContactName">${name}</p>
@@ -82,16 +88,24 @@ function generateContactsOverlayAddHTML() {
                     <img src="/../img/addContactOverlayEmptyProfile.svg" alt="ProfilePicEmpty">
                 </div>
                 <div class="overlayAddContactRightInputSection">
+                    <div class="overlayAddContactRightInputSectionHead">
+                        <img onclick="closeContactOverlay()" src="/../img/addContactOverlayClose.svg" alt="closeButton">
+                    </div>
                     <form onsubmit="createContact(); return false;">
-                        <input id="addContactName" required type="text" placeholder="Name">
-                        <input id="addContactEmail" required type="text" placeholder="Email">
-                        <input id="addContactPhone" required type="number" placeholder="Phone">
+                        <input id="addContactName" class="contactOverlayNameIcon" required type="text" placeholder="Name" oninvalid="this.setCustomValidity('Please enter Surname and Name!')" oninput="this.setCustomValidity('')">
+                        <input id="addContactEmail" class="contactOverlayEmailIcon" required type="email" placeholder="Email" oninvalid="this.setCustomValidity('Please enter an Email first!')" oninput="this.setCustomValidity('')">
+                        <input id="addContactPhone" class="contactOverlayPhoneIcon" required type="number" placeholder="Phone" oninvalid="this.setCustomValidity('Please enter a Number first!')" oninput="this.setCustomValidity('')">
                         <div class="overlayAddContactRightButtonSection">
-                            <button id="formResetButton" type="reset">Cancel</button>
-                            <button type="submit">Create Contact</button>
+                            <button type="reset" class="contactsDetailBottomBtnAlt">
+                                <p>Cancel</p>
+                                <img src="/../img/cancelCheckmarkContacts.svg" alt="newContactIconBig">
+                            </button > 
+                            <button type="submit" class="contactsDetailBottomBtn">
+                                <p>Create Contact</p>
+                                <img src="/../img/checkmarkContacts.svg" alt="newContactIconBig">
+                            </button>  
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>`
@@ -113,12 +127,22 @@ function generateContactsOverlayEditHTML(name, email, phone, color, initials, i)
                     <h4 style="background:${color}">${initials}</h4>
                 </div>
                 <div class="overlayAddContactRightInputSection">
+                <div class="overlayAddContactRightInputSectionHead">
+                        <img onclick="closeContactOverlay()" src="/../img/addContactOverlayClose.svg" alt="closeButton">
+                    </div>
                     <form onsubmit="saveEditedContact(${i}); return false;">
-                        <input id="editContactName" required type="text" placeholder="Name" value="${name}">
-                        <input id="editContactEmail" required type="text" placeholder="Email" value="${email}">
-                        <input id="editContactPhone" required type="number" placeholder="Phone" value="${phone}">
+                        <input id="editContactName" class="contactOverlayNameIcon" required type="text" placeholder="Name" value="${name}">
+                        <input id="editContactEmail" class="contactOverlayEmailIcon" required type="text" placeholder="Email" value="${email}">
+                        <input id="editContactPhone" class="contactOverlayPhoneIcon" required type="number" placeholder="Phone" value="${phone}">
                         <div class="overlayAddContactRightButtonSection">
-                            <button type="submit">Save Contact</button>
+                            <button type="reset" class="contactsDetailBottomBtnAlt" onclick="deleteContact(${i})">
+                                <p>Delete</p>
+                                <img src="/../img/cancelCheckmarkContacts.svg" alt="newContactIconBig">
+                            </button >
+                            <button type="submit" class="contactsDetailBottomBtn">
+                                <p>Save Contact</p>
+                                <img src="/../img/checkmarkContacts.svg" alt="newContactIconBig">
+                            </button> 
                         </div>
                     </form>
                 </div>

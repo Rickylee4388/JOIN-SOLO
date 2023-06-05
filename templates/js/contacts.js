@@ -64,7 +64,21 @@ function showContactDetails(i) {
     let color = allContacts[i]['color'];
     let initials = allContacts[i]['initials'];
     let phone = allContacts[i]['phone'];
+    resetAllHighlightContact();
     document.getElementById('contactsDetailInfo').innerHTML = generateContactsDetailContentHTML(name, email, phone, color, initials, i);
+    highlightContact(i);
+}
+
+function resetAllHighlightContact() {
+    for (let i = 0; i < allContacts.length; i++) {
+        document.getElementById(`contactsListGroupContact${i}`).classList.add('contactsListGroupContactBgInactive');
+        document.getElementById(`contactsListGroupContact${i}`).classList.remove('contactsListGroupContactBg');
+    }
+}
+
+function highlightContact(i) {
+    document.getElementById(`contactsListGroupContact${i}`).classList.remove('contactsListGroupContactBgInactive');
+    document.getElementById(`contactsListGroupContact${i}`).classList.add('contactsListGroupContactBg');
 }
 
 async function createContact() {
@@ -85,12 +99,11 @@ async function createContact() {
     await setItem('contacts', JSON.stringify(allContacts));
     document.getElementById('contactsList').innerHTML = '';
     renderContactsList();
-    document.getElementById('formResetButton').click();
-    document.getElementById('overlaySection').innerHTML += `<img class="overlayAddContactSuccess" src="/../img/newContactSuccess.svg">`;
+    document.getElementById('overlaySection').innerHTML = `<img class="overlayAddContactSuccess" src="/../img/newContactSuccess.svg">`;
     setTimeout(function() {
         document.getElementById('overlaySection').classList.add('d-none');
-    }, 1000);
-    let index =  getCreatedContact(name);
+    }, 1400);
+    let index = getCreatedContact(name);
     showContactDetails(index);
 }
 
@@ -167,14 +180,6 @@ function countGroupObjects(x) {
     return groupCounts;             // Ergebnis bspw. = {B: 1, C: 1, J: 2}
   }
   
-
-
-
-
-
-
-
-
 function addNewContact() {
     document.getElementById('overlaySection').classList.remove('d-none');
     document.getElementById('overlaySection').innerHTML = generateContactsOverlayAddHTML();
