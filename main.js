@@ -8,7 +8,6 @@ function renderSummary() {
 
 function renderBoard() {
     renderBoardHTML();
-    document.getElementById('body').classList.add('showScrollBarY')
 }
 
 function renderAddTask() {

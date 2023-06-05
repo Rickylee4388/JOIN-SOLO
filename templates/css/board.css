@@ -1,9 +1,12 @@
 
 .boardBody {
     background-color: rgb(246,247,248);
-
-    padding: 82px 60px 0px 70px;
+    width: 100%;
+    height: 100%;
+    padding: 82px 24px 0px 24px;
 }
+
+
 
 
 .red {
@@ -166,6 +169,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+    justify-content: center;
     padding: 0px;
     gap: 26px;
     margin-top: 100px;
