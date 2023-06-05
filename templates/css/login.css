@@ -73,11 +73,11 @@
 
 .msgBox {
     position: absolute;
-    display: flex;
     justify-content: center;
     align-items: center;
     top: 8%;
-    width: 100vw;
+    left: 10vw;
+    width: 80vw;
     text-align: center;
     height: 20vh;
     z-index: 999;
@@ -173,21 +173,23 @@
 .rememberAndAPassword {
     display: inline-flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 12px;
     margin-bottom: 24px;
 }
 
-.rememberbtn {
-    cursor: pointer;
-    width: 15px;
+.rememberCheckbox{
     gap: 5px;
-    height: 15px;
-    margin-right: 11px;
+
 }
 
 .passwordLink {
     margin-left: 24px;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    
+    
 }
 
 .loginButtons {

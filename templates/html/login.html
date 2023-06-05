@@ -15,13 +15,14 @@
 
     <script src="../../main.js"></script>
     <script src="../js/backend.js"></script>
-    <script src="../js/register.js"></script>
-    <script src="../../templates/js/login.js"></script>
-    <script src="../../templates/js/includeHTML.js"></script>
-    <script src="../../templates/js/register.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/signUp.js"></script>
+    <script src="../js/includeHTML.js"></script>
+    
   </head>
   <body onload="init(),getMsg(),loadUserLogin()" >
-    <div class="msgBox"><div id="msgBox" class="msgBoxContent" ></div></div>
+    <div class="overlaySection d-none" id="overlaySection" onclick="closeContactOverlay()"></div>
+    <div id="msgBoxDiv" class="msgBox d-none d-flex"><div id="msgBox" class="msgBoxContent" ></div></div>
     
     <div id="loginContent" class="loginContent d-flex center">
       <div id="logo" class="logo">
@@ -29,7 +30,7 @@
       </div>
       <div id="textSignupButton" class="textSignupButton">
         <div>Not a Join user?</div>
-        <button class="bluebutton signUpBtn">Sign up</button>
+        <button class="bluebutton signUpBtn" onclick="leadToSignUp()">Sign up</button>
       </div>
       <div id="innerContentLogin" class="innerContentLogin">
         <div id="loginHeadlineDiv" class="loginHeadlineDiv">
@@ -37,32 +38,37 @@
           <img src="../../img/blueline.png" alt="" />
         </div>
 
-        <form id="emailAndPassword" class="emailAndPassword" onsubmit="login()">
+        <form id="emailAndPassword" class="emailAndPassword" onsubmit="login(); return false;">
           <input
             required
+            id = "loginEmail"
             class="email emailimg"
             type="email"
             placeholder="Email"
           />
           <input
             required
+            id = "loginPassword"
             class="email passwordimg"
             type="password"
             placeholder="Password"
           />
         </form>
         <div id="rememberAndAPassword" class="rememberAndAPassword">
-          <div class="d-flex">
-            <button class="rememberbtn"></button>
-            <div>Remember me</div>
-          </div>
+
+            <div class="d-flex center rememberCheckbox">
+              <input class="" type="checkbox" id="scales" name="scales" checked>
+              <label for="scales">Remember me</label>
+            </div>
+            
+          
           <a href="#" id="passwordLink" class="passwordLink"
             >Forgot my password</a
           >
         </div>
         <div id="loginButtons" class="loginButtons">
-          <button id="loginbtn" class="loginbtn bluebutton">Log in</button>
-          <button id="guest" class="guestbtn">Guest Log in</button>
+          <button type="submit" form="emailAndPassword" id="loginbtn" class="loginbtn bluebutton">Log in</button>
+          <button id="guest" class="guestbtn" onclick="guestLogIn()">Guest Log in</button>
         </div>
       </div>
     </div>
