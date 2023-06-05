@@ -1,5 +1,5 @@
 let allContacts = []
-    
+
 async function initContacts() {
     await loadContacts();
     renderContactsSection();
@@ -12,20 +12,6 @@ async function loadContacts() {
     } catch (e) {
         console.error('Loading error:', e);
     }
-}
-
-function sortContacts() {
-    allContacts.sort(function(a, b) {
-        let nameA = a.name.toUpperCase(); // Großbuchstaben für Vergleich
-        let nameB = b.name.toUpperCase(); 
-        if (nameA < nameB) {
-            return -1; // a kommt vor b
-        }
-        if (nameA > nameB) {
-            return 1; // a kommt nach b
-        }
-        return 0; // a und b sind gleich
-    });
 }
 
 function renderContactsSection() {
@@ -47,24 +33,32 @@ function renderContactsListGroup() {
     }
 }
 
-function renderContactsListGroupContact() { 
+function renderContactsListGroupContact() {
     for (let i = 0; i < allContacts.length; i++) {
-        let name = allContacts[i]['name'];
-        let email = allContacts[i]['email'];
-        let color = allContacts[i]['color'];
-        let initials = allContacts[i]['initials'];
-        let group = allContacts[i]['group'];
+        const allData = allContacts[i];
+        const { name, email, color, initials, group } = getJoinData(allData);
         document.getElementById(`contactsListGroup${group}`).innerHTML += generateContactsListGroupContactHTML(name, email, color, initials, i);
     }
 }
 
 function showContactDetails(i) {
-    let name = allContacts[i]['name'];
-    let email = allContacts[i]['email'];
-    let color = allContacts[i]['color'];
-    let initials = allContacts[i]['initials'];
-    let phone = allContacts[i]['phone'];
+    const allData = allContacts[i];
+    const { name, email, color, initials, phone } = getJoinData(allData);
+    resetAllHighlightContact();
     document.getElementById('contactsDetailInfo').innerHTML = generateContactsDetailContentHTML(name, email, phone, color, initials, i);
+    highlightContact(i);
+}
+
+function resetAllHighlightContact() {
+    for (let i = 0; i < allContacts.length; i++) {
+        document.getElementById(`contactsListGroupContact${i}`).classList.add('contactsListGroupContactBgInactive');
+        document.getElementById(`contactsListGroupContact${i}`).classList.remove('contactsListGroupContactBg');
+    }
+}
+
+function highlightContact(i) {
+    document.getElementById(`contactsListGroupContact${i}`).classList.remove('contactsListGroupContactBgInactive');
+    document.getElementById(`contactsListGroupContact${i}`).classList.add('contactsListGroupContactBg');
 }
 
 async function createContact() {
@@ -85,12 +79,11 @@ async function createContact() {
     await setItem('contacts', JSON.stringify(allContacts));
     document.getElementById('contactsList').innerHTML = '';
     renderContactsList();
-    document.getElementById('formResetButton').click();
-    document.getElementById('overlaySection').innerHTML += `<img class="overlayAddContactSuccess" src="/../img/newContactSuccess.svg">`;
-    setTimeout(function() {
+    document.getElementById('overlaySection').innerHTML = `<img class="overlayAddContactSuccess" src="/../img/newContactSuccess.svg">`;
+    setTimeout(function () {
         document.getElementById('overlaySection').classList.add('d-none');
-    }, 1000);
-    let index =  getCreatedContact(name);
+    }, 1400);
+    let index = getCreatedContact(name);
     showContactDetails(index);
 }
 
@@ -146,34 +139,38 @@ function getBgColor() {
 }
 
 function getCreatedContact(name) {
-    let index = allContacts.findIndex(function(contact) {
+    let index = allContacts.findIndex(function (contact) {
         return contact.name === name;
-      });
-      
-      return index;
-
+    });
+    return index;
 }
 
 function countGroupObjects(x) {
     let groupCounts = {};
     for (let i = 0; i < x.length; i++) {
-      let group = x[i].group;
-      if (groupCounts[group]) {     //Falls Gruppe mit Buchstaben schon vorhanden wird deren anzahl um 1 erhöht
-        groupCounts[group]++;
-      } else {
-        groupCounts[group] = 1;     // Falls Gruppe noch nicht vorhanden, wird Buchstaben mit 1 ausgegeben
-      }
+        let group = x[i].group;
+        if (groupCounts[group]) {     //Falls Gruppe mit Buchstaben schon vorhanden wird deren anzahl um 1 erhöht
+            groupCounts[group]++;
+        } else {
+            groupCounts[group] = 1;     // Falls Gruppe noch nicht vorhanden, wird Buchstaben mit 1 ausgegeben
+        }
     }
     return groupCounts;             // Ergebnis bspw. = {B: 1, C: 1, J: 2}
-  }
-  
+}
 
-
-
-
-
-
-
+function sortContacts() {
+    allContacts.sort(function (a, b) {
+        let nameA = a.name.toUpperCase(); // Großbuchstaben für Vergleich
+        let nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+            return -1; // a kommt vor b
+        }
+        if (nameA > nameB) {
+            return 1; // a kommt nach b
+        }
+        return 0; // a und b sind gleich
+    });
+}
 
 function addNewContact() {
     document.getElementById('overlaySection').classList.remove('d-none');
@@ -181,11 +178,8 @@ function addNewContact() {
 }
 
 function editContact(i) {
-    let name = allContacts[i]['name'];
-    let email = allContacts[i]['email'];
-    let phone = allContacts[i]['phone'];
-    let color = allContacts[i]['color'];
-    let initials = allContacts[i]['initials'];
+    const allData = allContacts[i];
+    const { name, email, color, initials, phone } = getJoinData(allData);
     document.getElementById('overlaySection').classList.remove('d-none');
     document.getElementById('overlaySection').innerHTML = generateContactsOverlayEditHTML(name, email, phone, color, initials, i);
 }
