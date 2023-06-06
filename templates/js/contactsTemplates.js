@@ -1,5 +1,6 @@
 function generateContactsHTML() {
     return /*html*/ `
+    <div class="contactsSection" >
     <div class="contactsList" id="contactsList">
     </div>
     <div class="contactsDetail">
@@ -18,6 +19,7 @@ function generateContactsHTML() {
             <img src="/../img/newContactIcon.svg" alt="newContactIconBig">
         </div>
     </div>
+</div>
 </div>
 `
 }
@@ -47,8 +49,6 @@ function generateContactsDetailContentHTML(name, email, phone, color, initials, 
                 </div>
             </div>`
 }
-
-// <h3 onclick="">Delete Contact</h3>
 
 function generateContactsListGroupHTML(groupLetter) {
     return /*html*/ `
@@ -92,9 +92,9 @@ function generateContactsOverlayAddHTML() {
                         <img onclick="closeContactOverlay()" src="/../img/addContactOverlayClose.svg" alt="closeButton">
                     </div>
                     <form onsubmit="createContact(); return false;">
-                        <input id="addContactName" class="contactOverlayNameIcon" required type="text" placeholder="Name" oninvalid="this.setCustomValidity('Please enter Surname and Name!')" oninput="this.setCustomValidity('')">
-                        <input id="addContactEmail" class="contactOverlayEmailIcon" required type="email" placeholder="Email" oninvalid="this.setCustomValidity('Please enter an Email first!')" oninput="this.setCustomValidity('')">
-                        <input id="addContactPhone" class="contactOverlayPhoneIcon" required type="number" placeholder="Phone" oninvalid="this.setCustomValidity('Please enter a Number first!')" oninput="this.setCustomValidity('')">
+                        <input id="addContactName" class="contactOverlayNameIcon" required pattern="^(?:[A-ZÄÖÜ][a-zäöüß]+ )+[A-ZÄÖÜ][a-zäöüß]+$" type="text" placeholder="Name" title="Please enter a valid name e.g.: 'John Doe' ">
+                        <input id="addContactEmail" class="contactOverlayEmailIcon" required pattern="^[A-Za-z0-9._+-]+@[A-Za-z0-9 -]+\.[a-z]{2,}" type="email" placeholder="Email" title="Please enter a valid email address e.g.: 'johndoe@dev.com' ">
+                        <input id="addContactPhone" class="contactOverlayPhoneIcon" required type="number" placeholder="Phone" title="Please enter a valid phone number e.g.: '+491724485536' "> 
                         <div class="overlayAddContactRightButtonSection">
                             <button type="reset" class="contactsDetailBottomBtnAlt">
                                 <p>Cancel</p>
@@ -131,9 +131,9 @@ function generateContactsOverlayEditHTML(name, email, phone, color, initials, i)
                         <img onclick="closeContactOverlay()" src="/../img/addContactOverlayClose.svg" alt="closeButton">
                     </div>
                     <form onsubmit="saveEditedContact(${i}); return false;">
-                        <input id="editContactName" class="contactOverlayNameIcon" required type="text" placeholder="Name" value="${name}">
-                        <input id="editContactEmail" class="contactOverlayEmailIcon" required type="text" placeholder="Email" value="${email}">
-                        <input id="editContactPhone" class="contactOverlayPhoneIcon" required type="number" placeholder="Phone" value="${phone}">
+                        <input id="editContactName" class="contactOverlayNameIcon" required pattern="^(?:[A-ZÄÖÜ][a-zäöüß]+ )+[A-ZÄÖÜ][a-zäöüß]+$" type="text" placeholder="Name" title="Please enter a valid name e.g.: 'John Doe' " value="${name}">
+                        <input id="editContactEmail" class="contactOverlayEmailIcon" required pattern="^[A-Za-z0-9._+-]+@[A-Za-z0-9 -]+\.[a-z]{2,}" type="email" placeholder="Email" title="Please enter a valid email address e.g.: 'johndoe@dev.com' " value="${email}">
+                        <input id="editContactPhone" class="contactOverlayPhoneIcon" required type="number" placeholder="Phone" title="Please enter a valid phone number e.g.: '+491724485536' " value="${phone}">
                         <div class="overlayAddContactRightButtonSection">
                             <button type="reset" class="contactsDetailBottomBtnAlt" onclick="deleteContact(${i})">
                                 <p>Delete</p>
