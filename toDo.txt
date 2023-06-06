@@ -2,3 +2,5 @@
 2. Add Task             => Davide
 3. Board                => Jacob
 4. Contacts + SB/NB     => Philipp
+
+576px, 768px, 992px, and 1200px

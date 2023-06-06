@@ -1,0 +1,140 @@
+@media (max-width: 1300px) {
+    .contactsDetail {
+        padding: 20px;
+        padding-top: 30px;
+    }
+
+}
+
+@media (max-width: 1200px) {
+    .contactsDetailHead h2 {
+        font-size: 41px;
+        margin-right: 15px;
+    }
+
+    .contactsDetailHead p {
+        font-size: 20px;
+        margin-left: 15px;
+    }
+
+    .contactsDetailInfo {
+        margin-top: 50px;
+    }
+
+    .contactsDetailInfoHeadName {
+        font-size: 35px;
+    }
+
+    .contactsList {
+        min-width: 350px;
+    }
+
+    .contactsListGroupHead {
+        width: 300px;
+    }
+
+    .overlayAddContactRightProfilepic {
+        display: none !important;
+    }
+
+    .overlayAddContactLeftHeadline {
+        font-size: 30px;
+    }
+
+    .overlayAddContactLeftCaption {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .overlayAddContact {
+        flex-direction: column;
+        max-width: 500px;
+        height: 80%;
+    }
+
+    .overlayAddContactLeft {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 0;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .overlayAddContactLeftContent {
+        padding: 50px;
+    }
+
+    .overlayAddContactRightProfilepic {
+        display: flex !important;
+        align-items: center;
+        padding: 0;
+        height: 30px;
+    }
+
+    .overlayAddContactRight {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .overlayAddContactRightInputSection {
+        width: 80%;
+        padding: 0;
+    }
+
+    .overlayAddContactRightButtonSection {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .overlayAddContactRightProfilepic h4 {
+        padding: 20px;
+        width: auto;
+    }
+
+    .overlayAddContactRightInputSectionHead {
+        padding-bottom: 40px;
+    }
+
+    .sidebar {
+        height: 80px;
+        width: 100%;
+        bottom: 0px;
+        top: auto;
+    }
+
+    .sidebarContent {
+        flex-direction: row;
+        padding: 0;
+        gap: 0;
+    }
+
+    .sidebarNav {
+        flex-direction: row;
+    }
+
+    .sidebarLegal {
+        margin: 0;
+    }
+
+    .sidebarLogo {
+        display: none;
+    }
+
+    .contentSection {
+        left: 0;
+        right: 0;
+        bottom: 80px;
+    }
+}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 576px) {
+    .overlayAddContact {
+        width: 90%;
+    }
+}
+
+@media (max-width: 500px) {}
