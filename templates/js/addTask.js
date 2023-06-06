@@ -3,6 +3,138 @@ let prio = undefined;
 let allSubtasks = [];
 
 
+function initAddTask() {
+    document.getElementById('contentSection').innerHTML = /*html*/ `
+        <div class="headlineContainer" id="headlineContainer">
+
+        </div>
+
+        <div class="contentLeftAndRightContainer" id="contentLeftAndRightContainer">
+
+        </div>
+
+        <div class="twoButtonsContainer" id="twoButtonsContainer">
+
+        </div>
+    `;
+    renderHeadline();
+}
+
+
+function renderHeadline() {
+    document.getElementById('headlineContainer').innerHTML = /*html*/ `
+        <h1>Add Task</h1>
+    `;
+    renderContentLeftAndRight();
+}
+
+
+function renderContentLeftAndRight() {
+    document.getElementById('contentLeftAndRightContainer').innerHTML = /*html*/ `
+        <div class="contentLeftAndRight">
+            <div class="contentLeft">
+                <div class="titleAndInput">
+                    <span>Title</span>
+                    <input required id="title" placeholder="Enter a title">
+                </div>
+
+                <div class="descriptionAndTextarea">
+                    <span>Description</span>
+                    <textarea required id="description" placeholder="Enter a Description"></textarea>
+                </div>
+
+                <div class="categoryAndSelect">
+                    <span>Category</span>
+                    <select required id="category">
+                        <option>Select task category</option>
+                        <option value="design">Design</option>
+                        <option value="sales">Sales</option>
+                        <option value="backoffice">Backoffice</option>
+                        <option value="media">Media</option>
+                        <option value="marketing">Marketing</option>
+                    </select>
+                </div>
+
+                <div class="assignedToAndSelect">
+                    <span>Assigned to</span>
+                    <select required id="assignedTo">
+                        <option>Select contacts to assign</option>
+                        <option value="Denise Schmidt">Denise Schmidt</option>
+                        <option value="Davide Religioso">Davide Religioso</option>
+                        <option value="Jacob Hengsbach">Jacob Hengsbach</option>
+                        <option value="Philipp Klinger">Philipp Klinger</option>
+                        <option value="Max Mustermann">Max Mustermann</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="borderline"></div>
+
+            <div class="contentRight">
+                <div class="dueDateAndInput">
+                    <span>Due Date</span>
+                    <input required type="date" id="date" placeholder="dd/mm/yyyy">
+                </div>
+
+                <div class="prio">
+                    <span>Prio</span>
+                    <div required class="prioButtons">
+                        <button id="urgent" value="urgent" onclick="urgent()">
+                            Urgent
+                            <img id="urgentIcon" src="../../img/urgentIcon.png">
+                        </button>
+
+                        <button id="medium" value="medium" onclick="medium()">
+                            Medium
+                            <img id="mediumIcon" src="../../img/mediumIcon.png">
+                        </button>
+
+                        <button id="low" value="low" onclick="low()">
+                            Low
+                            <img id="lowIcon" src="../../img/lowIcon.png">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtasksAndInput">
+                    <span>Subtasks</span>
+
+                    <div class="inputAndButton">
+                        <input required id="subtasks" placeholder="Add new subtask">
+                        <button onclick="newSubtask()">
+                            <img src="../../img/subtaskIcon.png">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="subtasksList" id="subtasksList">
+
+                </div>
+            </div>
+        </div>
+    `;
+    renderTwoButtonsContainer();
+}
+
+
+function renderTwoButtonsContainer() {
+    document.getElementById('twoButtonsContainer').innerHTML = /*html*/ `
+        <div class="twoButtons">
+            <button class="clearButton" onclick="clearFields()">
+                Clear
+                <img src="../../img/cancelIcon.png">
+            </button>
+
+            <button class="createTaskButton" id="createTask" onclick="createTask()">
+                Create Task
+                <img src="../../img/checkIcon.png">
+            </button>
+        </div>
+    `;
+}
+
+
+
 function urgent() {
     let prioValue = document.getElementById('urgent').value;
     prio = prioValue;

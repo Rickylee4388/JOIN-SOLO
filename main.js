@@ -11,7 +11,8 @@ function renderBoard() {
 }
 
 function renderAddTask() {
-    contentSection.innerHTML = '<h2>Add Task</h2>';
+    initAddTask();
+    /*contentSection.innerHTML = '<h2>Add Task</h2>';*/
 }
 
 async function renderContacts() {
