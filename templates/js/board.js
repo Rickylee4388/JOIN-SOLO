@@ -15,9 +15,35 @@ let tasksOnBoard = [
         'headline': 'Clean up code',
         'discription': 'ioenfgpiqen pgnp qengvnepgnpeng pnaepgnpaeng pvn',
         'stat': 'inProgress'
-    }
+    },
+    {
+        'id': 2,
+        'category': 'Sport',
+        'headline': 'Probetraining',
+        'discription': 'McFit anrufen',
+        'stat': 'todo'
+    },
+    {
+        'id': 3,
+        'category': 'Learn',
+        'headline': 'Dev. Akademie',
+        'discription': 'Modul 10 beenden.',
+        'stat': 'done'
+    },
+    {
+        'id': 4,
+        'category': 'Code',
+        'headline': 'Sharkie',
+        'discription': 'Mängel ausbessern',
+        'stat': 'awaitingFeedback'
+    },
 ];
 let currentDraggedTask;
+let currentDraggedOnStatus;
+let statusContentClass = document.getElementsByClassName('statusContent');
+let taskContainerClass = document.getElementsByClassName('pinnedTaskContainer');
+
+
 
 
 
@@ -90,7 +116,7 @@ function renderStatusFieldsHTML() {
             </div>
             </div>
 
-        <div id="${statClass}Content" class="statusContent" ondrag="moveTo('${nextStat}')" ondragover="allowDrop(event)" ></div>
+        <div id="${statClass}" class="statusContent" ondrop="drop('${statClass}')" ondragover="allowDrop(event); highlight('${statClass}')" ondragleave="stopHighlight('${statClass}')"></div>
           
     </div>
         `
@@ -110,7 +136,7 @@ function updateBoardTasks() {
 
 
 function renderTodoTasksHTML() {
-    let content = document.getElementById('todoContent');
+    let content = document.getElementById('todo');
     let todos = tasksOnBoard.filter(task => task['stat'] == 'todo');
 
     content.innerHTML = '';
@@ -125,7 +151,7 @@ function renderTodoTasksHTML() {
 
 
 function renderInProgressHTML() {
-    let content = document.getElementById('inProgressContent');
+    let content = document.getElementById('inProgress');
     let inProgress = tasksOnBoard.filter(task => task['stat'] == 'inProgress');
 
     content.innerHTML = '';
@@ -140,7 +166,7 @@ function renderInProgressHTML() {
 
 
 function renderAwaitingFeedbackHTML() {
-    let content = document.getElementById('awaitingFeedbackContent');
+    let content = document.getElementById('awaitingFeedback');
     let awaitingFeedback = tasksOnBoard.filter(task => task['stat'] == 'awaitingFeedback');
 
     content.innerHTML = '';
@@ -155,7 +181,7 @@ function renderAwaitingFeedbackHTML() {
 
 
 function renderDoneHTML() {
-    let content = document.getElementById('doneContent');
+    let content = document.getElementById('done');
     let done = tasksOnBoard.filter(task => task['stat'] == 'done');
 
     content.innerHTML = '';
@@ -210,23 +236,40 @@ function startDragging(id) {
 
 function allowDrop(ev) {
     ev.preventDefault();
-    updateBoardTasks();
-}
-
-
-
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData(`pinnedTaskContainer${currentDraggedTask}`);
-    ev.target.appendChild(document.getElementById(data));
 
   }
 
 
 
-function moveTo(stat) {
+  function drop(stat) {
     tasksOnBoard[currentDraggedTask]['stat']  = stat;
+    updateBoardTasks();
+  }
 
-}
+
+
+  function highlight(stat) {
+    document.getElementById(stat).classList.add('dragAreaHighlight');
+  }
+
+
+
+  function stopHighlight(stat) {
+    document.getElementById(stat).classList.remove('dragAreaHighlight');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

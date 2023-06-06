@@ -3,6 +3,7 @@
     background-color: rgb(246,247,248);
     width: 100%;
     height: 100%;
+    margin: 0;
     padding: 82px 24px 0px 24px;
 }
 
@@ -33,7 +34,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+
     padding: 0px;
     height: 73px;
 }
@@ -184,9 +185,7 @@
     padding: 0px;
     gap: 26px;
     width: 250px;
-    min-height: 340px;
     padding: 18px 19px;
-    background-color: #FF7A00;
 }
 
 
@@ -251,6 +250,11 @@
     flex-direction: column;
     align-items: center;
     gap: 35px;
+    min-height: 300px;
+    height: max-content;
+    width: 250px;
+    padding: 16px;
+    background-color: #FF7A00;
 }
 
 
@@ -354,6 +358,11 @@
     border-radius: 50%;
     border-radius: 1px solid #FFFFFF;
     color: white;
+}
+
+
+.dragAreaHighlight {
+    background-color: rgb(135, 135, 136);
 }
 
 
