@@ -5,17 +5,9 @@ let allSubtasks = [];
 
 function initAddTask() {
     document.getElementById('contentSection').innerHTML = /*html*/ `
-        <div class="headlineContainer" id="headlineContainer">
-
-        </div>
-
-        <div class="contentLeftAndRightContainer" id="contentLeftAndRightContainer">
-
-        </div>
-
-        <div class="twoButtonsContainer" id="twoButtonsContainer">
-
-        </div>
+        <div class="headlineContainer" id="headlineContainer"></div>
+        <div class="contentLeftAndRightContainer" id="contentLeftAndRightContainer"></div>
+        <div class="twoButtonsContainer" id="twoButtonsContainer"></div>
     `;
     renderHeadline();
 }
@@ -132,7 +124,6 @@ function renderTwoButtonsContainer() {
         </div>
     `;
 }
-
 
 
 function urgent() {
@@ -252,7 +243,7 @@ function openAddTaskOverlay() {
     document.getElementById('overlaySection').classList.remove('d-none');
 
     document.getElementById('overlaySection').innerHTML = /*html*/ `
-        <div class="addTaskOverlay">
+        <div class="addTaskOverlay" onclick="doNotClose(event)">
             <div class="contentSectionAddTaskOverlay" id="ContentSection">
                 <h1>Add Task</h1>
         
@@ -352,4 +343,9 @@ function openAddTaskOverlay() {
             </div>
         </div>
     `;
+}
+
+
+function doNotClose(event) {
+    event.stopPropagation();
 }

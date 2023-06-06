@@ -336,3 +336,10 @@ button {
     box-shadow: 0px 3px 6px rgb(190, 190, 190);
     transition: ease-in-out 125ms;
 }
+
+.addTaskOverlay {
+    background-color: white;
+    border-radius: 20px;
+    width: 80%;
+    padding: 30px;
+}
