@@ -2,20 +2,7 @@
     display: none !important;
 }
 
-.addTaskOverlayContainer {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    z-index: 999;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.addTaskOverlay {
-    height: 650px;
-    width: 1300px;
+.contentSectionAddTaskOverlay {
     border-radius: 20px;
     background-color: white;
 }

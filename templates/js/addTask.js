@@ -117,11 +117,11 @@ function clearPrioButtons() {
 
 
 function openAddTaskOverlay() {
-    document.getElementById('addTaskOverlayContainer').classList.remove('d-none');
+    document.getElementById('overlaySection').classList.remove('d-none');
 
-    document.getElementById('addTaskOverlayContainer').innerHTML = /*html*/ `
+    document.getElementById('overlaySection').innerHTML = /*html*/ `
         <div class="addTaskOverlay">
-            <div class="contentSectionAddTask" id="ContentSection">
+            <div class="contentSectionAddTaskOverlay" id="ContentSection">
                 <h1>Add Task</h1>
         
                 <div class="contentLeftAndRight">
