@@ -24,6 +24,7 @@
     align-items: center;
 }
 
+
 .summaryHeadline {
     font-family: 'Inter';
     font-style: normal;
@@ -34,7 +35,8 @@
     border-right: 3px solid #29ABE2;
     padding-right: 60px;
     margin-right: 24px;
-
+    max-width: 182px !important;
+    margin-bottom: 30px !important;
 }
 
 .taskbox {

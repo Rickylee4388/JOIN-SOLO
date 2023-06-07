@@ -1,9 +1,10 @@
 function init() {
     includeHTML();
+    initSummary();
 }
 
 function renderSummary() {
-    contentSection.innerHTML = '<h2>Summary</h2>';
+    initSummary();
 }
 
 function renderBoard() {
