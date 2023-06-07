@@ -1,5 +1,10 @@
 let test123 = [];
 
+function initLogin(){
+  loadUserLogin();
+  getMsg();
+}
+
 let userLogin = [];
 async function loadUserLogin() {
   let users = JSON.parse(await getItem("userLogin"));
@@ -30,3 +35,4 @@ function resetForm() {
 function resetPassword(){
   window.location.href = "resetPassword.html";
 }
+

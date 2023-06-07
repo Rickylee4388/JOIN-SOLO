@@ -1,13 +1,33 @@
-function initSummary(){
-    document.getElementById('contentSection').innerHTML = 
-    /*html*/`
-      <div id="summarySection" class="summarySection">
-        <div id="headlineDiv" class="d-flex headlineDiv">
+async function initSummary() {
+  loadUserLogin();
+  // let name = userlogin[0]['name'];
+  document.getElementById('contentSection').innerHTML += getSummarySection();
+  document.getElementById('headlineDiv').innerHTML += getSummaryHeadlineDiv();
+  document.getElementById('contentAndGreeting').innerHTML += getSummaryinnerContent();
+  document.getElementById('contentAndGreeting').innerHTML += getSummaryGreeting();
+}
+
+function getSummarySection() {
+  return /*html*/`
+    <div id="summarySection" class="summarySection">
+      <div id="headlineDiv" class="d-flex headlineDiv">
+      </div>
+      <div id="contentAndGreeting" class="d-flex">
+      </div>
+    </div>
+`;
+}
+function getSummaryHeadlineDiv() {
+  return /*html*/`
+        
           <h1 id="summaryHeadline" class="summaryHeadline">Summary</h1>
           <p id="nutshelltext" class="">Everything in a nutshell!</p>
-        </div>
-        <div id="contentAndGreeting" class="d-flex">
-          <div id="innerContentSummary" class="">
+        
+  `
+}
+function getSummaryinnerContent() {
+  return /*html*/`
+            <div id="innerContentSummary" class="">
             <div id="taskSection" class="d-flex">
               <div id="inBoard" class="taskbox">
                 <div id="tasknumber1" class="tasknumber">5</div>
@@ -53,11 +73,12 @@ function initSummary(){
               </div>
             </div>
           </div>
-
-          <div id="greeting" class="d-flex center greeting">
-            <p class="">Good Morning</p>
+  `
+}
+function getSummaryGreeting() {
+  return /*html*/`
+            <div id="greeting" class="d-flex center greeting">
+            <p class="">Good Morning </p>
           </div>
-        </div>
-      </div>
-`
+  `
 }

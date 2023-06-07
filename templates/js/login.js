@@ -3,15 +3,6 @@ function getMsg() {
   const msg = urlParams.get("msg");
 
   if (msg) {
-    //Test overlay nachricht//
-
-    // document.getElementById('overlaySection').innerHTML = `<img class="overlayAddContactSuccess" src="/../img/newContactSuccess.svg">`;
-    // document.getElementById('overlaySection').classList.remove('d-none')
-    //   setTimeout(function () {
-    //       document.getElementById('overlaySection').classList.add('d-none');
-    //   }, 1400);
-    // }
-
     document.getElementById("msgBox").innerHTML = `${msg}`;
     document.getElementById("msgBoxDiv").classList.remove("d-none");
   } else {
@@ -27,6 +18,7 @@ function guestLogIn() {
 }
 
 function login() {
+
   let email = document.getElementById("loginEmail");
   let password = document.getElementById("loginPassword");
   let user = userLogin.find(
