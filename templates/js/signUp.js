@@ -2,7 +2,7 @@ let test123 = [];
 let userLogin = [];
 async function initLogin(){
   await loadUserLogin();
-  getMsg();
+  await getMsg();
 }
 
 

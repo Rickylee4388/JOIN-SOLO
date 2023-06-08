@@ -1,5 +1,3 @@
-let currentUser = [];
-
 function getMsg() {
   const urlParams = new URLSearchParams(window.location.search);
   const msg = urlParams.get("msg");
@@ -32,13 +30,8 @@ async function login() {
   console.log(user);
   if (user) {
     console.log("user gefunden");
-    
-    currentUser = [''];
-    currentUser = user['name'];
-    await setItem("currentUser", JSON.stringify(currentUser));
     window.location.replace("/../index.html");
   } else {
     alert("Email oder Passwort nicht korrekt!");
   }
-
 }
