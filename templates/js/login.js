@@ -1,3 +1,5 @@
+let currentUser = [];
+
 function getMsg() {
   const urlParams = new URLSearchParams(window.location.search);
   const msg = urlParams.get("msg");
@@ -17,7 +19,7 @@ function guestLogIn() {
   window.location.replace("/../index.html");
 }
 
-function login() {
+async function login() {
 
   let email = document.getElementById("loginEmail");
   let password = document.getElementById("loginPassword");
@@ -28,8 +30,13 @@ function login() {
   console.log(user);
   if (user) {
     console.log("user gefunden");
+    
+    currentUser = [''];
+    currentUser = user['name'];
+    await setItem("currentUser", JSON.stringify(currentUser));
     window.location.replace("/../index.html");
   } else {
     alert("Email oder Passwort nicht korrekt!");
   }
+
 }

@@ -1,10 +1,18 @@
+let currentUser = '';
 async function initSummary() {
-  loadUserLogin();
-  // let name = userlogin[0]['name'];
+  await loadUserLogin();
+  await loadCurrentUser();
+ 
   document.getElementById('contentSection').innerHTML = getSummarySection();
   document.getElementById('headlineDiv').innerHTML += getSummaryHeadlineDiv();
   document.getElementById('contentAndGreeting').innerHTML += getSummaryinnerContent();
   document.getElementById('contentAndGreeting').innerHTML += getSummaryGreeting();
+
+  showCurrentUserName();
+}
+async function loadCurrentUser() {
+  let currentUsers = JSON.parse(await getItem("currentUser"));
+  currentUser = currentUsers;
 }
 
 function getSummarySection() {
@@ -78,7 +86,12 @@ function getSummaryinnerContent() {
 function getSummaryGreeting() {
   return /*html*/`
             <div id="greeting" class="d-flex center greeting">
-            <p class="">Good Morning </p>
+            <p class="">Good Morning <br><b id='currentUserDiv'></b></p>
           </div>
   `
+}
+function showCurrentUserName(){
+document.getElementById('currentUserDiv').innerHTML ='';
+document.getElementById('currentUserDiv').innerHTML =`${currentUser}`;
+
 }

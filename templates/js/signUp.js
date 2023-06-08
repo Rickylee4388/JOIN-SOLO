@@ -1,15 +1,16 @@
 let test123 = [];
-
-function initLogin(){
-  loadUserLogin();
+let userLogin = [];
+async function initLogin(){
+  await loadUserLogin();
   getMsg();
 }
 
-let userLogin = [];
+
 async function loadUserLogin() {
   let users = JSON.parse(await getItem("userLogin"));
   userLogin = users;
 }
+
 async function signUp() {
   signUpbtn.disabled = true;
   userLogin.push({
@@ -18,7 +19,7 @@ async function signUp() {
     password: signUpPassword.value,
   });
 
-  setItem("userLogin", JSON.stringify(userLogin));
+  await setItem("userLogin", JSON.stringify(userLogin));
   resetForm();
   window.location.href = "login.html?msg=Du hast dich erfolgreich registriert";
 }
