@@ -3,15 +3,6 @@ function getMsg() {
   const msg = urlParams.get("msg");
 
   if (msg) {
-    //Test overlay nachricht//
-
-    // document.getElementById('overlaySection').innerHTML = `<img class="overlayAddContactSuccess" src="/../img/newContactSuccess.svg">`;
-    // document.getElementById('overlaySection').classList.remove('d-none')
-    //   setTimeout(function () {
-    //       document.getElementById('overlaySection').classList.add('d-none');
-    //   }, 1400);
-    // }
-
     document.getElementById("msgBox").innerHTML = `${msg}`;
     document.getElementById("msgBoxDiv").classList.remove("d-none");
   } else {
@@ -23,10 +14,11 @@ function leadToSignUp() {
   window.location.href = "signUp.html";
 }
 function guestLogIn() {
-  window.location.href = "summary.html";
+  window.location.replace("/../index.html");
 }
 
 function login() {
+
   let email = document.getElementById("loginEmail");
   let password = document.getElementById("loginPassword");
   let user = userLogin.find(
@@ -36,7 +28,7 @@ function login() {
   console.log(user);
   if (user) {
     console.log("user gefunden");
-    window.location.href = "summary.html";
+    window.location.replace("/../index.html");
   } else {
     alert("Email oder Passwort nicht korrekt!");
   }

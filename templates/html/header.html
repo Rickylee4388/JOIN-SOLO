@@ -1,10 +1,15 @@
 <header>
     <div class="header">
-        <img src="/../img/Logo.png" class="joinLogoSmall d-none" alt="joinLogoSmall">
-        <p class="headerTitle">Kanban Project Management Tool</p>
+        <img src="/../img/Logo.png" class="joinLogoSmall" alt="joinLogoSmall">
+        <h3 class="headerTitle">Kanban Project Management Tool</h3>
         <div class="headerContentRight">
-            <img src="/../img/helpIcon.svg" class="helpLogo" alt="helpLogo">
-            <img src="/../img/profileIcon.png" class="profileLogo" alt="profileLogo">
+            <img onclick="showLegalNoticeScreen()" class="helpLogo d-none" src="/../img/legalNoticeIcon.svg" alt="Info">
+            <img onclick="showHelpScreen()" src="/../img/helpIcon.svg" class="helpLogo" alt="helpLogo">
+            <div class="headerContentRightProfile">
+                <img onclick="showLogOut()" src="/../img/profileIcon.png" class="profileLogo" alt="profileLogo">
+                <h6 onclick="logOut()" class="headerContentRightLogout" id="headerContentRightLogout" style="display: none;">Log out</h6>
+            </div>
+            
         </div>
     </div>
 </header>

@@ -42,11 +42,25 @@ function renderContactsListGroupContact() {
 }
 
 function showContactDetails(i) {
+    checkIfMobile();
     const allData = allContacts[i];
     const { name, email, color, initials, phone } = getJoinData(allData);
     resetAllHighlightContact();
     document.getElementById('contactsDetailInfo').innerHTML = generateContactsDetailContentHTML(name, email, phone, color, initials, i);
     highlightContact(i);
+}
+
+function checkIfMobile() {
+    let screensize = window.innerWidth;
+    if (screensize <= 768) {
+        document.getElementById('contactsDetail').style.display = 'block';
+        document.getElementById('contactsList').classList.add('d-none');
+    }
+}
+
+function returnToContactslist() {
+    document.getElementById('contactsDetail').style.display = 'none';
+    document.getElementById('contactsList').classList.remove('d-none');
 }
 
 function resetAllHighlightContact() {
@@ -191,3 +205,11 @@ function closeContactOverlay() {
 function doNotClose(event) {
     event.stopPropagation();
 }
+
+window.addEventListener('resize', function () {
+    windowSize = window.innerWidth;
+    
+    if (windowSize >= 768) {
+      
+    }
+});
