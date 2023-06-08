@@ -7,43 +7,37 @@ let tasksOnBoard = [
         'category': 'Design',
         'headline': 'Design Mainpage',
         'discription': 'ioenfgpiqen pgnp qengvnepgnpeng pnaepgnpaeng pvn',
-        'stat': 'todo'
+        'stat': 'todo',
+        'prio': 'medium',
+        'assignedTo': ['Jacob Hengsbach', 'Niklas Berg', 'Lars Kling'],
+        'date': '01.12.2023',
+        'subtasks': ['Css', 'Verlinkung anpassen']
     },
     {
         'id': 1,
-        'category': 'Code',
+        'category': 'Sales',
         'headline': 'Clean up code',
         'discription': 'ioenfgpiqen pgnp qengvnepgnpeng pnaepgnpaeng pvn',
-        'stat': 'inProgress'
+        'stat': 'inProgress',
+        'prio': 'low',
+        'assignedTo': ['Lisa Schreiber', 'Antonia Müller', 'Lars Kling'],
+        'date': '14.07.2023',
+        'subtasks': ['Css', 'Verlinkung anpassen']
     },
     {
         'id': 2,
-        'category': 'Sport',
+        'category': 'Marketing',
         'headline': 'Probetraining',
         'discription': 'McFit anrufen',
-        'stat': 'todo'
-    },
-    {
-        'id': 3,
-        'category': 'Learn',
-        'headline': 'Dev. Akademie',
-        'discription': 'Modul 10 beenden.',
-        'stat': 'done'
-    },
-    {
-        'id': 4,
-        'category': 'Code',
-        'headline': 'Sharkie',
-        'discription': 'Mängel ausbessern',
-        'stat': 'awaitingFeedback'
+        'stat': 'todo',
+        'prio': 'medium',
+        'assignedTo': ['Lisa Schreiber', 'Frederik Fertig', 'Jacob Hengsbach'],
+        'date': '22.04.2024',
+        'subtasks': ['Css', 'Verlinkung anpassen']
     },
 ];
 let currentDraggedTask;
 let currentDraggedOnStatus;
-let statusContentClass = document.getElementsByClassName('statusContent');
-let taskContainerClass = document.getElementsByClassName('pinnedTaskContainer');
-
-
 
 
 
@@ -53,9 +47,9 @@ function renderBoardHTML() {
     content.innerHTML = '';
     content.innerHTML += /*html*/`
     <div class="boardBody" id="boardBody">
-    <section id="boardHeadlineContainer" class="boardHeadlineContainer"></section>
+        <section id="boardHeadlineContainer" class="boardHeadlineContainer"></section>
 
-    <section id="boardContentContainer" class="boardContentContainer"></section>
+        <section id="boardContentContainer" class="boardContentContainer"></section>
     </div>
     `
     document.getElementById('body').classList.add('hideScrollBarY');
@@ -76,8 +70,8 @@ function renderBoardHeaderHTML() {
         <div class="board">Board</div>
 
         <div class="boardHeadlineRightContainer">
-        <div class="searchContainer">
-            <input class="searchInput" type="text" placeholder="Find task">
+            <div class="searchContainer">
+                <input class="searchInput" type="text" placeholder="Find task">
 
             <div class="searchBtn">
                 <img src="../../img/Vector.png" alt="">
@@ -85,13 +79,17 @@ function renderBoardHeaderHTML() {
         </div>
         
         <button class="addTaskBtn btn-bg">
-        <span class="addTaskBtnText">Add task </span>
-        <span class="addTaskBtnIcon">+</span>
+            <span class="addTaskBtnText">Add task </span>
+            <span class="addTaskBtnIcon">+</span>
         </button>
 
-</div>
+        </div>
     `
 }
+
+
+
+
 
 
 
@@ -118,7 +116,7 @@ function renderStatusFieldsHTML() {
 
         <div id="${statClass}" class="statusContent" ondrop="drop('${statClass}')" ondragover="allowDrop(event); highlight('${statClass}')" ondragleave="stopHighlight('${statClass}')"></div>
           
-    </div>
+        </div>
         `
     }
     updateBoardTasks();
@@ -145,6 +143,7 @@ function renderTodoTasksHTML() {
         const task = todos[i];
 
         content.innerHTML += generatePinnedTaskHTML(task);
+        renderAssignedToHTML(task);
     }
 }
 
@@ -160,6 +159,7 @@ function renderInProgressHTML() {
         const task = inProgress[i];
 
         content.innerHTML += generatePinnedTaskHTML(task);
+        renderAssignedToHTML(task);
     }
 }
 
@@ -175,6 +175,7 @@ function renderAwaitingFeedbackHTML() {
         const task = awaitingFeedback[i];
 
         content.innerHTML += generatePinnedTaskHTML(task);
+        renderAssignedToHTML(task);
     }
 }
 
@@ -190,44 +191,166 @@ function renderDoneHTML() {
         const task = done[i];
 
         content.innerHTML += generatePinnedTaskHTML(task);
+        renderAssignedToHTML(task);
+    }
+}
+
+
+
+function renderAssignedToHTML(task) {
+    let content = document.getElementById(`assignedToContainer${task['id']}`);
+
+    content.innerHTML = '';
+
+    for (let i = 0; i < task['assignedTo'].length; i++) {
+        const assignment = task['assignedTo'][i];
+        let initials = getInitials(assignment);
+        let bgColor = getBgColor();
+
+        content.innerHTML += /*html*/`
+            <div class="contactContainer" style="background-color:${bgColor}">${initials}</div>
+        `;
     }
 }
 
 
 
 function generatePinnedTaskHTML(task) {
+    let taskAsString = JSON.stringify(task);
+    console.log(taskAsString);
+    console.log(task);
     return `
-    <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task}">
-    <div class="taskCategory">
-        ${task['category']}
-    </div>
 
-    <h3 class="pinnedTaskHeadline">${task['headline']}</h3>
-    <p class="pinnedTaskDiscription">${task['discription']}</p>
-
-    <div class="progressContainer">
-        <div class="progressBar"></div>
-        <div class="progressText">1/2 Done</div>
-    </div>
-
-    <div class="pinnedTaskContactsArrowContainer">
-        <div class="pinnedTaskContactsContainer">
-            <div class="contactContainer red">SL</div>
-            <div class="contactContainer blue">JH</div>
-            <div class="contactContainer green">KL</div>
+    <div onclick="openTaskPopUp(${task['id']})">
+        <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task}">
+        <div class="taskCategory ${task['category'].toLowerCase()}-bg">
+            ${task['category']}
         </div>
 
-        <div class="arrowButton">
-            <img src="../../img/greenArrow.png" alt="">
+        <h3 class="pinnedTaskHeadline">${task['headline']}</h3>
+        <p class="pinnedTaskDiscription">${task['discription']}</p>
+
+        <div class="progressContainer">
+            <div class="progressBar"></div>
+            <div class="progressText">1/2 Done</div>
+        </div>
+
+        <div class="pinnedTaskContactsArrowContainer">
+            <div class="pinnedTaskContactsContainer" id="assignedToContainer${task['id']}">
+
+            </div>
+
+            <div class="arrowButton">
+                <img src="../../img/${task['prio'].toLowerCase()}Icon.png" alt="">
+            </div>
+        </div>
+        </div>
         </div>
     </div>
-    </div>
-    </div>
-`
+`;
 }
 
 
 
+
+
+///////////////////////Task-Pop-Up/////////////////////////////////
+function openTaskPopUp(Id) {
+    renderTaskPopUpHTML(Id);
+    document.getElementById('overlaySection').classList.remove('d-none');
+}
+
+
+
+function closeTaskPopUp() {
+    document.getElementById('overlaySection').classList.add('d-none');
+}
+
+
+
+function renderTaskPopUpHTML(Id) {
+    let content = document.getElementById('overlaySection');
+    let clickedTask = tasksOnBoard[Id];
+    content.innerHTML = '';
+
+    content.innerHTML += /*html*/`
+        <div class="taskOverviewPopUp">
+            <div class="taskCategory ${clickedTask['category'].toLowerCase()}-bg">
+                ${clickedTask['category']}
+            </div>
+
+            <div class="taskPopUpHeadline">${clickedTask['headline']}</div>
+
+            <div class="taskPopUpDiscription">${clickedTask['discription']}</div>
+
+            <div class="taskPopUpTable" id="taskPopUpTable"></div>
+
+            <div class="taskPopUpAssignments" id="taskPopUpAssignments">
+                <div class="assignedToHeadline"><b>Assigned to:</b></div>
+                <div id="taskPopUpAssignmentsList" class="taskPopUpAssignmentsList"></div>
+            </div>
+        </div>
+    `
+    renderTaskPopUpTableHTML(clickedTask);
+    renderTaskPopUpAssignmentsHTML(clickedTask);
+}
+
+
+
+function renderTaskPopUpTableHTML(clickedTask) {
+    let content = document.getElementById('taskPopUpTable');
+
+    content.innerHTML = '';
+
+    content.innerHTML += /*html*/`
+        <div class="taskPopUpRow">
+            <div class="taskPopUpLeftTd"><b>Due Date:</b></div>
+            <div class="taskPopUpRightTd">${clickedTask['date']}</div>
+        </div>
+
+        <div class="taskPopUpRow">
+            <div class="taskPopUpLeftTd"><b>Priority:</b></div>
+
+            <div class="taskPopUpRightTd taskPopUpPrio">
+                ${clickedTask['prio']} <img src="../../img/${clickedTask['prio'].toLowerCase()}Icon.png" alt="">
+            </div>
+        </div>
+
+        <div class="closeTaskPopUpButton" onclick="closeTaskPopUp()">X</div>
+
+        <div class="popUpButtonsContainer">
+            <div class="deleteTaskButton"><img src="../../img/delete.png" alt=""></div>
+
+            <div class="deleteTaskButton deleteButton"><img src="../../img/delete.png" alt=""></div>
+        </div>
+    `
+}
+
+
+
+function renderTaskPopUpAssignmentsHTML(clickedTask) {
+    let content = document.getElementById('taskPopUpAssignmentsList');
+
+
+    content.innerHTML = '';
+
+    for (let i = 0; i < clickedTask['assignedTo'].length; i++) {
+        const assignment = clickedTask['assignedTo'][i];
+        let initials = getInitials(assignment);
+        let bgColor = getBgColor();
+        
+        content.innerHTML += /*html*/`
+            <div class="taskPopUpSingleAssignmentContainer">
+                <div class="taskPopUpSingleAssignmentInitals contactContainer" style="background:${bgColor}">${initials}</div>
+                <div class="taskPopUpSingleAssignmentName">${assignment}</div>
+            </div>
+        `
+    } 
+}
+
+
+
+///////////////////////Drag & Drop/////////////////////////////////
 function startDragging(id) {
     currentDraggedTask = id;
 }
@@ -236,27 +359,26 @@ function startDragging(id) {
 
 function allowDrop(ev) {
     ev.preventDefault();
-
-  }
-
+}
 
 
-  function drop(stat) {
+
+function drop(stat) {
     tasksOnBoard[currentDraggedTask]['stat']  = stat;
     updateBoardTasks();
-  }
+}
 
 
 
-  function highlight(stat) {
+function highlight(stat) {
     document.getElementById(stat).classList.add('dragAreaHighlight');
-  }
+}
 
 
 
-  function stopHighlight(stat) {
+function stopHighlight(stat) {
     document.getElementById(stat).classList.remove('dragAreaHighlight');
-  }
+}
 
 
 

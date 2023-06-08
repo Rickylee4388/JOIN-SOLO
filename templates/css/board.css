@@ -1,4 +1,3 @@
-
 .boardBody {
     background-color: rgb(246,247,248);
     width: 100%;
@@ -8,20 +7,44 @@
 }
 
 
+.design-bg {
+    background-color: orange !important;
+}
+
+
+.sales-bg {
+    background-color: blueviolet !important;
+}
+
+
+.backoffice-bg {
+    background-color: red !important;
+}
+
+
+.media-bg {
+    background-color: blue !important;
+}
+
+
+.marketing-bg {
+    background-color: darkgreen !important;
+}
+
 
 
 .red {
-    background-color: red;
+    background-color: red !important;
 }
 
 
 .green {
-    background-color: green;
+    background-color: green !important;
 }
 
 
 .blue {
-    background-color: blue;
+    background-color: blue !important;
 }
 
 
@@ -173,7 +196,7 @@
     justify-content: center;
     padding: 0px;
     gap: 26px;
-    margin-top: 100px;
+    margin-top: 80px;
 
 }
 
@@ -364,5 +387,149 @@
 .dragAreaHighlight {
     background-color: rgb(135, 135, 136);
 }
+
+
+.taskOverviewPopUpContainer {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+
+.taskOverviewPopUp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px;
+    gap: 25px;
+    isolation: isolate;
+
+    position: relative;
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+
+.taskPopUpHeadline {
+    width: 523px;
+    margin-bottom: 25px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 120%;
+
+    color: #2A3647;
+}
+
+
+.taskPopUpTable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+}
+
+
+.taskPopUpRow {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.taskPopUpLeftTd {
+
+}
+
+
+.taskPopUpRightTd {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 4px 18px;
+
+}
+
+
+.taskPopUpPrio {
+    gap: 10px;
+    border-radius: 10px;
+    background-color: #FF7A00;
+}
+
+
+.assignedToHeadline {
+    margin-bottom: 25px;
+}
+
+
+.taskPopUpDiscription {
+    width: 518px;
+    height: 50px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+}
+
+
+.taskPopUpAssignmentsList {
+    display: flex;
+    flex-direction: column;
+    
+    gap: 25px;
+}
+
+
+.taskPopUpSingleAssignmentContainer {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.popUpButtonsContainer {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 60px;
+    right: 47px;
+}
+
+
+.deleteTaskButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+}
+
+
+.deleteButton {
+    background-color: #2A3647;
+}
+
+
+.closeTaskPopUpButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+
 
 
