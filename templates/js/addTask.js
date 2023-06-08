@@ -11,7 +11,13 @@ function initAddTask() {
         <div class="contentLeftAndRightContainer" id="contentLeftAndRightContainer"></div>
         <div class="twoButtonsContainer" id="twoButtonsContainer"></div>
     `;
+    loadTasks();
     renderHeadline();
+}
+
+
+async function loadTasks() {
+    newTaskArray = JSON.parse(await getItem('createdTask'));
 }
 
 
@@ -257,9 +263,14 @@ function createTask() {
         'prio': prio,
         'subtasks': allSubtasks
     };
-
     newTaskArray.push(newTask);
+    saveTasks();
     clearFields();
+}
+
+
+async function saveTasks() {
+    await setItem('createdTask', JSON.stringify(newTaskArray));
 }
 
 
@@ -272,6 +283,8 @@ function clearFields() {
     document.getElementById('subtasks').value = '';
     document.getElementById('subtasksList').innerHTML = '';
     document.getElementById('assignedToList').innerHTML = '';
+    assignedToNames = [];
+    assignedToInitials = [];
     clearPrioButtons();
 }
 

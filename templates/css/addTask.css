@@ -3,8 +3,8 @@
 }
 
 .headlineContainer {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 125px;
+    padding-right: 125px;
 }
 
 .headlineContainer h1 {
@@ -14,13 +14,13 @@
 }
 
 .contentLeftAndRightContainer {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 125px;
+    padding-right: 125px;
 }
 
 .twoButtonsContainer {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 125px;
+    padding-right: 125px;
 }
 
 span {
@@ -115,10 +115,14 @@ button {
 }
 
 .categoryAndSelect select {
-    -webkit-appearance: none; /* Safari und Chrome */
-    -moz-appearance: none; /* Firefox */
-    appearance: none; /* Standardwert */
-    background: white url("../../img/dropdownArrow.png") no-repeat right center; /* Hintergrundbild für den angepassten Pfeil */
+    -webkit-appearance: none;
+    /* Safari und Chrome */
+    -moz-appearance: none;
+    /* Firefox */
+    appearance: none;
+    /* Standardwert */
+    background: white url("../../img/dropdownArrow.png") no-repeat right center;
+    /* Hintergrundbild für den angepassten Pfeil */
     background-position: 390px;
 }
 
@@ -139,10 +143,14 @@ button {
 }
 
 .assignedToAndSelect select {
-    -webkit-appearance: none; /* Safari und Chrome */
-    -moz-appearance: none; /* Firefox */
-    appearance: none; /* Standardwert */
-    background: white url("../../img/dropdownArrow.png") no-repeat right center; /* Hintergrundbild für den angepassten Pfeil */
+    -webkit-appearance: none;
+    /* Safari und Chrome */
+    -moz-appearance: none;
+    /* Firefox */
+    appearance: none;
+    /* Standardwert */
+    background: white url("../../img/dropdownArrow.png") no-repeat right center;
+    /* Hintergrundbild für den angepassten Pfeil */
     background-position: 390px;
 }
 
@@ -153,6 +161,7 @@ button {
 .assignedToList {
     display: flex;
     flex-wrap: wrap;
+    height: 40px;
 }
 
 .assigneeContainer {
@@ -177,7 +186,8 @@ button {
 }
 
 .dueDateAndInput input {
-    font-family: 'inter', 'sans-serif';}
+    font-family: 'inter', 'sans-serif';
+}
 
 .prio {
     margin: 15px 0px 10px 0px;
@@ -345,6 +355,54 @@ button {
 .addTaskOverlay {
     background-color: white;
     border-radius: 20px;
-    width: 80%;
+    width: 60%;
     padding: 30px;
+    transition: transform 800ms ease-in-out;
+    transform: translate(0%);
+    animation: slideIn 0.8s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(150%);
+    }
+
+    to {
+        transform: translate(0%);
+    }
+}
+
+
+@media (max-width: 1290px) {
+    .headlineContainer {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .contentLeftAndRightContainer {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .twoButtonsContainer {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media (max-width: 1175px) {
+    .headlineContainer {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .contentLeftAndRightContainer {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .twoButtonsContainer {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
 }
