@@ -1,11 +1,21 @@
 async function initSummary() {
-  loadUserLogin();
-  // let name = userlogin[0]['name'];
+  await loadUserLogin();
+  let index = getCurrentUser();
+  let currentUser = userLogin[index]['name'];
   document.getElementById('contentSection').innerHTML = getSummarySection();
   document.getElementById('headlineDiv').innerHTML += getSummaryHeadlineDiv();
   document.getElementById('contentAndGreeting').innerHTML += getSummaryinnerContent();
-  document.getElementById('contentAndGreeting').innerHTML += getSummaryGreeting();
+  document.getElementById('contentAndGreeting').innerHTML += getSummaryGreeting(currentUser);
 }
+
+function getCurrentUser() {
+    let email = localStorage.getItem('currentEmail');
+    let index = userLogin.findIndex(function (currentUser) {
+        return currentUser.email === email;
+    });
+    return index;
+}
+
 
 function getSummarySection() {
   return /*html*/`
@@ -75,10 +85,11 @@ function getSummaryinnerContent() {
           </div>
   `
 }
-function getSummaryGreeting() {
+function getSummaryGreeting(currentUser) {
   return /*html*/`
             <div id="greeting" class="d-flex center greeting">
-            <p class="">Good Morning </p>
+            <p class="">Good Morning ${currentUser}</p>
           </div>
   `
 }
+
