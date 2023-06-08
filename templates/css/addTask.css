@@ -150,6 +150,22 @@ button {
     cursor: pointer;
 }
 
+.assignedToList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.assigneeContainer {
+    background-color: lightgray;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*
 .contentRight {}
 */

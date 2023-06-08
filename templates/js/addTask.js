@@ -40,7 +40,7 @@ function renderContentLeftAndRight() {
                 <div class="categoryAndSelect">
                     <span>Category</span>
                     <select id="category">
-                        <option>Select task category</option>
+                        <option value="" disabled selected>Select task category</option>
                         <option value="design">Design</option>
                         <option value="sales">Sales</option>
                         <option value="backoffice">Backoffice</option>
@@ -52,7 +52,7 @@ function renderContentLeftAndRight() {
                 <div class="assignedToAndSelect">
                     <span>Assigned to</span>
                     <select id="assignedTo" onchange="assignedTo()">
-                        <option>Select contacts to assign</option>
+                        <option value="" disabled selected>Select contacts to assign</option>
                         <option value="Denise Schmidt">Denise Schmidt</option>
                         <option value="Davide Religioso">Davide Religioso</option>
                         <option value="Jacob Hengsbach">Jacob Hengsbach</option>
@@ -183,24 +183,35 @@ function assignedTo() {
 
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
         assignedToNames.push(selectedAssignee);
-        console.log(assignedToNames);
     }
     getInitials();
 }
 
 
 function getInitials() {
+    assignedToInitials = [];
     
+    for (let i = 0; i < assignedToNames.length; i++) {
+        let nameParts = assignedToNames[i].split(" ");
+        let initials = "";
+        
+        for (let j = 0; j < nameParts.length; j++) {
+            initials += nameParts[j].charAt(0).toUpperCase();
+        }
+        
+        assignedToInitials.push(initials);
+    }
+    showAssignedToList();
 }
 
 
 function showAssignedToList() {
     document.getElementById('assignedToList').innerHTML = '';
-    for (let i = 0; i < assignedToNames.length; i++) {
-        let name = assignedToNames[i];
+    for (let i = 0; i < assignedToInitials.length; i++) {
+        let assignee = assignedToInitials[i];
         document.getElementById('assignedToList').innerHTML += /*html*/ `
-            <div>
-                ${name}
+            <div class="assigneeContainer">
+                ${assignee}
             </div>
         `;
     }
@@ -234,14 +245,14 @@ function createTask() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
     let category = document.getElementById('category').value;
-    let assignedTo = document.getElementById('assignedTo').value;
     let date = document.getElementById('date').value;
 
     let newTask = {
+        'id': 0,
         'title': title,
         'description': description,
         'category': category,
-        'assignedTo': assignedTo,
+        'assignedTo': assignedToNames,
         'date': date,
         'prio': prio,
         'subtasks': allSubtasks
@@ -255,9 +266,12 @@ function createTask() {
 function clearFields() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
+    document.getElementById('category').value = '';
+    document.getElementById('assignedTo').value = '';
     document.getElementById('date').value = '';
     document.getElementById('subtasks').value = '';
     document.getElementById('subtasksList').innerHTML = '';
+    document.getElementById('assignedToList').innerHTML = '';
     clearPrioButtons();
 }
 
