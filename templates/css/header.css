@@ -1,7 +1,7 @@
 .header {
     display: flex;
     position: absolute;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     left: 0px;
     top: 0px;   
@@ -38,5 +38,28 @@
     border: 3px solid;
     border-radius: 100%;
     border-color: #091931;
+    cursor: pointer;
+}
+
+.joinLogoSmall{
+    display: block;
+    height: 50px;
+    margin-left: 58px;
+}
+
+.headerContentRightLogout {
+    right: 55px;
+    background: #2A3647;
+    padding: 10px;
+    margin: 0;
+    color: #CDCDCD;
+    font-size: 16px;
+    position: absolute;
+    top: 90px;
+    border-radius: 20px 0px 20px 20px;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 1.8;
     cursor: pointer;
 }

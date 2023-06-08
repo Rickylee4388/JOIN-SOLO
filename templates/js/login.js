@@ -14,7 +14,7 @@ function leadToSignUp() {
   window.location.href = "signUp.html";
 }
 function guestLogIn() {
-  window.location.href = "summary.html";
+  window.location.replace("/../index.html");
 }
 
 function login() {
@@ -28,7 +28,7 @@ function login() {
   console.log(user);
   if (user) {
     console.log("user gefunden");
-    window.location.href = "summary.html";
+    window.location.replace("/../index.html");
   } else {
     alert("Email oder Passwort nicht korrekt!");
   }

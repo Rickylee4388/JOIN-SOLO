@@ -47,10 +47,19 @@
 }
 
 @media (max-width: 1000px) {
+
+    .contentSection {
+        left: 0;
+        right: 0;
+        bottom: 80px;
+    }
+
     .overlayAddContact {
         flex-direction: column;
         max-width: 500px;
         height: 80%;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .overlayAddContactLeft {
@@ -58,24 +67,29 @@
         border-top-right-radius: 20px;
         border-bottom-left-radius: 0;
         width: 100%;
-        align-items: flex-start;
+        align-items: center;
+        height: 100%;
     }
 
     .overlayAddContactLeftContent {
         padding: 50px;
+        padding-top: 10px;
     }
 
     .overlayAddContactRightProfilepic {
         display: flex !important;
         align-items: center;
         padding: 0;
-        height: 30px;
+        height: auto;
+        transform: translateY(-35px);
     }
 
     .overlayAddContactRight {
         flex-direction: column;
         width: 100%;
         align-items: center;
+        transform: translateY(-50px);
+        height: 60%;
     }
 
     .overlayAddContactRightInputSection {
@@ -90,11 +104,22 @@
 
     .overlayAddContactRightProfilepic h4 {
         padding: 20px;
-        width: auto;
+        margin: 0;
     }
 
     .overlayAddContactRightInputSectionHead {
-        padding-bottom: 40px;
+        display: none;
+    }
+
+    .overlayAddContactLeftContentLogo {
+        display: none;
+    }
+
+    .overlayAddContactRightInputSectionHeadMobile {
+        display: flex;
+        width: 90%;
+        flex-direction: row;
+        justify-content: flex-end;
     }
 
     .sidebar {
@@ -108,32 +133,126 @@
         flex-direction: row;
         padding: 0;
         gap: 0;
+        height: 100%;
     }
 
     .sidebarNav {
         flex-direction: row;
+        justify-content: space-around;
     }
 
     .sidebarLegal {
-        margin: 0;
+        display: none;
     }
 
     .sidebarLogo {
         display: none;
     }
 
-    .contentSection {
-        left: 0;
-        right: 0;
-        bottom: 80px;
+    .sidebarBtn img {
+        margin-left: 0;
+    }
+    
+    .contactsDetails {
+        display: flex;
+    }
+
+    .joinLogoSmall {
+        display: block;
+    }
+    
+    .helpLogo {
+        display: block;
     }
 }
 
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+
+    .overlayAddContact {
+        animation: slideUp 0.8s ease-in-out;
+    }
+
+    .sidebarBtn {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sidebarBtn img {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .sidebarBtn p {
+        margin: 0;
+    }
+
+    .contactsDetail {
+        display: none;
+    }
+
+    .contactsDetailHead {
+        justify-content: space-between;
+    }
+
+    .contactsDetailHeadPic {
+        display: block;
+    }
+
+    .contactsSection {
+        justify-content: center;
+    }
+
+    .btnMobile {
+        display: flex;
+    }
+
+    .cancelBtn2 {
+        display: none;
+    }
+
+    .headerTitle {
+        display: none;
+    }
+}
 
 @media (max-width: 576px) {
     .overlayAddContact {
         width: 90%;
+        animation: slideUp 0.8s ease-in-out;
+    }
+
+    .editBtn{
+        flex-direction: row !important;
+    }
+
+    .editBtn img {
+        display: none;
+    }
+
+    .overlayAddContactRightButtonSection {
+        flex-direction: column;
+    }
+   
+    .contactsDetailInfoContentRightEdit {
+        display: none;
+    }
+
+    .contactsDetailBottomMobile {
+        display: block;
+    }
+
+    .contactsDetailInfoContentLeft {
+        width: 100%;
+    }
+
+    .contactsDetailInfoContentRight {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .contactsDetailInfoContent {
+        flex-direction: column;
     }
 }
 

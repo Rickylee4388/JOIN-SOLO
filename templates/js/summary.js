@@ -1,7 +1,7 @@
 async function initSummary() {
   loadUserLogin();
   // let name = userlogin[0]['name'];
-  document.getElementById('contentSection').innerHTML += getSummarySection();
+  document.getElementById('contentSection').innerHTML = getSummarySection();
   document.getElementById('headlineDiv').innerHTML += getSummaryHeadlineDiv();
   document.getElementById('contentAndGreeting').innerHTML += getSummaryinnerContent();
   document.getElementById('contentAndGreeting').innerHTML += getSummaryGreeting();

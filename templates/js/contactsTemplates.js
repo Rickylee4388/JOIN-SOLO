@@ -2,19 +2,26 @@ function generateContactsHTML() {
     return /*html*/ `
     <div class="contactsSection" >
     <div class="contactsList" id="contactsList">
+    <div class="contactsDetailBottomBtn btnMobile" onclick="addNewContact()">
+            <p>New Contact</p>
+            <img src="/../img/newContactIcon.svg" alt="newContactIconBig">
+        </div>
     </div>
-    <div class="contactsDetail">
+    <div class="contactsDetail" id="contactsDetail">
     <div>
         <div class="contactsDetailHead">
-            <h2>Contacts</h2>
-            <img src="/../img/contactsHeadIcon.svg" alt="contactsHeadIcon">
-            <p>Better with a team</p>
+            <div class="contactsDetailHeadCaption">
+                <h2>Contacts</h2>
+                <img src="/../img/contactsHeadIcon.svg" alt="contactsHeadIcon">
+                <p>Better with a team</p>
+            </div>
+            <img onclick="returnToContactslist()" class="contactsDetailHeadPic" src="/../img/returnArrow.svg" alt="returnToListBtn">
         </div>
         <div class="contactsDetailInfo" id="contactsDetailInfo">
         </div>
     </div>
     <div class="contactsDetailBottom">
-        <div class="contactsDetailBottomBtn" onclick="addNewContact()">
+        <div class="contactsDetailBottomBtn cancelBtn2" onclick="addNewContact()">
             <p>New Contact</p>
             <img src="/../img/newContactIcon.svg" alt="newContactIconBig">
         </div>
@@ -46,7 +53,11 @@ function generateContactsDetailContentHTML(name, email, phone, color, initials, 
                     <img src="/../img/editContactIcon.svg" alt="editContactIcon">
                         <h3>Edit Contact</h3>
                     </div>
-                </div>
+                    <div class="contactsDetailBottomMobileSection">
+                        <img onclick="deleteContact(${i})" class="contactsDetailBottomMobile" src="/../img/editContactIconDeleteMobile.svg" alt="editContactIcon">
+                        <img onclick="editContact(${i})" class="contactsDetailBottomMobile" src="/../img/editContactIconMobile.svg" alt="editContactIcon">
+                    </div>
+                    </div>
             </div>`
 }
 
@@ -75,6 +86,9 @@ function generateContactsOverlayAddHTML() {
     return /*html*/ `
 <div class="overlayAddContact" id="overlayAddContact" onclick="doNotClose(event)">
             <div class="overlayAddContactLeft">
+                <div class="overlayAddContactRightInputSectionHeadMobile">
+                        <img onclick="closeContactOverlay()" src="/../img/addContactOverlayCloseWhite.svg" alt="closeButton">
+                    </div>
                 <div class="overlayAddContactLeftContent">
                     <img class="overlayAddContactLeftContentLogo" src="/../img/sidebarLogo.svg" alt="sidebarLogo">
                     <p class="overlayAddContactLeftHeadline">Add Contact</p>
@@ -96,7 +110,7 @@ function generateContactsOverlayAddHTML() {
                         <input id="addContactEmail" class="contactOverlayEmailIcon" required pattern="^[A-Za-z0-9._+-]+@[A-Za-z0-9 -]+\.[a-z]{2,}" type="email" placeholder="Email" title="Please enter a valid email address e.g.: 'johndoe@dev.com' ">
                         <input id="addContactPhone" class="contactOverlayPhoneIcon" required type="number" placeholder="Phone" title="Please enter a valid phone number e.g.: '+491724485536' "> 
                         <div class="overlayAddContactRightButtonSection">
-                            <button type="reset" class="contactsDetailBottomBtnAlt">
+                            <button type="reset" class="contactsDetailBottomBtnAlt cancelBtn">
                                 <p>Cancel</p>
                                 <img src="/../img/cancelCheckmarkContacts.svg" alt="newContactIconBig">
                             </button > 
@@ -115,6 +129,9 @@ function generateContactsOverlayEditHTML(name, email, phone, color, initials, i)
     return /*html*/ `
     <div class="overlayAddContact" id="overlayAddContact" onclick="doNotClose(event)">
             <div class="overlayAddContactLeft">
+            <div class="overlayAddContactRightInputSectionHeadMobile">
+                        <img onclick="closeContactOverlay()" src="/../img/addContactOverlayCloseWhite.svg" alt="closeButton">
+                    </div>
                 <div class="overlayAddContactLeftContent">
                     <img class="overlayAddContactLeftContentLogo" src="/../img/sidebarLogo.svg" alt="sidebarLogo">
                     <p class="overlayAddContactLeftHeadline">Edit Contact</p>
@@ -134,7 +151,7 @@ function generateContactsOverlayEditHTML(name, email, phone, color, initials, i)
                         <input id="editContactName" class="contactOverlayNameIcon" required pattern="^(?:[A-ZÄÖÜ][a-zäöüß]+ )+[A-ZÄÖÜ][a-zäöüß]+$" type="text" placeholder="Name" title="Please enter a valid name e.g.: 'John Doe' " value="${name}">
                         <input id="editContactEmail" class="contactOverlayEmailIcon" required pattern="^[A-Za-z0-9._+-]+@[A-Za-z0-9 -]+\.[a-z]{2,}" type="email" placeholder="Email" title="Please enter a valid email address e.g.: 'johndoe@dev.com' " value="${email}">
                         <input id="editContactPhone" class="contactOverlayPhoneIcon" required type="number" placeholder="Phone" title="Please enter a valid phone number e.g.: '+491724485536' " value="${phone}">
-                        <div class="overlayAddContactRightButtonSection">
+                        <div class="overlayAddContactRightButtonSection editBtn">
                             <button type="reset" class="contactsDetailBottomBtnAlt" onclick="deleteContact(${i})">
                                 <p>Delete</p>
                                 <img src="/../img/cancelCheckmarkContacts.svg" alt="newContactIconBig">
