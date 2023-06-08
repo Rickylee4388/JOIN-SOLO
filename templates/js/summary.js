@@ -1,19 +1,21 @@
-let currentUser = '';
 async function initSummary() {
   await loadUserLogin();
-  await loadCurrentUser();
- 
+  let index = getCurrentUser();
+  let currentUser = userLogin[index]['name'];
   document.getElementById('contentSection').innerHTML = getSummarySection();
   document.getElementById('headlineDiv').innerHTML += getSummaryHeadlineDiv();
   document.getElementById('contentAndGreeting').innerHTML += getSummaryinnerContent();
-  document.getElementById('contentAndGreeting').innerHTML += getSummaryGreeting();
+  document.getElementById('contentAndGreeting').innerHTML += getSummaryGreeting(currentUser);
+}
 
-  showCurrentUserName();
+function getCurrentUser() {
+    let email = localStorage.getItem('currentEmail');
+    let index = userLogin.findIndex(function (currentUser) {
+        return currentUser.email === email;
+    });
+    return index;
 }
-async function loadCurrentUser() {
-  let currentUsers = JSON.parse(await getItem("currentUser"));
-  currentUser = currentUsers;
-}
+
 
 function getSummarySection() {
   return /*html*/`
@@ -83,15 +85,11 @@ function getSummaryinnerContent() {
           </div>
   `
 }
-function getSummaryGreeting() {
+function getSummaryGreeting(currentUser) {
   return /*html*/`
             <div id="greeting" class="d-flex center greeting">
-            <p class="">Good Morning <br><b id='currentUserDiv'></b></p>
+            <p class="">Good Morning ${currentUser}</p>
           </div>
   `
 }
-function showCurrentUserName(){
-document.getElementById('currentUserDiv').innerHTML ='';
-document.getElementById('currentUserDiv').innerHTML =`${currentUser}`;
 
-}

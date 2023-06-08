@@ -27,6 +27,8 @@ async function login() {
     (u) => u.email == email.value && u.password == password.value
   );
 
+  localStorage.setItem('currentEmail', email.value);
+
   console.log(user);
   if (user) {
     console.log("user gefunden");
