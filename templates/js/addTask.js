@@ -1,6 +1,8 @@
 let newTaskArray = [];
 let prio = undefined;
 let allSubtasks = [];
+let assignedToNames = [];
+let assignedToInitials = [];
 
 
 function initAddTask() {
@@ -27,17 +29,17 @@ function renderContentLeftAndRight() {
             <div class="contentLeft">
                 <div class="titleAndInput">
                     <span>Title</span>
-                    <input required id="title" placeholder="Enter a title">
+                    <input id="title" placeholder="Enter a title">
                 </div>
 
                 <div class="descriptionAndTextarea">
                     <span>Description</span>
-                    <textarea required id="description" placeholder="Enter a Description"></textarea>
+                    <textarea id="description" placeholder="Enter a Description"></textarea>
                 </div>
 
                 <div class="categoryAndSelect">
                     <span>Category</span>
-                    <select required id="category">
+                    <select id="category">
                         <option>Select task category</option>
                         <option value="design">Design</option>
                         <option value="sales">Sales</option>
@@ -49,7 +51,7 @@ function renderContentLeftAndRight() {
 
                 <div class="assignedToAndSelect">
                     <span>Assigned to</span>
-                    <select required id="assignedTo">
+                    <select id="assignedTo" onchange="assignedTo()">
                         <option>Select contacts to assign</option>
                         <option value="Denise Schmidt">Denise Schmidt</option>
                         <option value="Davide Religioso">Davide Religioso</option>
@@ -58,6 +60,10 @@ function renderContentLeftAndRight() {
                         <option value="Max Mustermann">Max Mustermann</option>
                     </select>
                 </div>
+
+                <div class="assignedToList" id="assignedToList">
+
+                </div>
             </div>
 
             <div class="borderline"></div>
@@ -65,12 +71,12 @@ function renderContentLeftAndRight() {
             <div class="contentRight">
                 <div class="dueDateAndInput">
                     <span>Due Date</span>
-                    <input required type="date" id="date" placeholder="dd/mm/yyyy">
+                    <input type="date" id="date" placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="prio">
                     <span>Prio</span>
-                    <div required class="prioButtons">
+                    <div class="prioButtons">
                         <button id="urgent" value="urgent" onclick="urgent()">
                             Urgent
                             <img id="urgentIcon" src="../../img/urgentIcon.png">
@@ -92,7 +98,7 @@ function renderContentLeftAndRight() {
                     <span>Subtasks</span>
 
                     <div class="inputAndButton">
-                        <input required id="subtasks" placeholder="Add new subtask">
+                        <input id="subtasks" placeholder="Add new subtask">
                         <button onclick="newSubtask()">
                             <img src="../../img/subtaskIcon.png">
                         </button>
@@ -168,6 +174,36 @@ function low() {
 
     document.getElementById('urgent').classList.remove('urgent');
     document.getElementById('urgentIcon').src = '../../img/urgentIcon.png';
+}
+
+
+function assignedTo() {
+    let assignee = document.getElementById("assignedTo");
+    let selectedAssignee = assignee.options[assignee.selectedIndex].value;
+
+    if (assignedToNames.indexOf(selectedAssignee) === -1) {
+        assignedToNames.push(selectedAssignee);
+        console.log(assignedToNames);
+    }
+    getInitials();
+}
+
+
+function getInitials() {
+    
+}
+
+
+function showAssignedToList() {
+    document.getElementById('assignedToList').innerHTML = '';
+    for (let i = 0; i < assignedToNames.length; i++) {
+        let name = assignedToNames[i];
+        document.getElementById('assignedToList').innerHTML += /*html*/ `
+            <div>
+                ${name}
+            </div>
+        `;
+    }
 }
 
 
