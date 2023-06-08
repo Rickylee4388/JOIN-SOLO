@@ -2,20 +2,15 @@
     display: none;
 }
 
-.contentSectionAddTask {
-    background-color: #F6F7F8;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-left: 100px;
-    padding-right: 100px;
-}
-
 .headlineContainer {
     padding-left: 50px;
     padding-right: 50px;
+}
+
+.headlineContainer h1 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    width: 100%;
 }
 
 .contentLeftAndRightContainer {
@@ -26,12 +21,6 @@
 .twoButtonsContainer {
     padding-left: 50px;
     padding-right: 50px;
-}
-
-h1 {
-    margin-top: 10px;
-    margin-bottom: 0;
-    width: 100%;
 }
 
 span {
@@ -110,19 +99,19 @@ button {
 .titleAndInput {
     display: flex;
     flex-direction: column;
-    margin: 20px 0px 20px 0px;
+    margin: 10px 0px 10px 0px;
 }
 
 .descriptionAndTextarea {
     display: flex;
     flex-direction: column;
-    margin: 20px 0px 20px 0px;
+    margin: 10px 0px 10px 0px;
 }
 
 .categoryAndSelect {
     display: flex;
     flex-direction: column;
-    margin: 20px 0px 20px 0px;
+    margin: 10px 0px 10px 0px;
 }
 
 .categoryAndSelect select {
@@ -146,7 +135,7 @@ button {
 .assignedToAndSelect {
     display: flex;
     flex-direction: column;
-    margin: 20px 0px 20px 0px;
+    margin: 10px 0px 10px 0px;
 }
 
 .assignedToAndSelect select {
@@ -168,14 +157,14 @@ button {
 .dueDateAndInput {
     display: flex;
     flex-direction: column;
-    margin: 20px 0px 20px 0px;
+    margin: 10px 0px 10px 0px;
 }
 
 .dueDateAndInput input {
     font-family: 'inter', 'sans-serif';}
 
 .prio {
-    margin: 25px 0px 20px 0px;
+    margin: 15px 0px 10px 0px;
 }
 
 .prioButtons {
@@ -230,7 +219,7 @@ button {
 .subtasksAndInput {
     display: flex;
     flex-direction: column;
-    margin: 20px 0px 20px 0px;
+    margin: 10px 0px 10px 0px;
 }
 
 .inputAndButton {
@@ -265,7 +254,7 @@ button {
 .subtasksList {
     display: flex;
     flex-direction: column;
-    margin-top: -15px;
+    margin-top: -5px;
 }
 
 .subtask {
