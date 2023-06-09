@@ -41,7 +41,7 @@ function generateContactsDetailContentHTML(name, email, phone, color, initials, 
                 <h4 style="background:${color}">${initials}</h4>
                 <div>
                 <p class="contactsDetailInfoHeadName">${name}</p>
-                <p class="contactsDetailInfoHeadAddTask">+ Add Task</p>
+                <p class="contactsDetailInfoHeadAddTask" onclick="openAddTaskOverlay()">+ Add Task</p>
                 </div>
             </div>
             <div class="contactsDetailInfoContent">

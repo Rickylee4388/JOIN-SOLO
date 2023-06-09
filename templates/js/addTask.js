@@ -26,6 +26,7 @@ function renderHeadline() {
         <h1>Add Task</h1>
     `;
     renderContentLeftAndRight();
+    renderContactsAddTask();
 }
 
 
@@ -59,11 +60,6 @@ function renderContentLeftAndRight() {
                     <span>Assigned to</span>
                     <select id="assignedTo" onchange="assignedTo()">
                         <option value="" disabled selected>Select contacts to assign</option>
-                        <option value="Denise Schmidt">Denise Schmidt</option>
-                        <option value="Davide Religioso">Davide Religioso</option>
-                        <option value="Jacob Hengsbach">Jacob Hengsbach</option>
-                        <option value="Philipp Klinger">Philipp Klinger</option>
-                        <option value="Max Mustermann">Max Mustermann</option>
                     </select>
                 </div>
 
@@ -118,6 +114,17 @@ function renderContentLeftAndRight() {
         </div>
     `;
     renderTwoButtonsContainer();
+}
+
+
+function renderContactsAddTask() {
+    for (let i = 0; i < allContacts.length; i++) {
+        const allData = allContacts[i];
+        const { name } = getJoinData(allData);
+        document.getElementById('assignedTo').innerHTML += /*html*/ `
+            <option value="${name}">${name}</option>
+        `;
+    }
 }
 
 
@@ -186,41 +193,25 @@ function low() {
 function assignedTo() {
     let assignee = document.getElementById("assignedTo");
     let selectedAssignee = assignee.options[assignee.selectedIndex].value;
+    let selectedAssignee2 = assignee.options[assignee.selectedIndex];
+    selectedAssignee2.disabled = true;
+    let i = (assignee.selectedIndex) -1;
 
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
         assignedToNames.push(selectedAssignee);
     }
-    //getInitials();
+    showAssignedToList(i);
 }
 
 
-/*function getInitials() {
-    assignedToInitials = [];
-    
-    for (let i = 0; i < assignedToNames.length; i++) {
-        let nameParts = assignedToNames[i].split(" ");
-        let initials = "";
-        
-        for (let j = 0; j < nameParts.length; j++) {
-            initials += nameParts[j].charAt(0).toUpperCase();
-        }
-        
-        assignedToInitials.push(initials);
-    }
-    showAssignedToList();
-}*/
-
-
-function showAssignedToList() {
-    document.getElementById('assignedToList').innerHTML = '';
-    for (let i = 0; i < assignedToInitials.length; i++) {
-        let assignee = assignedToInitials[i];
+function showAssignedToList(i) {
+    const allData = allContacts[i];
+    const {initials, color} = getJoinData(allData);
         document.getElementById('assignedToList').innerHTML += /*html*/ `
-            <div class="assigneeContainer">
-                ${assignee}
+            <div class="assigneeContainer" style="background-color: ${color}">
+                ${initials}
             </div>
-        `;
-    }
+        `
 }
 
 
@@ -254,15 +245,17 @@ function createTask() {
     let date = document.getElementById('date').value;
 
     let newTask = {
-        'id': 0,
+        'id': '',
         'title': title,
         'description': description,
         'category': category,
         'assignedTo': assignedToNames,
         'date': date,
         'prio': prio,
+        'stat': 'todo',
         'subtasks': allSubtasks
     };
+    
     newTaskArray.push(newTask);
     saveTasks();
     clearFields();
