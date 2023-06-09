@@ -1,11 +1,19 @@
 let allContacts = []
 
+/**
+ * Initializes the contacts by loading them, rendering the contacts section, and rendering the contacts list.
+ * @returns {Promise<void>}
+ */
 async function initContacts() {
     await loadContacts();
     renderContactsSection();
     renderContactsList();
 }
 
+/**
+ * Loads the contacts from storage.
+ * @returns {Promise<void>}
+ */
 async function loadContacts() {
     try {
         allContacts = JSON.parse(await getItem('contacts'));
@@ -14,16 +22,25 @@ async function loadContacts() {
     }
 }
 
+/**
+ * Renders the contacts section in the content.
+ */
 function renderContactsSection() {
     contentSection.innerHTML = generateContactsHTML();
 }
 
+/**
+ * Renders the contacts list by sorting and rendering the contact groups and contacts.
+ */
 function renderContactsList() {
     sortContacts();
     renderContactsListGroup();
     renderContactsListGroupContact();
 }
 
+/**
+ * Renders the contact groups in the contacts list.
+ */
 function renderContactsListGroup() {
     let groupCounts = countGroupObjects(allContacts);   //Gibt Objekt mit allen Gruppenbuchstaben und deren Anzahl aus Array zurück
     let groupLetters = Object.keys(groupCounts);    //Filtert nur die Buchstaben aus Objekt
@@ -33,23 +50,35 @@ function renderContactsListGroup() {
     }
 }
 
+/**
+ * Renders the contacts in each contact group.
+ */
 function renderContactsListGroupContact() {
     for (let i = 0; i < allContacts.length; i++) {
         const allData = allContacts[i];
         const { name, email, color, initials, group } = getJoinData(allData);
-        document.getElementById(`contactsListGroup${group}`).innerHTML += generateContactsListGroupContactHTML(name, email, color, initials, i);
+        document.getElementById(`contactsListGroup${group}`).innerHTML 
+        += generateContactsListGroupContactHTML(name, email, color, initials, i);
     }
 }
 
+/**
+ * Shows the details of a contact.
+ * @param {number} i - The index of the contact in the contacts list.
+ */
 function showContactDetails(i) {
     checkIfMobile();
     const allData = allContacts[i];
     const { name, email, color, initials, phone } = getJoinData(allData);
     resetAllHighlightContact();
-    document.getElementById('contactsDetailInfo').innerHTML = generateContactsDetailContentHTML(name, email, phone, color, initials, i);
+    document.getElementById('contactsDetailInfo').innerHTML 
+    = generateContactsDetailContentHTML(name, email, phone, color, initials, i);
     highlightContact(i);
 }
 
+/**
+ * Checks if the screen size is mobile and adjusts the contact details and list display accordingly.
+ */
 function checkIfMobile() {
     let screensize = window.innerWidth;
     if (screensize <= 768) {
@@ -58,11 +87,17 @@ function checkIfMobile() {
     }
 }
 
+/**
+ * Returns to the contacts list view from the contact details view.
+ */
 function returnToContactslist() {
     document.getElementById('contactsDetail').style.display = 'none';
     document.getElementById('contactsList').classList.remove('d-none');
 }
 
+/**
+ * Returns to the contacts list view from the contact details view.
+ */
 function resetAllHighlightContact() {
     for (let i = 0; i < allContacts.length; i++) {
         document.getElementById(`contactsListGroupContact${i}`).classList.add('contactsListGroupContactBgInactive');
@@ -70,18 +105,50 @@ function resetAllHighlightContact() {
     }
 }
 
+/**
+ * Highlights the selected contact in the contact list.
+ * @param {number} i - The index of the contact in the contacts list.
+ */
 function highlightContact(i) {
     document.getElementById(`contactsListGroupContact${i}`).classList.remove('contactsListGroupContactBgInactive');
     document.getElementById(`contactsListGroupContact${i}`).classList.add('contactsListGroupContactBg');
 }
 
+/**
+ * Creates a new contact by saving the entered details.
+ * @returns {Promise<void>}
+ */
 async function createContact() {
+    let { name, email, phone, bgColor, initials, group } = getContactVariables();
+    await saveContact(name, email, phone, bgColor, initials, group);
+    showCreatedContact(name);
+}
+
+/**
+ * Retrieves the contact details entered in the add contact overlay.
+ * @returns {Object} - The contact details.
+ */
+function getContactVariables() {
     let name = document.getElementById('addContactName').value;
     let email = document.getElementById('addContactEmail').value;
     let phone = document.getElementById('addContactPhone').value;
     let bgColor = getBgColor();
     let initials = getInitials(name);
     let group = getContactGroup(name);
+    return { name, email, phone, bgColor, initials, group };
+}
+
+/**
+ * Saves the newly created contact to the contacts list.
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email of the contact.
+ * @param {string} phone - The phone number of the contact.
+ * @param {string} bgColor - The background color of the contact.
+ * @param {string} initials - The initials of the contact.
+ * @param {string} group - The group of the contact.
+ * @returns {Promise<void>}
+ */
+async function saveContact(name, email, phone, bgColor, initials, group) {
     allContacts.push({
         name: name,
         email: email,
@@ -91,9 +158,16 @@ async function createContact() {
         group: group,
     })
     await setItem('contacts', JSON.stringify(allContacts));
+}
+
+/**
+ * Shows the success message and updates the contacts list after a new contact is created.
+ * @param {string} name - The name of the created contact.
+ */
+function showCreatedContact(name) {
     document.getElementById('contactsList').innerHTML = '';
     renderContactsList();
-    document.getElementById('overlaySection').innerHTML = `<img class="overlayAddContactSuccess" src="/../img/newContactSuccess.svg">`;
+    document.getElementById('overlaySection').innerHTML = generateContactSuccessHTML();
     setTimeout(function () {
         document.getElementById('overlaySection').classList.add('d-none');
     }, 1400);
@@ -101,33 +175,82 @@ async function createContact() {
     showContactDetails(index);
 }
 
-async function saveEditedContact(i) {
+/**
+ * Creates an edited contact by saving the edited details.
+ * @param {number} i - The index of the contact in the contacts list.
+ * @returns {Promise<void>}
+ */
+async function createEditedContact(i) {
+    let { editedName, editedEmail, editedPhone } = getEditedVariables();
+    await saveEditedContact(editedName, editedEmail, editedPhone, i);
+    showEditedContact(i);
+}
+
+/**
+ * Retrieves the edited contact details entered in the edit contact overlay.
+ * @returns {Object} - The edited contact details.
+ */
+function getEditedVariables() {
     let editedName = document.getElementById('editContactName').value;
     let editedEmail = document.getElementById('editContactEmail').value;
     let editedPhone = document.getElementById('editContactPhone').value;
+    return { editedName, editedEmail, editedPhone };
+}
 
+/**
+ * Saves the edited contact details to the contacts list.
+ * @param {string} editedName - The edited name of the contact.
+ * @param {string} editedEmail - The edited email of the contact.
+ * @param {string} editedPhone - The edited phone number of the contact.
+ * @param {number} i - The index of the contact in the contacts list.
+ * @returns {Promise<void>}
+ */
+async function saveEditedContact(editedName, editedEmail, editedPhone, i) {
     allContacts[i]['name'] = editedName;
     allContacts[i]['email'] = editedEmail;
     allContacts[i]['phone'] = editedPhone;
-
     await setItem('contacts', JSON.stringify(allContacts));
+}
+
+/**
+ * Shows the edited contact by updating the contacts list and displaying the contact details.
+ * @param {number} i - The index of the contact in the contacts list.
+ */
+function showEditedContact(i) {
     document.getElementById('contactsList').innerHTML = '';
     renderContactsList();
     showContactDetails(i);
     document.getElementById('overlaySection').classList.add('d-none');
 }
 
+/**
+ * Deletes a contact from the contacts list.
+ * @param {number} i - The index of the contact in the contacts list.
+ * @returns {Promise<void>}
+ */
 async function deleteContact(i) {
     let contactToDelete = allContacts[i];
     delete contactToDelete;
     allContacts.splice(i, 1);
     await setItem('contacts', JSON.stringify(allContacts));
+    showEmptyContact();
+}
+
+/**
+ * Shows an empty contact by clearing the contact details and the overlay section.
+ */
+function showEmptyContact() {
     document.getElementById('contactsList').innerHTML = '';
     document.getElementById('contactsDetailInfo').innerHTML = '';
     document.getElementById('overlaySection').classList.add('d-none');
     renderContactsList();
 }
 
+/**
+ * Generates the initials of a contact based on their name.
+ * @param {string} name - The name of the contact.
+ * @returns {string} - The initials of the contact.
+ */
 function getInitials(name) {
     let names = name.split(' ');
     let initials = '';
@@ -137,6 +260,11 @@ function getInitials(name) {
     return initials;
 }
 
+/**
+ * Determines the group of a contact based on their name.
+ * @param {string} name - The name of the contact.
+ * @returns {string} - The group of the contact.
+ */
 function getContactGroup(name) {
     let names = name.split(' ');
     let group = '';
@@ -144,6 +272,10 @@ function getContactGroup(name) {
     return group;
 }
 
+/**
+ * Generates a random background color.
+ * @returns {string} - The randomly generated background color.
+ */
 function getBgColor() {
     let x = Math.floor(Math.random() * 256);
     let y = Math.floor(Math.random() * 256);
@@ -152,6 +284,11 @@ function getBgColor() {
     return bgColor;
 }
 
+/**
+ * Retrieves the index of a created contact in the contacts list based on its name.
+ * @param {string} name - The name of the created contact.
+ * @returns {number} - The index of the created contact in the contacts list.
+ */
 function getCreatedContact(name) {
     let index = allContacts.findIndex(function (contact) {
         return contact.name === name;
@@ -159,6 +296,11 @@ function getCreatedContact(name) {
     return index;
 }
 
+/**
+ * Counts the number of contacts in each group.
+ * @param {Array} x - The contacts list.
+ * @returns {Object} - An object with the group letters as keys and their corresponding counts as values.
+ */
 function countGroupObjects(x) {
     let groupCounts = {};
     for (let i = 0; i < x.length; i++) {
@@ -172,6 +314,9 @@ function countGroupObjects(x) {
     return groupCounts;             // Ergebnis bspw. = {B: 1, C: 1, J: 2}
 }
 
+/**
+ * Sorts the contacts list alphabetically by name.
+ */
 function sortContacts() {
     allContacts.sort(function (a, b) {
         let nameA = a.name.toUpperCase(); // Großbuchstaben für Vergleich
@@ -186,11 +331,18 @@ function sortContacts() {
     });
 }
 
+/**
+ * Displays the overlay section for adding a new contact.
+ */
 function addNewContact() {
     document.getElementById('overlaySection').classList.remove('d-none');
     document.getElementById('overlaySection').innerHTML = generateContactsOverlayAddHTML();
 }
 
+/**
+ * Displays the overlay section for editing a contact.
+ * @param {number} i - The index of the contact in the contacts list.
+ */
 function editContact(i) {
     const allData = allContacts[i];
     const { name, email, color, initials, phone } = getJoinData(allData);
@@ -198,18 +350,28 @@ function editContact(i) {
     document.getElementById('overlaySection').innerHTML = generateContactsOverlayEditHTML(name, email, phone, color, initials, i);
 }
 
+/**
+ * Closes the contact overlay section.
+ */
 function closeContactOverlay() {
     document.getElementById('overlaySection').classList.add('d-none');
 }
 
+/**
+ * Prevents the contact overlay from closing when an event occurs.
+ * @param {Event} event - The event object.
+ */
 function doNotClose(event) {
     event.stopPropagation();
 }
 
+/**
+ * Event listener for the window resize event.
+ */
 window.addEventListener('resize', function () {
     windowSize = window.innerWidth;
-    
+
     if (windowSize >= 768) {
-      
+
     }
 });
