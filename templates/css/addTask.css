@@ -116,14 +116,9 @@ button {
 
 .categoryAndSelect select {
     -webkit-appearance: none;
-    /* Safari und Chrome */
     -moz-appearance: none;
-    /* Firefox */
     appearance: none;
-    /* Standardwert */
-    background: white url("../../img/dropdownArrow.png") no-repeat right center;
-    /* Hintergrundbild für den angepassten Pfeil */
-    background-position: 390px;
+    background: white url("../../img/dropdownArrow.png") no-repeat right 10px center;
 }
 
 .categoryAndSelect select:hover {
@@ -144,14 +139,9 @@ button {
 
 .assignedToAndSelect select {
     -webkit-appearance: none;
-    /* Safari und Chrome */
     -moz-appearance: none;
-    /* Firefox */
     appearance: none;
-    /* Standardwert */
-    background: white url("../../img/dropdownArrow.png") no-repeat right center;
-    /* Hintergrundbild für den angepassten Pfeil */
-    background-position: 390px;
+    background: white url("../../img/dropdownArrow.png") no-repeat right 10px center;
 }
 
 .assignedToAndSelect select:hover {
@@ -161,7 +151,8 @@ button {
 .assignedToList {
     display: flex;
     flex-wrap: wrap;
-    height: 40px;
+    max-height: 44px;
+    overflow-y: auto;
 }
 
 .assigneeContainer {
@@ -280,7 +271,10 @@ button {
 .subtasksList {
     display: flex;
     flex-direction: column;
+    align-items: start;
     margin-top: -5px;
+    max-height: 190px;
+    overflow-y: auto;
 }
 
 .subtask {
@@ -375,34 +369,48 @@ button {
 
 @media (max-width: 1290px) {
     .headlineContainer {
-        padding-left: 50px;
-        padding-right: 50px;
+        padding-left: 25px;
+        padding-right: 25px;
     }
 
     .contentLeftAndRightContainer {
-        padding-left: 50px;
-        padding-right: 50px;
+        padding-left: 25px;
+        padding-right: 25px;
     }
 
     .twoButtonsContainer {
-        padding-left: 50px;
-        padding-right: 50px;
+        padding-left: 25px;
+        padding-right: 25px;
     }
 }
 
-@media (max-width: 1175px) {
-    .headlineContainer {
-        padding-left: 25px;
-        padding-right: 25px;
+@media (max-width: 1135px) {
+    .borderline {
+        display: none;
     }
 
-    .contentLeftAndRightContainer {
-        padding-left: 25px;
-        padding-right: 25px;
+    .contentLeftAndRight {
+        flex-direction: column;
     }
 
-    .twoButtonsContainer {
-        padding-left: 25px;
-        padding-right: 25px;
+    input {
+        width: 100% !important;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    .prioButtons button {
+        width: 33%;
+    }
+
+    .twoButtons {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }
