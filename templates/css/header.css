@@ -30,6 +30,7 @@
     height: 29px;
     margin-right: 25px;
     cursor: pointer;
+    background: none !important;
 }
 
 .profileLogo {
