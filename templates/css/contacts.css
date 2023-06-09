@@ -81,6 +81,10 @@
     font-weight: 400;
     margin-bottom: 5px;
     margin-top: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 220px;
 }
 
 .contactsListContactMail {
@@ -88,6 +92,10 @@
     font-size: 16px;
     font-weight: 400;
     margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 220px;
 }
 
 .contactsDetail {
@@ -278,7 +286,7 @@
 
 .overlayAddContact {
     transform: translate(-50%, -50%);
-    animation: slideIn 0.8s ease-in-out;
+    animation: slideInContacts 0.8s ease-in-out;
     background-color: white;
     display: flex;
     flex-direction: row;
@@ -292,7 +300,7 @@
     left: 50%;
 }
 
-@keyframes slideIn {
+@keyframes slideInContacts {
     from { 
         transform: translate(150%, -50%);
     }
@@ -426,13 +434,13 @@
 
 .overlayAddContactSuccess {
     transform: translate(-50%, -50%);
-    animation: slideUp 0.8s ease-in-out;
+    animation: slideUpContacts 0.8s ease-in-out;
     position: absolute;
     top: 80%;
     left: 50%;
 }
 
-@keyframes slideUp {
+@keyframes slideUpContacts {
     from { 
         transform: translate(-50%, 150%);
     }

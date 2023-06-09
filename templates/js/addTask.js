@@ -190,11 +190,11 @@ function assignedTo() {
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
         assignedToNames.push(selectedAssignee);
     }
-    getInitials();
+    //getInitials();
 }
 
 
-function getInitials() {
+/*function getInitials() {
     assignedToInitials = [];
     
     for (let i = 0; i < assignedToNames.length; i++) {
@@ -208,7 +208,7 @@ function getInitials() {
         assignedToInitials.push(initials);
     }
     showAssignedToList();
-}
+}*/
 
 
 function showAssignedToList() {
@@ -406,9 +406,4 @@ function openAddTaskOverlay() {
             </div>
         </div>
     `;
-}
-
-
-function doNotClose(event) {
-    event.stopPropagation();
 }

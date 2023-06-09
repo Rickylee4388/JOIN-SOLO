@@ -44,6 +44,14 @@
     .overlayAddContactLeftCaption {
         font-size: 20px;
     }
+
+    .contactsListContactName {
+        width: 170px;
+    }
+
+    .contactsListContactEmail {
+        width: 170px;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -139,6 +147,7 @@
     .sidebarNav {
         flex-direction: row;
         justify-content: space-around;
+        height: 100%;
     }
 
     .sidebarLegal {
@@ -147,6 +156,11 @@
 
     .sidebarLogo {
         display: none;
+    }
+
+    .sidebarBtn {
+        padding: 10px;
+        min-width: 120px;
     }
 
     .sidebarBtn img {
@@ -168,14 +182,12 @@
 
 @media (max-width: 768px) {
 
-    .overlayAddContact {
-        animation: slideUp 0.8s ease-in-out;
-    }
-
     .sidebarBtn {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        min-width: 70px;
+        padding: 10px;
     }
 
     .sidebarBtn img {
@@ -185,10 +197,6 @@
 
     .sidebarBtn p {
         margin: 0;
-    }
-
-    .contactsDetail {
-        display: none;
     }
 
     .contactsDetailHead {
@@ -207,19 +215,22 @@
         display: flex;
     }
 
-    .cancelBtn2 {
-        display: none;
-    }
-
     .headerTitle {
         display: none;
     }
+
+    .hideBtn {
+        display: none;
+    }
+
+
 }
 
 @media (max-width: 576px) {
+
     .overlayAddContact {
         width: 90%;
-        animation: slideUp 0.8s ease-in-out;
+        animation: slideUpContacts 0.8s ease-in-out;
     }
 
     .editBtn{
@@ -229,11 +240,7 @@
     .editBtn img {
         display: none;
     }
-
-    .overlayAddContactRightButtonSection {
-        flex-direction: column;
-    }
-   
+  
     .contactsDetailInfoContentRightEdit {
         display: none;
     }
@@ -254,6 +261,31 @@
     .contactsDetailInfoContent {
         flex-direction: column;
     }
+
+    .cancelBtn2 {
+        display: none;
+    }
+    
+    .overlayAddContactRightButtonSection {
+        flex-direction: column;
+    }
+
+    .contactsDetailHeadCaption img {
+        display: none;
+    }
+
+    .contactsDetailHeadCaption p {
+        display: none;
+    }
+
+    .contactsDetailInfoHeadName {
+        font-size: 26px;
+    }
 }
 
-@media (max-width: 500px) {}
+@media (max-height: 730px) {
+
+    .sidebarLegal {
+        padding-top: 50px;
+    }
+}

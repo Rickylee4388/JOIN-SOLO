@@ -1,11 +1,7 @@
 function generateContactsHTML() {
     return /*html*/ `
-    <div class="contactsSection" >
+    <div class="contactsSection" id="contactsSection">
     <div class="contactsList" id="contactsList">
-    <div class="contactsDetailBottomBtn btnMobile" onclick="addNewContact()">
-            <p>New Contact</p>
-            <img src="/../img/newContactIcon.svg" alt="newContactIconBig">
-        </div>
     </div>
     <div class="contactsDetail" id="contactsDetail">
     <div>
@@ -21,7 +17,7 @@ function generateContactsHTML() {
         </div>
     </div>
     <div class="contactsDetailBottom">
-        <div class="contactsDetailBottomBtn cancelBtn2" onclick="addNewContact()">
+        <div class="contactsDetailBottomBtn hideBtn" onclick="addNewContact()">
             <p>New Contact</p>
             <img src="/../img/newContactIcon.svg" alt="newContactIconBig">
         </div>
@@ -29,6 +25,14 @@ function generateContactsHTML() {
 </div>
 </div>
 `
+}
+
+function generateContactsListMobileButton() {
+    return /*html*/ `
+    <div class="contactsDetailBottomBtn btnMobile" onclick="addNewContact()">
+    <p>New Contact</p>
+    <img src="/../img/newContactIcon.svg" alt="newContactIconBig">
+</div>`;
 }
 
 function generateContactsDetailContentHTML(name, email, phone, color, initials, i) {
@@ -110,7 +114,7 @@ function generateContactsOverlayAddHTML() {
                         <input id="addContactEmail" class="contactOverlayEmailIcon" required type="email" placeholder="Email" title="Please enter a valid email address e.g.: 'johndoe@dev.com' ">
                         <input id="addContactPhone" class="contactOverlayPhoneIcon" required type="number" placeholder="Phone" title="Please enter a valid phone number e.g.: '+491724485536' "> 
                         <div class="overlayAddContactRightButtonSection">
-                            <button type="reset" class="contactsDetailBottomBtnAlt cancelBtn">
+                            <button type="reset" class="contactsDetailBottomBtnAlt cancelBtn2">
                                 <p>Cancel</p>
                                 <img src="/../img/cancelCheckmarkContacts.svg" alt="newContactIconBig">
                             </button > 

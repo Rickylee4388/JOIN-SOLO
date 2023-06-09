@@ -1,3 +1,5 @@
+let allContacts = []
+
 function init() {
     includeHTML();
     initSummary();
@@ -5,19 +7,36 @@ function init() {
 
 function renderSummary() {
     initSummary();
+    let sidebarSummary = document.getElementById('sidebarSummary');
+    highlightSidebarBtn(sidebarSummary);
 }
 
 function renderBoard() {
     renderBoardHTML();
+    let sidebarBoard = document.getElementById('sidebarBoard');
+    highlightSidebarBtn(sidebarBoard);
 }
 
 function renderAddTask() {
     initAddTask();
-    /*contentSection.innerHTML = '<h2>Add Task</h2>';*/
+    let sidebarAddTask = document.getElementById('sidebarAddTask');
+    highlightSidebarBtn(sidebarAddTask);
 }
 
-async function renderContacts() {
+function renderContacts() {
     initContacts();
+    let sidebarContacts = document.getElementById('sidebarContacts');
+    highlightSidebarBtn(sidebarContacts);
+}
+
+function showLegalNoticeScreen() {
+    contentSection.innerHTML = generateLegalNoticeScreenHTML();
+    let sidebarLegal = document.getElementById('sidebarLegal');
+    highlightSidebarBtn(sidebarLegal);
+}
+
+function showHelpScreen() {
+    contentSection.innerHTML = generateHelpScreenHTML();
 }
 
 function getJoinData(allData) {
@@ -30,21 +49,40 @@ function getJoinData(allData) {
     return { name, email, phone, color, initials, group };
 }
 
+function doNotClose(event) {
+    event.stopPropagation();
+}
+
 function logOut() {
     window.location.replace("/../templates/html/login.html");
 }
 
 function showLogOut() {
-    if(document.getElementById('headerContentRightLogout').style.display == 'none') {
+    if (document.getElementById('headerContentRightLogout').style.display == 'none') {
         document.getElementById('headerContentRightLogout').style.display = 'block';
     } else {
         document.getElementById('headerContentRightLogout').style.display = 'none';
     }
 }
 
-function showHelpScreen() {
-    contentSection.innerHTML = generateHelpScreenHTML();
+function highlightSidebarBtn(element) {
+    const buttons = document.getElementsByClassName('sidebarBtn');
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('sidebarBtnActive');
+        }
+    element.classList.add('sidebarBtnActive');
 }
+
+
+
+
+
+
+//---------------------------------html---------------------------------------//
+
+
+
+
 
 function generateHelpScreenHTML() {
     return /*html*/ `
@@ -61,10 +99,6 @@ function generateHelpScreenHTML() {
     </div>
    
     `;
-}
-
-function showLegalNoticeScreen() {
-    contentSection.innerHTML = generateLegalNoticeScreenHTML();
 }
 
 function generateLegalNoticeScreenHTML() {
