@@ -43,8 +43,8 @@ let filteredTasks = [];
 
 
 function giveTaskId() {
-    for (let i = 0; i < tasksOnBoard.length; i++) {
-        const currentTask = tasksOnBoard[i];
+    for (let i = 0; i < newTaskArray.length; i++) {
+        const currentTask = newTaskArray[i];
         
         currentTask['id'] = i;
     }
@@ -107,10 +107,9 @@ function renderStatusFieldsHTML() {
     for (let i = 0; i < taskStatus.length; i++) {
         const stat = taskStatus[i];
         const statClass = taskStatusClasses[i];
-        let nextStat = taskStatusClasses[i + 1];
 
         content.innerHTML += /*html*/`
-            <div class="${statClass}Container">
+            <div class="statContainer">
         
             <div class="boardStatusHeadContainer">
             <div class="boardStatus">${stat}</div>
@@ -120,7 +119,7 @@ function renderStatusFieldsHTML() {
             </div>
             </div>
 
-        <div id="${statClass}" class="statusContent" ondrop="drop('${statClass}')" ondragover="allowDrop(event); highlight('${statClass}')" ondragleave="stopHighlight('${statClass}')"></div>
+        <div id="statContainer${i}" class="statusContent" ondrop="drop('${statClass}')" ondragover="allowDrop(event); highlight('statContainer${i}')" ondragleave="stopHighlight('statContainer${i}')"></div>
           
         </div>
         `
@@ -131,16 +130,16 @@ function renderStatusFieldsHTML() {
 
 
 function updateBoardTasks() {
-    renderTodoTasksHTML(tasksOnBoard);
-    renderInProgressHTML(tasksOnBoard);
-    renderAwaitingFeedbackHTML(tasksOnBoard);
-    renderDoneHTML(tasksOnBoard);
+    renderTodoTasksHTML(newTaskArray);
+    renderInProgressHTML(newTaskArray);
+    renderAwaitingFeedbackHTML(newTaskArray);
+    renderDoneHTML(newTaskArray);
 }
 
 
 
 function renderTodoTasksHTML(arrayName) {
-    let content = document.getElementById('todo');
+    let content = document.getElementById('statContainer0');
     let todos = arrayName.filter(task => task['stat'] == 'todo');
 
     content.innerHTML = '';
@@ -156,7 +155,7 @@ function renderTodoTasksHTML(arrayName) {
 
 
 function renderInProgressHTML(arrayName) {
-    let content = document.getElementById('inProgress');
+    let content = document.getElementById('statContainer1');
     let inProgress = arrayName.filter(task => task['stat'] == 'inProgress');
 
     content.innerHTML = '';
@@ -172,7 +171,7 @@ function renderInProgressHTML(arrayName) {
 
 
 function renderAwaitingFeedbackHTML(arrayName) {
-    let content = document.getElementById('awaitingFeedback');
+    let content = document.getElementById('statContainer2');
     let awaitingFeedback = arrayName.filter(task => task['stat'] == 'awaitingFeedback');
 
     content.innerHTML = '';
@@ -188,7 +187,7 @@ function renderAwaitingFeedbackHTML(arrayName) {
 
 
 function renderDoneHTML(arrayName) {
-    let content = document.getElementById('done');
+    let content = document.getElementById('statContainer3');
     let done = arrayName.filter(task => task['stat'] == 'done');
 
     content.innerHTML = '';
@@ -222,19 +221,17 @@ function renderAssignedToHTML(task) {
 
 
 function generatePinnedTaskHTML(task) {
-    let taskAsString = JSON.stringify(task);
-    console.log(taskAsString);
-    console.log(task);
+
     return `
 
     <div onclick="openTaskPopUp(${task['id']})">
-        <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task}">
+        <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task['id']}">
         <div class="taskCategory ${task['category'].toLowerCase()}-bg">
             ${task['category']}
         </div>
 
-        <h3 class="pinnedTaskHeadline">${task['headline']}</h3>
-        <p class="pinnedTaskDiscription">${task['discription']}</p>
+        <h3 class="pinnedTaskHeadline">${task['title']}</h3>
+        <p class="pinnedTaskDiscription">${task['description']}</p>
 
         <div class="progressContainer">
             <div class="progressBar"></div>
@@ -276,7 +273,7 @@ function closeTaskPopUp() {
 
 function renderTaskPopUpHTML(Id) {
     let content = document.getElementById('overlaySection');
-    let clickedTask = tasksOnBoard[Id];
+    let clickedTask = newTaskArray[Id];
     content.innerHTML = '';
 
     content.innerHTML += /*html*/`
@@ -285,9 +282,9 @@ function renderTaskPopUpHTML(Id) {
                 ${clickedTask['category']}
             </div>
 
-            <div class="taskPopUpHeadline">${clickedTask['headline']}</div>
+            <div class="taskPopUpHeadline">${clickedTask['title']}</div>
 
-            <div class="taskPopUpDiscription">${clickedTask['discription']}</div>
+            <div class="taskPopUpDiscription">${clickedTask['description']}</div>
 
             <div class="taskPopUpTable" id="taskPopUpTable"></div>
 
@@ -373,18 +370,21 @@ function modifyCurrentTaskHTML() {
 ///////////////////////Drag & Drop/////////////////////////////////
 function startDragging(id) {
     currentDraggedTask = id;
+    document.getElementById(`pinnedTaskContainer${currentDraggedTask}`).classList.add('rotateDeg');
 }
 
 
 
 function allowDrop(ev) {
     ev.preventDefault();
+
 }
 
 
 
 function drop(stat) {
-    tasksOnBoard[currentDraggedTask]['stat']  = stat;
+    newTaskArray[currentDraggedTask]['stat']  = stat;
+    document.getElementById(`pinnedTaskContainer${currentDraggedTask}`).classList.remove('rotateDeg');
     updateBoardTasks();
 }
 
@@ -405,8 +405,8 @@ function stopHighlight(stat) {
 function searchTask() {
     let searchInput = document.getElementById('searchInput').value;
 
-    for (let i = 0; i < tasksOnBoard.length; i++) {
-        const currentTask = tasksOnBoard[i];
+    for (let i = 0; i < newTaskArray.length; i++) {
+        const currentTask = newTaskArray[i];
         let search = searchInput.toLowerCase();
 
         if(currentTask['headline'].includes(search) || currentTask['discription'].includes(search)) {

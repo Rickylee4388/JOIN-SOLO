@@ -1,7 +1,7 @@
 .boardBody {
     background-color: rgb(246,247,248);
     margin: 0;
-    padding: 82px 0px 0px 0px;
+    padding: 82px 26px 0px 26px;
 }
 
 
@@ -58,7 +58,6 @@
     justify-content: space-between;
     padding: 0px;
     height: 73px;
-    padding: 0px 24px 0px 24px;
 }
 
 
@@ -197,19 +196,19 @@
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 0px;
-
+    gap: 26px;
     margin-top: 80px;
 }
 
 
-.todoContainer, .inProgressContainer, .awaitingFeedbackContainer, .doneContainer{
+.statContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0px;
-    width: 200px;
+    width: calc(25% - 26px);
 }
 
 
@@ -218,7 +217,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 236px;
+    width: 100%;
     cursor: pointer;
 }
 
@@ -275,10 +274,9 @@
     align-items: center;
     gap: 35px;
     min-height: 300px;
-    height: max-content;
-    width: 200px;
-    padding: 16px;
-    background-color: #FF7A00;
+    height: 100%;
+    width: 100%;
+    margin-top: 26px;
 }
 
 
@@ -289,7 +287,7 @@
     align-items: flex-start;
     padding: 18px 19px;
     gap: 10px;
-    width: 200px;
+    width: 250px;
     height: 239px;
     background: #FFFFFF;
 
@@ -386,7 +384,9 @@
 
 
 .dragAreaHighlight {
-    background-color: rgb(135, 135, 136);
+    border-radius: 28px;
+    border: 5px solid grey;
+    padding: 8px;
 }
 
 
@@ -546,6 +546,23 @@
     border-bottom-right-radius: 10px;
     background-color: #2A3647;
     cursor: pointer;
+}
+
+
+.rotateDeg {
+    transform: rotate(10deg);
+}
+
+
+
+@media(max-width: 1270px) {
+    .statContainer {
+        width: 250px;
+    }
+    .boardContentContainer {
+        gap: 150px;
+        justify-content: center;
+    }
 }
 
 
