@@ -12,6 +12,7 @@ function renderSummary() {
 }
 
 function renderBoard() {
+    giveTaskId();
     renderBoardHTML();
     let sidebarBoard = document.getElementById('sidebarBoard');
     highlightSidebarBtn(sidebarBoard);

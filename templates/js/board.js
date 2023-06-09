@@ -3,7 +3,7 @@ let dragTargets = ['todo', 'in progress', 'awaiting feedback', 'done'];
 let taskStatusClasses = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
 let tasksOnBoard = [
      {
-        'id': 0,
+        'id': '',
         'category': 'Design',
         'headline': 'Design Mainpage',
         'discription': 'ioenfgpiqen pgnp qengvnepgnpeng pnaepgnpaeng pvn',
@@ -14,7 +14,7 @@ let tasksOnBoard = [
         'subtasks': ['Css', 'Verlinkung anpassen']
     },
     {
-        'id': 1,
+        'id': '',
         'category': 'Sales',
         'headline': 'Clean up code',
         'discription': 'ioenfgpiqen design qengvnepgnpeng pnaepgnpaeng pvn',
@@ -25,7 +25,7 @@ let tasksOnBoard = [
         'subtasks': ['Css', 'Verlinkung anpassen']
     },
     {
-        'id': 2,
+        'id': '',
         'category': 'Marketing',
         'headline': 'Probetraining',
         'discription': 'McFit anrufen',
@@ -40,6 +40,15 @@ let currentDraggedTask;
 let currentDraggedOnStatus;
 let filteredTasks = [];
 
+
+
+function giveTaskId() {
+    for (let i = 0; i < tasksOnBoard.length; i++) {
+        const currentTask = tasksOnBoard[i];
+        
+        currentTask['id'] = i;
+    }
+}
 
 
 function renderBoardHTML() {
@@ -80,17 +89,13 @@ function renderBoardHeaderHTML() {
         </div>
         
         <button class="addTaskBtn btn-bg" onclick="openAddTaskOverlay()">
-            <span class="addTaskBtnText">Add task </span>
+            <span class="addTaskBtnText">Add task</span>
             <span class="addTaskBtnIcon">+</span>
         </button>
 
         </div>
     `
 }
-
-
-
-
 
 
 
@@ -275,7 +280,7 @@ function renderTaskPopUpHTML(Id) {
     content.innerHTML = '';
 
     content.innerHTML += /*html*/`
-        <div class="taskOverviewPopUp">
+        <div class="taskOverviewPopUp" onclick="doNotClose(event)">
             <div class="taskCategory ${clickedTask['category'].toLowerCase()}-bg">
                 ${clickedTask['category']}
             </div>
@@ -294,7 +299,7 @@ function renderTaskPopUpHTML(Id) {
             <div class="popUpButtonsContainer">
                 <div class="taskPopUpButton leftBtn"><img src="../../img/delete.png" alt=""></div>
 
-                <div class="taskPopUpButton rightBtn" onclick="modifyCurrentTask()"><img src="../../img/delete.png" alt=""></div>
+                <div class="taskPopUpButton rightBtn" onclick="modifyCurrentTask()"><img src="../../img/pen.png" alt=""></div>
             </div>
         </div>
     `
@@ -400,16 +405,15 @@ function stopHighlight(stat) {
 function searchTask() {
     let searchInput = document.getElementById('searchInput').value;
 
-
     for (let i = 0; i < tasksOnBoard.length; i++) {
         const currentTask = tasksOnBoard[i];
-        
-        if(currentTask['headline'].includes(searchInput) || currentTask['discription'].includes(searchInput)) {
+        let search = searchInput.toLowerCase();
+
+        if(currentTask['headline'].includes(search) || currentTask['discription'].includes(search)) {
             filteredTasks.push(currentTask);
             console.log(currentTask);
             }
         }
-
         renderFilteredTasks('filteredTasks');
 }
 
