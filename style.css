@@ -53,5 +53,41 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 60px 80px 80px 80px;
+    padding: 0px 80px 80px 80px;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.helpScreenSection h1 {
+    font-size: 60px;
+    font-weight: 700;
+
+}
+
+.helpScreenSection h2 {
+    font-size: 24px;
+    font-weight: 700;
+
+}
+
+.helpScreenSection h3 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.helpScreenSection span {
+    font-size: 16px;
+    font-weight: 400;
+
+}
+
+.helpScreenSection ol ::marker {
+    font-size: 27px;
+    font-weight: 700;
+
+}
+
+.helpScreenSection li {
+    font-size: 16px;
+    font-weight: 400;
 }
