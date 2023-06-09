@@ -17,7 +17,7 @@ let tasksOnBoard = [
         'id': 1,
         'category': 'Sales',
         'headline': 'Clean up code',
-        'discription': 'ioenfgpiqen pgnp qengvnepgnpeng pnaepgnpaeng pvn',
+        'discription': 'ioenfgpiqen design qengvnepgnpeng pnaepgnpaeng pvn',
         'stat': 'inProgress',
         'prio': 'low',
         'assignedTo': ['Lisa Schreiber', 'Antonia Müller', 'Lars Kling'],
@@ -38,6 +38,7 @@ let tasksOnBoard = [
 ];
 let currentDraggedTask;
 let currentDraggedOnStatus;
+let filteredTasks = [];
 
 
 
@@ -71,14 +72,14 @@ function renderBoardHeaderHTML() {
 
         <div class="boardHeadlineRightContainer">
             <div class="searchContainer">
-                <input class="searchInput" type="text" placeholder="Find task">
+                <input oninput="searchTask()" id="searchInput" class="searchInput" type="text" placeholder="Find task">
 
             <div class="searchBtn">
                 <img src="../../img/Vector.png" alt="">
             </div>
         </div>
         
-        <button class="addTaskBtn btn-bg">
+        <button class="addTaskBtn btn-bg" onclick="openAddTaskOverlay()">
             <span class="addTaskBtnText">Add task </span>
             <span class="addTaskBtnIcon">+</span>
         </button>
@@ -125,17 +126,17 @@ function renderStatusFieldsHTML() {
 
 
 function updateBoardTasks() {
-    renderTodoTasksHTML();
-    renderInProgressHTML();
-    renderAwaitingFeedbackHTML();
-    renderDoneHTML();
+    renderTodoTasksHTML(tasksOnBoard);
+    renderInProgressHTML(tasksOnBoard);
+    renderAwaitingFeedbackHTML(tasksOnBoard);
+    renderDoneHTML(tasksOnBoard);
 }
 
 
 
-function renderTodoTasksHTML() {
+function renderTodoTasksHTML(arrayName) {
     let content = document.getElementById('todo');
-    let todos = tasksOnBoard.filter(task => task['stat'] == 'todo');
+    let todos = arrayName.filter(task => task['stat'] == 'todo');
 
     content.innerHTML = '';
 
@@ -149,9 +150,9 @@ function renderTodoTasksHTML() {
 
 
 
-function renderInProgressHTML() {
+function renderInProgressHTML(arrayName) {
     let content = document.getElementById('inProgress');
-    let inProgress = tasksOnBoard.filter(task => task['stat'] == 'inProgress');
+    let inProgress = arrayName.filter(task => task['stat'] == 'inProgress');
 
     content.innerHTML = '';
 
@@ -165,9 +166,9 @@ function renderInProgressHTML() {
 
 
 
-function renderAwaitingFeedbackHTML() {
+function renderAwaitingFeedbackHTML(arrayName) {
     let content = document.getElementById('awaitingFeedback');
-    let awaitingFeedback = tasksOnBoard.filter(task => task['stat'] == 'awaitingFeedback');
+    let awaitingFeedback = arrayName.filter(task => task['stat'] == 'awaitingFeedback');
 
     content.innerHTML = '';
 
@@ -181,9 +182,9 @@ function renderAwaitingFeedbackHTML() {
 
 
 
-function renderDoneHTML() {
+function renderDoneHTML(arrayName) {
     let content = document.getElementById('done');
-    let done = tasksOnBoard.filter(task => task['stat'] == 'done');
+    let done = arrayName.filter(task => task['stat'] == 'done');
 
     content.innerHTML = '';
 
@@ -289,6 +290,12 @@ function renderTaskPopUpHTML(Id) {
                 <div class="assignedToHeadline"><b>Assigned to:</b></div>
                 <div id="taskPopUpAssignmentsList" class="taskPopUpAssignmentsList"></div>
             </div>
+
+            <div class="popUpButtonsContainer">
+                <div class="taskPopUpButton leftBtn"><img src="../../img/delete.png" alt=""></div>
+
+                <div class="taskPopUpButton rightBtn" onclick="modifyCurrentTask()"><img src="../../img/delete.png" alt=""></div>
+            </div>
         </div>
     `
     renderTaskPopUpTableHTML(clickedTask);
@@ -317,12 +324,6 @@ function renderTaskPopUpTableHTML(clickedTask) {
         </div>
 
         <div class="closeTaskPopUpButton" onclick="closeTaskPopUp()">X</div>
-
-        <div class="popUpButtonsContainer">
-            <div class="deleteTaskButton"><img src="../../img/delete.png" alt=""></div>
-
-            <div class="deleteTaskButton deleteButton"><img src="../../img/delete.png" alt=""></div>
-        </div>
     `
 }
 
@@ -346,6 +347,20 @@ function renderTaskPopUpAssignmentsHTML(clickedTask) {
             </div>
         `
     } 
+}
+
+
+
+function modifyCurrentTaskHTML() {
+   let content = document.getElementById('overlaySection');
+
+
+
+   content.innerHTML = '';
+
+   content.innerHTML = /*html*/`
+    <div class="taskOverviewPopUp"></div>
+   `
 }
 
 
@@ -380,7 +395,34 @@ function stopHighlight(stat) {
     document.getElementById(stat).classList.remove('dragAreaHighlight');
 }
 
+////////////Search for Task////////////////////////////
 
+function searchTask() {
+    let searchInput = document.getElementById('searchInput').value;
+
+
+    for (let i = 0; i < tasksOnBoard.length; i++) {
+        const currentTask = tasksOnBoard[i];
+        
+        if(currentTask['headline'].includes(searchInput) || currentTask['discription'].includes(searchInput)) {
+            filteredTasks.push(currentTask);
+            console.log(currentTask);
+            }
+        }
+
+        renderFilteredTasks('filteredTasks');
+}
+
+
+
+function renderFilteredTasks() {
+    renderTodoTasksHTML(filteredTasks);
+    renderInProgressHTML(filteredTasks);
+    renderAwaitingFeedbackHTML(filteredTasks);
+    renderDoneHTML(filteredTasks);
+
+    filteredTasks = [];
+}
 
 
 
