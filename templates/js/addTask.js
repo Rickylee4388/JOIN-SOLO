@@ -114,6 +114,7 @@ function renderContentLeftAndRight() {
         </div>
     `;
     renderTwoButtonsContainer();
+    setMinDate();
 }
 
 
@@ -142,6 +143,12 @@ function renderTwoButtonsContainer() {
             </button>
         </div>
     `;
+}
+
+
+function setMinDate() {
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').setAttribute('min', today);
 }
 
 
@@ -195,7 +202,7 @@ function assignedTo() {
     let selectedAssignee = assignee.options[assignee.selectedIndex].value;
     let selectedAssignee2 = assignee.options[assignee.selectedIndex];
     selectedAssignee2.disabled = true;
-    let i = (assignee.selectedIndex) -1;
+    let i = (assignee.selectedIndex) - 1;
 
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
         assignedToNames.push(selectedAssignee);
@@ -206,8 +213,8 @@ function assignedTo() {
 
 function showAssignedToList(i) {
     const allData = allContacts[i];
-    const {initials, color} = getJoinData(allData);
-        document.getElementById('assignedToList').innerHTML += /*html*/ `
+    const { initials, color } = getJoinData(allData);
+    document.getElementById('assignedToList').innerHTML += /*html*/ `
             <div class="assigneeContainer" style="background-color: ${color}">
                 ${initials}
             </div>
@@ -255,7 +262,7 @@ function createTask() {
         'stat': 'todo',
         'subtasks': allSubtasks
     };
-    
+
     newTaskArray.push(newTask);
     saveTasks();
     clearFields();
