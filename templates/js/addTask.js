@@ -7,14 +7,15 @@ let assignedToInitials = [];
 
 async function initAddTask() {
     document.getElementById('contentSection').innerHTML = /*html*/ `
-        <div class="addTaskMainContainer">
+        <form class="addTaskMainContainer" onsubmit="createTask(); return false">
             <div class="headlineContainer" id="headlineContainer"></div>
             <div class="contentLeftAndRightContainer" id="contentLeftAndRightContainer"></div>
             <div class="twoButtonsContainer" id="twoButtonsContainer"></div>
-        </div>
+        </form>
     `;
     await loadTasks();
     renderHeadline();
+    activatePrioButtons();
 }
 
 
@@ -38,17 +39,17 @@ function renderContentLeftAndRight() {
             <div class="contentLeft">
                 <div class="titleAndInput">
                     <span>Title</span>
-                    <input id="title" placeholder="Enter a title">
+                    <input id="title" type="text" required placeholder="Enter a title">
                 </div>
 
                 <div class="descriptionAndTextarea">
                     <span>Description</span>
-                    <textarea id="description" placeholder="Enter a Description"></textarea>
+                    <textarea id="description" type="text" required placeholder="Enter a Description"></textarea>
                 </div>
 
                 <div class="categoryAndSelect">
                     <span>Category</span>
-                    <select id="category">
+                    <select id="category" required>
                         <option value="" disabled selected>Select task category</option>
                         <option value="design">Design</option>
                         <option value="sales">Sales</option>
@@ -60,7 +61,7 @@ function renderContentLeftAndRight() {
 
                 <div class="assignedToAndSelect">
                     <span>Assigned to</span>
-                    <select id="assignedTo" onchange="assignedTo()">
+                    <select id="assignedTo" required onchange="assignedTo()">
                         <option value="" disabled selected>Select contacts to assign</option>
                     </select>
                 </div>
@@ -75,23 +76,23 @@ function renderContentLeftAndRight() {
             <div class="contentRight">
                 <div class="dueDateAndInput">
                     <span>Due Date</span>
-                    <input type="date" id="date" placeholder="dd/mm/yyyy">
+                    <input type="date" id="date" required placeholder="dd/mm/yyyy">
                 </div>
 
                 <div class="prio">
                     <span>Prio</span>
                     <div class="prioButtons">
-                        <button id="urgent" value="urgent" onclick="urgent()">
+                        <button type="button" id="urgent" value="urgent">
                             Urgent
                             <img id="urgentIcon" src="../../img/urgentIcon.png">
                         </button>
 
-                        <button id="medium" value="medium" onclick="medium()">
+                        <button type="button" id="medium" value="medium">
                             Medium
                             <img id="mediumIcon" src="../../img/mediumIcon.png">
                         </button>
 
-                        <button id="low" value="low" onclick="low()">
+                        <button type="button" id="low" value="low">
                             Low
                             <img id="lowIcon" src="../../img/lowIcon.png">
                         </button>
@@ -103,7 +104,7 @@ function renderContentLeftAndRight() {
 
                     <div class="inputAndButton">
                         <input id="subtasks" placeholder="Add new subtask">
-                        <button onclick="newSubtask()">
+                        <button type="button" onclick="newSubtask()">
                             <img src="../../img/subtaskIcon.png">
                         </button>
                     </div>
@@ -134,12 +135,12 @@ function renderContactsAddTask() {
 function renderTwoButtonsContainer() {
     document.getElementById('twoButtonsContainer').innerHTML = /*html*/ `
         <div class="twoButtons">
-            <button class="clearButton" onclick="clearFields()">
+            <button id="reset" type="reset" class="clearButton">
                 Clear
                 <img src="../../img/cancelIcon.png">
             </button>
 
-            <button class="createTaskButton" id="createTask" onclick="createTask()">
+            <button type="submit" class="createTaskButton" id="createTask">
                 Create Task
                 <img src="../../img/checkIcon.png">
             </button>
@@ -151,6 +152,22 @@ function renderTwoButtonsContainer() {
 function setMinDate() {
     let today = new Date().toISOString().split('T')[0];
     document.getElementById('date').setAttribute('min', today);
+}
+
+
+function activatePrioButtons() {
+    low();
+    let urgentBtn = document.getElementById('urgent');
+    urgentBtn.addEventListener("click", urgent);
+
+    let mediumBtn = document.getElementById('medium');
+    mediumBtn.addEventListener("click", medium);
+
+    let lowBtn = document.getElementById('low');
+    lowBtn.addEventListener("click", low);
+
+    let resetBtn = document.getElementById('reset');
+    resetBtn.addEventListener("click", low);
 }
 
 
@@ -267,7 +284,6 @@ function createTask() {
 
     newTaskArray.push(newTask);
     saveTasks();
-    clearFields();
 }
 
 
@@ -276,39 +292,12 @@ async function saveTasks() {
 }
 
 
-function clearFields() {
-    document.getElementById('title').value = '';
-    document.getElementById('description').value = '';
-    document.getElementById('category').value = '';
-    document.getElementById('assignedTo').value = '';
-    document.getElementById('date').value = '';
-    document.getElementById('subtasks').value = '';
-    document.getElementById('subtasksList').innerHTML = '';
-    document.getElementById('assignedToList').innerHTML = '';
-    assignedToNames = [];
-    assignedToInitials = [];
-    clearPrioButtons();
-}
-
-
-function clearPrioButtons() {
-    prio = undefined;
-
-    document.getElementById('urgent').classList.remove('urgent');
-    document.getElementById('medium').classList.remove('medium');
-    document.getElementById('low').classList.remove('low');
-
-    document.getElementById('urgentIcon').src = '../../img/urgentIcon.png';
-    document.getElementById('mediumIcon').src = '../../img/mediumIcon.png';
-    document.getElementById('lowIcon').src = '../../img/lowIcon.png';
-}
-
-
 function openAddTaskOverlay() {
     document.getElementById('overlaySection').classList.remove('d-none');
 
     document.getElementById('overlaySection').innerHTML = /*html*/ `
         <div class="addTaskOverlay" onclick="doNotClose(event)">
+        <form onsubmit="createTask(); return false">
             <div class="contentSectionAddTaskOverlay" id="ContentSection">
                 <h1>Add Task</h1>
         
@@ -316,17 +305,17 @@ function openAddTaskOverlay() {
                     <div class="contentLeft">
                         <div class="titleAndInput">
                             <span>Title</span>
-                            <input id="title" placeholder="Enter a title">
+                            <input id="title" required placeholder="Enter a title">
                         </div>
 
                         <div class="descriptionAndTextarea">
                             <span>Description</span>
-                            <textarea required id="description" placeholder="Enter a Description"></textarea>
+                            <textarea id="description" required placeholder="Enter a Description"></textarea>
                         </div>
 
                         <div class="categoryAndSelect">
                             <span>Category</span>
-                            <select required id="category">
+                            <select id="category" required>
                                 <option>Select task category</option>
                                 <option value="design">Design</option>
                                 <option value="sales">Sales</option>
@@ -395,7 +384,7 @@ function openAddTaskOverlay() {
                 </div>
 
                 <div class="twoButtons">
-                    <button class="clearButton" onclick="clearFields()">
+                    <button class="clearButton">
                         Clear
                         <img src="../../img/cancelIcon.png">
                     </button>
@@ -406,6 +395,7 @@ function openAddTaskOverlay() {
                     </button>
                 </div>
             </div>
+        </form>
         </div>
     `;
 }

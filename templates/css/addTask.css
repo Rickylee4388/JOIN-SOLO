@@ -1,7 +1,6 @@
 .addTaskMainContainer {
     height: 100%;
     overflow-y: auto;
-
 }
 
 .d-none {
@@ -418,5 +417,16 @@ button {
     .twoButtons {
         margin-top: 10px;
         margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 390px) {
+    .prioButtons button {
+        font-size: 18px;
+    }
+
+    .prioButtons img {
+        height: 10px;
+        width: 15px;
     }
 }
