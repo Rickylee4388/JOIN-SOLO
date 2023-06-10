@@ -9,6 +9,7 @@ body {
     left: 232px;
     bottom: 0;
     right: 0;
+    overflow-y: auto;
 }
 
 .overlaySection {

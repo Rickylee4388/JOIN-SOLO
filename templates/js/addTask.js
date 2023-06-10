@@ -1,16 +1,17 @@
+let newTaskArray = [];
 let prio = undefined;
 let allSubtasks = [];
 let assignedToNames = [];
 let assignedToInitials = [];
 
 
-function initAddTask() {
+async function initAddTask() {
     document.getElementById('contentSection').innerHTML = /*html*/ `
         <div class="headlineContainer" id="headlineContainer"></div>
         <div class="contentLeftAndRightContainer" id="contentLeftAndRightContainer"></div>
         <div class="twoButtonsContainer" id="twoButtonsContainer"></div>
     `;
-    loadTasks();
+    await loadTasks();
     renderHeadline();
 }
 
