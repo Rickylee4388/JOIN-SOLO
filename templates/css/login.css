@@ -15,9 +15,11 @@
 .d-flex {
     display: flex;
 }
-.pointer{
+
+.pointer {
     cursor: pointer;
 }
+
 .column {
     flex-direction: column;
 }
@@ -30,12 +32,15 @@
 .d-none {
     display: none;
 }
-.t-center{
+
+.t-center {
     text-align: center;
 }
-.gap20{
+
+.gap20 {
     gap: 20px;
 }
+
 .loginContent {
     position: absolute;
     top: 0;
@@ -47,6 +52,7 @@
 }
 
 .textSignupButton {
+    z-index: 2;
     font-size: 13px;
     display: flex;
     flex-direction: row;
@@ -64,7 +70,8 @@
     width: 70px;
     height: 35px;
 }
-.forgotPwBtn{
+
+.forgotPwBtn {
     width: 190px;
     height: 35px;
     padding: 4px 18px;
@@ -74,6 +81,7 @@
 }
 
 .innerContentLogin {
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,6 +93,7 @@
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     border-radius: 30px;
 }
+
 .innerContentForgotPw {
     display: flex;
     flex-direction: column;
@@ -207,7 +216,7 @@
     margin-bottom: 24px;
 }
 
-.rememberCheckbox{
+.rememberCheckbox {
     gap: 5px;
 
 }
@@ -217,8 +226,8 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    
-    
+
+
 }
 
 .loginButtons {
@@ -308,7 +317,74 @@
     color: #091931;
     background: #FFFFFF;
 }
-.textForgotPw{
+
+.textForgotPw {
     margin-top: 0px;
     width: 450px;
+}
+
+.logoAnimationDiv {
+    animation: background-fade 1.2s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.logoAnimationImg {
+    transform: translate(-475px, -250px);
+    animation: logoAnimation 0.8s ease-in-out;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+
+}
+
+.buttonAnimationImg {
+    
+    animation: buttonAnimation 2s ease-in-out;
+    transform: translate(0px, -150px);;
+    position: absolute;
+    bottom: 0;
+    width: 30%;
+    z-index: -5;
+    
+}
+
+@keyframes logoAnimation {
+    from {
+        transform: translate(0px);
+        scale: 200%;
+    }
+    to {
+        transform: translate(-475px, -250px);
+    }
+}
+
+@keyframes background-fade {
+    from {
+        background: #ffffff;
+        z-index: 3;
+    }
+
+    to {
+        background: none;
+        z-index: 1;
+    }
+}
+
+@keyframes buttonAnimation {
+    0% {
+        transform: translate(0px);  
+        z-index: 5;
+    }
+    99% {
+        transform: translate(0px, -150px);
+        z-index: 5;
+    }
+    100%{
+        z-index: -5;
+    }
 }
