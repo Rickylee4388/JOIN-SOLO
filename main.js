@@ -68,6 +68,7 @@ function doNotClose(event) {
 
 function logOut() {
     window.location.replace("/../templates/html/login.html");
+    localStorage.removeItem("currentEmail");
 }
 
 function showLogOut() {

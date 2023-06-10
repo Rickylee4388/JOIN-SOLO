@@ -93,7 +93,7 @@ function getSummaryinnerContent() {
 function getSummaryGreeting(currentUser) {
   return /*html*/`
             <div id="greeting" class="d-flex center greeting">
-            <p class="">Good Morning ${currentUser}</p>
+            <p class="">Good Morning <br><b>${currentUser}!<b></p>
           </div>
   `
 }
