@@ -1,9 +1,8 @@
 /**
- * Initializes the contacts by loading them, rendering the contacts section, rendering the contacts list and checks if mobileview is necessary.
+ * Initializes the contacts by rendering the contacts section, rendering the contacts list and checks if mobileview is necessary.
  * @returns {Promise<void>}
  */
-async function initContacts() {
-    await loadContacts();
+function initContacts() {
     renderContactsSection();
     renderContactsList();
     updateContactsMobileVisibility();

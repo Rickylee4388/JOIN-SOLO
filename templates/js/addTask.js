@@ -1,4 +1,3 @@
-let newTaskArray = [];
 let prio = undefined;
 let allSubtasks = [];
 let assignedToNames = [];

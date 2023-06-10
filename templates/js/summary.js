@@ -1,7 +1,6 @@
 async function initSummary() {
   await loadUserLogin();
-  let index = getCurrentUser();
-  let currentUser = userLogin[index]['name'];
+  let currentUser = getCurrentUser();
   document.getElementById('contentSection').innerHTML = getSummarySection();
   document.getElementById('headlineDiv').innerHTML += getSummaryHeadlineDiv();
   document.getElementById('contentAndGreeting').innerHTML += getSummaryinnerContent();
@@ -9,11 +8,17 @@ async function initSummary() {
 }
 
 function getCurrentUser() {
+  let name;
     let email = localStorage.getItem('currentEmail');
     let index = userLogin.findIndex(function (currentUser) {
         return currentUser.email === email;
     });
-    return index;
+    if (email) {
+      name = userLogin[index]['name'];
+    } else {
+      name = 'Guest';
+    }
+    return name;
 }
 
 

@@ -33,6 +33,18 @@
     background: none !important;
 }
 
+.helpLogoMobile {
+    display: none;
+}
+
+.legalNoticeIcon {
+    height: 29px;
+    margin-right: 25px;
+    cursor: pointer;
+    background: none !important;
+    display: none;
+}
+
 .profileLogo {
     height: 45px;
     padding: 2px;
@@ -52,15 +64,20 @@
     right: 55px;
     background: #2A3647;
     padding: 10px;
-    margin: 0;
     color: #CDCDCD;
-    font-size: 16px;
     position: absolute;
     top: 90px;
     border-radius: 20px 0px 20px 20px;
-    width: 80px;
-    height: 30px;
-    text-align: center;
+    text-align: start;
     line-height: 1.8;
     cursor: pointer;
+}
+
+.headerContentRightLogout h6 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.headerContentRightLogout h6:hover {
+    transform: scale(1.05);
 }

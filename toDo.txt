@@ -4,3 +4,36 @@
 4. Contacts + SB/NB     => Philipp
 
 576px, 768px, 992px, and 1200px
+
+
+(10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+0
+: 
+{name: 'Davide Religioso', email: 'religioso@dev.com', phone: '32435465432', color: 'rgb(161,168,227)', initials: 'DR', …}
+1
+: 
+{name: 'Denise Schmitt', email: 'schmitt@dev.com', phone: '435465763', color: 'rgb(193,184,119)', initials: 'DS', …}
+2
+: 
+{name: 'Dori Test', email: 'dsfgadsg@cxvs', phone: '546356', color: 'rgb(183,187,177)', initials: 'DT', …}
+3
+: 
+{name: 'Jacob Hengsbach', email: 'hengsbach@dev.com', phone: '6534235634', color: 'rgb(151,133,168)', initials: 'JH', …}
+4
+: 
+{name: 'John Doe', email: 'doe@dev.com', phone: '435656', color: 'rgb(179,17,24)', initials: 'JD', …}
+5
+: 
+{name: 'Laura Muster', email: 'muster@ewrgs.com', phone: '24354', color: 'rgb(216,208,169)', initials: 'LM', …}
+6
+: 
+{name: 'Maximilian Mustermann', email: 'mustermann@dev.com', phone: '234354315', color: 'rgb(106,56,179)', initials: 'MM', …}
+7
+: 
+{name: 'Musterdev Muster', email: 'sdffs@dfsass', phone: '2343565', color: 'rgb(193,124,26)', initials: 'MM', …}
+8
+: 
+{name: 'Philipp Klinger', email: 'klinger@dev.com', phone: '000000000', color: 'rgb(79,212,243)', initials: 'PK', …}
+9
+: 
+{name: 'Test Test', email: 'sfdsadg@sdfgsf', phone: '324356', color: 'rgb(220,236,202)', initials: 'TT', …}

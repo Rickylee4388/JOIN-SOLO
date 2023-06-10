@@ -23,6 +23,12 @@
     align-items: center;
 }
 
+.contactsListGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .contactsListGroupHead {
     width: 357px;
     border-bottom: 1px solid;
@@ -46,6 +52,7 @@
 }
 
 .contactsListGroupContactBg{
+    cursor: pointer;
     background: #2A3647;
     color: white
 }
@@ -123,6 +130,10 @@
 
 .contactsDetailHeadPic {
     display: none;
+    cursor: pointer;
+}
+
+.contactsDetailHeadPic2 {
     cursor: pointer;
 }
 
@@ -274,16 +285,6 @@
     margin-left: 100px;
 }
 
-.overlaySection {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 999;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
 .overlayAddContact {
     transform: translate(-50%, -50%);
     animation: slideInContacts 0.8s ease-in-out;
@@ -306,6 +307,15 @@
     }
     to {
         transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes slideOutContacts {
+    from {
+        transform: translate(-50%, -50%);
+    }
+    to {
+        transform: translate(150%, -50%);
     }
 }
 

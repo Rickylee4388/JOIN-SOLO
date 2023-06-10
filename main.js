@@ -1,6 +1,10 @@
-let allContacts = []
+let allContacts = [];
+let newTaskArray = [];
+let lastActivePage = 'sidebarSummary';
 
-function init() {
+async function init() {
+    await loadContacts();
+    await loadTasks();
     includeHTML();
     initSummary();
 }
@@ -9,6 +13,7 @@ function renderSummary() {
     initSummary();
     let sidebarSummary = document.getElementById('sidebarSummary');
     highlightSidebarBtn(sidebarSummary);
+    lastActivePage = 'sidebarSummary';
 }
 
 function renderBoard() {
@@ -16,29 +21,34 @@ function renderBoard() {
     renderBoardHTML();
     let sidebarBoard = document.getElementById('sidebarBoard');
     highlightSidebarBtn(sidebarBoard);
+    lastActivePage = 'sidebarBoard';
 }
 
 function renderAddTask() {
     initAddTask();
     let sidebarAddTask = document.getElementById('sidebarAddTask');
     highlightSidebarBtn(sidebarAddTask);
+    lastActivePage = 'sidebarAddTask';
 }
 
 function renderContacts() {
     initContacts();
     let sidebarContacts = document.getElementById('sidebarContacts');
     highlightSidebarBtn(sidebarContacts);
+    lastActivePage = 'sidebarContacts';
 }
 
 function showLegalNoticeScreen() {
     contentSection.innerHTML = generateLegalNoticeScreenHTML();
     let sidebarLegal = document.getElementById('sidebarLegal');
+    document.getElementById('headerContentRightLogout').style.display = 'none'
     highlightSidebarBtn(sidebarLegal);
 }
 
 function showHelpScreen() {
     contentSection.innerHTML = generateHelpScreenHTML();
     let helpLogoBtn = document.getElementById('helpLogoBtn');
+    document.getElementById('headerContentRightLogout').style.display = 'none'
     highlightSidebarBtn(helpLogoBtn);
 }
 
@@ -76,6 +86,10 @@ function highlightSidebarBtn(element) {
     element.classList.add('sidebarBtnActive');
 }
 
+function returnToLastActivePage() {
+    let nextScreen = document.getElementById(`${lastActivePage}`);
+    nextScreen.click();
+}
 
 
 
@@ -90,7 +104,10 @@ function highlightSidebarBtn(element) {
 function generateHelpScreenHTML() {
     return /*html*/ `
     <div class="helpScreenSection">
-        <h1>Help</h1>
+        <div class="helpScreenSectionHeadline">
+            <h1>Help</h1>
+            <img onclick="returnToLastActivePage()" class="contactsDetailHeadPic2" src="/../img/returnArrowDark.svg" alt="returnToListBtn">
+        </div>
         <h2>What is Join?</h2>
         <span>This tool is a versatile solution that incorporates a Kanban board.
             It enables you to efficiently organize and track your tasks within projects or business processes, 
@@ -117,7 +134,10 @@ function generateHelpScreenHTML() {
 function generateLegalNoticeScreenHTML() {
     return /*html*/ `
     <div class="helpScreenSection">
+    <div class="helpScreenSectionHeadline">
     <h1>Legal Notice</h1>
+    <img onclick="returnToLastActivePage()" class="contactsDetailHeadPic2" src="/../img/returnArrowDark.svg" alt="returnToListBtn">
+    </div>
     <h2>Impressum</h2>
     <h3>Angaben gemäß § 5 TMG</h3>
     <h4>Max Mustermann<br>

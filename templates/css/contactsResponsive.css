@@ -26,7 +26,8 @@
     }
 
     .contactsList {
-        min-width: 350px;
+        width: 100%;
+        min-width: auto;
     }
 
     .contactsListGroupHead {
@@ -65,7 +66,7 @@
     .overlayAddContact {
         flex-direction: column;
         max-width: 500px;
-        height: 80%;
+        height: 90%;
         justify-content: space-between;
         align-items: center;
     }
@@ -167,8 +168,20 @@
         margin-left: 0;
     }
     
-    .contactsDetails {
-        display: flex;
+    .contactsDetail {
+        padding-top: 0;  
+    }
+
+    .contactsDetailInfo {
+        margin-top: 20px;
+    }
+
+    .contactsDetailInfoHead {
+        height: 60px;
+    }
+
+    .contactsDetailInfoContent {
+        margin-top: 40px;
     }
 
     .joinLogoSmall {
@@ -176,6 +189,10 @@
     }
     
     .helpLogo {
+        display: none;
+    }
+    
+    .helpLogoMobile{
         display: block;
     }
 }
@@ -186,7 +203,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-width: 70px;
+        min-width: 75px;
         padding: 10px;
     }
 
@@ -255,13 +272,9 @@
 
     .contactsDetailInfoContentRight {
         display: flex;
-        justify-content: flex-end;
+        align-items: flex-end;
     }
     
-    .contactsDetailInfoContent {
-        flex-direction: column;
-    }
-
     .cancelBtn2 {
         display: none;
     }
@@ -284,6 +297,22 @@
 
     .helpScreenSection {
         padding: 0px 40px 40px 40px;
+    }
+
+    .sidebarBtn {
+        padding: 5px;
+    }
+
+    .headerContentRight {
+        margin-right: 26px
+    }
+
+    .joinLogoSmall {
+        margin-left: 26px;
+    }
+
+    .headerContentRightLogout {
+        right: 26px;
     }
 }
 
