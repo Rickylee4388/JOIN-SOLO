@@ -119,7 +119,7 @@ function renderStatusFieldsHTML() {
             </div>
             </div>
 
-        <div id="statContainer${i}" class="statusContent" ondrop="drop('${statClass}')" ondragover="allowDrop(event); highlight('statContainer${i}')" ondragleave="stopHighlight('statContainer${i}')"></div>
+        <div id="statContainer${i}" class="statusContent" ondrop="drop('${statClass}'); stopHighlight('statContainer${i}')" ondragover="allowDrop(event); highlight('statContainer${i}')" ondragleave="stopHighlight('statContainer${i}')"></div>
           
         </div>
         `
@@ -244,7 +244,7 @@ function generatePinnedTaskHTML(task) {
             </div>
 
             <div class="arrowButton">
-                <img src="../../img/${task['prio'].toLowerCase()}Icon.png" alt="">
+                <img src="../../img/${task['prio']}Icon.png" alt="">
             </div>
         </div>
         </div>
@@ -408,12 +408,13 @@ function searchTask() {
     for (let i = 0; i < newTaskArray.length; i++) {
         const currentTask = newTaskArray[i];
         let search = searchInput.toLowerCase();
+        let search2 = searchInput.toUpperCase();
 
-        if(currentTask['headline'].includes(search) || currentTask['discription'].includes(search)) {
+        if(currentTask['title'].includes(search) || currentTask['description'].includes(search) || currentTask['title'].includes(search2) || currentTask['desription'].includes(search2))  {
             filteredTasks.push(currentTask);
-            console.log(currentTask);
             }
         }
+        console.log(filteredTasks);
         renderFilteredTasks('filteredTasks');
 }
 
