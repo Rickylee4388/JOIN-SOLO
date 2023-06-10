@@ -408,9 +408,9 @@ function searchTask() {
     for (let i = 0; i < newTaskArray.length; i++) {
         const currentTask = newTaskArray[i];
         let search = searchInput.toLowerCase();
-        let search2 = searchInput.toUpperCase();
+        let search2 =  capitalizeFirstLetter(search);
 
-        if(currentTask['title'].includes(search) || currentTask['description'].includes(search) || currentTask['title'].includes(search2) || currentTask['desription'].includes(search2))  {
+        if (currentTask['title'].includes(search || search2) || currentTask['description'].includes(search || search2)) {
             filteredTasks.push(currentTask);
             }
         }
@@ -418,7 +418,9 @@ function searchTask() {
         renderFilteredTasks('filteredTasks');
 }
 
-
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 function renderFilteredTasks() {
     renderTodoTasksHTML(filteredTasks);
