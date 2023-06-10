@@ -7,9 +7,11 @@ let assignedToInitials = [];
 
 async function initAddTask() {
     document.getElementById('contentSection').innerHTML = /*html*/ `
-        <div class="headlineContainer" id="headlineContainer"></div>
-        <div class="contentLeftAndRightContainer" id="contentLeftAndRightContainer"></div>
-        <div class="twoButtonsContainer" id="twoButtonsContainer"></div>
+        <div class="addTaskMainContainer">
+            <div class="headlineContainer" id="headlineContainer"></div>
+            <div class="contentLeftAndRightContainer" id="contentLeftAndRightContainer"></div>
+            <div class="twoButtonsContainer" id="twoButtonsContainer"></div>
+        </div>
     `;
     await loadTasks();
     renderHeadline();
