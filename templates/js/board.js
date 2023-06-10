@@ -413,10 +413,16 @@ function searchTask() {
         if (currentTask['title'].includes(search || search2) || currentTask['description'].includes(search || search2)) {
             filteredTasks.push(currentTask);
             }
+        
+
+        if (currentTask['title'].includes(search && search2) || currentTask['description'].includes(search && search2)) {
+            filteredTasks.push(currentTask);
+            }
         }
-        console.log(filteredTasks);
+       
         renderFilteredTasks('filteredTasks');
-}
+    }
+
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
