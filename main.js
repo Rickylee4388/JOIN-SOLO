@@ -1,5 +1,4 @@
 let allContacts = [];
-let newTaskArray = [];
 let lastActivePage = 'sidebarSummary';
 
 async function init() {
