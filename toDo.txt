@@ -37,3 +37,63 @@
 9
 : 
 {name: 'Test Test', email: 'sfdsadg@sdfgsf', phone: '324356', color: 'rgb(220,236,202)', initials: 'TT', …}
+
+
+
+Login
+1.	Join Logo Animation Mitte -> oben links
+2.	Pop-Ups mit slide animation -> forgot my password usw.
+
+SignUp
+1.	Registrierter Kontakt zu Kontakten hinzufügen -> ermöglicht Zuweisung von Tasks an curent user ???  oder wir machen s wie bei Vorlage mit „you“
+
+Forgot my password
+1.	Passwort Änderung umsetzen
+
+Summary 
+1.	Dynamische Daten von Board einbinden
+2.	Weiterleitung zu Board -> über alle Buttons
+
+Board
+1.	Tasks von Server laden und dynamisch anzeigen
+2.	Drag and Drop überarbeiten
+3.	Suchfunktion überarbeiten
+4.	AddTask Funktion für jeweilige Kategorie einbinden
+5.	Ändern und Löschen einer Task über popup einbinden
+
+Add Task
+1.	HTML Form Validation -> div container müssen in <form> geändert werden 
+2.	neue Kategorie anlegbar
+3.	Task added to bar Pop up einbinde -> danach weiterleitung zu board Section
+4.	Content in separate Div packen -> scrollbar thema usw.
+
+Legal Notice
+1.	Impressum erstellen
+2.	Content einbinden
+
+Content Section
+1.	„Kanban Project Management Tool“ Headline im responsive design Anzeigen
+
+Allgemein
+1.	Html conent auslagern -> separate contenttemplate.js anlegen
+2.	Responsiveness
+3.	Clean coding
+4.	Jsdoc umsetzen -> hauptfunktionen erklären/kommentieren
+
+
+function closeOverlay() {
+    let screensize = window.innerWidth;
+    let contactOverlay = document.getElementById('overlayPopupContacts');
+    if (screensize <= 576) {
+        contactOverlay.style.animation = 'slideDownContacts 0.8s ease-in-out';
+    } else {
+        contactOverlay.style.animation = 'slideOutContacts 0.8s ease-in-out';
+    }
+    contactOverlay.addEventListener('animationend', function () {
+        contactOverlay.classList.add('d-none');
+        contactOverlay.style.animation = '';
+    });
+    setTimeout(function () {
+        document.getElementById('overlaySection').classList.add('d-none');
+    }, 600);
+}
