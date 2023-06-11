@@ -1,4 +1,4 @@
-function generateAddTaskContentSection() {
+function generateAddTaskContent() {
     return /*html*/ `
         <form class="addTaskMainContainer" id="addTaskForm">
             <div class="headlineContainer" id="headlineContainer"></div>

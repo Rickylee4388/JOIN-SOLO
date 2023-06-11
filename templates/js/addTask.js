@@ -6,7 +6,7 @@ let assignedToInitials = [];
 
 
 async function initAddTask() {
-    document.getElementById('contentSection').innerHTML = generateAddTaskContentSection();
+    document.getElementById('contentSection').innerHTML = generateAddTaskContent();
     await loadTasks();
     renderHeadline();
     activatePrioButtons();
@@ -203,8 +203,9 @@ async function saveTasks() {
 
 
 function openAddTaskOverlay() {
-    document.getElementById('overlaySection').classList.remove('d-none');
-    document.getElementById('overlaySection').innerHTML = /*html*/ ` 
+    let overlay = document.getElementById('overlaySection');
+    overlay.classList.remove('d-none');
+    overlay.innerHTML = /*html*/ ` 
         <div class="addTaskOverlay" onclick="doNotClose(event)">
             <form id="addTaskForm">
                 <div class="contentSectionAddTaskOverlay" id="ContentSection">
