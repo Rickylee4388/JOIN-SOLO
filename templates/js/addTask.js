@@ -61,7 +61,7 @@ function renderContentLeftAndRight() {
 
                 <div class="assignedToAndSelect">
                     <span>Assigned to</span>
-                    <select id="assignedTo" required onchange="assignedTo()">
+                    <select id="assignedTo" required> 
                         <option value="" disabled selected>Select contacts to assign</option>
                     </select>
                 </div>
@@ -168,6 +168,12 @@ function activatePrioButtons() {
 
     let resetBtn = document.getElementById('reset');
     resetBtn.addEventListener("click", low);
+       
+    let assignBtn = document.getElementById('assignedTo');
+    assignBtn.addEventListener("change", assignedTo);
+
+    let submitBtn = document.getElementById('createTask');
+    submitBtn.addEventListener("click", createTask);
 }
 
 
