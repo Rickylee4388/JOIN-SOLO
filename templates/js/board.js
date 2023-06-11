@@ -1,41 +1,6 @@
 let taskStatus = ['To Do', 'In progress', 'Awaiting Feedback', 'Done'];
 let dragTargets = ['todo', 'in progress', 'awaiting feedback', 'done'];
 let taskStatusClasses = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
-let tasksOnBoard = [
-     {
-        'id': '',
-        'category': 'Design',
-        'headline': 'Design Mainpage',
-        'discription': 'ioenfgpiqen pgnp qengvnepgnpeng pnaepgnpaeng pvn',
-        'stat': 'todo',
-        'prio': 'medium',
-        'assignedTo': ['Jacob Hengsbach', 'Niklas Berg', 'Lars Kling'],
-        'date': '01.12.2023',
-        'subtasks': ['Css', 'Verlinkung anpassen']
-    },
-    {
-        'id': '',
-        'category': 'Sales',
-        'headline': 'Clean up code',
-        'discription': 'ioenfgpiqen design qengvnepgnpeng pnaepgnpaeng pvn',
-        'stat': 'inProgress',
-        'prio': 'low',
-        'assignedTo': ['Lisa Schreiber', 'Antonia Müller', 'Lars Kling'],
-        'date': '14.07.2023',
-        'subtasks': ['Css', 'Verlinkung anpassen']
-    },
-    {
-        'id': '',
-        'category': 'Marketing',
-        'headline': 'Probetraining',
-        'discription': 'McFit anrufen',
-        'stat': 'todo',
-        'prio': 'medium',
-        'assignedTo': ['Lisa Schreiber', 'Frederik Fertig', 'Jacob Hengsbach'],
-        'date': '22.04.2024',
-        'subtasks': ['Css', 'Verlinkung anpassen']
-    },
-];
 let currentDraggedTask;
 let currentDraggedOnStatus;
 let filteredTasks = [];
@@ -76,8 +41,15 @@ function renderBoardHeaderHTML() {
     content.innerHTML = '';
 
     content.innerHTML += /*html*/`
-    
-        <div class="board">Board</div>
+        <div class="boardHeadlineLeftContainer">
+            <div class="board">Board</div>
+
+            <div class="plusBtnContainer mobileAddTask d-none">
+                <div class="plusLine1"></div>
+                <div class="plusLine2"></div>
+            </div>
+        </div>
+
 
         <div class="boardHeadlineRightContainer">
             <div class="searchContainer">
@@ -88,7 +60,7 @@ function renderBoardHeaderHTML() {
             </div>
         </div>
         
-        <button class="addTaskBtn btn-bg" onclick="openAddTaskOverlay()">
+        <button class="addTaskBtn btn-bg" onclick="openAddTaskOverlay('todo')">
             <span class="addTaskBtnText">Add task</span>
             <span class="addTaskBtnIcon">+</span>
         </button>
@@ -111,12 +83,12 @@ function renderStatusFieldsHTML() {
         content.innerHTML += /*html*/`
             <div class="statContainer">
         
-            <div class="boardStatusHeadContainer">
-            <div class="boardStatus">${stat}</div>
-            <div class="plusBtnContainer btn-border-color">
-                <div class="plusLine1"></div>
-                <div class="plusLine2"></div>
-            </div>
+            <div class="boardStatusHeadContainer" onclick="openAddTaskOverlay()">
+                <div class="boardStatus">${stat}</div>
+                <div class="plusBtnContainer btn-border-color">
+                    <div class="plusLine1"></div>
+                    <div class="plusLine2"></div>
+                </div>
             </div>
 
         <div id="statContainer${i}" class="statusContent" ondrop="drop('${statClass}'); stopHighlight('statContainer${i}')" ondragover="allowDrop(event); highlight('statContainer${i}')" ondragleave="stopHighlight('statContainer${i}')"></div>
@@ -134,6 +106,7 @@ function updateBoardTasks() {
     renderInProgressHTML(newTaskArray);
     renderAwaitingFeedbackHTML(newTaskArray);
     renderDoneHTML(newTaskArray);
+    showProgressbar();
 }
 
 
@@ -194,7 +167,9 @@ function renderDoneHTML(arrayName) {
 
     for (let i = 0; i < done.length; i++) {
         const task = done[i];
-
+        if (allSubtasks > 0) {
+            document.getElementById(`progressContainer${task['id']}`).classList.remove('d-flex')
+        }
         content.innerHTML += generatePinnedTaskHTML(task);
         renderAssignedToHTML(task);
     }
@@ -204,18 +179,25 @@ function renderDoneHTML(arrayName) {
 
 function renderAssignedToHTML(task) {
     let content = document.getElementById(`assignedToContainer${task['id']}`);
+    let assignmentCount = task['assignedTo'].length -3;
 
     content.innerHTML = '';
 
-    for (let i = 0; i < task['assignedTo'].length; i++) {
+    for (let i = 0; i < 3; i++) {
         const assignment = task['assignedTo'][i];
         let initials = getInitials(assignment);
         let bgColor = getBgColor();
-
+   
         content.innerHTML += /*html*/`
             <div class="contactContainer" style="background-color:${bgColor}">${initials}</div>
-        `;
+            `;  
     }
+    if(task['assignedTo'].length > 3) {
+        content.innerHTML += /*html*/`
+        <div class="contactContainer" style="background-color: rgb(0, 0, 0)">+${assignmentCount}</div>
+     `;
+    }
+
 }
 
 
@@ -224,7 +206,7 @@ function generatePinnedTaskHTML(task) {
 
     return `
 
-    <div onclick="openTaskPopUp(${task['id']})">
+    <div onclick="openExistingTaskPopUp(${task['id']})">
         <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task['id']}">
         <div class="taskCategory ${task['category'].toLowerCase()}-bg">
             ${task['category']}
@@ -233,9 +215,9 @@ function generatePinnedTaskHTML(task) {
         <h3 class="pinnedTaskHeadline">${task['title']}</h3>
         <p class="pinnedTaskDiscription">${task['description']}</p>
 
-        <div class="progressContainer">
+        <div id="progressContainer${task['id']}" class="progressContainer d-none">
             <div class="progressBar"></div>
-            <div class="progressText">1/2 Done</div>
+            <div class="progressText">0/${task['subtasks'].length} Done</div>
         </div>
 
         <div class="pinnedTaskContactsArrowContainer">
@@ -255,11 +237,24 @@ function generatePinnedTaskHTML(task) {
 
 
 
+function showProgressbar() {
+    
+    for (let i = 1; i < newTaskArray.length; i++) {
+        const task = newTaskArray[i];
+        
+        if(task['subtasks'].length > 0) {
+            document.getElementById(`progressContainer${task['id']}`).classList.remove('d-none')
+        }
+    }
+}
+
+
+
 
 
 ///////////////////////Task-Pop-Up/////////////////////////////////
-function openTaskPopUp(Id) {
-    renderTaskPopUpHTML(Id);
+function openExistingTaskPopUp(Id) {
+    renderExistingTaskPopUpHTML(Id);
     document.getElementById('overlaySection').classList.remove('d-none');
 }
 
@@ -271,7 +266,7 @@ function closeTaskPopUp() {
 
 
 
-function renderTaskPopUpHTML(Id) {
+function renderExistingTaskPopUpHTML(Id) {
     let content = document.getElementById('overlaySection');
     let clickedTask = newTaskArray[Id];
     content.innerHTML = '';
@@ -296,7 +291,7 @@ function renderTaskPopUpHTML(Id) {
             <div class="popUpButtonsContainer">
                 <div class="taskPopUpButton leftBtn"><img src="../../img/delete.png" alt=""></div>
 
-                <div class="taskPopUpButton rightBtn" onclick="modifyCurrentTask()"><img src="../../img/pen.png" alt=""></div>
+                <div class="taskPopUpButton rightBtn" onclick="modifyCurrentTaskHTML('${Id}')"><img src="../../img/pen.png" alt=""></div>
             </div>
         </div>
     `
@@ -334,7 +329,6 @@ function renderTaskPopUpTableHTML(clickedTask) {
 function renderTaskPopUpAssignmentsHTML(clickedTask) {
     let content = document.getElementById('taskPopUpAssignmentsList');
 
-
     content.innerHTML = '';
 
     for (let i = 0; i < clickedTask['assignedTo'].length; i++) {
@@ -353,16 +347,60 @@ function renderTaskPopUpAssignmentsHTML(clickedTask) {
 
 
 
-function modifyCurrentTaskHTML() {
-   let content = document.getElementById('overlaySection');
+function modifyCurrentTaskHTML(Id) {
+    let content = document.getElementById('overlaySection');
+    let currentTask = newTaskArray[Id];
+    
+    content.innerHTML = '';
 
+    content.innerHTML = /*html*/`
+    <div class="taskOverviewPopUp" onclick="doNotClose(event)">
 
+        <div class="modifyTaskInputContainer">
+            <div class="modifyTaskInputHeadline">Title</div>
+            <input id="changeTaskTitleInput" class="changeTaskTitleInput" type="text" placeholder="Enter a title">
+        </div>
 
-   content.innerHTML = '';
+        <div class="modifyTaskInputContainer">
+            <div class="modifyTaskInputHeadline">Description</div>
+            <textarea name="" id="modifyDescription" cols="30" rows="10" placeholder="Enter a Description">${currentTask['description']}</textarea>
+        </div>
 
-   content.innerHTML = /*html*/`
-    <div class="taskOverviewPopUp"></div>
+        <div class="modifyTaskInputContainer">
+            <div class="modifyTaskInputHeadline">Prio</div>
+            <div class="priosContainer d-flex">
+                <div class="prioBox taskPopUpPrio">urgent <img src="" alt=""></div>
+                <div class="prioBox taskPopUpPrio">medium <img src="" alt=""></div>
+                <div class="prioBox taskPopUpPrio">low <img src="" alt=""></div>
+            </div>
+        </div>
+
+        <div class="modifyTaskInputContainer">
+            <div class="modifyTaskInputHeadline">Assigned to</div>
+
+            <div id="modifyPopUpAssignmentContainer${currentTask['id']}" class="d-flex"></div>
+        </div>
+
+    </div>
    `
+   renderModifyAssignmentsHTML(Id);
+}
+
+
+
+function renderModifyAssignmentsHTML(Id) {
+    let currentTask = newTaskArray[Id];
+    let content = document.getElementById(`modifyPopUpAssignmentContainer${currentTask['id']}`);
+
+    for (let i = 0; i < currentTask['assignedTo'].length; i++) {
+        const assignment = currentTask['assignedTo'][i];
+        let initials = getInitials(assignment);
+        let bgColor = getBgColor();
+        
+        content.innerHTML += /*html*/`
+            <div class="taskPopUpSingleAssignmentInitals contactContainer" style="background:${bgColor}">${initials}</div>
+        `
+    }
 }
 
 
@@ -427,6 +465,8 @@ function searchTask() {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+
 
 function renderFilteredTasks() {
     renderTodoTasksHTML(filteredTasks);
