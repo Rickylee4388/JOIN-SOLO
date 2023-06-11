@@ -106,7 +106,6 @@ body {
 }
 
 .addTaskOverlay {
-    height: 90%;
-    overflow-y: scroll;
+    height: 85%;
 }
 
