@@ -398,7 +398,7 @@ function openAddTaskOverlay() {
                             Create Task
                             <img src="../../img/checkIcon.png">
                         </button>
-                    </div>
+                    </div>   
                 </div>
             </form>
         </div>
