@@ -7,7 +7,7 @@ let assignedToInitials = [];
 
 async function initAddTask() {
     document.getElementById('contentSection').innerHTML = /*html*/ `
-        <form class="addTaskMainContainer" onsubmit="createTask(); return false">
+        <form class="addTaskMainContainer" id="addTaskForm">
             <div class="headlineContainer" id="headlineContainer"></div>
             <div class="contentLeftAndRightContainer" id="contentLeftAndRightContainer"></div>
             <div class="twoButtonsContainer" id="twoButtonsContainer"></div>
@@ -16,6 +16,7 @@ async function initAddTask() {
     await loadTasks();
     renderHeadline();
     activatePrioButtons();
+
 }
 
 
@@ -127,7 +128,7 @@ function renderContactsAddTask() {
         const { name } = getJoinData(allData);
         document.getElementById('assignedTo').innerHTML += /*html*/ `
             <option value="${name}">${name}</option>
-        `;
+        `;  
     }
 }
 
@@ -172,8 +173,11 @@ function activatePrioButtons() {
     let assignBtn = document.getElementById('assignedTo');
     assignBtn.addEventListener("change", assignedTo);
 
-    let submitBtn = document.getElementById('createTask');
-    submitBtn.addEventListener("click", createTask);
+    document.getElementById('addTaskForm').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        createTask();
+    });
+
 }
 
 
@@ -295,15 +299,15 @@ function createTask() {
 
 async function saveTasks() {
     await setItem('createdTask', JSON.stringify(newTaskArray));
+    renderBoard();
 }
 
 
 function openAddTaskOverlay() {
     document.getElementById('overlaySection').classList.remove('d-none');
-
-    document.getElementById('overlaySection').innerHTML = /*html*/ `
+    document.getElementById('overlaySection').innerHTML = ` 
         <div class="addTaskOverlay" onclick="doNotClose(event)">
-            <form onsubmit="createTask(); return false">
+            <form id="addTaskForm">
                 <div class="contentSectionAddTaskOverlay" id="ContentSection">
                     <h1>Add Task</h1>
         
@@ -338,7 +342,7 @@ function openAddTaskOverlay() {
                                 </select>
                             </div>
 
-                            <div class="assignedToList" id="assignedToList">
+                            <div class="assignedToList" id="assignedToList2">
 
                             </div>
                         </div>
