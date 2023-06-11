@@ -182,8 +182,31 @@ function renderAssignedToHTML(task) {
     let assignmentCount = task['assignedTo'].length -3;
 
     content.innerHTML = '';
+    if (task['assignedTo'].length <= 3) {
+        renderTaskAssignmentListHTML(task, task['assignedTo'].length);
+    } else {
+        renderTaskAssignmentListHTML(task, '3');
+    }
 
-    for (let i = 0; i < 3; i++) {
+    if(task['assignedTo'].length > 3) {
+        content.innerHTML += renderTaskAssignmentCountHTML(assignmentCount);
+    }
+}
+
+
+
+function renderTaskAssignmentCountHTML(assignmentCount) {
+    return /*html*/`
+    <div class="contactContainer" style="background-color: rgb(0, 0, 0)">+${assignmentCount}</div>
+    `;
+}
+
+
+
+function renderTaskAssignmentListHTML(task, count) {
+    let content = document.getElementById(`assignedToContainer${task['id']}`);
+
+    for (let i = 0; i < count; i++) {
         const assignment = task['assignedTo'][i];
         let initials = getInitials(assignment);
         let bgColor = getBgColor();
@@ -192,12 +215,6 @@ function renderAssignedToHTML(task) {
             <div class="contactContainer" style="background-color:${bgColor}">${initials}</div>
             `;  
     }
-    if(task['assignedTo'].length > 3) {
-        content.innerHTML += /*html*/`
-        <div class="contactContainer" style="background-color: rgb(0, 0, 0)">+${assignmentCount}</div>
-     `;
-    }
-
 }
 
 
@@ -205,7 +222,6 @@ function renderAssignedToHTML(task) {
 function generatePinnedTaskHTML(task) {
 
     return `
-
     <div onclick="openExistingTaskPopUp(${task['id']})">
         <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task['id']}">
         <div class="taskCategory ${task['category'].toLowerCase()}-bg">
@@ -291,7 +307,7 @@ function renderExistingTaskPopUpHTML(Id) {
             <div class="popUpButtonsContainer">
                 <div class="taskPopUpButton leftBtn"><img src="../../img/delete.png" alt=""></div>
 
-                <div class="taskPopUpButton rightBtn" onclick="modifyCurrentTaskHTML('${Id}')"><img src="../../img/pen.png" alt=""></div>
+                <div class="taskPopUpButton rightBtn" onclick="openModifyTaskPopUp('${Id}')"><img src="../../img/pen.png" alt=""></div>
             </div>
         </div>
     `
@@ -346,6 +362,11 @@ function renderTaskPopUpAssignmentsHTML(clickedTask) {
 }
 
 
+function openModifyTaskPopUp(Id) {
+    modifyCurrentTaskHTML(Id);
+}
+
+
 
 function modifyCurrentTaskHTML(Id) {
     let content = document.getElementById('overlaySection');
@@ -354,32 +375,52 @@ function modifyCurrentTaskHTML(Id) {
     content.innerHTML = '';
 
     content.innerHTML = /*html*/`
-    <div class="taskOverviewPopUp" onclick="doNotClose(event)">
+    <div class="taskModifyPopUp" onclick="doNotClose(event)">
 
-        <div class="modifyTaskInputContainer">
-            <div class="modifyTaskInputHeadline">Title</div>
-            <input id="changeTaskTitleInput" class="changeTaskTitleInput" type="text" placeholder="Enter a title">
-        </div>
+    <div class="titleAndInput">
+        <span>Title</span>
+        <input id="modifyTitle" type="text" required placeholder="Enter a title">
+    </div>
 
-        <div class="modifyTaskInputContainer">
-            <div class="modifyTaskInputHeadline">Description</div>
-            <textarea name="" id="modifyDescription" cols="30" rows="10" placeholder="Enter a Description">${currentTask['description']}</textarea>
-        </div>
+    <div class="descriptionAndTextarea">
+        <span>Description</span>
+        <textarea id="modifyDescription" type="text" required placeholder="Enter a Description"></textarea>
+    </div>
 
-        <div class="modifyTaskInputContainer">
-            <div class="modifyTaskInputHeadline">Prio</div>
-            <div class="priosContainer d-flex">
-                <div class="prioBox taskPopUpPrio">urgent <img src="" alt=""></div>
-                <div class="prioBox taskPopUpPrio">medium <img src="" alt=""></div>
-                <div class="prioBox taskPopUpPrio">low <img src="" alt=""></div>
-            </div>
+    <div class="dueDateAndInput">
+        <span>Due Date</span>
+        <input type="date" id="date" required placeholder="dd/mm/yyyy">
+    </div>
+
+    <div class="prio">
+        <span>Prio</span>
+        <div class="prioButtons">
+            <button type="button" id="modifyUrgent" value="urgent">
+                Urgent
+                <img id="modifyUrgentIcon" src="../../img/urgentIcon.png">
+            </button>
+
+            <button type="button" id="modifyMedium" value="medium">
+                Medium
+                <img id="modifyMediumIcon" src="../../img/mediumIcon.png">
+            </button>
+
+            <button type="button" id="modifyLow" value="low">
+                Low
+                <img id="modifyLowIcon" src="../../img/lowIcon.png">
+            </button>
         </div>
+    </div>
 
         <div class="modifyTaskInputContainer">
             <div class="modifyTaskInputHeadline">Assigned to</div>
 
             <div id="modifyPopUpAssignmentContainer${currentTask['id']}" class="d-flex"></div>
         </div>
+
+
+
+        
 
     </div>
    `
