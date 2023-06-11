@@ -23,9 +23,7 @@ async function signUp() {
   resetForm();
   window.location.href = "login.html?msg=Du hast dich erfolgreich registriert";
 }
-function backToLogin() {
-  window.location.href = "login.html";
-}
+
 function resetForm() {
   signUpName.value = "";
   signUpEmail.value = "";
@@ -33,7 +31,5 @@ function resetForm() {
   signUpbtn.disabled = false;
 }
 
-function resetPassword(){
-  window.location.href = "resetPassword.html";
-}
+
 

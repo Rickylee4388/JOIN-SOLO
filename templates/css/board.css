@@ -406,19 +406,25 @@
 }
 
 
-.taskOverviewPopUp {
+.taskOverviewPopUp, .taskModifyPopUp {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 50px;
     gap: 25px;
     isolation: isolate;
-    width: 600px;
+    width: 450px;
     height: 80vh;
     position: relative;
     background: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
+}
+
+
+.taskModifyPopUp {
+    gap: 0;
+    align-items: center;
 }
 
 
