@@ -297,105 +297,104 @@ function openAddTaskOverlay() {
 
     document.getElementById('overlaySection').innerHTML = /*html*/ `
         <div class="addTaskOverlay" onclick="doNotClose(event)">
-        <form onsubmit="createTask(); return false">
-            <div class="contentSectionAddTaskOverlay" id="ContentSection">
-                <h1>Add Task</h1>
+            <form onsubmit="createTask(); return false">
+                <div class="contentSectionAddTaskOverlay" id="ContentSection">
+                    <h1>Add Task</h1>
         
-                <div class="contentLeftAndRight">
-                    <div class="contentLeft">
-                        <div class="titleAndInput">
-                            <span>Title</span>
-                            <input id="title" required placeholder="Enter a title">
-                        </div>
+                    <div class="contentLeftAndRight">
+                        <div class="contentLeft">
+                            <div class="titleAndInput">
+                                <span>Title</span>
+                                <input id="title" type="text" required placeholder="Enter a title">
+                            </div>
 
-                        <div class="descriptionAndTextarea">
-                            <span>Description</span>
-                            <textarea id="description" required placeholder="Enter a Description"></textarea>
-                        </div>
+                            <div class="descriptionAndTextarea">
+                                <span>Description</span>
+                                <textarea id="description" type="text" required placeholder="Enter a Description"></textarea>
+                            </div>
 
-                        <div class="categoryAndSelect">
-                            <span>Category</span>
-                            <select id="category" required>
-                                <option>Select task category</option>
-                                <option value="design">Design</option>
-                                <option value="sales">Sales</option>
-                                <option value="backoffice">Backoffice</option>
-                                <option value="media">Media</option>
-                                <option value="marketing">Marketing</option>
-                            </select>
-                        </div>
+                            <div class="categoryAndSelect">
+                                <span>Category</span>
+                                <select id="category" required>
+                                    <option value="" disabled selected>Select task category</option>
+                                    <option value="design">Design</option>
+                                    <option value="sales">Sales</option>
+                                    <option value="backoffice">Backoffice</option>
+                                    <option value="media">Media</option>
+                                    <option value="marketing">Marketing</option>
+                                </select>
+                            </div>
 
-                        <div class="assignedToAndSelect">
-                            <span>Assigned to</span>
-                            <select required id="assignedTo">
-                                <option>Select contacts to assign</option>
-                                <option value="Denise Schmidt">Denise Schmidt</option>
-                                <option value="Davide Religioso">Davide Religioso</option>
-                                <option value="Jacob Hengsbach">Jacob Hengsbach</option>
-                                <option value="Philipp Klinger">Philipp Klinger</option>
-                                <option value="Max Mustermann">Max Mustermann</option>
-                            </select>
-                        </div>
-                    </div>
+                            <div class="assignedToAndSelect">
+                                <span>Assigned to</span>
+                                <select id="assignedTo" required onchange="assignedTo()">
+                                    <option value="" disabled selected>Select contacts to assign</option>
+                                </select>
+                            </div>
 
-                    <div class="borderline"></div>
+                            <div class="assignedToList" id="assignedToList">
 
-                    <div class="contentRight">
-                        <div class="dueDateAndInput">
-                            <span>Due Date</span>
-                            <input required type="date" id="date" placeholder="dd/mm/yyyy">
-                        </div>
-
-                        <div class="prio">
-                            <span>Prio</span>
-                            <div required class="prioButtons">
-                                <button id="urgent" value="urgent" onclick="urgent()">
-                                    Urgent
-                                    <img id="urgentIcon" src="../../img/urgentIcon.png">
-                                </button>
-
-                                <button id="medium" value="medium" onclick="medium()">
-                                    Medium
-                                    <img id="mediumIcon" src="../../img/mediumIcon.png">
-                                </button>
-
-                                <button id="low" value="low" onclick="low()">
-                                    Low
-                                    <img id="lowIcon" src="../../img/lowIcon.png">
-                                </button>
                             </div>
                         </div>
 
-                        <div class="subtasksAndInput">
-                            <span>Subtasks</span>
+                        <div class="borderline"></div>
 
-                            <div class="inputAndButton">
-                                <input required id="subtasks" placeholder="Add new subtask">
-                                <button onclick="newSubtask()">
-                                    <img src="../../img/subtaskIcon.png">
-                                </button>
+                        <div class="contentRight">
+                            <div class="dueDateAndInput">
+                                <span>Due Date</span>
+                                <input type="date" id="date" required placeholder="dd/mm/yyyy">
+                            </div>
+
+                            <div class="prio">
+                                <span>Prio</span>
+                                <div class="prioButtons">
+                                    <button type="button" id="urgent" value="urgent">
+                                        Urgent
+                                        <img id="urgentIcon" src="../../img/urgentIcon.png">
+                                    </button>
+
+                                    <button type="button" id="medium" value="medium">
+                                        Medium
+                                        <img id="mediumIcon" src="../../img/mediumIcon.png">
+                                    </button>
+
+                                    <button type="button" id="low" value="low">
+                                        Low
+                                        <img id="lowIcon" src="../../img/lowIcon.png">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="subtasksAndInput">
+                                <span>Subtasks</span>
+
+                                <div class="inputAndButton">
+                                    <input id="subtasks" placeholder="Add new subtask">
+                                    <button type="button" onclick="newSubtask()">
+                                        <img src="../../img/subtaskIcon.png">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="subtasksList" id="subtasksList">
+
                             </div>
                         </div>
+                    </div>
 
-                        <div class="subtasksList" id="subtasksList">
+                    <div class="twoButtons">
+                        <button id="reset" type="reset" class="clearButton">
+                            Clear
+                            <img src="../../img/cancelIcon.png">
+                        </button>
 
-                        </div>
+                        <button type="submit" class="createTaskButton" id="createTask">
+                            Create Task
+                            <img src="../../img/checkIcon.png">
+                        </button>
                     </div>
                 </div>
-
-                <div class="twoButtons">
-                    <button class="clearButton">
-                        Clear
-                        <img src="../../img/cancelIcon.png">
-                    </button>
-
-                    <button class="createTaskButton" id="createTask" onclick="createTask()">
-                        Create Task
-                        <img src="../../img/checkIcon.png">
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
         </div>
     `;
 }
