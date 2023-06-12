@@ -31,7 +31,7 @@ function renderHeadline() {
 function renderContentLeftAndRight() {
     document.getElementById('contentLeftAndRightContainer').innerHTML = generateContentLeftAndRightContainer();
     renderTwoButtonsContainer();
-    setMinDate();
+    setMinDate('date');
 }
 
 
@@ -51,9 +51,9 @@ function renderTwoButtonsContainer() {
 }
 
 
-function setMinDate() {
+function setMinDate(id) {
     let today = new Date().toISOString().split('T')[0];
-    document.getElementById('date').setAttribute('min', today);
+    document.getElementById(id).setAttribute('min', today);
 }
 
 

@@ -26,7 +26,7 @@ function renderHeadlineOverlay() {
 function renderContentLeftAndRightOverlay() {
     document.getElementById('contentLeftAndRightContainerOverlay').innerHTML = generateContentLeftAndRightContainerOverlay();
     renderTwoButtonsContainerOverlay();
-    setMinDateOverlay();
+    setMinDate('dateOverlay');
 }
 
 
@@ -43,12 +43,6 @@ function renderContactsAddTaskOverlay() {
 
 function renderTwoButtonsContainerOverlay() {
     document.getElementById('twoButtonsContainerOverlay').innerHTML = generateTwoButtonsContainerOverlay();
-}
-
-
-function setMinDateOverlay() {
-    let today = new Date().toISOString().split('T')[0];
-    document.getElementById('dateOverlay').setAttribute('min', today);
 }
 
 
