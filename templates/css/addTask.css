@@ -351,28 +351,6 @@ button {
     transition: ease-in-out 125ms;
 }
 
-.addTaskOverlay {
-    background-color: white;
-    border-radius: 20px;
-    height: 85%;
-    width: 60%;
-    padding: 30px;
-    overflow-y: auto;
-    transition: transform 800ms ease-in-out;
-    transform: translate(0%);
-    animation: slideIn 0.8s ease-in-out;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translate(150%);
-    }
-
-    to {
-        transform: translate(0%);
-    }
-}
-
 
 @media (max-width: 1290px) {
     .headlineContainer {
