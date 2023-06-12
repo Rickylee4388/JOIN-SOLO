@@ -47,6 +47,10 @@
 }
 
 
+.mt {
+    margin-top: 16px;
+}
+
 .showScrollBarY {
     overflow-y: scroll;
 }
@@ -410,10 +414,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 50px;
+    padding: 40px;
     gap: 25px;
     isolation: isolate;
-    width: 450px;
+    width: 500px;
     height: 80vh;
     position: relative;
     background: #FFFFFF;
@@ -424,7 +428,12 @@
 
 .taskModifyPopUp {
     gap: 0;
-    align-items: center;
+
+}
+
+
+.m-0 {
+    margin: 0 !important;
 }
 
 
@@ -561,6 +570,34 @@
     transform: rotate(10deg);
 }
 
+
+.modifyTaskInputContainer {
+    background-color: #FF7A00;
+    width: 100%;
+}
+
+
+
+#modifyDescription {
+    resize: none;
+    height: 80px;
+}
+
+
+.modifyInput {
+    width: 400px !important;
+}
+
+
+.confirmBtn {
+    height: fit-content;
+    width: fit-content;
+    padding: 8px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
+}
 
 
 @media(max-width: 1300px) {

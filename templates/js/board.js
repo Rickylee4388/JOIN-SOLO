@@ -1,9 +1,11 @@
 let taskStatus = ['To Do', 'In progress', 'Awaiting Feedback', 'Done'];
 let dragTargets = ['todo', 'in progress', 'awaiting feedback', 'done'];
 let taskStatusClasses = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
+let priories = ['low', 'medium', 'urgent'];
 let currentDraggedTask;
 let currentDraggedOnStatus;
 let filteredTasks = [];
+let newPrio;
 
 
 
@@ -195,14 +197,6 @@ function renderAssignedToHTML(task) {
 
 
 
-function renderTaskAssignmentCountHTML(assignmentCount) {
-    return /*html*/`
-    <div class="contactContainer" style="background-color: rgb(0, 0, 0)">+${assignmentCount}</div>
-    `;
-}
-
-
-
 function renderTaskAssignmentListHTML(task, count) {
     let content = document.getElementById(`assignedToContainer${task['id']}`);
 
@@ -211,50 +205,13 @@ function renderTaskAssignmentListHTML(task, count) {
         let initials = getInitials(assignment);
         let bgColor = getBgColor();
    
-        content.innerHTML += /*html*/`
-            <div class="contactContainer" style="background-color:${bgColor}">${initials}</div>
-            `;  
+        content.innerHTML += renderTaskAssignmentsTemplateHTML(bgColor, initials);
     }
 }
 
 
 
-function generatePinnedTaskHTML(task) {
-
-    return `
-    <div onclick="openExistingTaskPopUp(${task['id']})">
-        <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task['id']}">
-        <div class="taskCategory ${task['category'].toLowerCase()}-bg">
-            ${task['category']}
-        </div>
-
-        <h3 class="pinnedTaskHeadline">${task['title']}</h3>
-        <p class="pinnedTaskDiscription">${task['description']}</p>
-
-        <div id="progressContainer${task['id']}" class="progressContainer d-none">
-            <div class="progressBar"></div>
-            <div class="progressText">0/${task['subtasks'].length} Done</div>
-        </div>
-
-        <div class="pinnedTaskContactsArrowContainer">
-            <div class="pinnedTaskContactsContainer" id="assignedToContainer${task['id']}">
-
-            </div>
-
-            <div class="arrowButton">
-                <img src="../../img/${task['prio']}Icon.png" alt="">
-            </div>
-        </div>
-        </div>
-        </div>
-    </div>
-`;
-}
-
-
-
 function showProgressbar() {
-    
     for (let i = 1; i < newTaskArray.length; i++) {
         const task = newTaskArray[i];
         
@@ -266,11 +223,9 @@ function showProgressbar() {
 
 
 
-
-
 ///////////////////////Task-Pop-Up/////////////////////////////////
 function openExistingTaskPopUp(Id) {
-    renderExistingTaskPopUpHTML(Id);
+    renderClickedTaskPopUpHTML(Id);
     document.getElementById('overlaySection').classList.remove('d-none');
 }
 
@@ -282,35 +237,13 @@ function closeTaskPopUp() {
 
 
 
-function renderExistingTaskPopUpHTML(Id) {
+function renderClickedTaskPopUpHTML(Id) {
     let content = document.getElementById('overlaySection');
     let clickedTask = newTaskArray[Id];
     content.innerHTML = '';
 
-    content.innerHTML += /*html*/`
-        <div class="taskOverviewPopUp" onclick="doNotClose(event)">
-            <div class="taskCategory ${clickedTask['category'].toLowerCase()}-bg">
-                ${clickedTask['category']}
-            </div>
+    content.innerHTML += renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id);
 
-            <div class="taskPopUpHeadline">${clickedTask['title']}</div>
-
-            <div class="taskPopUpDiscription">${clickedTask['description']}</div>
-
-            <div class="taskPopUpTable" id="taskPopUpTable"></div>
-
-            <div class="taskPopUpAssignments" id="taskPopUpAssignments">
-                <div class="assignedToHeadline"><b>Assigned to:</b></div>
-                <div id="taskPopUpAssignmentsList" class="taskPopUpAssignmentsList"></div>
-            </div>
-
-            <div class="popUpButtonsContainer">
-                <div class="taskPopUpButton leftBtn"><img src="../../img/delete.png" alt=""></div>
-
-                <div class="taskPopUpButton rightBtn" onclick="openModifyTaskPopUp('${Id}')"><img src="../../img/pen.png" alt=""></div>
-            </div>
-        </div>
-    `
     renderTaskPopUpTableHTML(clickedTask);
     renderTaskPopUpAssignmentsHTML(clickedTask);
 }
@@ -322,22 +255,7 @@ function renderTaskPopUpTableHTML(clickedTask) {
 
     content.innerHTML = '';
 
-    content.innerHTML += /*html*/`
-        <div class="taskPopUpRow">
-            <div class="taskPopUpLeftTd"><b>Due Date:</b></div>
-            <div class="taskPopUpRightTd">${clickedTask['date']}</div>
-        </div>
-
-        <div class="taskPopUpRow">
-            <div class="taskPopUpLeftTd"><b>Priority:</b></div>
-
-            <div class="taskPopUpRightTd taskPopUpPrio">
-                ${clickedTask['prio']} <img src="../../img/${clickedTask['prio'].toLowerCase()}Icon.png" alt="">
-            </div>
-        </div>
-
-        <div class="closeTaskPopUpButton" onclick="closeTaskPopUp()">X</div>
-    `
+    content.innerHTML += renderTaskPopUpTableTemplateHTML(clickedTask);
 }
 
 
@@ -352,14 +270,10 @@ function renderTaskPopUpAssignmentsHTML(clickedTask) {
         let initials = getInitials(assignment);
         let bgColor = getBgColor();
         
-        content.innerHTML += /*html*/`
-            <div class="taskPopUpSingleAssignmentContainer">
-                <div class="taskPopUpSingleAssignmentInitals contactContainer" style="background:${bgColor}">${initials}</div>
-                <div class="taskPopUpSingleAssignmentName">${assignment}</div>
-            </div>
-        `
+        content.innerHTML += renderTaskAssignmentsPlusInitialsTemplateHTML(assignment, initials, bgColor);
     } 
 }
+
 
 
 function openModifyTaskPopUp(Id) {
@@ -371,60 +285,13 @@ function openModifyTaskPopUp(Id) {
 function modifyCurrentTaskHTML(Id) {
     let content = document.getElementById('overlaySection');
     let currentTask = newTaskArray[Id];
+    let prio = currentTask['prio'];
     
     content.innerHTML = '';
+    content.innerHTML = renderModifyTaskTemplateHTML(currentTask);
 
-    content.innerHTML = /*html*/`
-    <div class="taskModifyPopUp" onclick="doNotClose(event)">
-
-    <div class="titleAndInput">
-        <span>Title</span>
-        <input id="modifyTitle" type="text" required placeholder="Enter a title">
-    </div>
-
-    <div class="descriptionAndTextarea">
-        <span>Description</span>
-        <textarea id="modifyDescription" type="text" required placeholder="Enter a Description"></textarea>
-    </div>
-
-    <div class="dueDateAndInput">
-        <span>Due Date</span>
-        <input type="date" id="date" required placeholder="dd/mm/yyyy">
-    </div>
-
-    <div class="prio">
-        <span>Prio</span>
-        <div class="prioButtons">
-            <button type="button" id="modifyUrgent" value="urgent">
-                Urgent
-                <img id="modifyUrgentIcon" src="../../img/urgentIcon.png">
-            </button>
-
-            <button type="button" id="modifyMedium" value="medium">
-                Medium
-                <img id="modifyMediumIcon" src="../../img/mediumIcon.png">
-            </button>
-
-            <button type="button" id="modifyLow" value="low">
-                Low
-                <img id="modifyLowIcon" src="../../img/lowIcon.png">
-            </button>
-        </div>
-    </div>
-
-        <div class="modifyTaskInputContainer">
-            <div class="modifyTaskInputHeadline">Assigned to</div>
-
-            <div id="modifyPopUpAssignmentContainer${currentTask['id']}" class="d-flex"></div>
-        </div>
-
-
-
-        
-
-    </div>
-   `
-   renderModifyAssignmentsHTML(Id);
+    renderModifyAssignmentsHTML(Id);
+    modifyPrio(prio);
 }
 
 
@@ -438,10 +305,45 @@ function renderModifyAssignmentsHTML(Id) {
         let initials = getInitials(assignment);
         let bgColor = getBgColor();
         
-        content.innerHTML += /*html*/`
-            <div class="taskPopUpSingleAssignmentInitals contactContainer" style="background:${bgColor}">${initials}</div>
-        `
+        content.innerHTML += modifyAssignmentsTemplateHTML(bgColor, initials);
     }
+}
+
+
+function modifyPrio(currentPriority) {
+    let currentPrio = capitalizeFirstLetter(currentPriority);
+    let prioValue = document.getElementById(`modify${currentPrio}`).value;
+    newPrio = prioValue;
+    let otherPrios = priories.filter(currentPriority => currentPriority !== `${prioValue}`);
+    let otherPrio1 = capitalizeFirstLetter(otherPrios[0]);
+    let otherPrio2 = capitalizeFirstLetter(otherPrios[1]);
+
+    document.getElementById(`modify${currentPrio}`).classList.add(`${prioValue}`);
+    document.getElementById(`modify${currentPrio}Icon`).src = `../../img/${prioValue}WhiteIcon.png`;
+
+    document.getElementById(`modify${otherPrio1}`).classList.remove(`${otherPrios[0]}`);
+    document.getElementById(`modify${otherPrio1}Icon`).src = `../../img/${otherPrios[0]}Icon.png`;
+
+    document.getElementById(`modify${otherPrio2}`).classList.remove(`${otherPrios[1]}`);
+    document.getElementById(`modify${otherPrio2}Icon`).src = `../../img/${otherPrios[1]}Icon.png`;
+}
+
+
+
+
+function confirmChangesOnTask(Id) {
+    let currentTask = newTaskArray[Id];
+    let newTitle = document.getElementById('modifyTitle').value;
+    let newDescription = document.getElementById('modifyDescription').value;
+    let newDate = document.getElementById('modifyDate').value;
+
+    currentTask['title'] = newTitle;
+    currentTask['description'] = newDescription;
+    currentTask['date'] = newDate;
+    currentTask['prio'] = newPrio;
+
+    closeTaskPopUp();
+    updateBoardTasks();
 }
 
 
