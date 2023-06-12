@@ -3,6 +3,7 @@ let prio = undefined;
 let allSubtasks = [];
 let assignedToNames = [];
 let assignedToInitials = [];
+let dateArray = [];
 
 
 async function initAddTask() {
@@ -53,6 +54,12 @@ function renderTwoButtonsContainer() {
 function setMinDate() {
     let today = new Date().toISOString().split('T')[0];
     document.getElementById('date').setAttribute('min', today);
+}
+
+
+function pushDate() {
+    let dueDate = document.getElementById('date').value;
+    dateArray.push(dueDate);
 }
 
 
@@ -177,7 +184,7 @@ function createTask() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
     let category = document.getElementById('category').value;
-    let date = document.getElementById('date').value;
+    let date = dateArray;
 
     let newTask = {
         'id': '',
@@ -193,6 +200,9 @@ function createTask() {
 
     newTaskArray.push(newTask);
     saveTasks();
+    allSubtasks = [];
+    assignedToNames = [];
+    dateArray = [];
 }
 
 

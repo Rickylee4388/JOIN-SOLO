@@ -19,6 +19,7 @@ function renderHeadlineOverlay() {
     `;
     renderContentLeftAndRightOverlay();
     renderContactsAddTaskOverlay();
+    activatePrioButtonsOverlay();
 }
 
 
@@ -49,6 +50,108 @@ function setMinDateOverlay() {
     let today = new Date().toISOString().split('T')[0];
     document.getElementById('dateOverlay').setAttribute('min', today);
 }
+
+
+function pushDateOverlay() {
+    let dueDate = document.getElementById('dateOverlay').value;
+    dateArray.push(dueDate);
+}
+
+
+function activatePrioButtonsOverlay() {
+    low();
+    let urgentBtn = document.getElementById('urgent');
+    urgentBtn.addEventListener("click", urgent);
+
+    let mediumBtn = document.getElementById('medium');
+    mediumBtn.addEventListener("click", medium);
+
+    let lowBtn = document.getElementById('low');
+    lowBtn.addEventListener("click", low);
+
+    let resetBtn = document.getElementById('reset');
+    resetBtn.addEventListener("click", low);
+       
+    let assignBtn = document.getElementById('assignedToOverlay');
+    assignBtn.addEventListener("change", assignedToOverlay);
+
+    document.getElementById('addTaskForm').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        createTask();
+    });
+}
+
+
+function urgent() {
+    let prioValue = document.getElementById('urgent').value;
+    prio = prioValue;
+
+    document.getElementById('urgent').classList.add('urgent');
+    document.getElementById('urgentIcon').src = '../../img/urgentWhiteIcon.png';
+
+    document.getElementById('medium').classList.remove('medium');
+    document.getElementById('mediumIcon').src = '../../img/mediumIcon.png';
+
+    document.getElementById('low').classList.remove('low');
+    document.getElementById('lowIcon').src = '../../img/lowIcon.png';
+}
+
+
+function medium() {
+    let prioValue = document.getElementById('medium').value;
+    prio = prioValue;
+
+    document.getElementById('medium').classList.add('medium');
+    document.getElementById('mediumIcon').src = '../../img/mediumWhiteIcon.png';
+
+    document.getElementById('urgent').classList.remove('urgent');
+    document.getElementById('urgentIcon').src = '../../img/urgentIcon.png';
+
+    document.getElementById('low').classList.remove('low');
+    document.getElementById('lowIcon').src = '../../img/lowIcon.png';
+}
+
+
+function low() {
+    let prioValue = document.getElementById('low').value;
+    prio = prioValue;
+
+    document.getElementById('low').classList.add('low');
+    document.getElementById('lowIcon').src = '../../img/lowWhiteIcon.png';
+
+    document.getElementById('medium').classList.remove('medium');
+    document.getElementById('mediumIcon').src = '../../img/mediumIcon.png';
+
+    document.getElementById('urgent').classList.remove('urgent');
+    document.getElementById('urgentIcon').src = '../../img/urgentIcon.png';
+}
+
+
+function assignedToOverlay() {
+    let assignee = document.getElementById("assignedToOverlay");
+    let selectedAssignee = assignee.options[assignee.selectedIndex].value;
+    let selectedAssignee2 = assignee.options[assignee.selectedIndex];
+    selectedAssignee2.disabled = true;
+    let i = (assignee.selectedIndex) - 1;
+
+    if (assignedToNames.indexOf(selectedAssignee) === -1) {
+        assignedToNames.push(selectedAssignee);
+    }
+    showAssignedToList(i);
+}
+
+
+function showAssignedToList(i) {
+    const allData = allContacts[i];
+    const { initials, color } = getJoinData(allData);
+    document.getElementById('assignedToList').innerHTML += /*html*/ `
+        <div class="assigneeContainer" style="background-color: ${color}">
+            ${initials}
+        </div>
+    `;
+}
+
+
 
 
 
@@ -96,7 +199,7 @@ function generateContentLeftAndRightContainerOverlay() {
             <div class="contentRight">
                 <div class="dueDateAndInput">
                     <span>Due Date</span>
-                    <input type="date" id="dateOverlay" required placeholder="dd/mm/yyyy">
+                    <input type="date" id="dateOverlay" required placeholder="dd/mm/yyyy" onchange="pushDateOverlay()">
                 </div>
 
                 <div class="prio">

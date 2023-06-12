@@ -52,7 +52,7 @@ function generateContentLeftAndRightContainer() {
             <div class="contentRight">
                 <div class="dueDateAndInput">
                     <span>Due Date</span>
-                    <input type="date" id="date" required placeholder="dd/mm/yyyy">
+                    <input type="date" id="date" required placeholder="dd/mm/yyyy" onchange="pushDate()">
                 </div>
 
                 <div class="prio">
