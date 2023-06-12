@@ -1,5 +1,4 @@
 function modifyAssignmentsTemplateHTML(bgColor, initials) {
-
     return /*html*/`
     <div class="taskPopUpSingleAssignmentInitals contactContainer" style="background:${bgColor}">${initials}</div>
 `
@@ -174,4 +173,67 @@ function renderTaskAssignmentCountHTML(assignmentCount) {
     return /*html*/`
     <div class="contactContainer" style="background-color: rgb(0, 0, 0)">+${assignmentCount}</div>
     `;
+}
+
+
+
+function renderStatusfieldsTemplateHTML(i, stat, statClass) {
+    return /*html*/`
+    <div class="statContainer">
+
+        <div class="boardStatusHeadContainer" onclick="openAddTaskOverlay('${statClass}')">
+            <div class="boardStatus">${stat}</div>
+            <div class="plusBtnContainer btn-border-color">
+                <div class="plusLine1"></div>
+                <div class="plusLine2"></div>
+            </div>
+        </div>
+
+        <div id="statContainer${i}" class="statusContent" ondrop="drop('${statClass}'); stopHighlight('statContainer${i}')" ondragover="allowDrop(event); highlight('statContainer${i}')" ondragleave="stopHighlight('statContainer${i}')"></div>
+    </div>
+`
+}
+
+
+
+function renderBoardHeaderTemplateHTML() {
+    return /*html*/`
+    <div class="boardHeadlineLeftContainer">
+        <div class="board">Board</div>
+
+        <div class="plusBtnContainer mobileAddTask d-none">
+            <div class="plusLine1"></div>
+            <div class="plusLine2"></div>
+        </div>
+    </div>
+
+
+    <div class="boardHeadlineRightContainer">
+        <div class="searchContainer">
+            <input oninput="searchTask()" id="searchInput" class="searchInput" type="text" placeholder="Find task">
+
+        <div class="searchBtn">
+            <img src="../../img/Vector.png" alt="">
+        </div>
+    </div>
+    
+    <button class="addTaskBtn btn-bg" onclick="openAddTaskOverlay('todo')">
+        <span class="addTaskBtnText">Add task</span>
+        <span class="addTaskBtnIcon">+</span>
+    </button>
+
+    </div>
+`
+}
+
+
+
+function renderBoardTemplateHTML() {
+    return /*html*/`
+    <div class="boardBody" id="boardBody">
+        <section id="boardHeadlineContainer" class="boardHeadlineContainer"></section>
+
+        <section id="boardContentContainer" class="boardContentContainer"></section>
+    </div>
+    `
 }

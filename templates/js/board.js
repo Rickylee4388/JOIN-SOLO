@@ -6,6 +6,7 @@ let currentDraggedTask;
 let currentDraggedOnStatus;
 let filteredTasks = [];
 let newPrio;
+let chosenStat = 'todo';
 
 
 
@@ -17,18 +18,22 @@ function giveTaskId() {
     }
 }
 
+///////////////RenderFunktionen////////////////////////
+function updateBoardTasks() {
+    renderTodoTasksHTML(newTaskArray);
+    renderInProgressHTML(newTaskArray);
+    renderAwaitingFeedbackHTML(newTaskArray);
+    renderDoneHTML(newTaskArray);
+    showProgressbar();
+}
+
+
 
 function renderBoardHTML() {
     let content = document.getElementById('contentSection');
 
     content.innerHTML = '';
-    content.innerHTML += /*html*/`
-    <div class="boardBody" id="boardBody">
-        <section id="boardHeadlineContainer" class="boardHeadlineContainer"></section>
-
-        <section id="boardContentContainer" class="boardContentContainer"></section>
-    </div>
-    `
+    content.innerHTML += renderBoardTemplateHTML();
     document.getElementById('body').classList.add('hideScrollBarY');
     document.getElementById('boardBody').classList.add('showScrollBarY');
     renderBoardHeaderHTML();
@@ -42,33 +47,7 @@ function renderBoardHeaderHTML() {
 
     content.innerHTML = '';
 
-    content.innerHTML += /*html*/`
-        <div class="boardHeadlineLeftContainer">
-            <div class="board">Board</div>
-
-            <div class="plusBtnContainer mobileAddTask d-none">
-                <div class="plusLine1"></div>
-                <div class="plusLine2"></div>
-            </div>
-        </div>
-
-
-        <div class="boardHeadlineRightContainer">
-            <div class="searchContainer">
-                <input oninput="searchTask()" id="searchInput" class="searchInput" type="text" placeholder="Find task">
-
-            <div class="searchBtn">
-                <img src="../../img/Vector.png" alt="">
-            </div>
-        </div>
-        
-        <button class="addTaskBtn btn-bg" onclick="openAddTaskOverlay('todo')">
-            <span class="addTaskBtnText">Add task</span>
-            <span class="addTaskBtnIcon">+</span>
-        </button>
-
-        </div>
-    `
+    content.innerHTML += renderBoardHeaderTemplateHTML();
 }
 
 
@@ -82,33 +61,9 @@ function renderStatusFieldsHTML() {
         const stat = taskStatus[i];
         const statClass = taskStatusClasses[i];
 
-        content.innerHTML += /*html*/`
-            <div class="statContainer">
-        
-            <div class="boardStatusHeadContainer" onclick="openAddTaskOverlay()">
-                <div class="boardStatus">${stat}</div>
-                <div class="plusBtnContainer btn-border-color">
-                    <div class="plusLine1"></div>
-                    <div class="plusLine2"></div>
-                </div>
-            </div>
-
-        <div id="statContainer${i}" class="statusContent" ondrop="drop('${statClass}'); stopHighlight('statContainer${i}')" ondragover="allowDrop(event); highlight('statContainer${i}')" ondragleave="stopHighlight('statContainer${i}')"></div>
-          
-        </div>
-        `
+        content.innerHTML += renderStatusfieldsTemplateHTML(i, stat, statClass);
     }
     updateBoardTasks();
-}
-
-
-
-function updateBoardTasks() {
-    renderTodoTasksHTML(newTaskArray);
-    renderInProgressHTML(newTaskArray);
-    renderAwaitingFeedbackHTML(newTaskArray);
-    renderDoneHTML(newTaskArray);
-    showProgressbar();
 }
 
 
@@ -327,7 +282,6 @@ function modifyPrio(currentPriority) {
     document.getElementById(`modify${otherPrio2}`).classList.remove(`${otherPrios[1]}`);
     document.getElementById(`modify${otherPrio2}Icon`).src = `../../img/${otherPrios[1]}Icon.png`;
 }
-
 
 
 

@@ -187,7 +187,7 @@ function createTask() {
         'assignedTo': assignedToNames,
         'date': date,
         'prio': prio,
-        'stat': 'todo',
+        'stat': chosenStat,
         'subtasks': allSubtasks
     };
 

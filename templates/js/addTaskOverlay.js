@@ -1,4 +1,5 @@
-function openAddTaskOverlay() {
+function openAddTaskOverlay(stat) {
+    chosenStat = stat;
     document.getElementById('overlaySection').classList.remove('d-none');
     document.getElementById('overlaySection').innerHTML = /*html*/ `
         <form class="addTaskOverlay" id="addTaskForm" onclick="doNotClose(event)">
@@ -7,6 +8,7 @@ function openAddTaskOverlay() {
             <div class="twoButtonsContainerOverlay" id="twoButtonsContainerOverlay"></div>
         </form>
     `;
+
     renderHeadlineOverlay();
 }
 
