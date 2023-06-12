@@ -16,10 +16,16 @@ function openAddTaskOverlay(stat) {
 function renderHeadlineOverlay() {
     document.getElementById('headlineContainerOverlay').innerHTML = /*html*/ `
         <h1>Add Task</h1>
+        <img src="../../img/cancelIcon.png" onclick="closeOverlay()">
     `;
     renderContentLeftAndRightOverlay();
     renderContactsAddTaskOverlay();
     activatePrioButtonsOverlay();
+}
+
+
+function closeOverlay() {
+    document.getElementById('overlaySection').classList.add('d-none');
 }
 
 
@@ -152,7 +158,7 @@ function showAssignedToList(i) {
 //Add Task Overlay Templates
 function generateContentLeftAndRightContainerOverlay() {
     return /*html*/ `
-        <div class="contentLeftAndRight">
+        <div class="contentLeftAndRight contentLeftAndRightOverlay">
             <div class="contentLeft">
                 <div class="titleAndInput">
                     <span>Title</span>
@@ -188,7 +194,7 @@ function generateContentLeftAndRightContainerOverlay() {
                 </div>
             </div>
 
-            <div class="borderline"></div>
+            <div class="borderline borderlineOverlay"></div>
 
             <div class="contentRight">
                 <div class="dueDateAndInput">
