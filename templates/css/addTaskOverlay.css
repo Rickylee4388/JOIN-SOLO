@@ -10,6 +10,16 @@
     animation: slideIn 0.8s ease-in-out;
 }
 
+.addTaskOverlay::-webkit-scrollbar {
+    background-color: transparent;
+    width: 8px;
+}
+
+.addTaskOverlay::-webkit-scrollbar-track {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 @keyframes slideIn {
     from {
         transform: translate(150%);
