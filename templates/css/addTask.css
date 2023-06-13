@@ -351,11 +351,21 @@ button {
     transition: ease-in-out 125ms;
 }
 
-.addedTaskPopUp {
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100;
+.taskAddedPopUp {
+    height: 50px;
+    width: 200px;
+    position: absolute;
+    animation-name: slideUp;
+    animation-duration: 2s;
+    animation-iteration-count: 2;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+}
+
+@keyframes slideUp {
+    0% {bottom: -50px}
+    50% {bottom: 50px}
+    100% {bottom: -50px}
 }
 
 

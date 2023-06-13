@@ -59,6 +59,10 @@
     select {
         width: 100%;
     }
+
+    .twoButtonsContainerOverlay {
+        margin-top: 20px;
+    }
 }
 
 @media (max-width: 570px) {

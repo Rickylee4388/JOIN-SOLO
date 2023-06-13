@@ -224,11 +224,14 @@ async function saveTasks() {
 
 
 function taskAddedToBoard() {
-    document.getElementById('body').classList.add('overlaySection');
+    document.getElementById('overlaySection').classList.remove('d-none');
+    document.getElementById('overlaySection').innerHTML = /*html*/ `
+        <img src="../../img/taskAddedToBoard.png" class="taskAddedPopUp" id="taskAddedPopUp">
+    `;
     setTimeout(function() {closePopUp()}, 2000);
 }
 
 
 function closePopUp() {
-    document.getElementById('body').classList.remove('overlaySection');
+    document.getElementById('overlaySection').classList.add('d-none');
 }
