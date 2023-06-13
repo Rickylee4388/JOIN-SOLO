@@ -42,7 +42,6 @@
     font-size: 20px;
 }
 
-
 .contactsListGroupContact {
     display: flex;
     flex-direction: row;
@@ -54,7 +53,8 @@
 .contactsListGroupContactBg{
     cursor: pointer;
     background: #2A3647;
-    color: white
+    color: white;
+    margin-bottom: 5px;
 }
 
 .contactsListGroupContactBgInactive:hover {
@@ -410,7 +410,6 @@
 .overlayAddContactRightInputSectionHeadMobile:hover {
     cursor: pointer; 
 }
-
 
 .overlayAddContactRightInputSection form {
     display: flex;
