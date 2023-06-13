@@ -24,6 +24,10 @@ async function signUp() {
   window.location.href = "login.html?msg=Du hast dich erfolgreich registriert";
 }
 
+function goBackToLogin() {
+ window.location.href = "login.html";
+} 
+
 function resetForm() {
   signUpName.value = "";
   signUpEmail.value = "";

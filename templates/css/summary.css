@@ -175,3 +175,57 @@
 .insertDate{
     font-size: 22px;
 }
+.managementText{
+    display: none;
+}
+
+@media (max-width: 750px){
+    .summarySection {
+        padding: 25px;
+    }
+    .headlineDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .summaryHeadline{
+        border: none;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    }
+    .managementText{
+        display: block;
+        font-size: 20px;
+    }
+    .nutshelltext {
+        margin: 0;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        font-size: 20px !important;
+        color: #2A3647;
+        box-shadow: -18px 23px 0px -20px #29ABE2;
+        
+    }
+    .taskbox {
+        margin-right: 16px;
+        height: 90px;
+        width: 100px;
+        border-radius: 15px;
+    }
+    .summarySection p {
+        font-size: 16px;
+    }
+    .tasknumber {
+        padding-bottom: 0px;
+    }
+    .newsAndDate {
+        width: 332px;
+        border-radius: 15px;
+    }
+    .personalTaskBox {
+        margin-right: 16px;
+        width: 158px;
+        border-radius: 15px;
+    }
+}

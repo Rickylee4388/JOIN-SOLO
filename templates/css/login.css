@@ -323,6 +323,11 @@
     width: 450px;
 }
 
+.textResetPw {
+    margin-top: 0px;
+    width: 450px;
+}
+
 .logoAnimationDiv {
     animation: background-fade 1.2s ease-in-out;
     position: absolute;
@@ -343,14 +348,14 @@
 }
 
 .buttonAnimationImg {
-    
+
     animation: buttonAnimation 2s ease-in-out;
-    transform: translate(0px, -150px);;
+    transform: translate(0px, -150px);
     position: absolute;
     bottom: 0;
     width: 30%;
     z-index: -5;
-    
+
 }
 
 @keyframes logoAnimation {
@@ -358,6 +363,7 @@
         transform: translate(0px);
         scale: 200%;
     }
+
     to {
         transform: translate(-475px, -250px);
     }
@@ -377,14 +383,199 @@
 
 @keyframes buttonAnimation {
     0% {
-        transform: translate(0px);  
+        transform: translate(0px);
         z-index: 5;
     }
+
     99% {
         transform: translate(0px, -150px);
         z-index: 5;
     }
-    100%{
+
+    100% {
         z-index: -5;
+    }
+}
+
+@media (max-width: 1080px) {
+
+
+
+    .logoAnimationImg {
+        transform: translate(-350px, -250px);
+
+
+    }
+
+    @keyframes logoAnimation {
+        from {
+            transform: translate(0px);
+            scale: 200%;
+        }
+
+        to {
+            transform: translate(-350px, -250px);
+        }
+    }
+
+}
+
+@media (max-width: 750px) {
+    .logoAnimationDiv {
+        animation: background-fade 1.2s ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+    }
+
+    .logoAnimationImg {
+        height: 70px;
+        transform: translate(-135px, -270px);
+    }
+
+    @keyframes logoAnimation {
+        from {
+            transform: translate(0px);
+            scale: 200%;
+        }
+
+        to {
+            transform: translate(-135px, -270px);
+        }
+    }
+
+    @keyframes background-fade {
+        from {
+            background: #2A3647;
+            z-index: 3;
+        }
+
+        to {
+            background: none;
+            z-index: 1;
+        }
+    }
+
+    .textSignupButton {
+        bottom: 35px;
+        justify-content: center;
+        right: auto !important;
+        top: auto !important;
+    }
+
+    .emailAndPassword input {
+
+        width: 235px;
+    }
+
+    .loginButtons {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 5px;
+        height: 100px;
+    }
+
+    .loginbtn {
+        width: 135px;
+        height: 45px;
+    }
+
+    .guestbtn {
+        height: 45px;
+    }
+
+    .innerContentLogin {
+        width: 300px;
+        height: 435px;
+    }
+
+    .emailAndPassword input {
+        margin-bottom: 25px;
+    }
+
+    .passwordLink {
+        margin-left: 0px;
+        margin-bottom: 15px;
+    }
+
+    .rememberAndAPassword {
+        display: flex;
+        flex-direction: column-reverse;
+        width: 87%;
+        padding-left: 60px;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+
+    .loginHeadlineDiv {
+
+        margin-bottom: 25px;
+    }
+
+    .signUpBtn {
+        font-size: 16px;
+        width: 90px;
+        height: 50px;
+    }
+
+    .textSignupButton {
+        font-size: 18px;
+    }
+
+    .innerContentForgotPw {
+        height: 50%;
+    }
+
+    .textForgotPw {
+        width: 100%;
+        height: 20%;
+        text-wrap: wrap;
+        font-size: 19px;
+    }
+
+    .textResetPw {
+        margin-top: 0px;
+        width: 450px;
+        font-size: 19px;
+    }
+
+    .forgotPwHeadline {
+        margin: 15px;
+    }
+
+    .gap40 {
+        gap: 40px;
+    }
+
+    .arrowDiv {
+        height: 100%;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .buttonAnimationImg {
+        height: 60px;
+        width: 80%;
+        animation: buttonAnimation 2s ease-in-out;
+        bottom: 25px;
+        position: absolute;
+        z-index: -5;
+    }
+
+    @keyframes buttonAnimation {
+        0% {
+            z-index: 5;
+        }
+
+        99% {
+            z-index: 5;
+        }
+
+        100% {
+            z-index: -5;
+        }
     }
 }

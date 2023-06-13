@@ -32,7 +32,9 @@ function getCurrentUser() {
 function getSummarySection() {
   return /*html*/`
     <div id="summarySection" class="summarySection">
+      
       <div id="headlineDiv" class="d-flex headlineDiv">
+      <div id= "managementText" class="managementText">Kanban Project Management Tool</div>
       </div>
       <div id="contentAndGreeting" class="d-flex">
       </div>
@@ -43,7 +45,7 @@ function getSummaryHeadlineDiv() {
   return /*html*/`
         
           <h1 id="summaryHeadline" class="summaryHeadline">Summary</h1>
-          <p id="nutshelltext" class="">Everything in a nutshell!</p>
+          <p id="nutshelltext" class="nutshelltext">Everything in a nutshell!</p>
         
   `
 }
