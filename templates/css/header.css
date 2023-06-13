@@ -81,3 +81,11 @@
 .headerContentRightLogout h6:hover {
     transform: scale(1.05);
 }
+
+.headerContentRightLogoutLegal {
+    display: none;
+}
+
+.headerContentRightLogoutHelp{
+    display: none;
+}

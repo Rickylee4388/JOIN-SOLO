@@ -5,13 +5,16 @@ function generateContactsHTML() {
     </div>
     <div class="contactsDetail" id="contactsDetail">
     <div>
-        <div class="contactsDetailHead">
-            <div class="contactsDetailHeadCaption">
-                <h2>Contacts</h2>
-                <img src="/../img/contactsHeadIcon.svg" alt="contactsHeadIcon">
-                <p>Better with a team</p>
+        <div style="display:flex;flex-direction:column">
+            <h5>Kanban Project Management Tool</h5>
+                <div class="contactsDetailHead">
+                    <div class="contactsDetailHeadCaption">
+                        <h2>Contacts</h2>
+                        <img src="/../img/contactsHeadIcon.svg" alt="contactsHeadIcon">
+                        <p>Better with a team</p>
+                    </div>
+                <img onclick="returnToContactslist()" class="contactsDetailHeadPic" src="/../img/returnArrow.svg" alt="returnToListBtn">
             </div>
-            <img onclick="returnToContactslist()" class="contactsDetailHeadPic" src="/../img/returnArrow.svg" alt="returnToListBtn">
         </div>
         <div class="contactsDetailInfo" id="contactsDetailInfo">
         </div>

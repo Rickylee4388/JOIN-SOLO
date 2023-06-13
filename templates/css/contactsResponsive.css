@@ -4,6 +4,11 @@
         padding-top: 30px;
     }
 
+    .contactsDetailInfoHead h4 {
+        width: 80px;
+        height: 80px;
+        line-height: 1.55;
+    }
 }
 
 @media (max-width: 1200px) {
@@ -56,6 +61,10 @@
 }
 
 @media (max-width: 1000px) {
+
+    .contactsDetailHead h2 {
+        margin-top: 20px;
+    }
 
     .contentSection {
         left: 0;
@@ -195,6 +204,14 @@
     .helpLogoMobile{
         display: block;
     }
+
+    .headerContentRightLogoutLegal {
+        display: block;
+    }
+    
+    .headerContentRightLogoutHelp{
+        display: block;
+    }
 }
 
 @media (max-width: 768px) {
@@ -207,6 +224,10 @@
         padding: 10px;
     }
 
+    .contactsDetail h5 {
+        display: block;
+    }
+    
     .sidebarBtn img {
         margin: 0;
         margin-bottom: 10px;
@@ -311,6 +332,17 @@
 
     .headerContentRightLogout {
         right: 26px;
+    }
+
+    .contactsDetailInfoHead h4 {
+        width: 60px;
+        height: 60px;
+        line-height: 1.5;
+        font-size: 40px;
+    }
+    
+    .contactsDetailInfoHead div {
+        margin-left: 30px;
     }
 }
 
