@@ -216,7 +216,7 @@
     padding: 0px;
     width: calc(25% - 26px);
     height: 700px;
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 
 

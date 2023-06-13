@@ -76,7 +76,9 @@ function renderTodoTasksHTML(arrayName) {
 
     for (let i = 0; i < todos.length; i++) {
         const task = todos[i];
-        let ProgressPercent = calculateProgress(i);
+        let subtasksAmount = task['subtasks'].length;
+        let doneSubtasks = task['doneSubTasks'];
+        let ProgressPercent = calculateProgress(subtasksAmount, doneSubtasks);
 
         content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
         renderAssignedToHTML(task);
@@ -93,8 +95,9 @@ function renderInProgressHTML(arrayName) {
 
     for (let i = 0; i < inProgress.length; i++) {
         const task = inProgress[i];
+        let ProgressPercent = calculateProgress(i);
 
-        content.innerHTML += generatePinnedTaskHTML(task);
+        content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
         renderAssignedToHTML(task);
     }
 }
@@ -109,8 +112,9 @@ function renderAwaitingFeedbackHTML(arrayName) {
 
     for (let i = 0; i < awaitingFeedback.length; i++) {
         const task = awaitingFeedback[i];
+        let ProgressPercent = calculateProgress(i);
 
-        content.innerHTML += generatePinnedTaskHTML(task);
+        content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
         renderAssignedToHTML(task);
     }
 }
@@ -125,10 +129,9 @@ function renderDoneHTML(arrayName) {
 
     for (let i = 0; i < done.length; i++) {
         const task = done[i];
-        if (allSubtasks > 0) {
-            document.getElementById(`progressContainer${task['id']}`).classList.remove('d-flex')
-        }
-        content.innerHTML += generatePinnedTaskHTML(task);
+        let ProgressPercent = calculateProgress(i);
+
+        content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
         renderAssignedToHTML(task);
     }
 }
@@ -325,11 +328,11 @@ function configDoneSubtask(i, Id) {
 
 
 
-function calculateProgress(Id) {
-    let task = newTaskArray[Id];
-    let subtasksAmount = task['subtasks'].length;
-    let doneSubtasks = task['doneSubTasks'];
-    let progressInPercent = 100 / subtasksAmount * doneSubtasks;
+function calculateProgress(subTaskAmount, doneAmount) {
+    if (doneAmount > subTaskAmount) {
+        doneAmount = subTaskAmount;
+    }
+    let progressInPercent = 100 / subTaskAmount * doneAmount;
 
     return progressInPercent;
 }
