@@ -159,11 +159,12 @@ function showAssignedToList(i) {
 
 function newSubtask() {
     let newSubtask = document.getElementById('subtasks').value;
-    allSubtasks.push(newSubtask);
 
     if (newSubtask == '') {
         document.getElementById('subtasks').focus();
     } else {
+        allSubtasks.push(newSubtask);
+
         document.getElementById('subtasksList').innerHTML = '';
         for (let i = 0; i < allSubtasks.length; i++) {
             let subtask = allSubtasks[i];
@@ -177,6 +178,14 @@ function newSubtask() {
     }
 
     document.getElementById('subtasks').value = '';
+}
+
+
+function clearFields() {
+    assignedToNames = [];
+    allSubtasks = [];
+    document.getElementById('assignedToList').innerHTML = '';
+    document.getElementById('subtasksList').innerHTML = '';
 }
 
 
@@ -204,6 +213,7 @@ function createTask() {
     allSubtasks = [];
     assignedToNames = [];
     dateArray = [];
+    taskAddedToBoard();
 }
 
 

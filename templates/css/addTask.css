@@ -351,6 +351,12 @@ button {
     transition: ease-in-out 125ms;
 }
 
+.addedTaskPopUp {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
 
 @media (max-width: 1290px) {
     .headlineContainer {
