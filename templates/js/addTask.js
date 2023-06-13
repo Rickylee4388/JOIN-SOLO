@@ -221,3 +221,14 @@ async function saveTasks() {
     await setItem('createdTask', JSON.stringify(newTaskArray));
     renderBoard();
 }
+
+
+function taskAddedToBoard() {
+    document.getElementById('body').classList.add('overlaySection');
+    setTimeout(function() {closePopUp()}, 2000);
+}
+
+
+function closePopUp() {
+    document.getElementById('body').classList.remove('overlaySection');
+}
