@@ -31,7 +31,7 @@ function updateBoardTasks() {
 
 function renderBoardHTML() {
     let content = document.getElementById('contentSection');
-
+    
     content.innerHTML = '';
     content.innerHTML += renderBoardTemplateHTML();
     document.getElementById('body').classList.add('hideScrollBarY');
@@ -76,8 +76,9 @@ function renderTodoTasksHTML(arrayName) {
 
     for (let i = 0; i < todos.length; i++) {
         const task = todos[i];
+        let ProgressPercent = calculateProgress(i);
 
-        content.innerHTML += generatePinnedTaskHTML(task);
+        content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
         renderAssignedToHTML(task);
     }
 }
@@ -160,18 +161,18 @@ function renderTaskAssignmentListHTML(task, count) {
         let initials = getInitials(assignment);
         let bgColor = getBgColor();
    
-        content.innerHTML += renderTaskAssignmentsTemplateHTML(bgColor, initials);
+        content.innerHTML += renderTaskAssignmentsTemplateHTML(task, bgColor, initials);
     }
 }
 
 
 
 function showProgressbar() {
-    for (let i = 1; i < newTaskArray.length; i++) {
+    for (let i = 0; i < newTaskArray.length; i++) {
         const task = newTaskArray[i];
-        
+
         if(task['subtasks'].length > 0) {
-            document.getElementById(`progressContainer${task['id']}`).classList.remove('d-none')
+            document.getElementById(`progressContainer${task['id']}`).classList.remove('v-hide');
         }
     }
 }
@@ -248,6 +249,7 @@ function modifyCurrentTaskHTML(Id) {
     renderModifyAssignmentsHTML(Id);
     setMinDate('modifyDate');
     modifyPrio(prio);
+    renderModifySubtaskList(Id);
 }
 
 
@@ -282,6 +284,54 @@ function modifyPrio(currentPriority) {
 
     document.getElementById(`modify${otherPrio2}`).classList.remove(`${otherPrios[1]}`);
     document.getElementById(`modify${otherPrio2}Icon`).src = `../../img/${otherPrios[1]}Icon.png`;
+}
+
+
+
+function renderModifySubtaskList(Id) {
+    let content = document.getElementById('modifysubtasksList');
+    let task = newTaskArray[Id];
+    alreadyDone = false;
+
+
+    for (let i = 0; i < task['subtasks'].length; i++) {
+        const subtask = task['subtasks'][i];
+        
+        content.innerHTML += /*html*/`
+                            <div class="subtask">
+                    <input id="subtaskCheckBox${i}" type="checkbox" onclick="configDoneSubtask(${i}, ${Id})">
+                    <p id="subtaskName${i}">${subtask}</p>
+                </div>
+        `
+    }
+}
+
+
+
+function configDoneSubtask(i, Id) {
+    let task = newTaskArray[Id];
+    let currentStatus = document.getElementById(`subtaskCheckBox${i}`).checked;
+
+    if(currentStatus == true) {
+        task['doneSubTasks']++;
+        console.log(task['doneSubTasks']);
+    } 
+    
+    if (currentStatus == false) {
+        task['doneSubTasks']--;
+        console.log(task['doneSubTasks']);
+    }
+}
+
+
+
+function calculateProgress(Id) {
+    let task = newTaskArray[Id];
+    let subtasksAmount = task['subtasks'].length;
+    let doneSubtasks = task['doneSubTasks'];
+    let progressInPercent = 100 / subtasksAmount * doneSubtasks;
+
+    return progressInPercent;
 }
 
 
@@ -339,7 +389,7 @@ function drop(stat) {
 
 
 function highlight(stat) {
-    document.getElementById(stat).classList.add('dragAreaHighlight');
+    //document.getElementById(stat).classList.add('dragAreaHighlight');
 }
 
 

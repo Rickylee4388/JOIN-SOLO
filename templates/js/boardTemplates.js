@@ -10,60 +10,80 @@ function renderModifyTaskTemplateHTML(currentTask) {
     return /*html*/`
     <div class="taskModifyPopUp" onclick="doNotClose(event)">
     
-    <div class="closeTaskPopUpButton" onclick="closeTaskPopUp()">X</div>
+        <div class="closeTaskPopUpButton" onclick="closeTaskPopUp()">X</div>
 
-    <div class="titleAndInput m-0">
-        <span>Title</span>
-        <input class="modifyInput" id="modifyTitle" type="text" required placeholder="Enter a title" value="${currentTask['title']}">
-    </div>
+        <div class="titleAndInput m-0">
+            <span>Title</span>
+            <input class="modifyInput" id="modifyTitle" type="text" required placeholder="Enter a title" value="${currentTask['title']}">
+        </div>
 
-    <div class="descriptionAndTextarea">
-        <span>Description</span>
-        <textarea class="modifyInput" id="modifyDescription" type="text" required placeholder="Enter a Description">${currentTask['description']}</textarea>
-    </div>
+        <div class="descriptionAndTextarea">
+            <span>Description</span>
+            <textarea class="modifyInput" id="modifyDescription" type="text" required placeholder="Enter a Description">${currentTask['description']}</textarea>
+        </div>
 
-    <div class="dueDateAndInput">
-        <span>Due Date</span>
-        <input class="modifyInput" type="date" id="modifyDate" required placeholder="dd/mm/yyyy" value="${currentTask['date']}">
-    </div>
+        <div class="dueDateAndInput">
+            <span>Due Date</span>
+            <input class="modifyInput" type="date" id="modifyDate" required placeholder="dd/mm/yyyy" value="${currentTask['date']}">
+        </div>
 
-    <div class="prio">
-        <span>Prio</span>
-        <div class="prioButtons modifyInput">
-            <button type="button" id="modifyUrgent" value="urgent" onclick=" modifyPrio(value)">
-                Urgent
-                <img id="modifyUrgentIcon" src="../../img/urgentIcon.png">
-            </button>
+        <div class="prio">
+            <span>Prio</span>
+            <div class="prioButtons modifyInput">
+                <button type="button" id="modifyUrgent" value="urgent" onclick=" modifyPrio(value)">
+                    Urgent
+                    <img id="modifyUrgentIcon" src="../../img/urgentIcon.png">
+                </button>
 
-            <button type="button" id="modifyMedium" value="medium" onclick=" modifyPrio(value)">
-                Medium
-                <img id="modifyMediumIcon" src="../../img/mediumIcon.png">
-            </button>
+                <button type="button" id="modifyMedium" value="medium" onclick=" modifyPrio(value)">
+                    Medium
+                    <img id="modifyMediumIcon" src="../../img/mediumIcon.png">
+                </button>
 
-            <button type="button" id="modifyLow" value="low" onclick=" modifyPrio(value)">
-                Low
-                <img id="modifyLowIcon" src="../../img/lowIcon.png">
+                <button type="button" id="modifyLow" value="low" onclick=" modifyPrio(value)">
+                    Low
+                    <img id="modifyLowIcon" src="../../img/lowIcon.png">
+                </button>
+            </div>
+        </div>
+
+
+        <div class="assignedToAndSelect">
+            <span>Assigned to</span>
+            <select class="modifyInput" id="modifyAssignedTo" required> 
+                <option value="" disabled selected>Select contacts to assign</option>
+            </select>
+
+            <div id="modifyPopUpAssignmentContainer${currentTask['id']}" class="d-flex mt"></div>
+        </div>
+
+        <div class="addTaskBtn confirmBtn btn-bg" onclick="confirmChangesOnTask('${currentTask['id']}')">
+            Ok 
+            <img src="../../img/checkIcon.png" alt="">
+        </div>
+
+
+        <div class="inputAndButton">
+            <input id="modifysubtasks" placeholder="Add new subtask">
+            <button type="button" onclick="newSubtask()">
+                <img src="../../img/subtaskIcon.png">
             </button>
         </div>
+
+        <div class="subtasksList" id="modifysubtasksList">
+
+        </div>
+
     </div>
 
 
-    <div class="assignedToAndSelect">
-        <span>Assigned to</span>
-        <select class="modifyInput" id="modifyAssignedTo" required> 
-            <option value="" disabled selected>Select contacts to assign</option>
-        </select>
-
-        <div id="modifyPopUpAssignmentContainer${currentTask['id']}" class="d-flex mt"></div>
-    </div>
-
-    <div class="addTaskBtn confirmBtn btn-bg" onclick="confirmChangesOnTask('${currentTask['id']}')">
-        Ok 
-        <img src="../../img/checkIcon.png" alt="">
-    </div>
-    </div>
    `
 }
+
+
+
+
+
 
 
 
@@ -132,7 +152,7 @@ function renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id) {
 
 
 
-function generatePinnedTaskHTML(task) {
+function generatePinnedTaskHTML(task, progressInPercent) {
     return /*html*/`
     <div onclick="openExistingTaskPopUp(${task['id']})">
         <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task['id']}">
@@ -143,9 +163,15 @@ function generatePinnedTaskHTML(task) {
         <h3 class="pinnedTaskHeadline">${task['title']}</h3>
         <p class="pinnedTaskDiscription">${task['description']}</p>
 
-        <div id="progressContainer${task['id']}" class="progressContainer d-none">
-            <div class="progressBar"></div>
-            <div class="progressText">0/${task['subtasks'].length} Done</div>
+        <div id="progressContainer${task['id']}" class="progressContainer v-hide">
+ 
+
+
+            <div class="progressBar">
+                <div class="blueProgress" style="width:${progressInPercent}%"></div>
+            </div>
+            
+            <div class="progressText">${task['doneSubTasks']} / ${task['subtasks'].length} Done</div>
         </div>
 
         <div class="pinnedTaskContactsArrowContainer">
@@ -165,9 +191,9 @@ function generatePinnedTaskHTML(task) {
 
 
 
-function renderTaskAssignmentsTemplateHTML(bgColor, initials) {
+function renderTaskAssignmentsTemplateHTML(task, bgColor, initials) {
     return /*html*/`
-    <div class="contactContainer" style="background-color:${bgColor}">${initials}</div>
+    <div class="contactContainer" id="" style="background-color:${bgColor}">${initials}</div>
     `; 
 }
 

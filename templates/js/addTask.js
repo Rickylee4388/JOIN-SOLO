@@ -195,7 +195,8 @@ function createTask() {
         'date': date,
         'prio': prio,
         'stat': chosenStat,
-        'subtasks': allSubtasks
+        'subtasks': allSubtasks,
+        'doneSubTasks': 0
     };
 
     newTaskArray.push(newTask);
