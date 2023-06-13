@@ -211,7 +211,7 @@
     padding: 0px;
     width: calc(25% - 26px);
     height: 700px;
-    background-color: #FF7A00;
+    overflow-y: hidden;
 }
 
 
@@ -279,9 +279,8 @@
     min-height: 300px;
     height: 600px;
     width: 100%;
-    margin-top: 26px;
-    overflow-y: scroll;
-    background-color: aqua;
+    margin-top: 16px;
+
 }
 
 
@@ -434,6 +433,20 @@
 
 .m-0 {
     margin: 0 !important;
+}
+
+
+.prioContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 18px;
+    gap: 10px;
+    border-radius: 10px;
+    width: 131px;
+    height: 33px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 }
 
 

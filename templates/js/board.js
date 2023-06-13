@@ -246,6 +246,7 @@ function modifyCurrentTaskHTML(Id) {
     content.innerHTML = renderModifyTaskTemplateHTML(currentTask);
 
     renderModifyAssignmentsHTML(Id);
+    setMinDate('modifyDate');
     modifyPrio(prio);
 }
 
@@ -297,6 +298,17 @@ function confirmChangesOnTask(Id) {
     currentTask['prio'] = newPrio;
 
     closeTaskPopUp();
+    saveTasks();
+    updateBoardTasks();
+}
+
+
+
+function deleteTask(Id) {
+
+    newTaskArray.splice(Id, 1);
+    closeTaskPopUp();
+    saveTasks();
     updateBoardTasks();
 }
 
@@ -320,6 +332,7 @@ function allowDrop(ev) {
 function drop(stat) {
     newTaskArray[currentDraggedTask]['stat']  = stat;
     document.getElementById(`pinnedTaskContainer${currentDraggedTask}`).classList.remove('rotateDeg');
+    saveTasks();
     updateBoardTasks();
 }
 

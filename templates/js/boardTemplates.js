@@ -88,10 +88,14 @@ function renderTaskPopUpTableTemplateHTML(clickedTask) {
     <div class="taskPopUpRow">
         <div class="taskPopUpLeftTd"><b>Priority:</b></div>
 
-        <div class="taskPopUpRightTd taskPopUpPrio">
-            ${clickedTask['prio']} <img src="../../img/${clickedTask['prio'].toLowerCase()}Icon.png" alt="">
-        </div>
+    <div id="modifyMedium" class="${clickedTask['prio']} prioContainer">
+        ${clickedTask['prio']} <img id="modifyMediumIcon" src="../../img/${clickedTask['prio']}WhiteIcon.png">
     </div>
+
+    </div>
+
+
+
 
     <div class="closeTaskPopUpButton" onclick="closeTaskPopUp()">X</div>
 `
@@ -118,7 +122,7 @@ function renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id) {
         </div>
 
         <div class="popUpButtonsContainer">
-            <div class="taskPopUpButton leftBtn"><img src="../../img/delete.png" alt=""></div>
+            <div class="taskPopUpButton leftBtn" onclick="deleteTask('${Id}')"><img src="../../img/delete.png" alt=""></div>
 
             <div class="taskPopUpButton rightBtn" onclick="openModifyTaskPopUp('${Id}')"><img src="../../img/pen.png" alt=""></div>
         </div>
