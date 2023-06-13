@@ -16,8 +16,8 @@
 }
 
 .addTaskOverlay::-webkit-scrollbar-track {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 @keyframes slideIn {
