@@ -36,7 +36,7 @@ function getSummarySection() {
       <div id="headlineDiv" class="d-flex headlineDiv">
       <div id= "managementText" class="managementText">Kanban Project Management Tool</div>
       </div>
-      <div id="contentAndGreeting" class="d-flex">
+      <div id="contentAndGreeting" class="d-flex contentAndGreeting ">
       </div>
     </div>
 `;
@@ -53,14 +53,14 @@ function getSummaryinnerContent() {
   return /*html*/`
             <div id="innerContentSummary" class="">
             <div id="taskSection" class="d-flex">
-              <div id="inBoard" class="taskbox">                              
+              <div id="inBoard" class="taskbox" onclick="renderBoard()">                              
               </div>
-              <div id="inProgress" class="taskbox">                               
+              <div id="inProgress" class="taskbox" onclick="renderBoard()">                               
               </div>
-              <div id="awaitingFeedback" class="taskbox">                             
+              <div id="awaitingFeedback" class="taskbox" onclick="renderBoard()">                             
               </div>
             </div>
-            <div id="newsAndDate" class="newsAndDate">
+            <div id="newsAndDate" class="newsAndDate" onclick="renderBoard()">
               <div id="news" class="news">                
               </div>
               <div id="date" class="date">
@@ -69,9 +69,9 @@ function getSummaryinnerContent() {
               </div>
             </div>
             <div id="personalTasks" class="personalTasks d-flex">
-              <div id="toDo" class="personalTaskBox toDobg">
+              <div id="toDo" class="personalTaskBox toDobg" onclick="renderBoard()">
               </div>
-              <div id="done" class="personalTaskBox donebg">
+              <div id="done" class="personalTaskBox donebg" onclick="renderBoard()">
               </div>
             </div>
           </div>
