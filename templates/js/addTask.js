@@ -62,7 +62,7 @@ function setMinDate(id) {
 
 function pushDate() {
     let dueDate = document.getElementById('date').value;
-    dateArray.push(dueDate);
+    dateArray.splice(0, 1, dueDate);
 }
 
 

@@ -54,7 +54,7 @@ function renderTwoButtonsContainerOverlay() {
 
 function pushDateOverlay() {
     let dueDate = document.getElementById('dateOverlay').value;
-    dateArray.push(dueDate);
+    dateArray.splice(0, 1, dueDate);
 }
 
 
