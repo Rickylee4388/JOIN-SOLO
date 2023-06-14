@@ -70,7 +70,7 @@ function renderModifyTaskTemplateHTML(currentTask) {
             </button>
         </div>
 
-        <div class="subtasksList" id="modifysubtasksList">
+        <div class="subtasksList modifySubtaskList" id="modifysubtasksList">
 
         </div>
 
@@ -264,6 +264,29 @@ function renderBoardTemplateHTML() {
         <section id="boardHeadlineContainer" class="boardHeadlineContainer"></section>
 
         <section id="boardContentContainer" class="boardContentContainer"></section>
+    </div>
+    `
+}
+
+
+
+
+function renderCheckedBoxTemplateHTML(i, Id, subtask) {
+    return /*html*/`
+    <div class="subtask">
+        <input id="subtaskCheckBox${i}" type="checkbox" checked onclick="configDoneSubtask(${i}, ${Id})">
+        <p id="subtaskName${i}">${subtask}</p>
+    </div>
+    `
+}
+
+
+
+function renderUncheckedBoxTemplateHTML(i, Id, subtask) {
+    return /*html*/`
+    <div class="subtask">
+        <input id="subtaskCheckBox${i}" type="checkbox"  onclick="configDoneSubtask(${i}, ${Id})">
+        <p id="subtaskName${i}">${subtask}</p>
     </div>
     `
 }

@@ -111,12 +111,18 @@ function renderAwaitingFeedbackHTML(arrayName) {
 
     content.innerHTML = '';
 
-    for (let i = 0; i < awaitingFeedback.length; i++) {
-        const task = awaitingFeedback[i];
-        let ProgressPercent = calculateProgress(i);
-
-        content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
-        renderAssignedToHTML(task);
+    if (awaitingFeedback.length == 0) {
+        content.innerHTML += /*html*/`
+            Noch keine Tasks vorhanden
+        `
+    } else {
+        for (let i = 0; i < awaitingFeedback.length; i++) {
+            const task = awaitingFeedback[i];
+            let ProgressPercent = calculateProgress(i);
+    
+            content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
+            renderAssignedToHTML(task);
+        }
     }
 }
 
@@ -295,30 +301,17 @@ function modifyPrio(currentPriority) {
 function renderModifySubtaskList(Id) {
     let content = document.getElementById('modifysubtasksList');
     let task = newTaskArray[Id];
-    alreadyDone = false;
-
 
     for (let i = 0; i < task['subtasks'].length; i++) {
         const subtask = task['subtasks'][i];
         let isChecked = task['isChecked'][i];
 
-
         if(isChecked == true) {
-            content.innerHTML += /*html*/`
-            <div class="subtask">
-                <input id="subtaskCheckBox${i}" type="checkbox" checked onclick="configDoneSubtask(${i}, ${Id})">
-                <p id="subtaskName${i}">${subtask}</p>
-            </div>
-            `
-        } else {
-            content.innerHTML += /*html*/`
-            <div class="subtask">
-                <input id="subtaskCheckBox${i}" type="checkbox"  onclick="configDoneSubtask(${i}, ${Id})">
-                <p id="subtaskName${i}">${subtask}</p>
-            </div>
-            `
+            content.innerHTML += renderCheckedBoxTemplateHTML(i, Id, subtask);
+        } 
+        if(isChecked == false) {
+            content.innerHTML += renderUncheckedBoxTemplateHTML(i, Id, subtask);
         }
-
     }
 }
 
@@ -429,18 +422,15 @@ function searchTask() {
         let search = searchInput.toLowerCase();
         let search2 =  capitalizeFirstLetter(search);
 
-        if (currentTask['title'].includes(search || search2) || currentTask['description'].includes(search || search2)) {
+        if (currentTask['title'].includes(search) || currentTask['description'].includes(search)) {
             filteredTasks.push(currentTask);
-            }
-        
-
-        if (currentTask['title'].includes(search && search2) || currentTask['description'].includes(search && search2)) {
-            filteredTasks.push(currentTask);
+            } else if(currentTask['title'].includes(search2) || currentTask['description'].includes(search2)) {
+                filteredTasks.push(currentTask);
             }
         }
-       
         renderFilteredTasks('filteredTasks');
-    }
+}
+
 
 
 function capitalizeFirstLetter(string) {
