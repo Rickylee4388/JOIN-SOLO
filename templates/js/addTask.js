@@ -2,6 +2,7 @@ let newTaskArray = [];
 let prio = undefined;
 let allSubtasks = [];
 let assignedToNames = [];
+let contactsColors = [];
 let assignedToInitials = [];
 let dateArray = [];
 let isChecked = [];
@@ -39,8 +40,9 @@ function renderContactsAddTask() {
     for (let i = 0; i < allContacts.length; i++) {
         const allData = allContacts[i];
         const { name } = getJoinData(allData);
+        const {color} = getJoinData(allData);
         document.getElementById('assignedTo').innerHTML += /*html*/ `
-            <option value="${name}">${name}</option>
+            <option value="${color}">${name}</option>
         `;  
     }
 }
@@ -134,13 +136,15 @@ function low() {
 
 function assignedTo() {
     let assignee = document.getElementById("assignedTo");
-    let selectedAssignee = assignee.options[assignee.selectedIndex].value;
+    let selectedAssignee = assignee.options[assignee.selectedIndex].innerHTML;
+    let selectedColor = assignee.options[assignee.selectedIndex].value;
     let selectedAssignee2 = assignee.options[assignee.selectedIndex];
     selectedAssignee2.disabled = true;
     let i = (assignee.selectedIndex) - 1;
 
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
         assignedToNames.push(selectedAssignee);
+        contactsColors.push(selectedColor);
     }
     showAssignedToList(i);
 }
@@ -153,7 +157,7 @@ function showAssignedToList(i) {
         <div class="assigneeContainer" style="background-color: ${color}">
             ${initials}
         </div>
-    `;
+    `; 
 }
 
 
@@ -193,7 +197,8 @@ function createTask() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
     let category = document.getElementById('category').value;
-    let date = dateArray;
+    let date = document.getElementById('date').value;
+
 
     let newTask = {
         'id': '',
@@ -206,7 +211,8 @@ function createTask() {
         'stat': chosenStat,
         'subtasks': allSubtasks,
         'isChecked': isChecked,
-        'doneSubTasks': 0
+        'doneSubTasks': 0,
+        'assignedAndColor': {name: `${assignedToNames}`, color: `${contactsColors}`}
     };
 
     newTaskArray.push(newTask);

@@ -96,7 +96,9 @@ function renderInProgressHTML(arrayName) {
 
     for (let i = 0; i < inProgress.length; i++) {
         const task = inProgress[i];
-        let ProgressPercent = calculateProgress(i);
+        let subtasksAmount = task['subtasks'].length;
+        let doneSubtasks = task['doneSubTasks'];
+        let ProgressPercent = calculateProgress(subtasksAmount, doneSubtasks);
 
         content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
         renderAssignedToHTML(task);
@@ -118,7 +120,9 @@ function renderAwaitingFeedbackHTML(arrayName) {
     } else {
         for (let i = 0; i < awaitingFeedback.length; i++) {
             const task = awaitingFeedback[i];
-            let ProgressPercent = calculateProgress(i);
+            let subtasksAmount = task['subtasks'].length;
+            let doneSubtasks = task['doneSubTasks'];
+            let ProgressPercent = calculateProgress(subtasksAmount, doneSubtasks);
     
             content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
             renderAssignedToHTML(task);
@@ -136,7 +140,9 @@ function renderDoneHTML(arrayName) {
 
     for (let i = 0; i < done.length; i++) {
         const task = done[i];
-        let ProgressPercent = calculateProgress(i);
+        let subtasksAmount = task['subtasks'].length;
+        let doneSubtasks = task['doneSubTasks'];
+        let ProgressPercent = calculateProgress(subtasksAmount, doneSubtasks);
 
         content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
         renderAssignedToHTML(task);
@@ -169,7 +175,7 @@ function renderTaskAssignmentListHTML(task, count) {
     for (let i = 0; i < count; i++) {
         const assignment = task['assignedTo'][i];
         let initials = getInitials(assignment);
-        let bgColor = getBgColor();
+        let bgColor = task['assignedAndColor']['color'];
    
         content.innerHTML += renderTaskAssignmentsTemplateHTML(task, bgColor, initials);
     }
@@ -234,7 +240,7 @@ function renderTaskPopUpAssignmentsHTML(clickedTask) {
     for (let i = 0; i < clickedTask['assignedTo'].length; i++) {
         const assignment = clickedTask['assignedTo'][i];
         let initials = getInitials(assignment);
-        let bgColor = getBgColor();
+        let bgColor = clickedTask['assignedAndColor']['color'];
         
         content.innerHTML += renderTaskAssignmentsPlusInitialsTemplateHTML(assignment, initials, bgColor);
     } 
@@ -271,7 +277,7 @@ function renderModifyAssignmentsHTML(Id) {
     for (let i = 0; i < currentTask['assignedTo'].length; i++) {
         const assignment = currentTask['assignedTo'][i];
         let initials = getInitials(assignment);
-        let bgColor = getBgColor();
+        let bgColor = currentTask['assignedAndColor']['color'];
         
         content.innerHTML += modifyAssignmentsTemplateHTML(bgColor, initials);
     }
