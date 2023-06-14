@@ -19,7 +19,7 @@ function renderHeadlineOverlay() {
         <img src="../../img/cancelIcon.png" onclick="closeOverlay()">
     `;
     renderContentLeftAndRightOverlay();
-    renderContactsAddTaskOverlay();
+    renderContactsAddTask('assignedToOverlay');
     activatePrioButtonsOverlay();
 }
 
@@ -40,8 +40,9 @@ function renderContactsAddTaskOverlay() {
     for (let i = 0; i < allContacts.length; i++) {
         const allData = allContacts[i];
         const { name } = getJoinData(allData);
+        const { color } = getJoinData(allData);
         document.getElementById('assignedToOverlay').innerHTML += /*html*/ `
-            <option value="${name}">${name}</option>
+            <option value="${color}">${name}</option>
         `;  
     }
 }
@@ -130,12 +131,14 @@ function low() {
 function assignedToOverlay() {
     let assignee = document.getElementById("assignedToOverlay");
     let selectedAssignee = assignee.options[assignee.selectedIndex].value;
+    let color = assignee.options[assignee.selectedIndex].id;
     let selectedAssignee2 = assignee.options[assignee.selectedIndex];
     selectedAssignee2.disabled = true;
     let i = (assignee.selectedIndex) - 1;
 
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
         assignedToNames.push(selectedAssignee);
+        contactsColors.push(color);
     }
     showAssignedToList(i);
 }

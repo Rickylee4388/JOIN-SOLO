@@ -175,7 +175,7 @@ function renderTaskAssignmentListHTML(task, count) {
     for (let i = 0; i < count; i++) {
         const assignment = task['assignedTo'][i];
         let initials = getInitials(assignment);
-        let bgColor = task['assignedAndColor']['color'];
+        let bgColor = task['color'][i];
    
         content.innerHTML += renderTaskAssignmentsTemplateHTML(task, bgColor, initials);
     }
@@ -240,7 +240,7 @@ function renderTaskPopUpAssignmentsHTML(clickedTask) {
     for (let i = 0; i < clickedTask['assignedTo'].length; i++) {
         const assignment = clickedTask['assignedTo'][i];
         let initials = getInitials(assignment);
-        let bgColor = clickedTask['assignedAndColor']['color'];
+        let bgColor = clickedTask['color']['i'];
         
         content.innerHTML += renderTaskAssignmentsPlusInitialsTemplateHTML(assignment, initials, bgColor);
     } 
@@ -277,7 +277,7 @@ function renderModifyAssignmentsHTML(Id) {
     for (let i = 0; i < currentTask['assignedTo'].length; i++) {
         const assignment = currentTask['assignedTo'][i];
         let initials = getInitials(assignment);
-        let bgColor = currentTask['assignedAndColor']['color'];
+        let bgColor = currentTask['color'][i];
         
         content.innerHTML += modifyAssignmentsTemplateHTML(bgColor, initials);
     }
@@ -326,12 +326,10 @@ function renderModifySubtaskList(Id) {
 function configDoneSubtask(i, Id) {
     let task = newTaskArray[Id];
     let currentStatus = document.getElementById(`subtaskCheckBox${i}`).checked;
-    let currentStatusBox = document.getElementById(`subtaskCheckBox${i}`);
 
     if(currentStatus == true) {
         task['doneSubTasks']++;
         console.log(task['doneSubTasks']);
-        
     } 
     
     if (currentStatus == false) {

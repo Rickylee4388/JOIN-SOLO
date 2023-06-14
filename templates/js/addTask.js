@@ -26,7 +26,7 @@ function renderHeadline() {
         <h1>Add Task</h1>
     `;
     renderContentLeftAndRight();
-    renderContactsAddTask();
+    renderContactsAddTask('assignedTo');
 }
 
 
@@ -37,15 +37,20 @@ function renderContentLeftAndRight() {
 }
 
 
-function renderContactsAddTask() {
+function renderContactsAddTask(Id) {
     for (let i = 0; i < allContacts.length; i++) {
         const allData = allContacts[i];
-        const { name } = getJoinData(allData);
-        const {color} = getJoinData(allData);
-        document.getElementById('assignedTo').innerHTML += /*html*/ `
-            <option value="${color}">${name}</option>
+        const { name, color } = getJoinData(allData);
+
+        document.getElementById(Id).innerHTML += /*html*/ `
+            <option id="${color}" value="${name}">${name}</option>
         `;  
     }
+}
+
+
+function setColor(color) {
+    contactsColors.push(color);
 }
 
 
@@ -137,15 +142,15 @@ function low() {
 
 function assignedTo() {
     let assignee = document.getElementById("assignedTo");
-    let selectedAssignee = assignee.options[assignee.selectedIndex].innerHTML;
-    let selectedColor = assignee.options[assignee.selectedIndex].value;
+    let selectedAssignee = assignee.options[assignee.selectedIndex].value;
+    let color = assignee.options[assignee.selectedIndex].id;
     let selectedAssignee2 = assignee.options[assignee.selectedIndex];
     selectedAssignee2.disabled = true;
     let i = (assignee.selectedIndex) - 1;
 
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
         assignedToNames.push(selectedAssignee);
-        contactsColors.push(selectedColor);
+        contactsColors.push(color);
     }
     showAssignedToList(i);
 }
@@ -214,7 +219,7 @@ function createTask() {
         'subtasks': allSubtasks,
         'isChecked': isChecked,
         'doneSubTasks': 0,
-        'assignedAndColor': {name: `${assignedToNames}`, color: `${contactsColors}`}
+        'color': contactsColors
     };
 
     newTaskArray.push(newTask);
