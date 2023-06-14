@@ -7,6 +7,7 @@ let currentDraggedOnStatus;
 let filteredTasks = [];
 let newPrio;
 let chosenStat = 'todo';
+let currentBooleanValue = 'false';
 
 
 
@@ -299,10 +300,10 @@ function renderModifySubtaskList(Id) {
 
     for (let i = 0; i < task['subtasks'].length; i++) {
         const subtask = task['subtasks'][i];
-        
+
         content.innerHTML += /*html*/`
                             <div class="subtask">
-                    <input id="subtaskCheckBox${i}" type="checkbox" onclick="configDoneSubtask(${i}, ${Id})">
+                    <input id="subtaskCheckBox${i}" type="checkbox" checked="${currentBooleanValue}" onclick="configDoneSubtask(${i}, ${Id})">
                     <p id="subtaskName${i}">${subtask}</p>
                 </div>
         `
@@ -318,12 +319,14 @@ function configDoneSubtask(i, Id) {
     if(currentStatus == true) {
         task['doneSubTasks']++;
         console.log(task['doneSubTasks']);
+
     } 
     
     if (currentStatus == false) {
         task['doneSubTasks']--;
         console.log(task['doneSubTasks']);
     }
+    currentBooleanValue = currentStatus;
 }
 
 
@@ -360,6 +363,7 @@ function confirmChangesOnTask(Id) {
 function deleteTask(Id) {
 
     newTaskArray.splice(Id, 1);
+    giveTaskId();
     closeTaskPopUp();
     saveTasks();
     updateBoardTasks();

@@ -231,9 +231,9 @@ function renderBoardHeaderTemplateHTML() {
     <div class="boardHeadlineLeftContainer">
         <div class="board">Board</div>
 
-        <div class="plusBtnContainer mobileAddTask d-none">
-            <div class="plusLine1"></div>
-            <div class="plusLine2"></div>
+        <div class="plusBtnContainer mobileAddTask d-none btn-bg" onclick="openAddTaskOverlay('todo')">
+            <div class="plusLine1 bg-white"></div>
+            <div class="plusLine2 bg-white"></div>
         </div>
     </div>
 

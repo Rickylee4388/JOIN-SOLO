@@ -198,6 +198,17 @@
 }
 
 
+.bg-white {
+    background-color: white !important;
+}
+
+
+.mobileAddTask {
+    width: 40px;
+    height: 40px;
+}
+
+
 .boardContentContainer {
     display: flex;
     flex-wrap: wrap;
@@ -643,6 +654,7 @@
 @media(max-width: 830px) {
     .boardHeadlineContainer {
         flex-direction: column;
+        gap: 30px;
     }
     .addTaskBtn {
         display: none;
@@ -663,8 +675,11 @@
 
 @media(max-width: 730px) {
     .boardStatusHeadContainer {
-        width: 250px;
+
         padding: 19px;
+    }
+    .pinnedTaskContainer {
+        width: 180px;
     }
     .statContainer {
         width: calc(100% - 26px);
@@ -674,8 +689,9 @@
 
 @media(max-width: 400px) {
     .boardBody {
-        padding: 0;
+        padding: 0px 8px;
     }
+
 }
 
 
