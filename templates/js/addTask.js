@@ -4,7 +4,7 @@ let allSubtasks = [];
 let assignedToNames = [];
 let assignedToInitials = [];
 let dateArray = [];
-
+let isChecked = [];
 
 async function initAddTask() {
     document.getElementById('contentSection').innerHTML = generateAddTaskContent();
@@ -159,12 +159,12 @@ function showAssignedToList(i) {
 
 function newSubtask() {
     let newSubtask = document.getElementById('subtasks').value;
-
+    
     if (newSubtask == '') {
         document.getElementById('subtasks').focus();
     } else {
         allSubtasks.push(newSubtask);
-
+        isChecked.push(false);
         document.getElementById('subtasksList').innerHTML = '';
         for (let i = 0; i < allSubtasks.length; i++) {
             let subtask = allSubtasks[i];
@@ -205,6 +205,7 @@ function createTask() {
         'prio': prio,
         'stat': chosenStat,
         'subtasks': allSubtasks,
+        'isChecked': isChecked,
         'doneSubTasks': 0
     };
 

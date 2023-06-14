@@ -300,13 +300,25 @@ function renderModifySubtaskList(Id) {
 
     for (let i = 0; i < task['subtasks'].length; i++) {
         const subtask = task['subtasks'][i];
+        let isChecked = task['isChecked'][i];
 
-        content.innerHTML += /*html*/`
-                            <div class="subtask">
-                    <input id="subtaskCheckBox${i}" type="checkbox" checked="${currentBooleanValue}" onclick="configDoneSubtask(${i}, ${Id})">
-                    <p id="subtaskName${i}">${subtask}</p>
-                </div>
-        `
+
+        if(isChecked == true) {
+            content.innerHTML += /*html*/`
+            <div class="subtask">
+                <input id="subtaskCheckBox${i}" type="checkbox" checked onclick="configDoneSubtask(${i}, ${Id})">
+                <p id="subtaskName${i}">${subtask}</p>
+            </div>
+            `
+        } else {
+            content.innerHTML += /*html*/`
+            <div class="subtask">
+                <input id="subtaskCheckBox${i}" type="checkbox"  onclick="configDoneSubtask(${i}, ${Id})">
+                <p id="subtaskName${i}">${subtask}</p>
+            </div>
+            `
+        }
+
     }
 }
 
@@ -315,18 +327,20 @@ function renderModifySubtaskList(Id) {
 function configDoneSubtask(i, Id) {
     let task = newTaskArray[Id];
     let currentStatus = document.getElementById(`subtaskCheckBox${i}`).checked;
+    let currentStatusBox = document.getElementById(`subtaskCheckBox${i}`);
 
     if(currentStatus == true) {
         task['doneSubTasks']++;
         console.log(task['doneSubTasks']);
-
+        
     } 
     
     if (currentStatus == false) {
         task['doneSubTasks']--;
         console.log(task['doneSubTasks']);
     }
-    currentBooleanValue = currentStatus;
+    task['isChecked'][i] = currentStatus;
+    console.log(task['isChecked'][i]);
 }
 
 

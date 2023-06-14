@@ -171,6 +171,7 @@
     .sidebarBtn {
         padding: 10px;
         min-width: 120px;
+        justify-content: center;
     }
 
     .sidebarBtn img {
