@@ -49,11 +49,6 @@ function renderContactsAddTask(Id) {
 }
 
 
-function setColor(color) {
-    contactsColors.push(color);
-}
-
-
 function renderTwoButtonsContainer() {
     document.getElementById('twoButtonsContainer').innerHTML = generateTwoButtonsContainer();
 }

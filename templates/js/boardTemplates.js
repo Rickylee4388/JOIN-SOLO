@@ -142,9 +142,9 @@ function renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id) {
         </div>
 
         <div class="popUpButtonsContainer">
-            <div class="taskPopUpButton leftBtn" onclick="deleteTask('${Id}')"><img src="../../img/delete.png" alt=""></div>
+            <div onmouseover="changeImg()" class="taskPopUpButton leftBtn btn-border" onclick="deleteTask('${Id}')"><img id="deleteTask-Img" src="../../img/delete.png" alt=""></div>
 
-            <div class="taskPopUpButton rightBtn" onclick="openModifyTaskPopUp('${Id}')"><img src="../../img/pen.png" alt=""></div>
+            <div class="taskPopUpButton rightBtn btn-bg" onclick="openModifyTaskPopUp('${Id}')"><img src="../../img/pen.png" alt=""></div>
         </div>
     </div>
 `
@@ -274,7 +274,7 @@ function renderBoardTemplateHTML() {
 
 function renderCheckedBoxTemplateHTML(i, Id, subtask) {
     return /*html*/`
-    <div class="subtask">
+    <div class="subtask modifySubtask">
         <input id="subtaskCheckBox${i}" type="checkbox" checked onclick="configDoneSubtask(${i}, ${Id})">
         <p id="subtaskName${i}">${subtask}</p>
     </div>
@@ -285,7 +285,7 @@ function renderCheckedBoxTemplateHTML(i, Id, subtask) {
 
 function renderUncheckedBoxTemplateHTML(i, Id, subtask) {
     return /*html*/`
-    <div class="subtask">
+    <div class="subtask modifySubtask">
         <input id="subtaskCheckBox${i}" type="checkbox"  onclick="configDoneSubtask(${i}, ${Id})">
         <p id="subtaskName${i}">${subtask}</p>
     </div>
