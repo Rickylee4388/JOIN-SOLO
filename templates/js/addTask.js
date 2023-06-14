@@ -7,6 +7,7 @@ let assignedToInitials = [];
 let dateArray = [];
 let isChecked = [];
 
+
 async function initAddTask() {
     document.getElementById('contentSection').innerHTML = generateAddTaskContent();
     await loadTasks();
@@ -197,7 +198,8 @@ function createTask() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
     let category = document.getElementById('category').value;
-    let date = document.getElementById('date').value;
+    let  date = dateArray;
+
 
 
     let newTask = {
