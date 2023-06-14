@@ -50,6 +50,7 @@ input:focus {
 }
 
 textarea {
+    resize: none;
     box-sizing: border-box;
     padding: 18px 21px;
     width: 422px;

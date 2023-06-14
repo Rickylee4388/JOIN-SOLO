@@ -1,3 +1,6 @@
+.pointer{
+    cursor: pointer;
+}
 .d-flex {
     display: flex;
 }
@@ -46,6 +49,7 @@
 }
 
 .taskbox {
+    cursor: pointer;
     margin-right: 32px;
     height: 110px;
     width: 140px;
@@ -270,10 +274,14 @@
     }
 
     .summarySection {
-        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        padding: 35px;
+        align-items: center;
     }
 
     .headlineDiv {
+        width: 360px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -329,5 +337,10 @@
         border-radius: 15px;
         height: 95px;
         margin-top: 25px;
+    }
+}
+@media (max-width: 500px){
+    .summarySection{
+        padding: 15px;
     }
 }

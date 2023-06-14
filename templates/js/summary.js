@@ -60,7 +60,7 @@ function getSummaryinnerContent() {
               <div id="awaitingFeedback" class="taskbox" onclick="renderBoard()">                             
               </div>
             </div>
-            <div id="newsAndDate" class="newsAndDate" onclick="renderBoard()">
+            <div id="newsAndDate" class="newsAndDate pointer" onclick="renderBoard()">
               <div id="news" class="news">                
               </div>
               <div id="date" class="date">
@@ -69,9 +69,9 @@ function getSummaryinnerContent() {
               </div>
             </div>
             <div id="personalTasks" class="personalTasks d-flex">
-              <div id="toDo" class="personalTaskBox toDobg" onclick="renderBoard()">
+              <div id="toDo" class="personalTaskBox toDobg pointer" onclick="renderBoard()">
               </div>
-              <div id="done" class="personalTaskBox donebg" onclick="renderBoard()">
+              <div id="done" class="personalTaskBox donebg pointer" onclick="renderBoard()">
               </div>
             </div>
           </div>

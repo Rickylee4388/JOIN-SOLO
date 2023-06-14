@@ -490,6 +490,7 @@
     .innerContentLogin {
         width: 300px;
         height: 435px;
+        margin-top: 25px;
     }
 
     .emailAndPassword input {

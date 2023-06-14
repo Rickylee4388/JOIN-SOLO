@@ -228,6 +228,7 @@ function renderStatusfieldsTemplateHTML(i, stat, statClass) {
 
 function renderBoardHeaderTemplateHTML() {
     return /*html*/`
+    <div id= "BoardManagementText" class="boardManagementText">Kanban Project Management Tool</div>
     <div class="boardHeadlineLeftContainer">
         <div class="board">Board</div>
 

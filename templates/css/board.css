@@ -1,8 +1,8 @@
 .boardBody {
-    background-color: rgb(246,247,248);
+    background-color: rgb(246, 247, 248);
     margin: 0;
-    height: 85%;
-    padding: 82px 26px 0px 26px;
+    height: 100%;
+    padding: 0px 26px 0px 26px;
 }
 
 
@@ -67,8 +67,12 @@
     align-items: center;
     justify-content: space-between;
     padding: 0px;
+    padding-top: 36px;
 }
 
+.boardManagementText {
+    display: none;
+}
 
 .board {
     width: 176px;
@@ -120,12 +124,13 @@
 }
 
 
-.searchInput:focus{
+.searchInput:focus {
     outline: none;
 }
 
 
-.searchBtn, .addTaskBtn {
+.searchBtn,
+.addTaskBtn {
     height: 31px;
 }
 
@@ -167,25 +172,25 @@
 
 
 .btn-bg:hover {
-    background-color: rgb(41,171,226);
+    background-color: rgb(41, 171, 226);
     cursor: pointer;
 }
 
 
 .btn-border-color:hover {
-    border: 2px solid rgb(41,171,226);
-    color: rgb(41,171,226);
+    border: 2px solid rgb(41, 171, 226);
+    color: rgb(41, 171, 226);
     cursor: pointer;
 }
 
 
 .btn-border-color:hover .plusLine1 {
-    background-color: rgb(41,171,226);
+    background-color: rgb(41, 171, 226);
 }
 
 
 .btn-border-color:hover .plusLine2 {
-    background-color: rgb(41,171,226);
+    background-color: rgb(41, 171, 226);
 }
 
 
@@ -220,7 +225,7 @@
 }
 
 
-.statContainer{
+.statContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -269,7 +274,7 @@
 .plusLine1 {
     position: absolute;
     left: 7.5;
-    top:7.5px;
+    top: 7.5px;
     height: 15px;
     width: 2px;
     background-color: black;
@@ -279,7 +284,7 @@
 .plusLine2 {
     position: absolute;
     left: 7.5;
-    top:7.5px;
+    top: 7.5px;
     height: 15px;
     width: 2px;
     background-color: black;
@@ -434,14 +439,19 @@
 }
 
 
-.taskOverviewPopUp, .taskModifyPopUp {
+.taskOverviewPopUp,
+.taskModifyPopUp {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 40px;
     gap: 25px;
     isolation: isolate;
+<<<<<<< HEAD
     width: auto;
+=======
+    width: 500px;
+>>>>>>> 8b1cf8684c5010e22d5c44851ffaa358df1bb96f
     height: 80vh;
     position: relative;
     background: #FFFFFF;
@@ -510,9 +520,7 @@
 }
 
 
-.taskPopUpLeftTd {
-
-}
+.taskPopUpLeftTd {}
 
 
 .taskPopUpRightTd {
@@ -649,27 +657,39 @@
         width: 250px;
         padding: 19px;
     }
+
     .statContainer {
         width: calc(50% - 26px);
     }
+
     .boardContentContainer {
         justify-content: center;
     }
 }
 
+@media(max-width: 1000px) {
+
+    .taskOverviewPopUp,
+    .taskModifyPopUp {
+        height: 66vh;
+    }
+}
 
 @media(max-width: 830px) {
     .boardHeadlineContainer {
         flex-direction: column;
         gap: 30px;
     }
+
     .addTaskBtn {
         display: none;
-    }  
+    }
+
     .mobileAddTask {
         display: flex !important;
         background-color: #2A3647;
     }
+
     .boardHeadlineLeftContainer {
         display: flex;
         align-items: center;
@@ -679,15 +699,77 @@
 
 }
 
-
 @media(max-width: 730px) {
+<<<<<<< HEAD
     .boardStatusHeadContainer {
         padding: 19px;
     }
 
     .statContainer {
         width: 100%;
+=======
+    .popUpButtonsContainer{
+        bottom: 10px;
+        right: 15PX;
     }
+    .taskPopUpAssignmentsList {
+        height: 100px;
+        width: 220px;
+    }
+
+    .taskPopUpHeadline {
+        max-width: 350px;
+        font-size: 39px;
+    }
+
+    .taskPopUpDiscription {
+        max-width: 340px;
+        font-size: 16px;
+    }
+
+    .pinnedTaskContainer {
+        width: 312px;
+    }
+
+    .statContainer {
+        width: 350px;
+>>>>>>> 8b1cf8684c5010e22d5c44851ffaa358df1bb96f
+    }
+
+    .boardStatusHeadContainer {
+        width: 330px;
+        padding: 0px;
+    }
+
+    .boardHeadlineLeftContainer {
+
+        max-width: 350px !important;
+
+    }
+
+    .boardHeadlineRightContainer {
+        max-width: 350px;
+    }
+
+    .boardManagementText {
+        width: 350px;
+        text-align: left;
+        display: block;
+        font-size: 20px;
+    }
+
+    .taskOverviewPopUp,
+    .taskModifyPopUp {
+        width: 350px;
+        padding: 20px;
+    }
+
+    .modifyInput {
+        width: 300px !important;
+    }
+
+
+
 }
 
 
@@ -706,8 +788,13 @@
         height: auto;
     }
 
+    .taskOverviewPopUp,
+    .taskModifyPopUp {
+        width: 300px;
+        padding: 15px;
+    }
+
+    .modifyInput {
+        width: 280px !important;
+    }
 }
-
-
-
-
