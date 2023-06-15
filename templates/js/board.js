@@ -295,13 +295,13 @@ function modifyPrio(currentPriority) {
     let otherPrio2 = capitalizeFirstLetter(otherPrios[1]);
 
     document.getElementById(`modify${currentPrio}`).classList.add(`${prioValue}`);
-    document.getElementById(`modify${currentPrio}Icon`).src = `../../img/${prioValue}WhiteIcon.png`;
+    document.getElementById(`modify${currentPrio}Icon`).src = `./img/${prioValue}WhiteIcon.png`;
 
     document.getElementById(`modify${otherPrio1}`).classList.remove(`${otherPrios[0]}`);
-    document.getElementById(`modify${otherPrio1}Icon`).src = `../../img/${otherPrios[0]}Icon.png`;
+    document.getElementById(`modify${otherPrio1}Icon`).src = `./img/${otherPrios[0]}Icon.png`;
 
     document.getElementById(`modify${otherPrio2}`).classList.remove(`${otherPrios[1]}`);
-    document.getElementById(`modify${otherPrio2}Icon`).src = `../../img/${otherPrios[1]}Icon.png`;
+    document.getElementById(`modify${otherPrio2}Icon`).src = `./img/${otherPrios[1]}Icon.png`;
 }
 
 
@@ -328,7 +328,7 @@ function renderModifySubtaskList(Id) {
 function changeImg() {
     let imageTag = document.getElementById('deleteTask-Img');
 
-    imageTag.src = '../../img/delete.png';
+    imageTag.src = './img/delete.png';
 }
 
 
