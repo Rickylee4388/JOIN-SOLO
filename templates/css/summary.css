@@ -344,3 +344,18 @@
         padding: 15px;
     }
 }
+@media (max-height: 700px) {
+    .summaryHeadline {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+    .newsAndDate {
+        margin-top: 10px;
+        margin-right: 0px;
+    }
+    .personalTaskBox {
+        margin-top: 10px;
+    }
+    .headlineDiv {
+        width: 350px;}
+}
