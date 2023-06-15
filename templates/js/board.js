@@ -274,6 +274,8 @@ function renderModifyAssignmentsHTML(Id) {
     let currentTask = newTaskArray[Id];
     let content = document.getElementById(`modifyPopUpAssignmentContainer${currentTask['id']}`);
 
+    content.innerHTML = '';
+
     for (let i = 0; i < currentTask['assignedTo'].length; i++) {
         const assignment = currentTask['assignedTo'][i];
         let initials = getInitials(assignment);
@@ -329,6 +331,58 @@ function changeImg() {
     imageTag.src = '../../img/delete.png';
 }
 
+
+
+function renderContactsModifyAddTask(Id) {
+    activateEvent();
+    let content = document.getElementById('modifyAssignedTo');
+
+    content.innerHTML = '';
+
+    content.innerHTML = /*html*/`
+        <option value="" disabled selected>Select contacts to assign</option>
+    `;
+
+    for (let i = 0; i < allContacts.length; i++) {
+        const allData = allContacts[i];
+        const { name } = getJoinData(allData);
+        const { color } = getJoinData(allData);
+        content.innerHTML += /*html*/ `
+            <option id="${color}" value="${Id}">${name}</option>
+        `;  
+    }
+}
+
+
+
+function activateEvent() {
+    let modifyAssignBtn = document.getElementById('modifyAssignedTo');
+    modifyAssignBtn.addEventListener("change", modifyAssignedTo);
+}
+
+
+
+function modifyAssignedTo() {
+    let assignee = document.getElementById("modifyAssignedTo");
+    let Id = assignee.options[assignee.selectedIndex].value;
+    let color = assignee.options[assignee.selectedIndex].id;
+    let name = assignee.options[assignee.selectedIndex].innerHTML;
+    let selectedAssignee2 = assignee.options[assignee.selectedIndex];
+    selectedAssignee2.disabled = true;
+    let i = (assignee.selectedIndex) - 1;
+
+    if (newTaskArray[Id]['assignedTo'].indexOf(name) === -1) {
+        newTaskArray[Id]['assignedTo'].push(name);
+        newTaskArray[Id]['color'].push(color);
+    }
+    renderModifyAssignmentsHTML(Id);
+}
+
+
+function pushToAssignments(Id, name) {
+    task['assignedTo'].push(name);
+    renderModifySubtaskList(Id);
+}
 
 
 function configDoneSubtask(i, Id) {

@@ -50,8 +50,8 @@ function renderModifyTaskTemplateHTML(currentTask) {
 
         <div class="assignedToAndSelect">
             <span>Assigned to</span>
-            <select class="modifyInput" id="modifyAssignedTo" required> 
-                <option value="" disabled selected>Select contacts to assign</option>
+            <select class="modifyInput" id="modifyAssignedTo" required onclick="renderContactsModifyAddTask(${currentTask['id']})"> 
+
             </select>
 
             <div id="modifyPopUpAssignmentContainer${currentTask['id']}" class="d-flex mt"></div>
