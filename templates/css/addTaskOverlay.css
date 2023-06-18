@@ -1,7 +1,8 @@
 .addTaskOverlay {
     background-color: white;
     border-radius: 20px;
-    height: 85%;
+    max-height: 85%;
+    min-width: 50%;
     width: 60%;
     padding: 30px;
     overflow-y: auto;
@@ -34,6 +35,11 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+}
+
+.headlineContainerOverlay h1 {
+    font-size: 61px;
+    margin: 0;
 }
 
 .headlineContainerOverlay img {
@@ -77,6 +83,7 @@
 
 @media (max-width: 570px) {
     .addTaskOverlay {
+        max-height: none;
         height: 100%;
         width: 100%;
     }

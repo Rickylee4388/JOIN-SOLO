@@ -27,6 +27,8 @@ function generateContentLeftAndRightContainer() {
                     <span>Category</span>
                     <select id="category" required>
                         <option value="" disabled selected>Select task category</option>
+                        <option value="new category" onclick="newCategory()">New category</option>
+                        <option value="development">Development</option>
                         <option value="design">Design</option>
                         <option value="sales">Sales</option>
                         <option value="backoffice">Backoffice</option>
