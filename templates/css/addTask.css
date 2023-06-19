@@ -145,7 +145,7 @@ button {
 }
 
 .categoryDropdown {
-    width: 420px;
+    width: 420.5px;
     border: 1px solid #D1D1D1;
     border-top: none;
     border-bottom-left-radius: 10px;
@@ -460,6 +460,14 @@ button {
 
     textarea {
         width: 100%;
+    }
+
+    #category {
+        width: 100%;
+    }
+
+    .categoryDropdown {
+        width: calc(100% - 1.5px);
     }
 
     select {
