@@ -1,8 +1,14 @@
-.pointer{
+.pointer {
     cursor: pointer;
 }
+
 .d-flex {
     display: flex;
+}
+
+.blueText {
+    color: #29ABE2;
+    font-size: 64px;
 }
 
 .center {
@@ -14,20 +20,25 @@
     margin-left: 25%;
 }
 
+.goodMorning {
+    font-size: 47px;
+}
+
 .summarySection {
-    padding-top: 50px;
+    padding-top: 30px;
     padding-left: 80px;
     background: #F6F7F8;
     height: 100%;
+    overflow-y: scroll;
 }
-
-.summarySection p {
-    font-size: 18px;
-}
+.summarySection::-webkit-scrollbar{
+    display: none;
+  }
 
 .headlineDiv {
     align-items: center;
     justify-content: flex-start;
+    margin-bottom: 57px;
 }
 
 .contentAndGreeting {
@@ -38,21 +49,22 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 61px;
     line-height: 120%;
     color: #000000;
     border-right: 3px solid #29ABE2;
     padding-right: 60px;
     margin-right: 24px;
-    max-width: 182px !important;
+    max-width: 270px !important;
     margin-bottom: 30px !important;
 }
-
+.innerContentSummary{
+    margin-bottom: 80px;
+}
 .taskbox {
     cursor: pointer;
-    margin-right: 32px;
-    height: 110px;
-    width: 140px;
+    height: 170px;
+    width: 170px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,8 +73,6 @@
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
     text-align: center;
-    padding-top: 12px;
-    padding-bottom: 12px;
 }
 
 .taskbox:hover {
@@ -74,21 +84,25 @@
 .tasknumber {
     padding-bottom: 8px;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 64px;
 }
 
 .tasktext {
     font-weight: 400;
-    font-size: 18px;
+    font-size: 21px;
     width: 100px;
     height: 30px;
     margin: 5px;
 }
 
+.taskSection {
+    gap: 35px;
+}
+
 .newsAndDate {
     margin-right: 32px;
-    height: 110px;
-    width: 484px;
+    width: 580px;
+    height: 150px;
     display: flex;
     align-items: center;
     background: #FFFFFF;
@@ -115,13 +129,13 @@
 }
 
 .news img {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     margin-right: 24px;
 }
 
 .newsNumber {
-    font-size: 32px;
+    font-size: 47px;
 }
 
 .date {
@@ -133,11 +147,13 @@
 }
 
 
+.personalTasks {
+    gap: 35px;
+}
 
 .personalTaskBox {
-    margin-right: 32px;
-    height: 110px;
-    width: 226px;
+    width: 272.5px;
+    height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -153,12 +169,10 @@
     background: #2A3647;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #FFFFFF;
-
-
 }
 
 .toDobg {
-    background-size: 40px;
+    background-size: 69px;
     background-repeat: no-repeat;
     background-position: 25%;
     background-image: url('../../img/pencilblue.png');
@@ -167,21 +181,21 @@
 
 .toDobg:hover {
     background-image: url('../../img/pencilwhite.png');
-    background-size: 40px;
+    background-size: 69px;
     background-repeat: no-repeat;
     background-position: 25%;
 }
 
 .toDoNumber {
-    font-size: 36px;
+    font-size: 64px;
 }
 
 .doneNumber {
-    font-size: 36px;
+    font-size: 64px;
 }
 
 .donebg {
-    background-size: 40px;
+    background-size: 69px;
     background-image: url('../../img/checkboxblue.png');
     background-repeat: no-repeat;
     background-position: 25%;
@@ -189,25 +203,28 @@
 }
 
 .donebg:hover {
-    background-size: 40px;
+    background-size: 69px;
     background-image: url('../../img/checkboxwhite.png');
     background-repeat: no-repeat;
     background-position: 25%;
 }
 
-.greeting p {
-    font-size: 32px;
-}
-
 .insertDate {
-    font-size: 22px;
+    font-size: 21px;
 }
 
 .managementText {
     display: none;
 }
 
-@media (max-width: 1000px) {
+.nutshelltext {
+    font-size: 27px;
+}
+
+@media (max-width: 1100px) {
+    .innerContentSummary{
+        margin-bottom: 30px;
+    }
     .greeting {
         position: absolute;
         left: 0;
@@ -220,6 +237,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 0px;
     }
 
     .contentAndGreeting {
@@ -245,19 +263,16 @@
         bottom: 0;
         right: 0;
         z-index: -1;
-        
+
     }
-    .greeting p{
-        font-size: 45px !important;
-    }
-    
+
     @keyframes greeting-fade {
         from {
             background: #F6F7F8;
             z-index: 3;
             color: #000000;
         }
-    
+
         to {
             background: none;
             z-index: -1;
@@ -286,6 +301,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+        margin-bottom: 24px;
     }
 
     .summaryHeadline {
@@ -300,6 +316,7 @@
     }
 
     .nutshelltext {
+        font-size: 27px;
         margin: 0;
         margin-bottom: 20px;
         padding-bottom: 20px;
@@ -309,53 +326,97 @@
 
     }
 
-    .taskbox {
-        margin-right: 16px;
-        height: 75px;
-        width: 100px;
-        border-radius: 15px;
+    .taskSection {
+        gap: 15px;
     }
 
-    .summarySection p {
-        font-size: 16px;
+    .taskbox {
+        height: 110px;
+        width: 110px;
+        border-radius: 20px;
     }
 
     .tasknumber {
         padding-bottom: 0px;
+        font-size: 47px;
     }
 
+    .tasktext {
+        font-size: 14px;
+        width: 65px;
+    }
+
+
     .newsAndDate {
-        height: 95px;
-        width: 332px;
+        height: 110px;
+        width: 360px;
         border-radius: 15px;
         margin-top: 25px;
     }
 
     .personalTaskBox {
-        margin-right: 16px;
-        width: 158px;
+        width: 174px;
         border-radius: 15px;
-        height: 95px;
+        height: 110px;
         margin-top: 25px;
     }
+
+    .toDoNumber {
+        font-size: 47px;
+    }
+
+    .doneNumber {
+        font-size: 47px;
+    }
+
+    .toDobg {
+        background-size: 40px;
+    }
+
+    .toDobg:hover {
+        background-size: 40px;
+    }
+
+    .donebg {
+        background-size: 40px;
+    }
+
+    .donebg:hover {
+        background-size: 40px;
+    }
+
+    .personalTasks {
+        gap: 15px;
+    }
+
+    .news img {
+        width: 40px;
+        height: 40px;
+    }
 }
-@media (max-width: 500px){
-    .summarySection{
+
+@media (max-width: 500px) {
+    .summarySection {
         padding: 15px;
     }
 }
+
 @media (max-height: 700px) {
     .summaryHeadline {
         margin-top: 0px !important;
         margin-bottom: 0px !important;
     }
+
     .newsAndDate {
         margin-top: 10px;
         margin-right: 0px;
     }
+
     .personalTaskBox {
         margin-top: 10px;
     }
+
     .headlineDiv {
-        width: 350px;}
+        width: 350px;
+    }
 }

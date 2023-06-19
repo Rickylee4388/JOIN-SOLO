@@ -32,7 +32,8 @@ async function login() {
     console.log("user gefunden");
     window.location.replace("/../index.html");
   } else {
-    alert("Email oder Passwort nicht korrekt!");
+    document.getElementById("msgBox").innerHTML = `Email oder Passwort nicht korrekt!`;
+    document.getElementById("msgBoxDiv").classList.remove("d-none");
   }
 }
 

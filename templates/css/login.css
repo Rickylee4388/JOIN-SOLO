@@ -8,11 +8,10 @@
 }
 
 .logo img {
-    height: 70px;
-    transform: translate(-135px, -270px);
+    
     position: absolute;
-    top: 45%;
-    left: 45%;
+    top: 45px;
+    left: 45px;
 }
 
 
@@ -115,6 +114,7 @@
 
 .msgBox {
     position: absolute;
+    display: flex;
     justify-content: center;
     align-items: center;
     top: 8%;
@@ -122,7 +122,7 @@
     width: 80vw;
     text-align: center;
     height: 20vh;
-    z-index: 999;
+    z-index: 99;
     font-weight: bold;
     font-size: 32px;
 }
@@ -344,11 +344,11 @@
 }
 
 .logoAnimationImg {
-    transform: translate(-475px, -250px);
-    animation: logoAnimation 0.8s ease-in-out;
+    transform: translate(0px, 0px);
+    animation: logoAnimation 1.8s ease-in-out;
     position: absolute;
-    top: 45%;
-    left: 45%;
+    top: 45px;
+    left: 45px;
 
 }
 
@@ -365,22 +365,28 @@
 
 @keyframes logoAnimation {
     from {
-        transform: translate(0px);
+        top: calc(100vh - 50%);
+        left: calc(100vw - 50%);
         scale: 200%;
     }
 
     to {
-        transform: translate(-475px, -250px);
+        top: 45px;
+        left: 45px;
     }
 }
 
 @keyframes background-fade {
-    from {
+    0% {
         background: #ffffff;
         z-index: 3;
     }
 
-    to {
+    99% {
+        z-index: 3;
+    }
+
+    100% {
         background: none;
         z-index: 1;
     }
@@ -403,29 +409,21 @@
 }
 
 @media (max-width: 1080px) {
-
-
-
-    .logoAnimationImg {
-        transform: translate(-350px, -250px);
-
-
+    .msgBoxContent {
+        width: 250px;
     }
 
-    @keyframes logoAnimation {
-        from {
-            transform: translate(0px);
-            scale: 200%;
-        }
-
-        to {
-            transform: translate(-350px, -250px);
-        }
+    .msgBox {
+        font-size: 18px;
     }
 
 }
 
 @media (max-width: 750px) {
+    .msgBoxContent {
+        width: 220px;
+    }
+
     .arrowblue {
         position: relative;
         margin-right: 20%;
@@ -443,10 +441,13 @@
 
     .logoAnimationImg {
         height: 70px;
-        transform: translate(-135px, -270px);
+
+    }
+    .logo img{
+        height: 70px;
     }
 
-    @keyframes logoAnimation {
+    /* @keyframes logoAnimation {
         from {
             transform: translate(0px);
             scale: 200%;
@@ -455,15 +456,20 @@
         to {
             transform: translate(-135px, -270px);
         }
-    }
+    } */
 
     @keyframes background-fade {
-        from {
+
+        0% {
             background: #2A3647;
             z-index: 3;
         }
 
-        to {
+        99% {
+            z-index: 3;
+        }
+
+        100% {
             background: none;
             z-index: 1;
         }
@@ -590,4 +596,3 @@
         }
     }
 }
-
