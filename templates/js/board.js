@@ -10,7 +10,6 @@ let chosenStat = 'todo';
 let currentBooleanValue = 'false';
 
 
-
 function giveTaskId() {
     for (let i = 0; i < newTaskArray.length; i++) {
         const currentTask = newTaskArray[i];
@@ -19,7 +18,10 @@ function giveTaskId() {
     }
 }
 
+
 ///////////////RenderFunktionen////////////////////////
+
+
 function updateBoardTasks() {
     renderTodoTasksHTML(newTaskArray);
     renderInProgressHTML(newTaskArray);
@@ -27,7 +29,6 @@ function updateBoardTasks() {
     renderDoneHTML(newTaskArray);
     showProgressbar();
 }
-
 
 
 function renderBoardHTML() {
@@ -42,7 +43,6 @@ function renderBoardHTML() {
 }
 
 
-
 function renderBoardHeaderHTML() {
     let content = document.getElementById('boardHeadlineContainer');
 
@@ -50,7 +50,6 @@ function renderBoardHeaderHTML() {
 
     content.innerHTML += renderBoardHeaderTemplateHTML();
 }
-
 
 
 function renderStatusFieldsHTML() {
@@ -66,7 +65,6 @@ function renderStatusFieldsHTML() {
     }
     updateBoardTasks();
 }
-
 
 
 function renderTodoTasksHTML(arrayName) {
@@ -87,7 +85,6 @@ function renderTodoTasksHTML(arrayName) {
 }
 
 
-
 function renderInProgressHTML(arrayName) {
     let content = document.getElementById('statContainer1');
     let inProgress = arrayName.filter(task => task['stat'] == 'inProgress');
@@ -104,7 +101,6 @@ function renderInProgressHTML(arrayName) {
         renderAssignedToHTML(task);
     }
 }
-
 
 
 function renderAwaitingFeedbackHTML(arrayName) {
@@ -131,7 +127,6 @@ function renderAwaitingFeedbackHTML(arrayName) {
 }
 
 
-
 function renderDoneHTML(arrayName) {
     let content = document.getElementById('statContainer3');
     let done = arrayName.filter(task => task['stat'] == 'done');
@@ -148,7 +143,6 @@ function renderDoneHTML(arrayName) {
         renderAssignedToHTML(task);
     }
 }
-
 
 
 function renderAssignedToHTML(task) {
@@ -168,7 +162,6 @@ function renderAssignedToHTML(task) {
 }
 
 
-
 function renderTaskAssignmentListHTML(task, count) {
     let content = document.getElementById(`assignedToContainer${task['id']}`);
 
@@ -182,7 +175,6 @@ function renderTaskAssignmentListHTML(task, count) {
 }
 
 
-
 function showProgressbar() {
     for (let i = 0; i < newTaskArray.length; i++) {
         const task = newTaskArray[i];
@@ -194,19 +186,18 @@ function showProgressbar() {
 }
 
 
-
 ///////////////////////Task-Pop-Up/////////////////////////////////
+
+
 function openExistingTaskPopUp(Id) {
     renderClickedTaskPopUpHTML(Id);
     document.getElementById('overlaySection').classList.remove('d-none');
 }
 
 
-
 function closeTaskPopUp() {
     document.getElementById('overlaySection').classList.add('d-none');
 }
-
 
 
 function renderClickedTaskPopUpHTML(Id) {
@@ -221,7 +212,6 @@ function renderClickedTaskPopUpHTML(Id) {
 }
 
 
-
 function renderTaskPopUpTableHTML(clickedTask) {
     let content = document.getElementById('taskPopUpTable');
 
@@ -229,7 +219,6 @@ function renderTaskPopUpTableHTML(clickedTask) {
 
     content.innerHTML += renderTaskPopUpTableTemplateHTML(clickedTask);
 }
-
 
 
 function renderTaskPopUpAssignmentsHTML(clickedTask) {
@@ -247,11 +236,9 @@ function renderTaskPopUpAssignmentsHTML(clickedTask) {
 }
 
 
-
 function openModifyTaskPopUp(Id) {
     modifyCurrentTaskHTML(Id);
 }
-
 
 
 function modifyCurrentTaskHTML(Id) {
@@ -269,7 +256,6 @@ function modifyCurrentTaskHTML(Id) {
 }
 
 
-
 function renderModifyAssignmentsHTML(Id) {
     let currentTask = newTaskArray[Id];
     let content = document.getElementById(`modifyPopUpAssignmentContainer${currentTask['id']}`);
@@ -281,7 +267,7 @@ function renderModifyAssignmentsHTML(Id) {
         let initials = getInitials(assignment);
         let bgColor = currentTask['color'][i];
         
-        content.innerHTML += modifyAssignmentsTemplateHTML(bgColor, initials);
+        content.innerHTML += modifyAssignmentsTemplateHTML(i, Id, bgColor, initials);
     }
 }
 
@@ -305,7 +291,6 @@ function modifyPrio(currentPriority) {
 }
 
 
-
 function renderModifySubtaskList(Id) {
     let content = document.getElementById('modifysubtasksList');
     let task = newTaskArray[Id];
@@ -324,13 +309,11 @@ function renderModifySubtaskList(Id) {
 }
 
 
-
 function changeImg() {
     let imageTag = document.getElementById('deleteTask-Img');
 
     imageTag.src = './img/delete.png';
 }
-
 
 
 function renderContactsModifyAddTask(Id) {
@@ -354,12 +337,10 @@ function renderContactsModifyAddTask(Id) {
 }
 
 
-
 function activateEvent() {
     let modifyAssignBtn = document.getElementById('modifyAssignedTo');
     modifyAssignBtn.addEventListener("change", modifyAssignedTo);
 }
-
 
 
 function modifyAssignedTo() {
@@ -379,9 +360,8 @@ function modifyAssignedTo() {
 }
 
 
-function pushToAssignments(Id, name) {
-    task['assignedTo'].push(name);
-    renderModifySubtaskList(Id);
+function deleteAssignmentPopUp() {
+    
 }
 
 
@@ -403,7 +383,6 @@ function configDoneSubtask(i, Id) {
 }
 
 
-
 function calculateProgress(subTaskAmount, doneAmount) {
     if (doneAmount > subTaskAmount) {
         doneAmount = subTaskAmount;
@@ -412,7 +391,6 @@ function calculateProgress(subTaskAmount, doneAmount) {
 
     return progressInPercent;
 }
-
 
 
 function confirmChangesOnTask(Id) {
@@ -432,7 +410,6 @@ function confirmChangesOnTask(Id) {
 }
 
 
-
 function deleteTask(Id) {
 
     newTaskArray.splice(Id, 1);
@@ -443,20 +420,19 @@ function deleteTask(Id) {
 }
 
 
-
 ///////////////////////Drag & Drop/////////////////////////////////
+
+
 function startDragging(id) {
     currentDraggedTask = id;
     document.getElementById(`pinnedTaskContainer${currentDraggedTask}`).classList.add('rotateDeg');
 }
 
 
-
 function allowDrop(ev) {
     ev.preventDefault();
 
 }
-
 
 
 function drop(stat) {
@@ -467,18 +443,18 @@ function drop(stat) {
 }
 
 
-
 function highlight(stat) {
     //document.getElementById(stat).classList.add('dragAreaHighlight');
 }
-
 
 
 function stopHighlight(stat) {
     document.getElementById(stat).classList.remove('dragAreaHighlight');
 }
 
+
 ////////////Search for Task////////////////////////////
+
 
 function searchTask() {
     let searchInput = document.getElementById('searchInput').value;
@@ -498,11 +474,9 @@ function searchTask() {
 }
 
 
-
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
 
 
 function renderFilteredTasks() {

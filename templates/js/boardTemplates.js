@@ -1,9 +1,18 @@
-function modifyAssignmentsTemplateHTML(bgColor, initials) {
+function modifyAssignmentsTemplateHTML(i, Id, bgColor, initials) {
     return /*html*/`
-    <div class="taskPopUpSingleAssignmentInitals contactContainer" style="background:${bgColor}">${initials}</div>
+    <div onclick="deleteAssignmentOption('${i}', '${Id}')" class="taskPopUpSingleAssignmentInitals contactContainer" style="background:${bgColor}">
+        ${initials}
+    </div>
 `
 }
 
+
+function deleteAssignmentOption(i, Id) {
+    let currentTask = newTaskArray[Id];
+
+    currentTask['assignedTo'].splice(i, 1);
+    renderModifyAssignmentsHTML(Id);
+}
 
 
 function renderModifyTaskTemplateHTML(currentTask) {
@@ -108,15 +117,10 @@ function renderTaskPopUpTableTemplateHTML(clickedTask) {
     <div class="taskPopUpRow">
         <div class="taskPopUpLeftTd"><b>Priority:</b></div>
 
-    <div id="modifyMedium" class="${clickedTask['prio']} prioContainer">
-        ${clickedTask['prio']} <img id="modifyMediumIcon" src="../../img/${clickedTask['prio']}WhiteIcon.png">
+        <div id="modifyMedium" class="${clickedTask['prio']} prioContainer">
+            ${clickedTask['prio']} <img id="modifyMediumIcon" src="../../img/${clickedTask['prio']}WhiteIcon.png">
+        </div>
     </div>
-
-    </div>
-
-
-
-
     <div class="closeTaskPopUpButton" onclick="closeTaskPopUp()">X</div>
 `
 }
@@ -144,12 +148,14 @@ function renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id) {
         <div class="popUpButtonsContainer">
             <div onmouseover="changeImg()" class="taskPopUpButton leftBtn btn-border" onclick="deleteTask('${Id}')"><img id="deleteTask-Img" src="../../img/delete.png" alt=""></div>
 
-            <div class="taskPopUpButton rightBtn btn-bg" onclick="openModifyTaskPopUp('${Id}')"><img src="../../img/pen.png" alt=""></div>
+            <div class="taskPopUpButton rightBtn btn-bg" onclick="openModifyTaskPopUp('${Id}')">
+                <img class="popUpPen" src="../../img/pen.png" alt="">
+                <img class="popUpPenTriangel" src="./img/pen_triangel.png" alt="">
+            </div>
         </div>
     </div>
 `
 }
-
 
 
 function generatePinnedTaskHTML(task, progressInPercent) {
@@ -190,7 +196,6 @@ function generatePinnedTaskHTML(task, progressInPercent) {
 }
 
 
-
 function renderTaskAssignmentsTemplateHTML(task, bgColor, initials) {
     return /*html*/`
     <div class="contactContainer" id="" style="background-color:${bgColor}">${initials}</div>
@@ -198,13 +203,11 @@ function renderTaskAssignmentsTemplateHTML(task, bgColor, initials) {
 }
 
 
-
 function renderTaskAssignmentCountHTML(assignmentCount) {
     return /*html*/`
     <div class="contactContainer" style="background-color: rgb(0, 0, 0)">+${assignmentCount}</div>
     `;
 }
-
 
 
 function renderStatusfieldsTemplateHTML(i, stat, statClass) {
@@ -223,7 +226,6 @@ function renderStatusfieldsTemplateHTML(i, stat, statClass) {
     </div>
 `
 }
-
 
 
 function renderBoardHeaderTemplateHTML() {
@@ -258,7 +260,6 @@ function renderBoardHeaderTemplateHTML() {
 }
 
 
-
 function renderBoardTemplateHTML() {
     return /*html*/`
     <div class="boardBody" id="boardBody">
@@ -270,8 +271,6 @@ function renderBoardTemplateHTML() {
 }
 
 
-
-
 function renderCheckedBoxTemplateHTML(i, Id, subtask) {
     return /*html*/`
     <div class="subtask modifySubtask">
@@ -280,7 +279,6 @@ function renderCheckedBoxTemplateHTML(i, Id, subtask) {
     </div>
     `
 }
-
 
 
 function renderUncheckedBoxTemplateHTML(i, Id, subtask) {
