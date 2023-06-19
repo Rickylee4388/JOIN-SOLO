@@ -216,8 +216,10 @@ function newSubtask() {
 function clearFields() {
     assignedToNames = [];
     allSubtasks = [];
+    document.getElementById('category').innerHTML = 'Select task category';
     document.getElementById('assignedToList').innerHTML = '';
     document.getElementById('subtasksList').innerHTML = '';
+    closeCategoryDropdown();
 }
 
 

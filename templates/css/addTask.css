@@ -31,6 +31,8 @@
 }
 
 .twoButtonsContainer {
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 125px;
     padding-right: 125px;
 }
