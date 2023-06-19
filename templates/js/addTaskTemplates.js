@@ -25,16 +25,38 @@ function generateContentLeftAndRightContainer() {
 
                 <div class="categoryAndSelect">
                     <span>Category</span>
-                    <select id="category" required>
-                        <option value="" disabled selected>Select task category</option>
-                        <option value="new category" onclick="newCategory()">New category</option>
-                        <option value="development">Development</option>
-                        <option value="design">Design</option>
-                        <option value="sales">Sales</option>
-                        <option value="backoffice">Backoffice</option>
-                        <option value="media">Media</option>
-                        <option value="marketing">Marketing</option>
-                    </select>
+                    <div id="category" onclick="openCategoryDropdown()">Select task category</div>
+                    <div id="categoryDropdown" class="categoryDropdown d-none">
+                        <div class="categoryOption" value="development" onclick="selectedCategory('development')">
+                            Development
+                            <div class="categoryColor" style="background-color: red"></div>
+                        </div>
+
+                        <div class="categoryOption" value="design" onclick="selectedCategory('design')">
+                            Design
+                            <div class="categoryColor" style="background-color: orange"></div>
+                        </div>
+
+                        <div class="categoryOption" value="sales" onclick="selectedCategory('sales')">
+                            Sales
+                            <div class="categoryColor" style="background-color: pink"></div>
+                        </div>
+
+                        <div class="categoryOption" value="backoffice" onclick="selectedCategory('backoffice')">
+                            Backoffice
+                            <div class="categoryColor" style="background-color: turquoise"></div>
+                        </div>
+
+                        <div class="categoryOption" value="media" onclick="selectedCategory('media')">
+                            Media
+                            <div class="categoryColor" style="background-color: goldenrod"></div>
+                        </div>
+
+                        <div class="categoryOption" value="marketing" onclick="selectedCategory('marketing')">
+                            Marketing
+                            <div class="categoryColor" style="background-color: blue"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="assignedToAndSelect">

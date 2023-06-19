@@ -135,6 +135,33 @@ function low() {
 }
 
 
+function openCategoryDropdown() {
+    document.getElementById('categoryDropdown').classList.remove('d-none');
+    document.getElementById('category').style.cssText = `
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-bottom: none;
+    `;
+}
+
+
+function selectedCategory(value) {
+    value = value.charAt(0).toUpperCase() + value.slice(1);
+    document.getElementById('category').innerHTML = value;
+    closeCategoryDropdown();
+}
+
+
+function closeCategoryDropdown() {
+    document.getElementById('categoryDropdown').classList.add('d-none');
+    document.getElementById('category').style.cssText = `
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom: 1px solid #D1D1D1;
+    `;
+}
+
+
 function assignedTo() {
     let assignee = document.getElementById("assignedTo");
     let selectedAssignee = assignee.options[assignee.selectedIndex].value;
@@ -197,7 +224,7 @@ function clearFields() {
 function createTask() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
-    let category = document.getElementById('category').value;
+    let category = document.getElementById('category').innerHTML;
     let  date = dateArray;
 
 
