@@ -2,7 +2,8 @@
     background-color: rgb(246, 247, 248);
     margin: 0;
     height: 100%;
-    padding: 0px 26px 0px 26px;
+    padding: 0px 70px 0px 70px;
+    overflow-x: hidden;
 }
 
 
@@ -67,7 +68,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0px;
-    padding-top: 36px;
+    padding-top: 82px;
 }
 
 .boardManagementText {
@@ -227,7 +228,7 @@
     justify-content: space-between;
     padding: 0px;
     margin-top: 80px;
-    gap: 10px;
+    margin-bottom: 80px;
 }
 
 
@@ -236,9 +237,7 @@
     flex-direction: column;
     align-items: center;
     padding: 0px;
-    width: calc(25% - 26px);
-    height: 700px;
-    overflow-y: auto;
+    width: 260px;
 }
 
 
@@ -303,10 +302,11 @@
     flex-direction: column;
     align-items: center;
     gap: 35px;
-    min-height: 300px;
-    height: 700%;
+    min-height: 280px;
+    height: 280px;
     width: 100%;
-    margin-top: 16px;
+    padding-top: 35px;
+    padding-bottom: 35px;
     overflow-x: hidden;
 }
 
@@ -318,8 +318,8 @@
     align-items: flex-start;
     padding: 18px 19px;
     gap: 10px;
-    width: 250px;
-    height: 239px;
+    width: 220px;
+    height: fit-content;
     background: #FFFFFF;
 
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
@@ -449,16 +449,18 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-evenly;
+
     padding: 40px;
     gap: 25px;
     isolation: isolate;
-    width: 500px;
-    height: 80vh;
+    width: 600px;
+    height: 90vh;
     position: relative;
     background: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 
@@ -488,7 +490,7 @@
 
 .taskModifyPopUp {
     gap: 0;
-    height: fit-content;
+
 }
 
 
@@ -577,9 +579,11 @@
 .taskPopUpAssignmentsList {
     display: flex;
     flex-direction: column;
-    height: 200px;
+    justify-content: flex-start;
+    height: auto;
     gap: 25px;
     overflow-y: auto;
+    background-color: #FF7A00;
 }
 
 
@@ -687,30 +691,37 @@
     height: fit-content;
     width: fit-content;
     padding: 8px;
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
     cursor: pointer;
 }
 
 
-@media(max-width: 1550px) {
-    .boardStatusHeadContainer {
-        width: 250px;
-        padding: 19px;
-    }
-
-    .statContainer {
-        width: calc(50% - 26px);
-    }
-
-    .boardContentContainer {
-        justify-content: center;
-    }
+.configBtnContainer {
+    display: flex;
+    justify-content: end;
+    width: 100%;
 }
 
-@media(max-width: 1000px) {
 
+@media(max-width: 1350px) {
+    .boardContentContainer {
+
+    }
+    .pinnedTaskContainer{
+        width: 350px;
+    }
+    .statContainer {
+       width: 420px;
+    }
+
+}
+
+@media(max-width: 1250px) {
+    .pinnedTaskContainer{
+        width: 250px;
+    }
+    .statContainer {
+       width: 300px;
+    }
 
 }
 
@@ -738,7 +749,7 @@
 
 }
 
-@media(max-width: 730px) {
+@media(max-width: 750px) {
     .popUpButtonsContainer{
         bottom: 10px;
         right: 15PX;
@@ -746,6 +757,7 @@
     .taskPopUpAssignmentsList {
         height: 200px;
         width: 220px;
+        background-color: #FF7A00;
     }
 
     .taskPopUpHeadline {
@@ -797,9 +809,19 @@
     .modifyInput {
         width: 300px !important;
     }
+    .boardContentContainer {
+        justify-content: center;
+    }
 
 
 
+}
+
+
+@media(max-width: 500px) {
+    .boardBpdy {
+        padding: 0 24px 0 24px;
+    }
 }
 
 
@@ -808,7 +830,7 @@
         padding: 0px 8px;
     }
     .pinnedTaskContainer {
-
+        width: 250px;
         height: auto;
     }
 
@@ -816,6 +838,9 @@
     .taskModifyPopUp {
         width: 300px;
         padding: 15px;
+    }
+    .boardStatusHeadContainer {
+        width: 288px;
     }
 
     .modifyInput {

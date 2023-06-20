@@ -180,7 +180,7 @@ function showProgressbar() {
         const task = newTaskArray[i];
 
         if(task['subtasks'].length > 0) {
-            document.getElementById(`progressContainer${task['id']}`).classList.remove('v-hide');
+            document.getElementById(`progressContainer${task['id']}`).classList.remove('d-none');
         }
     }
 }
@@ -360,8 +360,11 @@ function modifyAssignedTo() {
 }
 
 
-function deleteAssignmentPopUp() {
-    
+function deleteAssignmentOption(i, Id) {
+    let currentTask = newTaskArray[Id];
+
+    currentTask['assignedTo'].splice(i, 1);
+    renderModifyAssignmentsHTML(Id);
 }
 
 

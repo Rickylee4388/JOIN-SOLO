@@ -7,14 +7,6 @@ function modifyAssignmentsTemplateHTML(i, Id, bgColor, initials) {
 }
 
 
-function deleteAssignmentOption(i, Id) {
-    let currentTask = newTaskArray[Id];
-
-    currentTask['assignedTo'].splice(i, 1);
-    renderModifyAssignmentsHTML(Id);
-}
-
-
 function renderModifyTaskTemplateHTML(currentTask) {
     return /*html*/`
     <div class="taskModifyPopUp" onclick="doNotClose(event)">
@@ -66,12 +58,6 @@ function renderModifyTaskTemplateHTML(currentTask) {
             <div id="modifyPopUpAssignmentContainer${currentTask['id']}" class="d-flex mt"></div>
         </div>
 
-        <div class="addTaskBtn confirmBtn btn-bg" onclick="confirmChangesOnTask('${currentTask['id']}')">
-            Ok 
-            <img src="../../img/checkIcon.png" alt="">
-        </div>
-
-
         <div class="inputAndButton">
             <input id="modifysubtasks" placeholder="Add new subtask">
             <button type="button" onclick="newSubtask()">
@@ -83,7 +69,16 @@ function renderModifyTaskTemplateHTML(currentTask) {
 
         </div>
 
+        <div class="configBtnContainer">
+            <div class="addTaskBtn confirmBtn btn-bg" onclick="confirmChangesOnTask('${currentTask['id']}')">
+                Ok 
+                <img src="../../img/checkIcon.png" alt="">
+            </div>
+        </div>
+
     </div>
+
+
 
 
    `
@@ -169,10 +164,7 @@ function generatePinnedTaskHTML(task, progressInPercent) {
         <h3 class="pinnedTaskHeadline">${task['title']}</h3>
         <p class="pinnedTaskDiscription">${task['description']}</p>
 
-        <div id="progressContainer${task['id']}" class="progressContainer v-hide">
- 
-
-
+        <div id="progressContainer${task['id']}" class="progressContainer d-none">
             <div class="progressBar">
                 <div class="blueProgress" style="width:${progressInPercent}%"></div>
             </div>
