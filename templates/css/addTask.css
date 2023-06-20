@@ -130,6 +130,7 @@ button {
 }
 
 .newCategoryContainer {
+    width: 422px;
     display: flex;
 }
 
@@ -137,6 +138,16 @@ button {
     border-right: none;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+    padding-right: 0;
+}
+
+.newCategoryColorContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #D1D1D1;
+    border-bottom: 1px solid #D1D1D1;
+    padding-right: 10px;
 }
 
 .newCategoryContainer button {
@@ -162,6 +173,23 @@ button {
 
 .newCategoryContainer img {
     cursor: pointer;
+}
+
+.newCategoryColors {
+    display: flex;
+    gap: 10px;
+    margin-top: -5px;
+    padding-left: 5px;
+}
+
+.newCategoryColors p {
+    cursor: pointer;
+    transition: ease-in-out 125ms;
+}
+
+.newCategoryColors p:hover {
+    transform: scale(1.2);
+    transition: ease-in-out 125ms;
 }
 
 #category {
@@ -503,6 +531,10 @@ button {
 
     .categoryDropdown {
         width: calc(100% - 1.5px);
+    }
+
+    .newCategoryContainer {
+        width: 100%;
     }
 
     select {

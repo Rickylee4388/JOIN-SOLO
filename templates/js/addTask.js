@@ -149,7 +149,23 @@ function openCategoryDropdown() {
 function newCategory() {
     closeCategoryDropdown();
     document.getElementById('newCategoryContainer').classList.remove('d-none');
+    document.getElementById('newCategoryColors').classList.remove('d-none');
     document.getElementById('category').style.display = 'none';
+}
+
+
+function addColorToNewCategory(color) {
+    document.getElementById('newCategoryColor').style.backgroundColor = color;
+}
+
+
+function cancelNewCategory() {
+    document.getElementById('newCategoryInput').value = '';
+    document.getElementById('newCategoryColor').style.backgroundColor = '';
+    document.getElementById('newCategoryContainer').classList.add('d-none');
+    document.getElementById('newCategoryColors').classList.add('d-none');
+    document.getElementById('category').style.display = 'flex';
+    document.getElementById('category').innerHTML = 'Select task category';
 }
 
 

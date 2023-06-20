@@ -27,13 +27,25 @@ function generateContentLeftAndRightContainer() {
                     <span>Category</span>
                     
                     <div class="newCategoryContainer d-none" id="newCategoryContainer">
-                        <input placeholder="New category name">
-                        <button type="button" class="cancelButton">
+                        <input placeholder="New category name" id="newCategoryInput">
+                        <div class="newCategoryColorContainer">
+                            <div class="categoryColor" id="newCategoryColor"></div>
+                        </div>
+                        <button type="button" class="cancelButton" onclick="cancelNewCategory()">
                             <img src="../../img/cancelIcon.png">
                         </button>
                         <button type="button" class="checkButton">
                             <img src="../../img/blackCheckIcon.png">
                         </button>
+                    </div>
+
+                    <div class="newCategoryColors d-none" id="newCategoryColors">
+                        <p class="categoryColor" style="background-color: red" onclick="addColorToNewCategory('red')"></p>
+                        <p class="categoryColor" style="background-color: orange" onclick="addColorToNewCategory('orange')"></p>
+                        <p class="categoryColor" style="background-color: pink" onclick="addColorToNewCategory('pink')"></p>
+                        <p class="categoryColor" style="background-color: turquoise" onclick="addColorToNewCategory('turquoise')"></p>
+                        <p class="categoryColor" style="background-color: goldenrod" onclick="addColorToNewCategory('goldenrod')"></p>
+                        <p class="categoryColor" style="background-color: blue" onclick="addColorToNewCategory('blue')"></p>
                     </div>
                     
                     <div id="category" onclick="openCategoryDropdown()">Select task category</div>
