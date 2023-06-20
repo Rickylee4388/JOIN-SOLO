@@ -129,6 +129,41 @@ button {
     margin: 10px 0px 10px 0px;
 }
 
+.newCategoryContainer {
+    display: flex;
+}
+
+.newCategoryContainer input {
+    border-right: none;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.newCategoryContainer button {
+    cursor: pointer;
+    width: 51px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    transition: ease-in-out 125ms;
+}
+
+.newCategoryContainer button:hover {
+    background-color: lightgray;
+    transition: ease-in-out 125ms;
+}
+
+.checkButton {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.newCategoryContainer img {
+    cursor: pointer;
+}
+
 #category {
     box-sizing: border-box;
     padding: 5px 10px;

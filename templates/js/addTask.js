@@ -142,6 +142,14 @@ function openCategoryDropdown() {
         border-bottom-right-radius: 0px;
         border-bottom: none;
     `;
+    document.getElementById('category').onclick = closeCategoryDropdown;
+}
+
+
+function newCategory() {
+    closeCategoryDropdown();
+    document.getElementById('newCategoryContainer').classList.remove('d-none');
+    document.getElementById('category').style.display = 'none';
 }
 
 
@@ -159,6 +167,7 @@ function closeCategoryDropdown() {
         border-bottom-right-radius: 10px;
         border-bottom: 1px solid #D1D1D1;
     `;
+    document.getElementById('category').onclick = openCategoryDropdown;
 }
 
 

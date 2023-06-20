@@ -25,8 +25,23 @@ function generateContentLeftAndRightContainer() {
 
                 <div class="categoryAndSelect">
                     <span>Category</span>
+                    
+                    <div class="newCategoryContainer d-none" id="newCategoryContainer">
+                        <input placeholder="New category name">
+                        <button type="button" class="cancelButton">
+                            <img src="../../img/cancelIcon.png">
+                        </button>
+                        <button type="button" class="checkButton">
+                            <img src="../../img/blackCheckIcon.png">
+                        </button>
+                    </div>
+                    
                     <div id="category" onclick="openCategoryDropdown()">Select task category</div>
                     <div id="categoryDropdown" class="categoryDropdown d-none">
+                        <div class="categoryOption" onclick="newCategory()">
+                            New category
+                        </div>
+
                         <div class="categoryOption" value="development" onclick="selectedCategory('development')">
                             Development
                             <div class="categoryColor" style="background-color: red"></div>
