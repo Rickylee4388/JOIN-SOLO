@@ -65,7 +65,7 @@ function renderModifyTaskTemplateHTML(currentTask) {
             </button>
         </div>
 
-        <div class="subtasksList modifySubtaskList" id="modifysubtasksList">
+        <div class="modifySubtaskList" id="modifysubtasksList">
 
         </div>
 

@@ -9,7 +9,9 @@ let newPrio;
 let chosenStat = 'todo';
 let currentBooleanValue = 'false';
 
-
+/**
+ * This function assigns an id to each json from the task list.
+ */
 function giveTaskId() {
     for (let i = 0; i < newTaskArray.length; i++) {
         const currentTask = newTaskArray[i];
@@ -20,7 +22,10 @@ function giveTaskId() {
 
 
 ///////////////RenderFunktionen////////////////////////
-
+/**
+ * This function updates all dynamic elements on the board.
+ * 
+ */
 
 function updateBoardTasks() {
     renderTodoTasksHTML(newTaskArray);
