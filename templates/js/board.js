@@ -17,6 +17,7 @@ function giveTaskId() {
         
         currentTask['id'] = i;
     }
+    removeClassContentSectionAddTask();
 }
 
 

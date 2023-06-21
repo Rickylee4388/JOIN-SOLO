@@ -6,6 +6,7 @@ function initContacts() {
     renderContactsSection();
     renderContactsList();
     updateContactsMobileVisibility();
+    removeClassContentSectionAddTask();
 }
 /**
  * Loads the contacts from storage.

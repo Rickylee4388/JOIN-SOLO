@@ -13,6 +13,7 @@ async function initAddTask() {
     await loadTasks();
     renderHeadline();
     activatePrioButtons();
+    addClassContentSectionAddTask();
 }
 
 
@@ -51,6 +52,11 @@ function renderContactsAddTask(Id) {
 
 function renderTwoButtonsContainer() {
     document.getElementById('twoButtonsContainer').innerHTML = generateTwoButtonsContainer();
+}
+
+
+function addClassContentSectionAddTask() {
+    document.getElementById('contentSection').classList.add('contentSectionAddTask')
 }
 
 
@@ -169,9 +175,24 @@ function cancelNewCategory() {
 }
 
 
-function selectedCategory(value) {
-    value = value.charAt(0).toUpperCase() + value.slice(1);
-    document.getElementById('category').innerHTML = value;
+function confirmNewCategory() {
+    let newCategory = document.getElementById('newCategoryInput').value;
+    let newCategoryColor = document.getElementById('newCategoryColor').style.backgroundColor;
+    selectedCategory(newCategory, newCategoryColor);
+    document.getElementById('newCategoryInput').value = '';
+    document.getElementById('newCategoryColor').style.backgroundColor = '';
+    document.getElementById('newCategoryContainer').classList.add('d-none');
+    document.getElementById('newCategoryColors').classList.add('d-none');
+    document.getElementById('category').style.display = 'flex';
+}
+
+
+function selectedCategory(category, color) {
+    category = category.charAt(0).toUpperCase() + category.slice(1);
+    document.getElementById('category').innerHTML = /*html*/ `
+        ${category}
+        <div class="categoryColor" style="background-color: ${color}; margin-left: 10px"></div>
+    `;
     closeCategoryDropdown();
 }
 
@@ -207,10 +228,15 @@ function showAssignedToList(i) {
     const allData = allContacts[i];
     const { initials, color } = getJoinData(allData);
     document.getElementById('assignedToList').innerHTML += /*html*/ `
-        <div class="assigneeContainer" style="background-color: ${color}">
+        <div class="assigneeContainer" style="background-color: ${color}" onclick="removeAssignee(${i})">
             ${initials}
         </div>
-    `; 
+    `;
+}
+
+
+function removeAssignee(position) {
+    assignedToNames.splice(position, 1);
 }
 
 
@@ -245,14 +271,15 @@ function clearFields() {
     document.getElementById('assignedToList').innerHTML = '';
     document.getElementById('subtasksList').innerHTML = '';
     closeCategoryDropdown();
+    cancelNewCategory();
 }
 
 
 function createTask() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
-    let category = document.getElementById('category').innerHTML;
-    let  date = dateArray;
+    let category = document.getElementById('category').innerText;
+    let date = dateArray;
 
 
 

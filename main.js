@@ -6,6 +6,7 @@ async function init() {
     await loadTasks();
     includeHTML();
     initSummary();
+    removeClassContentSectionAddTask();
 }
 
 function renderSummary() {
@@ -89,4 +90,9 @@ function highlightSidebarBtn(element) {
 function returnToLastActivePage() {
     let nextScreen = document.getElementById(`${lastActivePage}`);
     nextScreen.click();
+}
+
+
+function removeClassContentSectionAddTask() {
+    document.getElementById('contentSection').classList.remove('contentSectionAddTask');
 }

@@ -1,8 +1,11 @@
+.contentSectionAddTask {
+    overflow-y: auto;
+}
+
 .addTaskMainContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow-y: auto;
 }
 
 .d-none {
@@ -279,6 +282,13 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: ease-in-out 125ms;
+}
+
+.assigneeContainer:hover {
+    cursor: pointer;
+    transform: scale(0.9);
+    transition: ease-in-out 125ms;
 }
 
 /*

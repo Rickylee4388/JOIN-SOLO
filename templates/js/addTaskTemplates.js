@@ -34,7 +34,7 @@ function generateContentLeftAndRightContainer() {
                         <button type="button" class="cancelButton" onclick="cancelNewCategory()">
                             <img src="../../img/cancelIcon.png">
                         </button>
-                        <button type="button" class="checkButton">
+                        <button type="button" class="checkButton" onclick="confirmNewCategory()">
                             <img src="../../img/blackCheckIcon.png">
                         </button>
                     </div>
@@ -54,32 +54,32 @@ function generateContentLeftAndRightContainer() {
                             New category
                         </div>
 
-                        <div class="categoryOption" value="development" onclick="selectedCategory('development')">
+                        <div class="categoryOption" value="development" onclick="selectedCategory('development', 'red')">
                             Development
                             <div class="categoryColor" style="background-color: red"></div>
                         </div>
 
-                        <div class="categoryOption" value="design" onclick="selectedCategory('design')">
+                        <div class="categoryOption" value="design" onclick="selectedCategory('design', 'orange')">
                             Design
                             <div class="categoryColor" style="background-color: orange"></div>
                         </div>
 
-                        <div class="categoryOption" value="sales" onclick="selectedCategory('sales')">
+                        <div class="categoryOption" value="sales" onclick="selectedCategory('sales', 'pink')">
                             Sales
                             <div class="categoryColor" style="background-color: pink"></div>
                         </div>
 
-                        <div class="categoryOption" value="backoffice" onclick="selectedCategory('backoffice')">
+                        <div class="categoryOption" value="backoffice" onclick="selectedCategory('backoffice', 'turquoise')">
                             Backoffice
                             <div class="categoryColor" style="background-color: turquoise"></div>
                         </div>
 
-                        <div class="categoryOption" value="media" onclick="selectedCategory('media')">
+                        <div class="categoryOption" value="media" onclick="selectedCategory('media', 'goldenrod')">
                             Media
                             <div class="categoryColor" style="background-color: goldenrod"></div>
                         </div>
 
-                        <div class="categoryOption" value="marketing" onclick="selectedCategory('marketing')">
+                        <div class="categoryOption" value="marketing" onclick="selectedCategory('marketing', 'blue')">
                             Marketing
                             <div class="categoryColor" style="background-color: blue"></div>
                         </div>

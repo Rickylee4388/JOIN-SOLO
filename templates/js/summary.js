@@ -10,6 +10,7 @@ async function initSummary() {
   loadTaskStat();
   searchDate();
   searchUrgentTasks()
+  removeClassContentSectionAddTask();
 }
 
 
