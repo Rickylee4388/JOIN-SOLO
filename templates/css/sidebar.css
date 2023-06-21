@@ -17,6 +17,7 @@
     align-items: center;
     gap: 90px;
     justify-content: space-between;
+    height: 85%;
 }
 
 .sidebarNav {

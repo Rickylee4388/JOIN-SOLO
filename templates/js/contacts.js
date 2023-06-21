@@ -345,7 +345,9 @@ function updateContactsMobileVisibility() {
     windowsizeBeneathBreakpoint(windowSize, contactsDetail, contactsList, contactsSection );
     windowsizeAboveBreakpoint(windowSize, contactsDetail, contactsList, contactsSection);
 }
-
+/**
+ * Changes to mobileview.
+ */
 function windowsizeBeneathBreakpoint(windowSize, contactsDetail, contactsList, contactsSection) {
     if (contactsSection && windowSize <= 768) {
         if (!contactsDetail.classList.contains('d-none') && !contactsList.classList.contains('d-none')) {
@@ -353,7 +355,9 @@ function windowsizeBeneathBreakpoint(windowSize, contactsDetail, contactsList, c
         }
     }
 }
-
+/**
+ * Changes to desktopview.
+ */
 function windowsizeAboveBreakpoint(windowSize, contactsDetail, contactsList, contactsSection) {
     if (contactsSection && windowSize >= 769) {
         if (contactsDetail.classList.contains('d-none')) {
@@ -362,5 +366,33 @@ function windowsizeAboveBreakpoint(windowSize, contactsDetail, contactsList, con
         if (contactsList.classList.contains('d-none')) {
             contactsList.classList.remove('d-none');
         }
+    }
+}
+/**
+ * Changes displaystate of hovered btns.
+ */
+function btnHoverEffect(isHovered) {
+    const cancelCheckmark = document.getElementById('cancelCheckmarkContacts');
+    const cancelCheckmarkHover = document.getElementById('cancelCheckmarkContactsHover');
+    if (isHovered) {
+        cancelCheckmark.style.display = "none";
+        cancelCheckmarkHover.style.display = "block";
+    } else {
+        cancelCheckmark.style.display = "block";
+        cancelCheckmarkHover.style.display = "none";
+    }
+}
+/**
+ * Changes displaystate of hovered btns.
+ */
+function btnHoverEffect2(isHovered) {
+    const cancelCheckmark = document.getElementById('cancelCheckmarkContacts2');
+    const cancelCheckmarkHover = document.getElementById('cancelCheckmarkContactsHover2');
+    if (isHovered) {
+        cancelCheckmark.style.display = "none";
+        cancelCheckmarkHover.style.display = "block";
+    } else {
+        cancelCheckmark.style.display = "block";
+        cancelCheckmarkHover.style.display = "none";
     }
 }

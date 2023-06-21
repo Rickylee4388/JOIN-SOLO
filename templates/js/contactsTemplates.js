@@ -55,9 +55,10 @@ function generateContactsDetailContentHTML(name, email, phone, color, initials, 
                     <h4>Phone</h4>
                     <p>${phone}</p>
                 </div>
-                <div class="contactsDetailInfoContentRight">
+                <div class="contactsDetailInfoContentRight" onmouseover="btnHoverEffect2(true)" onmouseout="btnHoverEffect2(false)">
                     <div class="contactsDetailInfoContentRightEdit" onclick="editContact(${i})">
-                    <img src="/../img/editContactIcon.svg" alt="editContactIcon">
+                    <img id="cancelCheckmarkContacts2" src="/../img/editContactIcon.svg" style="display:block" alt="editContactIcon">
+                    <img id="cancelCheckmarkContactsHover2" src="/../img/editContactIconHover2.svg" style="display:none" alt="editContactIcon">
                         <h3>Edit Contact</h3>
                     </div>
                     <div class="contactsDetailBottomMobileSection">
@@ -117,9 +118,10 @@ function generateContactsOverlayAddHTML() {
                         <input id="addContactEmail" class="contactOverlayEmailIcon" required type="email" placeholder="Email" title="Please enter a valid email address e.g.: 'johndoe@dev.com' ">
                         <input id="addContactPhone" class="contactOverlayPhoneIcon" required type="number" placeholder="Phone" title="Please enter a valid phone number e.g.: '+491724485536' "> 
                         <div class="overlayAddContactRightButtonSection">
-                            <button type="reset" class="contactsDetailBottomBtnAlt cancelBtn2">
+                            <button type="reset" class="contactsDetailBottomBtnAlt cancelBtn2" onmouseover="btnHoverEffect(true)" onmouseout="btnHoverEffect(false)">
                                 <p>Cancel</p>
-                                <img src="/../img/cancelCheckmarkContacts.svg" alt="newContactIconBig">
+                                <img id="cancelCheckmarkContacts" src="/../img/cancelCheckmarkContacts.svg" style ="display:block" alt="newContactIconBig">
+                                <img id="cancelCheckmarkContactsHover" src="/../img/cancelCheckmarkContactsHover.svg" style="display:none" alt="newContactIconBig">
                             </button > 
                             <button type="submit" class="contactsDetailBottomBtn">
                                 <p>Create Contact</p>
@@ -159,10 +161,11 @@ function generateContactsOverlayEditHTML(name, email, phone, color, initials, i)
                         <input id="editContactEmail" class="contactOverlayEmailIcon" required type="email" placeholder="Email" title="Please enter a valid email address e.g.: 'johndoe@dev.com' " value="${email}">
                         <input id="editContactPhone" class="contactOverlayPhoneIcon" required type="number" placeholder="Phone" title="Please enter a valid phone number e.g.: '+491724485536' " value="${phone}">
                         <div class="overlayAddContactRightButtonSection editBtn">
-                            <button type="reset" class="contactsDetailBottomBtnAlt" onclick="deleteContact(${i})">
+                            <button type="reset" class="contactsDetailBottomBtnAlt" onclick="deleteContact(${i})" onmouseover="btnHoverEffect(true)" onmouseout="btnHoverEffect(false)">
                                 <p>Delete</p>
-                                <img src="/../img/cancelCheckmarkContacts.svg" alt="newContactIconBig">
-                            </button >
+                                <img id="cancelCheckmarkContacts" src="/../img/cancelCheckmarkContacts.svg" style ="display:block" alt="newContactIconBig">
+                                <img id="cancelCheckmarkContactsHover" src="/../img/cancelCheckmarkContactsHover.svg" style="display:none" alt="newContactIconBig">
+                             </button >
                             <button type="submit" class="contactsDetailBottomBtn">
                                 <p>Save Contact</p>
                                 <img src="/../img/checkmarkContacts.svg" alt="newContactIconBig">

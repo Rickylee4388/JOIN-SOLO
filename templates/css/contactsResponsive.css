@@ -316,7 +316,11 @@
     }
 
     .helpScreenSection {
-        padding: 0px 40px 40px 40px;
+        padding: 0px 30px 30px 30px;
+    }
+    
+    .helpScreenSection h1 {
+        font-size: 40px;
     }
 
     .sidebarBtn {
