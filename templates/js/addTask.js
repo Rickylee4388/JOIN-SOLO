@@ -237,6 +237,7 @@ function showAssignedToList(i) {
 
 function removeAssignee(position) {
     assignedToNames.splice(position, 1);
+    showAssignedToList(position);
 }
 
 

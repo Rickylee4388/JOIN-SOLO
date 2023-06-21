@@ -144,7 +144,7 @@ function assignedToOverlay() {
 }
 
 
-function showAssignedToList(i) {
+function showAssignedToListOverlay(i) {
     const allData = allContacts[i];
     const { initials, color } = getJoinData(allData);
     document.getElementById('assignedToList').innerHTML += /*html*/ `
