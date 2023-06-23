@@ -437,8 +437,8 @@ function deleteAssignmentOption(i, Id) {
 
 /**
  * Controls the Amount of done Subtasks.
- * @param {number} i 
- * @param {number} Id 
+ * @param {number} i - index of current subtask.
+ * @param {number} Id - index of current task.
  */
 function configDoneSubtask(i, Id) {
     let task = newTaskArray[Id];
