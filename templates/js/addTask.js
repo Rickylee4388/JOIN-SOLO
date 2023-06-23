@@ -224,20 +224,35 @@ function assignedTo() {
 }
 
 
-function showAssignedToList(i) {
-    const allData = allContacts[i];
-    const { initials, color } = getJoinData(allData);
-    document.getElementById('assignedToList').innerHTML += /*html*/ `
-        <div class="assigneeContainer" style="background-color: ${color}" onclick="removeAssignee(${i})">
+function showAssignedToList(k) {
+    let content = document.getElementById('assignedToList');
+
+    content.innerHTML = '';
+
+    for (let i = 0; i < assignedToNames.length; i++) {
+        const name = assignedToNames[i];
+        let bgColor = contactsColors[i];
+        let objId = k + 1;
+
+        let initials = getInitials(name);
+
+        content.innerHTML += /*html*/ `
+        <div class="assigneeContainer" style="background-color: ${bgColor}" onclick="removeAssignee('${i}', '${objId}')">
             ${initials}
         </div>
     `;
+    }
 }
 
 
-function removeAssignee(position) {
+function removeAssignee(position, objId) {
     assignedToNames.splice(position, 1);
+    contactsColors.splice(position, 1);
     showAssignedToList(position);
+
+    let assignee = document.getElementById("assignedTo");
+    let selectedAssignee2 = assignee.options[objId];
+    selectedAssignee2.disabled = false;
 }
 
 
