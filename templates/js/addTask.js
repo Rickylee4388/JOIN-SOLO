@@ -3,6 +3,7 @@ let prio = undefined;
 let allSubtasks = [];
 let assignedToNames = [];
 let contactsColors = [];
+let objIds = [];
 let assignedToInitials = [];
 let dateArray = [];
 let isChecked = [];
@@ -214,46 +215,51 @@ function assignedTo() {
     let color = assignee.options[assignee.selectedIndex].id;
     let selectedAssignee2 = assignee.options[assignee.selectedIndex];
     selectedAssignee2.disabled = true;
-    let i = (assignee.selectedIndex) - 1;
-
+    let i = assignee.selectedIndex - 1;
+    let objId = i + 1;
+  
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
-        assignedToNames.push(selectedAssignee);
-        contactsColors.push(color);
+      assignedToNames.push(selectedAssignee);
+      contactsColors.push(color);
+      objIds.push(objId);
     }
-    showAssignedToList(i);
-}
+    showAssignedToList();
+  }
 
 
-function showAssignedToList(k) {
-    let content = document.getElementById('assignedToList');
-
-    content.innerHTML = '';
-
+  function showAssignedToList() {
+    let content = document.getElementById("assignedToList");
+  
+    content.innerHTML = "";
+  
     for (let i = 0; i < assignedToNames.length; i++) {
-        const name = assignedToNames[i];
-        let bgColor = contactsColors[i];
-        let objId = k + 1;
-
-        let initials = getInitials(name);
-
-        content.innerHTML += /*html*/ `
-        <div class="assigneeContainer" style="background-color: ${bgColor}" onclick="removeAssignee('${i}', '${objId}')">
-            ${initials}
+      const name = assignedToNames[i];
+      let bgColor = contactsColors[i];
+      let objId = objIds[i];
+      let initials = getInitials(name);
+  
+      content.innerHTML += /*html*/ `
+        <div class="assigneeContainer" style="background-color: ${bgColor}" onclick="removeAssignee(${i}, ${objId})">
+          ${initials}
         </div>
-    `;
+      `;
     }
-}
-
+  }
 
 function removeAssignee(position, objId) {
     assignedToNames.splice(position, 1);
     contactsColors.splice(position, 1);
-    showAssignedToList(position);
-
+    objIds.splice(position, 1);
+    showAssignedToList();
+  
     let assignee = document.getElementById("assignedTo");
     let selectedAssignee2 = assignee.options[objId];
     selectedAssignee2.disabled = false;
-}
+
+    if (assignedToNames.length === 0) {
+        assignee.selectedIndex = 0;
+    }
+  }
 
 
 function newSubtask() {

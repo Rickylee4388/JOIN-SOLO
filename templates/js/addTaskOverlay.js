@@ -134,14 +134,15 @@ function assignedToOverlay() {
     let color = assignee.options[assignee.selectedIndex].id;
     let selectedAssignee2 = assignee.options[assignee.selectedIndex];
     selectedAssignee2.disabled = true;
-    let i = (assignee.selectedIndex) - 1;
-
+    let i = assignee.selectedIndex - 1;
+  
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
-        assignedToNames.push(selectedAssignee);
-        contactsColors.push(color);
+      assignedToNames.push(selectedAssignee);
+      contactsColors.push(color);
     }
     showAssignedToList(i);
-}
+  }
+
 
 
 function showAssignedToListOverlay(i) {
