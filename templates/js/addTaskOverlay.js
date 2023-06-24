@@ -43,7 +43,7 @@ function renderContactsAddTaskOverlay() {
         const { color } = getJoinData(allData);
         document.getElementById('assignedToOverlay').innerHTML += /*html*/ `
             <option value="${color}">${name}</option>
-        `;  
+        `;
     }
 }
 
@@ -72,12 +72,12 @@ function activatePrioButtonsOverlay() {
 
     let resetBtn = document.getElementById('reset');
     resetBtn.addEventListener("click", low);
-       
+
     let assignBtn = document.getElementById('assignedToOverlay');
     assignBtn.addEventListener("change", assignedToOverlay);
 
-    document.getElementById('addTaskForm').addEventListener('submit', function(event) {
-        event.preventDefault(); 
+    document.getElementById('addTaskForm').addEventListener('submit', function (event) {
+        event.preventDefault();
         createTask();
     });
 }
@@ -135,22 +135,48 @@ function assignedToOverlay() {
     let selectedAssignee2 = assignee.options[assignee.selectedIndex];
     selectedAssignee2.disabled = true;
     let i = assignee.selectedIndex - 1;
-  
+    let objId = i + 1;
+
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
-      assignedToNames.push(selectedAssignee);
-      contactsColors.push(color);
+        assignedToNames.push(selectedAssignee);
+        contactsColors.push(color);
+        objIds.push(objId);
     }
-    showAssignedToList(i);
-  }
+    showAssignedToListOverlay();
+}
 
 
+function showAssignedToListOverlay() {
+    let content = document.getElementById("assignedToList");
 
-function showAssignedToListOverlay(i) {
-    const allData = allContacts[i];
-    const { initials, color } = getJoinData(allData);
-    document.getElementById('assignedToList').innerHTML += /*html*/ `
-        <div class="assigneeContainer" style="background-color: ${color}">
-            ${initials}
-        </div>
-    `;
+    content.innerHTML = "";
+
+    for (let i = 0; i < assignedToNames.length; i++) {
+        const name = assignedToNames[i];
+        let bgColor = contactsColors[i];
+        let objId = objIds[i];
+        let initials = getInitials(name);
+
+        content.innerHTML += /*html*/ `
+            <div class="assigneeContainer" style="background-color: ${bgColor}" onclick="removeAssigneeOverlay(${i}, ${objId})">
+                ${initials}
+            </div>
+        `;
+    }
+}
+
+
+function removeAssigneeOverlay(position, objId) {
+    assignedToNames.splice(position, 1);
+    contactsColors.splice(position, 1);
+    objIds.splice(position, 1);
+    showAssignedToList();
+
+    let assignee = document.getElementById("assignedTo");
+    let selectedAssignee2 = assignee.options[objId];
+    selectedAssignee2.disabled = false;
+
+    if (assignedToNames.length === 0) {
+        assignee.selectedIndex = 0;
+    }
 }

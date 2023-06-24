@@ -46,7 +46,7 @@ function renderContactsAddTask(Id) {
 
         document.getElementById(Id).innerHTML += /*html*/ `
             <option id="${color}" value="${name}">${name}</option>
-        `;  
+        `;
     }
 }
 
@@ -86,12 +86,12 @@ function activatePrioButtons() {
 
     let resetBtn = document.getElementById('reset');
     resetBtn.addEventListener("click", low);
-       
+
     let assignBtn = document.getElementById('assignedTo');
     assignBtn.addEventListener("change", assignedTo);
 
-    document.getElementById('addTaskForm').addEventListener('submit', function(event) {
-        event.preventDefault(); 
+    document.getElementById('addTaskForm').addEventListener('submit', function (event) {
+        event.preventDefault();
         createTask();
     });
 }
@@ -179,12 +179,18 @@ function cancelNewCategory() {
 function confirmNewCategory() {
     let newCategory = document.getElementById('newCategoryInput').value;
     let newCategoryColor = document.getElementById('newCategoryColor').style.backgroundColor;
-    selectedCategory(newCategory, newCategoryColor);
-    document.getElementById('newCategoryInput').value = '';
-    document.getElementById('newCategoryColor').style.backgroundColor = '';
-    document.getElementById('newCategoryContainer').classList.add('d-none');
-    document.getElementById('newCategoryColors').classList.add('d-none');
-    document.getElementById('category').style.display = 'flex';
+    let newCategoryInput = document.getElementById('newCategoryInput');
+
+    if (newCategoryInput.value == '') {
+        newCategoryInput.focus();
+    } else {
+        selectedCategory(newCategory, newCategoryColor);
+        document.getElementById('newCategoryInput').value = '';
+        document.getElementById('newCategoryColor').style.backgroundColor = '';
+        document.getElementById('newCategoryContainer').classList.add('d-none');
+        document.getElementById('newCategoryColors').classList.add('d-none');
+        document.getElementById('category').style.display = 'flex';
+    }
 }
 
 
@@ -217,41 +223,42 @@ function assignedTo() {
     selectedAssignee2.disabled = true;
     let i = assignee.selectedIndex - 1;
     let objId = i + 1;
-  
+
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
-      assignedToNames.push(selectedAssignee);
-      contactsColors.push(color);
-      objIds.push(objId);
+        assignedToNames.push(selectedAssignee);
+        contactsColors.push(color);
+        objIds.push(objId);
     }
     showAssignedToList();
-  }
+}
 
 
-  function showAssignedToList() {
+function showAssignedToList() {
     let content = document.getElementById("assignedToList");
-  
+
     content.innerHTML = "";
-  
+
     for (let i = 0; i < assignedToNames.length; i++) {
-      const name = assignedToNames[i];
-      let bgColor = contactsColors[i];
-      let objId = objIds[i];
-      let initials = getInitials(name);
-  
-      content.innerHTML += /*html*/ `
-        <div class="assigneeContainer" style="background-color: ${bgColor}" onclick="removeAssignee(${i}, ${objId})">
-          ${initials}
-        </div>
-      `;
+        const name = assignedToNames[i];
+        let bgColor = contactsColors[i];
+        let objId = objIds[i];
+        let initials = getInitials(name);
+
+        content.innerHTML += /*html*/ `
+            <div class="assigneeContainer" style="background-color: ${bgColor}" onclick="removeAssignee(${i}, ${objId})">
+            ${initials}
+            </div>
+        `;
     }
-  }
+}
+
 
 function removeAssignee(position, objId) {
     assignedToNames.splice(position, 1);
     contactsColors.splice(position, 1);
     objIds.splice(position, 1);
     showAssignedToList();
-  
+
     let assignee = document.getElementById("assignedTo");
     let selectedAssignee2 = assignee.options[objId];
     selectedAssignee2.disabled = false;
@@ -259,12 +266,12 @@ function removeAssignee(position, objId) {
     if (assignedToNames.length === 0) {
         assignee.selectedIndex = 0;
     }
-  }
+}
 
 
 function newSubtask() {
     let newSubtask = document.getElementById('subtasks').value;
-    
+
     if (newSubtask == '') {
         document.getElementById('subtasks').focus();
     } else {
@@ -294,6 +301,7 @@ function clearFields() {
     document.getElementById('subtasksList').innerHTML = '';
     closeCategoryDropdown();
     cancelNewCategory();
+    removeAssignee();
 }
 
 
@@ -340,7 +348,7 @@ function taskAddedToBoard() {
     document.getElementById('overlaySection').innerHTML = /*html*/ `
         <img src="../../img/taskAddedToBoard.png" class="taskAddedPopUp" id="taskAddedPopUp">
     `;
-    setTimeout(function() {closePopUp()}, 2000);
+    setTimeout(function () { closePopUp() }, 2000);
 }
 
 
