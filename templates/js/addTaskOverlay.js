@@ -8,7 +8,6 @@ function openAddTaskOverlay(stat) {
             <div class="twoButtonsContainerOverlay" id="twoButtonsContainerOverlay"></div>
         </form>
     `;
-
     renderHeadlineOverlay();
 }
 
@@ -78,7 +77,7 @@ function activatePrioButtonsOverlay() {
 
     document.getElementById('addTaskForm').addEventListener('submit', function (event) {
         event.preventDefault();
-        createTask();
+        createTaskOverlay();
     });
 }
 
@@ -128,6 +127,79 @@ function low() {
 }
 
 
+function openCategoryDropdownOverlay() {
+    document.getElementById('categoryDropdownOverlay').classList.remove('d-none');
+    document.getElementById('categoryOverlay').style.cssText = `
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-bottom: none;
+    `;
+    document.getElementById('categoryOverlay').onclick = closeCategoryDropdownOverlay;
+}
+
+
+function newCategoryOverlay() {
+    closeCategoryDropdownOverlay();
+    document.getElementById('newCategoryContainerOverlay').classList.remove('d-none');
+    document.getElementById('newCategoryColorsOverlay').classList.remove('d-none');
+    document.getElementById('categoryOverlay').style.display = 'none';
+}
+
+
+function addColorToNewCategoryOverlay(color) {
+    document.getElementById('newCategoryColorOverlay').style.backgroundColor = color;
+}
+
+
+function cancelNewCategoryOverlay() {
+    document.getElementById('newCategoryInputOverlay').value = '';
+    document.getElementById('newCategoryColorOverlay').style.backgroundColor = '';
+    document.getElementById('newCategoryContainerOverlay').classList.add('d-none');
+    document.getElementById('newCategoryColorsOverlay').classList.add('d-none');
+    document.getElementById('categoryOverlay').style.display = 'flex';
+    document.getElementById('categoryOverlay').innerHTML = 'Select task category';
+}
+
+
+function confirmNewCategoryOverlay() {
+    let newCategory = document.getElementById('newCategoryInputOverlay').value;
+    let newCategoryColor = document.getElementById('newCategoryColorOverlay').style.backgroundColor;
+    let newCategoryInput = document.getElementById('newCategoryInputOverlay');
+
+    if (newCategoryInput.value == '') {
+        newCategoryInput.focus();
+    } else {
+        selectedCategoryOverlay(newCategory, newCategoryColor);
+        document.getElementById('newCategoryInputOverlay').value = '';
+        document.getElementById('newCategoryColorOverlay').style.backgroundColor = '';
+        document.getElementById('newCategoryContainerOverlay').classList.add('d-none');
+        document.getElementById('newCategoryColorsOverlay').classList.add('d-none');
+        document.getElementById('categoryOverlay').style.display = 'flex';
+    }
+}
+
+
+function selectedCategoryOverlay(category, color) {
+    category = category.charAt(0).toUpperCase() + category.slice(1);
+    document.getElementById('categoryOverlay').innerHTML = /*html*/ `
+        ${category}
+        <div class="categoryColor" style="background-color: ${color}; margin-left: 10px"></div>
+    `;
+    closeCategoryDropdownOverlay();
+}
+
+
+function closeCategoryDropdownOverlay() {
+    document.getElementById('categoryDropdownOverlay').classList.add('d-none');
+    document.getElementById('categoryOverlay').style.cssText = `
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom: 1px solid #D1D1D1;
+    `;
+    document.getElementById('categoryOverlay').onclick = openCategoryDropdownOverlay;
+}
+
+
 function assignedToOverlay() {
     let assignee = document.getElementById("assignedToOverlay");
     let selectedAssignee = assignee.options[assignee.selectedIndex].value;
@@ -147,7 +219,7 @@ function assignedToOverlay() {
 
 
 function showAssignedToListOverlay() {
-    let content = document.getElementById("assignedToList");
+    let content = document.getElementById("assignedToListOverlay");
 
     content.innerHTML = "";
 
@@ -170,13 +242,55 @@ function removeAssigneeOverlay(position, objId) {
     assignedToNames.splice(position, 1);
     contactsColors.splice(position, 1);
     objIds.splice(position, 1);
-    showAssignedToList();
+    showAssignedToListOverlay();
 
-    let assignee = document.getElementById("assignedTo");
+    let assignee = document.getElementById("assignedToOverlay");
     let selectedAssignee2 = assignee.options[objId];
     selectedAssignee2.disabled = false;
 
     if (assignedToNames.length === 0) {
         assignee.selectedIndex = 0;
     }
+}
+
+
+function clearFieldsOverlay() {
+    assignedToNames = [];
+    allSubtasks = [];
+    document.getElementById('categoryOverlay').innerHTML = 'Select task category';
+    document.getElementById('assignedToListOverlay').innerHTML = '';
+    document.getElementById('subtasksList').innerHTML = '';
+    closeCategoryDropdownOverlay();
+    cancelNewCategoryOverlay();
+    removeAssignee();
+}
+
+
+function createTaskOverlay() {
+    let title = document.getElementById('title').value;
+    let description = document.getElementById('description').value;
+    let category = document.getElementById('categoryOverlay').innerText;
+    let date = dateArray;
+
+    let newTask = {
+        'id': '',
+        'title': title,
+        'description': description,
+        'category': category,
+        'assignedTo': assignedToNames,
+        'date': date,
+        'prio': prio,
+        'stat': chosenStat,
+        'subtasks': allSubtasks,
+        'isChecked': isChecked,
+        'doneSubTasks': 0,
+        'color': contactsColors
+    };
+
+    newTaskArray.push(newTask);
+    saveTasks();
+    allSubtasks = [];
+    assignedToNames = [];
+    dateArray = [];
+    taskAddedToBoard();
 }

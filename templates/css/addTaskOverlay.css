@@ -21,6 +21,21 @@
     margin-bottom: 25px;
 }
 
+#categoryOverlay {
+    box-sizing: border-box;
+    padding: 5px 10px;
+    width: 422px;
+    height: 51px;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    font-weight: 400;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    background: white url("../../img/dropdownArrow.png") no-repeat right 10px center;
+    cursor: pointer;
+}
+
 @keyframes slideIn {
     from {
         transform: translate(150%);
@@ -78,6 +93,14 @@
 
     .twoButtonsContainerOverlay {
         margin-top: 20px;
+    }
+
+    #categoryOverlay {
+        width: 100% !important;
+    }
+
+    #categoryDropdownOverlay {
+        width: calc(100% - 1.5px);
     }
 }
 

@@ -15,60 +15,60 @@ function generateContentLeftAndRightContainerOverlay() {
                 <div class="categoryAndSelect">
                     <span>Category</span>
                     
-                    <div class="newCategoryContainer d-none" id="newCategoryContainer">
-                        <input placeholder="New category name" id="newCategoryInput">
+                    <div class="newCategoryContainer d-none" id="newCategoryContainerOverlay">
+                        <input placeholder="New category name" id="newCategoryInputOverlay">
                         <div class="newCategoryColorContainer">
-                            <div class="categoryColor" id="newCategoryColor"></div>
+                            <div class="categoryColor" id="newCategoryColorOverlay"></div>
                         </div>
-                        <button type="button" class="cancelButton" onclick="cancelNewCategory()">
+                        <button type="button" class="cancelButton" onclick="cancelNewCategoryOverlay()">
                             <img src="../../img/cancelIcon.png">
                         </button>
-                        <button type="button" class="checkButton" onclick="confirmNewCategory()">
+                        <button type="button" class="checkButton" onclick="confirmNewCategoryOverlay()">
                             <img src="../../img/blackCheckIcon.png">
                         </button>
                     </div>
 
-                    <div class="newCategoryColors d-none" id="newCategoryColors">
-                        <p class="categoryColor" style="background-color: red" onclick="addColorToNewCategory('red')"></p>
-                        <p class="categoryColor" style="background-color: orange" onclick="addColorToNewCategory('orange')"></p>
-                        <p class="categoryColor" style="background-color: pink" onclick="addColorToNewCategory('pink')"></p>
-                        <p class="categoryColor" style="background-color: turquoise" onclick="addColorToNewCategory('turquoise')"></p>
-                        <p class="categoryColor" style="background-color: goldenrod" onclick="addColorToNewCategory('goldenrod')"></p>
-                        <p class="categoryColor" style="background-color: blue" onclick="addColorToNewCategory('blue')"></p>
+                    <div class="newCategoryColors d-none" id="newCategoryColorsOverlay">
+                        <p class="categoryColor" style="background-color: red" onclick="addColorToNewCategoryOverlay('red')"></p>
+                        <p class="categoryColor" style="background-color: orange" onclick="addColorToNewCategoryOverlay('orange')"></p>
+                        <p class="categoryColor" style="background-color: pink" onclick="addColorToNewCategoryOverlay('pink')"></p>
+                        <p class="categoryColor" style="background-color: turquoise" onclick="addColorToNewCategoryOverlay('turquoise')"></p>
+                        <p class="categoryColor" style="background-color: goldenrod" onclick="addColorToNewCategoryOverlay('goldenrod')"></p>
+                        <p class="categoryColor" style="background-color: blue" onclick="addColorToNewCategoryOverlay('blue')"></p>
                     </div>
                     
-                    <div id="category" onclick="openCategoryDropdown()">Select task category</div>
-                    <div id="categoryDropdown" class="categoryDropdown d-none">
-                        <div class="categoryOption" onclick="newCategory()">
+                    <div id="categoryOverlay" onclick="openCategoryDropdownOverlay()">Select task category</div>
+                    <div id="categoryDropdownOverlay" class="categoryDropdown d-none">
+                        <div class="categoryOption" onclick="newCategoryOverlay()">
                             New category
                         </div>
 
-                        <div class="categoryOption" value="development" onclick="selectedCategory('development', 'red')">
+                        <div class="categoryOption" value="development" onclick="selectedCategoryOverlay('development', 'red')">
                             Development
                             <div class="categoryColor" style="background-color: red"></div>
                         </div>
 
-                        <div class="categoryOption" value="design" onclick="selectedCategory('design', 'orange')">
+                        <div class="categoryOption" value="design" onclick="selectedCategoryOverlay('design', 'orange')">
                             Design
                             <div class="categoryColor" style="background-color: orange"></div>
                         </div>
 
-                        <div class="categoryOption" value="sales" onclick="selectedCategory('sales', 'pink')">
+                        <div class="categoryOption" value="sales" onclick="selectedCategoryOverlay('sales', 'pink')">
                             Sales
                             <div class="categoryColor" style="background-color: pink"></div>
                         </div>
 
-                        <div class="categoryOption" value="backoffice" onclick="selectedCategory('backoffice', 'turquoise')">
+                        <div class="categoryOption" value="backoffice" onclick="selectedCategoryOverlay('backoffice', 'turquoise')">
                             Backoffice
                             <div class="categoryColor" style="background-color: turquoise"></div>
                         </div>
 
-                        <div class="categoryOption" value="media" onclick="selectedCategory('media', 'goldenrod')">
+                        <div class="categoryOption" value="media" onclick="selectedCategoryOverlay('media', 'goldenrod')">
                             Media
                             <div class="categoryColor" style="background-color: goldenrod"></div>
                         </div>
 
-                        <div class="categoryOption" value="marketing" onclick="selectedCategory('marketing', 'blue')">
+                        <div class="categoryOption" value="marketing" onclick="selectedCategoryOverlay('marketing', 'blue')">
                             Marketing
                             <div class="categoryColor" style="background-color: blue"></div>
                         </div>
@@ -82,7 +82,7 @@ function generateContentLeftAndRightContainerOverlay() {
                     </select>
                 </div>
 
-                <div class="assignedToList" id="assignedToList">
+                <div class="assignedToList" id="assignedToListOverlay">
 
                 </div>
             </div>
@@ -138,7 +138,7 @@ function generateContentLeftAndRightContainerOverlay() {
 function generateTwoButtonsContainerOverlay() {
     return /*html*/ `
         <div class="twoButtons">
-            <button id="reset" type="reset" class="clearButton" onclick="clearFields()">
+            <button id="reset" type="reset" class="clearButton" onclick="clearFieldsOverlay()">
                 Clear
                 <img src="../../img/cancelIcon.png">
             </button>

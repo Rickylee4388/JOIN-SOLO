@@ -302,6 +302,16 @@ function clearFields() {
     closeCategoryDropdown();
     cancelNewCategory();
     removeAssignee();
+    enableContactsForAssignedTo();
+}
+
+
+function enableContactsForAssignedTo() {
+    let assignee = document.getElementById("assignedTo");
+    for (let i = 1; i < assignee.options.length; i++) {
+        let option = assignee.options[i];
+        option.disabled = false;
+    }
 }
 
 
@@ -310,8 +320,6 @@ function createTask() {
     let description = document.getElementById('description').value;
     let category = document.getElementById('category').innerText;
     let date = dateArray;
-
-
 
     let newTask = {
         'id': '',
