@@ -50,6 +50,15 @@ function renderContactsAddTask(Id) {
     }
 }
 
+function clearDisabledState() {
+    for (let i = 0; i < allContacts.length; i++) {
+        let position = i;
+        let objId = i;
+        removeAssignee(position, objId)
+        
+    }
+}
+
 
 function renderTwoButtonsContainer() {
     document.getElementById('twoButtonsContainer').innerHTML = generateTwoButtonsContainer();
@@ -86,6 +95,8 @@ function activatePrioButtons() {
 
     let resetBtn = document.getElementById('reset');
     resetBtn.addEventListener("click", low);
+    resetBtn.addEventListener("click", clearDisabledState);
+   
 
     let assignBtn = document.getElementById('assignedTo');
     assignBtn.addEventListener("change", assignedTo);
@@ -262,6 +273,8 @@ function removeAssignee(position, objId) {
     let assignee = document.getElementById("assignedTo");
     let selectedAssignee2 = assignee.options[objId];
     selectedAssignee2.disabled = false;
+    
+    
 
     if (assignedToNames.length === 0) {
         assignee.selectedIndex = 0;
