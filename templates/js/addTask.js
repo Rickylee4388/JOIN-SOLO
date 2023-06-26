@@ -4,7 +4,6 @@ let allSubtasks = [];
 let assignedToNames = [];
 let contactsColors = [];
 let objIds = [];
-let assignedToInitials = [];
 let dateArray = [];
 let isChecked = [];
 
@@ -43,7 +42,6 @@ function renderContactsAddTask(Id) {
     for (let i = 0; i < allContacts.length; i++) {
         const allData = allContacts[i];
         const { name, color } = getJoinData(allData);
-
         document.getElementById(Id).innerHTML += /*html*/ `
             <option id="${color}" value="${name}">${name}</option>
         `;
@@ -55,7 +53,6 @@ function clearDisabledState() {
         let position = i;
         let objId = i;
         removeAssignee(position, objId)
-        
     }
 }
 
@@ -96,7 +93,6 @@ function activatePrioButtons() {
     let resetBtn = document.getElementById('reset');
     resetBtn.addEventListener("click", low);
     resetBtn.addEventListener("click", clearDisabledState);
-   
 
     let assignBtn = document.getElementById('assignedTo');
     assignBtn.addEventListener("change", assignedTo);
@@ -246,7 +242,6 @@ function assignedTo() {
 
 function showAssignedToList() {
     let content = document.getElementById("assignedToList");
-
     content.innerHTML = "";
 
     for (let i = 0; i < assignedToNames.length; i++) {
@@ -254,10 +249,9 @@ function showAssignedToList() {
         let bgColor = contactsColors[i];
         let objId = objIds[i];
         let initials = getInitials(name);
-
         content.innerHTML += /*html*/ `
             <div class="assigneeContainer" style="background-color: ${bgColor}" onclick="removeAssignee(${i}, ${objId})">
-            ${initials}
+                ${initials}
             </div>
         `;
     }
@@ -273,8 +267,6 @@ function removeAssignee(position, objId) {
     let assignee = document.getElementById("assignedTo");
     let selectedAssignee2 = assignee.options[objId];
     selectedAssignee2.disabled = false;
-    
-    
 
     if (assignedToNames.length === 0) {
         assignee.selectedIndex = 0;
@@ -301,26 +293,29 @@ function newSubtask() {
             `;
         }
     }
-
     document.getElementById('subtasks').value = '';
 }
 
 
 function clearFields() {
-    assignedToNames = [];
     allSubtasks = [];
+    assignedToNames = [];
+    contactsColors = [];
+    objIds = [];
+    dateArray = [];
     document.getElementById('category').innerHTML = 'Select task category';
     document.getElementById('assignedToList').innerHTML = '';
     document.getElementById('subtasksList').innerHTML = '';
     closeCategoryDropdown();
     cancelNewCategory();
-    removeAssignee();
+    /*removeAssignee();*/
     enableContactsForAssignedTo();
 }
 
 
 function enableContactsForAssignedTo() {
     let assignee = document.getElementById("assignedTo");
+
     for (let i = 1; i < assignee.options.length; i++) {
         let option = assignee.options[i];
         option.disabled = false;
@@ -351,9 +346,7 @@ function createTask() {
 
     newTaskArray.push(newTask);
     saveTasks();
-    allSubtasks = [];
-    assignedToNames = [];
-    dateArray = [];
+    clearFields();
     taskAddedToBoard();
 }
 

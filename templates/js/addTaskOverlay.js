@@ -220,7 +220,6 @@ function assignedToOverlay() {
 
 function showAssignedToListOverlay() {
     let content = document.getElementById("assignedToListOverlay");
-
     content.innerHTML = "";
 
     for (let i = 0; i < assignedToNames.length; i++) {
@@ -228,7 +227,6 @@ function showAssignedToListOverlay() {
         let bgColor = contactsColors[i];
         let objId = objIds[i];
         let initials = getInitials(name);
-
         content.innerHTML += /*html*/ `
             <div class="assigneeContainer" style="background-color: ${bgColor}" onclick="removeAssigneeOverlay(${i}, ${objId})">
                 ${initials}
@@ -255,14 +253,27 @@ function removeAssigneeOverlay(position, objId) {
 
 
 function clearFieldsOverlay() {
-    assignedToNames = [];
     allSubtasks = [];
+    assignedToNames = [];
+    contactsColors = [];
+    objIds = [];
+    dateArray = [];
     document.getElementById('categoryOverlay').innerHTML = 'Select task category';
     document.getElementById('assignedToListOverlay').innerHTML = '';
     document.getElementById('subtasksList').innerHTML = '';
     closeCategoryDropdownOverlay();
     cancelNewCategoryOverlay();
-    removeAssignee();
+    /*removeAssigneeOverlay();*/
+    enableContactsForAssignedToOverlay();
+}
+
+
+function enableContactsForAssignedToOverlay() {
+    let assignee = document.getElementById("assignedToOverlay");
+    for (let i = 1; i < assignee.options.length; i++) {
+        let option = assignee.options[i];
+        option.disabled = false;
+    }
 }
 
 
@@ -289,8 +300,6 @@ function createTaskOverlay() {
 
     newTaskArray.push(newTask);
     saveTasks();
-    allSubtasks = [];
-    assignedToNames = [];
-    dateArray = [];
+    clearFieldsOverlay();
     taskAddedToBoard();
 }
