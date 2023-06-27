@@ -85,6 +85,11 @@ function renderTodoTasksHTML(arrayName) {
 
     content.innerHTML = '';
 
+    if (todos.length == 0) {
+        content.innerHTML += /*html*/`
+            <div class="emptySign">Noch keine Tasks vorhanden</div>
+        `
+    } else {
     for (let i = 0; i < todos.length; i++) {
         const task = todos[i];
         let subtasksAmount = task['subtasks'].length;
@@ -93,6 +98,7 @@ function renderTodoTasksHTML(arrayName) {
 
         content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
         renderAssignedToHTML(task);
+    }
     }
 }
 
@@ -106,6 +112,11 @@ function renderInProgressHTML(arrayName) {
 
     content.innerHTML = '';
 
+    if (inProgress.length == 0) {
+        content.innerHTML += /*html*/`
+            <div class="emptySign">Noch keine Tasks vorhanden</div>
+        `
+    } else {
     for (let i = 0; i < inProgress.length; i++) {
         const task = inProgress[i];
         let subtasksAmount = task['subtasks'].length;
@@ -115,6 +126,7 @@ function renderInProgressHTML(arrayName) {
         content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
         renderAssignedToHTML(task);
     }
+}
 }
 
 /**
@@ -129,7 +141,7 @@ function renderAwaitingFeedbackHTML(arrayName) {
 
     if (awaitingFeedback.length == 0) {
         content.innerHTML += /*html*/`
-            Noch keine Tasks vorhanden
+            <div class="emptySign">Noch keine Tasks vorhanden</div>
         `
     } else {
         for (let i = 0; i < awaitingFeedback.length; i++) {
@@ -154,6 +166,11 @@ function renderDoneHTML(arrayName) {
 
     content.innerHTML = '';
 
+    if (done.length == 0) {
+        content.innerHTML += /*html*/`
+            <div class="emptySign">Noch keine Tasks vorhanden</div>
+        `
+    } else {
     for (let i = 0; i < done.length; i++) {
         const task = done[i];
         let subtasksAmount = task['subtasks'].length;
@@ -162,6 +179,7 @@ function renderDoneHTML(arrayName) {
 
         content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
         renderAssignedToHTML(task);
+    }
     }
 }
 
@@ -247,6 +265,7 @@ function renderClickedTaskPopUpHTML(Id) {
 
     renderTaskPopUpTableHTML(clickedTask);
     renderTaskPopUpAssignmentsHTML(clickedTask);
+    renderSubtasksOverview(Id);
 }
 
 /**
@@ -303,6 +322,7 @@ function modifyCurrentTaskHTML(Id) {
     setMinDate('modifyDate');
     modifyPrio(prio);
     renderModifySubtaskList(Id);
+
 }
 
 /**
@@ -321,6 +341,26 @@ function renderModifyAssignmentsHTML(Id) {
         let bgColor = currentTask['color'][i];
         
         content.innerHTML += modifyAssignmentsTemplateHTML(i, Id, bgColor, initials);
+    }
+}
+
+
+function renderSubtasksOverview(Id) {
+    let content = document.getElementById('subtasksOverview');
+
+    content.innerHTML = '';
+    let task = newTaskArray[Id];
+
+    for (let i = 0; i < task['subtasks'].length; i++) {
+        const subtask = task['subtasks'][i];
+        let isChecked = task['isChecked'][i];
+
+        if(isChecked == true) {
+            content.innerHTML += renderCheckedBoxTemplateHTML(i, Id, subtask);
+        } 
+        if(isChecked == false) {
+            content.innerHTML += renderUncheckedBoxTemplateHTML(i, Id, subtask);
+        }
     }
 }
 
@@ -421,6 +461,23 @@ function modifyAssignedTo() {
         newTaskArray[Id]['color'].push(color);
     }
     renderModifyAssignmentsHTML(Id);
+}
+
+
+function changeStat(Id, direction) {
+    let currentTask = newTaskArray[Id];
+    let index = taskStatusClasses.indexOf(currentTask['stat']);
+
+    if(direction == 'up' && index < 2) {
+        currentTask['stat'] = taskStatusClasses[index + 1];
+    } 
+
+    if(direction == 'down' && index > 0) {
+        currentTask['stat'] = taskStatusClasses[index - 1];
+    } 
+
+    console.log(index);
+    console.log(currentTask['stat']);
 }
 
 /**

@@ -705,6 +705,43 @@
 }
 
 
+.statChangeContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: #2A3647;
+    padding: 16px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border-radius: 8px;
+}
+
+
+.statChangeImgDown {
+    cursor: pointer;
+}
+
+
+.statChangeImgUp {
+    cursor: pointer;
+}
+
+
+.emptySign {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A3647;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+
 @media(max-width: 1350px) {
     .boardContentContainer {
 

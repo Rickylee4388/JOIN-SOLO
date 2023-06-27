@@ -65,6 +65,11 @@ function renderModifyTaskTemplateHTML(currentTask) {
             </button>
         </div>
 
+        <div class="statChangeContainer">
+            <img onclick="changeStat(${currentTask['id']}, 'up')" class="statChangeImgUp" src="../../img/urgentWhiteIcon.png" alt="">
+            <img onclick="changeStat(${currentTask['id']}, 'down')" class="statChangeImgDown" src="../../img/lowWhiteIcon.png" alt="">
+        </div>
+
         <div class="modifySubtaskList" id="modifysubtasksList">
 
         </div>
@@ -76,19 +81,8 @@ function renderModifyTaskTemplateHTML(currentTask) {
             </div>
         </div>
 
-    </div>
-
-
-
-
-   `
+    </div>`
 }
-
-
-
-
-
-
 
 
 function renderTaskAssignmentsPlusInitialsTemplateHTML(assignment, initials, bgColor) {
@@ -99,7 +93,6 @@ function renderTaskAssignmentsPlusInitialsTemplateHTML(assignment, initials, bgC
     </div>
 `
 }
-
 
 
 function renderTaskPopUpTableTemplateHTML(clickedTask) {
@@ -140,8 +133,12 @@ function renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id) {
             <div id="taskPopUpAssignmentsList" class="taskPopUpAssignmentsList"></div>
         </div>
 
+        <div class="subtasksOverview" id="subtasksOverview">
+            
+        </div>
+
         <div class="popUpButtonsContainer">
-            <div onmouseover="changeImg()" class="taskPopUpButton leftBtn btn-border" onclick="deleteTask('${Id}')"><img id="deleteTask-Img" src="../../img/delete.png" alt=""></div>
+            <div class="taskPopUpButton leftBtn btn-border" onclick="deleteTask('${Id}')"><img id="deleteTask-Img" src="../../img/delete.png" alt=""></div>
 
             <div class="taskPopUpButton rightBtn btn-bg" onclick="openModifyTaskPopUp('${Id}')">
                 <img class="popUpPen" src="../../img/pen.png" alt="">
@@ -214,7 +211,7 @@ function renderStatusfieldsTemplateHTML(i, stat, statClass) {
             </div>
         </div>
 
-        <div id="statContainer${i}" class="statusContent" ondrop="drop('${statClass}'); stopHighlight('statContainer${i}')" ondragover="allowDrop(event); highlight('statContainer${i}')" ondragleave="stopHighlight('statContainer${i}')"></div>
+        <div id="statContainer${i}" class="statusContent" ondrop="drop('${statClass}')" ondragover="allowDrop(event)"></div>
     </div>
 `
 }
