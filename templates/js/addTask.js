@@ -3,7 +3,7 @@ let prio = undefined;
 let allSubtasks = [];
 let assignedToNames = [];
 let contactsColors = [];
-let assignedToInitials = [];
+let objIds = [];
 let dateArray = [];
 let isChecked = [];
 
@@ -42,10 +42,17 @@ function renderContactsAddTask(Id) {
     for (let i = 0; i < allContacts.length; i++) {
         const allData = allContacts[i];
         const { name, color } = getJoinData(allData);
-
         document.getElementById(Id).innerHTML += /*html*/ `
             <option id="${color}" value="${name}">${name}</option>
-        `;  
+        `;
+    }
+}
+
+function clearDisabledState() {
+    for (let i = 0; i < allContacts.length; i++) {
+        let position = i;
+        let objId = i;
+        removeAssignee(position, objId)
     }
 }
 
@@ -85,12 +92,13 @@ function activatePrioButtons() {
 
     let resetBtn = document.getElementById('reset');
     resetBtn.addEventListener("click", low);
-       
+    resetBtn.addEventListener("click", clearDisabledState);
+
     let assignBtn = document.getElementById('assignedTo');
     assignBtn.addEventListener("change", assignedTo);
 
-    document.getElementById('addTaskForm').addEventListener('submit', function(event) {
-        event.preventDefault(); 
+    document.getElementById('addTaskForm').addEventListener('submit', function (event) {
+        event.preventDefault();
         createTask();
     });
 }
@@ -178,12 +186,18 @@ function cancelNewCategory() {
 function confirmNewCategory() {
     let newCategory = document.getElementById('newCategoryInput').value;
     let newCategoryColor = document.getElementById('newCategoryColor').style.backgroundColor;
-    selectedCategory(newCategory, newCategoryColor);
-    document.getElementById('newCategoryInput').value = '';
-    document.getElementById('newCategoryColor').style.backgroundColor = '';
-    document.getElementById('newCategoryContainer').classList.add('d-none');
-    document.getElementById('newCategoryColors').classList.add('d-none');
-    document.getElementById('category').style.display = 'flex';
+    let newCategoryInput = document.getElementById('newCategoryInput');
+
+    if (newCategoryInput.value == '') {
+        newCategoryInput.focus();
+    } else {
+        selectedCategory(newCategory, newCategoryColor);
+        document.getElementById('newCategoryInput').value = '';
+        document.getElementById('newCategoryColor').style.backgroundColor = '';
+        document.getElementById('newCategoryContainer').classList.add('d-none');
+        document.getElementById('newCategoryColors').classList.add('d-none');
+        document.getElementById('category').style.display = 'flex';
+    }
 }
 
 
@@ -214,33 +228,32 @@ function assignedTo() {
     let color = assignee.options[assignee.selectedIndex].id;
     let selectedAssignee2 = assignee.options[assignee.selectedIndex];
     selectedAssignee2.disabled = true;
-    let i = (assignee.selectedIndex) - 1;
+    let i = assignee.selectedIndex - 1;
+    let objId = i + 1;
 
     if (assignedToNames.indexOf(selectedAssignee) === -1) {
         assignedToNames.push(selectedAssignee);
         contactsColors.push(color);
+        objIds.push(objId);
     }
-    showAssignedToList(i);
+    showAssignedToList();
 }
 
 
-function showAssignedToList(k) {
-    let content = document.getElementById('assignedToList');
-
-    content.innerHTML = '';
+function showAssignedToList() {
+    let content = document.getElementById("assignedToList");
+    content.innerHTML = "";
 
     for (let i = 0; i < assignedToNames.length; i++) {
         const name = assignedToNames[i];
         let bgColor = contactsColors[i];
-        let objId = k + 1;
-
+        let objId = objIds[i];
         let initials = getInitials(name);
-
         content.innerHTML += /*html*/ `
-        <div class="assigneeContainer" style="background-color: ${bgColor}" onclick="removeAssignee('${i}', '${objId}')">
-            ${initials}
-        </div>
-    `;
+            <div class="assigneeContainer" style="background-color: ${bgColor}" onclick="removeAssignee(${i}, ${objId})">
+                ${initials}
+            </div>
+        `;
     }
 }
 
@@ -248,17 +261,22 @@ function showAssignedToList(k) {
 function removeAssignee(position, objId) {
     assignedToNames.splice(position, 1);
     contactsColors.splice(position, 1);
-    showAssignedToList(position);
+    objIds.splice(position, 1);
+    showAssignedToList();
 
     let assignee = document.getElementById("assignedTo");
     let selectedAssignee2 = assignee.options[objId];
     selectedAssignee2.disabled = false;
+
+    if (assignedToNames.length === 0) {
+        assignee.selectedIndex = 0;
+    }
 }
 
 
 function newSubtask() {
     let newSubtask = document.getElementById('subtasks').value;
-    
+
     if (newSubtask == '') {
         document.getElementById('subtasks').focus();
     } else {
@@ -275,19 +293,33 @@ function newSubtask() {
             `;
         }
     }
-
     document.getElementById('subtasks').value = '';
 }
 
 
 function clearFields() {
-    assignedToNames = [];
     allSubtasks = [];
+    assignedToNames = [];
+    contactsColors = [];
+    objIds = [];
+    dateArray = [];
     document.getElementById('category').innerHTML = 'Select task category';
     document.getElementById('assignedToList').innerHTML = '';
     document.getElementById('subtasksList').innerHTML = '';
     closeCategoryDropdown();
     cancelNewCategory();
+    /*removeAssignee();*/
+    enableContactsForAssignedTo();
+}
+
+
+function enableContactsForAssignedTo() {
+    let assignee = document.getElementById("assignedTo");
+
+    for (let i = 1; i < assignee.options.length; i++) {
+        let option = assignee.options[i];
+        option.disabled = false;
+    }
 }
 
 
@@ -296,8 +328,6 @@ function createTask() {
     let description = document.getElementById('description').value;
     let category = document.getElementById('category').innerText;
     let date = dateArray;
-
-
 
     let newTask = {
         'id': '',
@@ -316,9 +346,7 @@ function createTask() {
 
     newTaskArray.push(newTask);
     saveTasks();
-    allSubtasks = [];
-    assignedToNames = [];
-    dateArray = [];
+    clearFields();
     taskAddedToBoard();
 }
 
@@ -334,7 +362,7 @@ function taskAddedToBoard() {
     document.getElementById('overlaySection').innerHTML = /*html*/ `
         <img src="../../img/taskAddedToBoard.png" class="taskAddedPopUp" id="taskAddedPopUp">
     `;
-    setTimeout(function() {closePopUp()}, 2000);
+    setTimeout(function () { closePopUp() }, 2000);
 }
 
 
