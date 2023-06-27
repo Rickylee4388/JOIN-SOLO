@@ -519,6 +519,10 @@ button {
 }
 
 @media (max-width: 1135px) {
+    .contentSectionAddTask {
+        padding-top: 313px;
+    }
+
     .borderline {
         display: none;
     }
@@ -561,6 +565,12 @@ button {
     }
 }
 
+@media (max-width: 1000px) {
+    .contentSectionAddTask {
+        padding-top: 400px;
+    }
+}
+
 @media (max-width: 390px) {
     .prioButtons button {
         font-size: 18px;
@@ -569,5 +579,13 @@ button {
     .prioButtons img {
         height: 10px;
         width: 15px;
+    }
+
+    .twoButtons button {
+        font-size: 18px;
+    }
+
+    .twoButtons img {
+        height: 10px;
     }
 }
