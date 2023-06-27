@@ -230,7 +230,6 @@
         left: 0;
         right: 0;
         text-align: center;
-
     }
 
     .headlineDiv {
@@ -254,7 +253,6 @@
         padding: 0;
     }
 
-
     .greeting {
         animation: greeting-fade 3s ease-in-out;
         position: absolute;
@@ -263,7 +261,6 @@
         bottom: 0;
         right: 0;
         z-index: -1;
-
     }
 
     @keyframes greeting-fade {
@@ -279,8 +276,6 @@
             color: #F6F7F8;
         }
     }
-
-
 }
 
 @media (max-width: 750px) {
@@ -323,7 +318,6 @@
         font-size: 20px !important;
         color: #2A3647;
         box-shadow: -18px 23px 0px -20px #29ABE2;
-
     }
 
     .taskSection {

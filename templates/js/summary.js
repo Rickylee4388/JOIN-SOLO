@@ -42,6 +42,10 @@ function searchUrgentTasks() {
 
 
 function searchDate() {
+  if(newTaskArray.length == 0){
+
+  }
+  else{
   const minDate =
     newTaskArray.map(element => {
       return element.date;
@@ -51,6 +55,7 @@ function searchDate() {
   });
   console.log(earliest);
   generateDate(earliest);
+}
 }
 
 
@@ -71,10 +76,11 @@ function loadTaskStat() {
       return a.stat === stat;
     });
     taskStats = taskStat.length;
-    document.getElementById(stat).innerHTML = /*html*/`    
+    document.getElementById(stat).innerHTML = `    
     ${taskStats}`
   }
 }
+
 
 
 // GENERATE HTML CODE
