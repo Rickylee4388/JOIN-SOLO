@@ -308,7 +308,6 @@ function clearFields() {
     document.getElementById('subtasksList').innerHTML = '';
     closeCategoryDropdown();
     cancelNewCategory();
-    /*removeAssignee();*/
     enableContactsForAssignedTo();
 }
 

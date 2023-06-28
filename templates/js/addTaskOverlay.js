@@ -59,18 +59,18 @@ function pushDateOverlay() {
 
 
 function activatePrioButtonsOverlay() {
-    low();
-    let urgentBtn = document.getElementById('urgent');
-    urgentBtn.addEventListener("click", urgent);
+    lowOverlay();
+    let urgentBtn = document.getElementById('urgentOverlay');
+    urgentBtn.addEventListener("click", urgentOverlay);
 
-    let mediumBtn = document.getElementById('medium');
-    mediumBtn.addEventListener("click", medium);
+    let mediumBtn = document.getElementById('mediumOverlay');
+    mediumBtn.addEventListener("click", mediumOverlay);
 
-    let lowBtn = document.getElementById('low');
-    lowBtn.addEventListener("click", low);
+    let lowBtn = document.getElementById('lowOverlay');
+    lowBtn.addEventListener("click", lowOverlay);
 
-    let resetBtn = document.getElementById('reset');
-    resetBtn.addEventListener("click", low);
+    let resetBtn = document.getElementById('resetOverlay');
+    resetBtn.addEventListener("click", lowOverlay);
 
     let assignBtn = document.getElementById('assignedToOverlay');
     assignBtn.addEventListener("change", assignedToOverlay);
@@ -82,48 +82,48 @@ function activatePrioButtonsOverlay() {
 }
 
 
-function urgent() {
-    let prioValue = document.getElementById('urgent').value;
+function urgentOverlay() {
+    let prioValue = document.getElementById('urgentOverlay').value;
     prio = prioValue;
 
-    document.getElementById('urgent').classList.add('urgent');
-    document.getElementById('urgentIcon').src = '../../img/urgentWhiteIcon.png';
+    document.getElementById('urgentOverlay').classList.add('urgent');
+    document.getElementById('urgentIconOverlay').src = '../../img/urgentWhiteIcon.png';
 
-    document.getElementById('medium').classList.remove('medium');
-    document.getElementById('mediumIcon').src = '../../img/mediumIcon.png';
+    document.getElementById('mediumOverlay').classList.remove('medium');
+    document.getElementById('mediumIconOverlay').src = '../../img/mediumIcon.png';
 
-    document.getElementById('low').classList.remove('low');
-    document.getElementById('lowIcon').src = '../../img/lowIcon.png';
+    document.getElementById('lowOverlay').classList.remove('low');
+    document.getElementById('lowIconOverlay').src = '../../img/lowIcon.png';
 }
 
 
-function medium() {
-    let prioValue = document.getElementById('medium').value;
+function mediumOverlay() {
+    let prioValue = document.getElementById('mediumOverlay').value;
     prio = prioValue;
 
-    document.getElementById('medium').classList.add('medium');
-    document.getElementById('mediumIcon').src = '../../img/mediumWhiteIcon.png';
+    document.getElementById('mediumOverlay').classList.add('medium');
+    document.getElementById('mediumIconOverlay').src = '../../img/mediumWhiteIcon.png';
 
-    document.getElementById('urgent').classList.remove('urgent');
-    document.getElementById('urgentIcon').src = '../../img/urgentIcon.png';
+    document.getElementById('urgentOverlay').classList.remove('urgent');
+    document.getElementById('urgentIconOverlay').src = '../../img/urgentIcon.png';
 
-    document.getElementById('low').classList.remove('low');
-    document.getElementById('lowIcon').src = '../../img/lowIcon.png';
+    document.getElementById('lowOverlay').classList.remove('low');
+    document.getElementById('lowIconOverlay').src = '../../img/lowIcon.png';
 }
 
 
-function low() {
-    let prioValue = document.getElementById('low').value;
+function lowOverlay() {
+    let prioValue = document.getElementById('lowOverlay').value;
     prio = prioValue;
 
-    document.getElementById('low').classList.add('low');
-    document.getElementById('lowIcon').src = '../../img/lowWhiteIcon.png';
+    document.getElementById('lowOverlay').classList.add('low');
+    document.getElementById('lowIconOverlay').src = '../../img/lowWhiteIcon.png';
 
-    document.getElementById('medium').classList.remove('medium');
-    document.getElementById('mediumIcon').src = '../../img/mediumIcon.png';
+    document.getElementById('mediumOverlay').classList.remove('medium');
+    document.getElementById('mediumIconOverlay').src = '../../img/mediumIcon.png';
 
-    document.getElementById('urgent').classList.remove('urgent');
-    document.getElementById('urgentIcon').src = '../../img/urgentIcon.png';
+    document.getElementById('urgentOverlay').classList.remove('urgent');
+    document.getElementById('urgentIconOverlay').src = '../../img/urgentIcon.png';
 }
 
 
@@ -263,7 +263,6 @@ function clearFieldsOverlay() {
     document.getElementById('subtasksList').innerHTML = '';
     closeCategoryDropdownOverlay();
     cancelNewCategoryOverlay();
-    /*removeAssigneeOverlay();*/
     enableContactsForAssignedToOverlay();
 }
 

@@ -1,4 +1,5 @@
 .contentSectionAddTask {
+    background-color: #F5F5F5;
     overflow-y: auto;
     display: flex;
     justify-content: center;
@@ -500,8 +501,31 @@ button {
     }
 }
 
+@media (max-width: 2560px) {
+    .contentSectionAddTask {
+        padding: 0px 300px;
+    }
+}
 
-@media (max-width: 1290px) {
+@media (max-width: 1950px) {
+    .contentSectionAddTask {
+        padding: 0px 150px;
+    }
+}
+
+@media (max-width: 1650px) {
+    .contentSectionAddTask {
+        padding: 0px 75px;
+    }
+}
+
+@media (max-width: 1500px) {
+    .contentSectionAddTask {
+        padding: 0px 35px;
+    }
+}
+
+@media (max-width: 1400px) {
     .headlineContainer {
         padding-left: 25px;
         padding-right: 25px;
@@ -518,10 +542,13 @@ button {
     }
 }
 
-@media (max-width: 1135px) {
+@media (max-width: 1210px) {
     .contentSectionAddTask {
-        padding-top: 313px;
+        padding: 0px 0px;
     }
+}
+
+@media (max-width: 1135px) {
 
     .borderline {
         display: none;
@@ -562,12 +589,6 @@ button {
     .twoButtons {
         margin-top: 10px;
         margin-bottom: 10px;
-    }
-}
-
-@media (max-width: 1000px) {
-    .contentSectionAddTask {
-        padding-top: 400px;
     }
 }
 

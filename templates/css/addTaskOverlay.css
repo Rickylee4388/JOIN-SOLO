@@ -1,10 +1,9 @@
 .addTaskOverlay {
     background-color: white;
     border-radius: 20px;
-    max-height: 85%;
-    min-width: 50%;
-    width: 60%;
+    width: 915px;
     padding: 30px;
+    margin: 20px;
     overflow-y: auto;
     transition: transform 800ms ease-in-out;
     transform: translate(0%);
@@ -71,6 +70,10 @@
 
 
 @media (max-width: 1290px) {
+    .addTaskOverlay {
+        max-height: 85vh;
+    }
+
     .borderlineOverlay {
         display: none;
     }
@@ -106,6 +109,7 @@
 
 @media (max-width: 570px) {
     .addTaskOverlay {
+        margin: 0px;
         max-height: none;
         height: 100%;
         width: 100%;

@@ -98,19 +98,19 @@ function generateContentLeftAndRightContainerOverlay() {
                 <div class="prio">
                     <span>Prio</span>
                     <div class="prioButtons">
-                        <button type="button" id="urgent" value="urgent">
+                        <button type="button" id="urgentOverlay" value="urgent">
                             Urgent
-                            <img id="urgentIcon" src="../../img/urgentIcon.png">
+                            <img id="urgentIconOverlay" src="../../img/urgentIcon.png">
                         </button>
 
-                        <button type="button" id="medium" value="medium">
+                        <button type="button" id="mediumOverlay" value="medium">
                             Medium
-                            <img id="mediumIcon" src="../../img/mediumIcon.png">
+                            <img id="mediumIconOverlay" src="../../img/mediumIcon.png">
                         </button>
 
-                        <button type="button" id="low" value="low">
+                        <button type="button" id="lowOverlay" value="low">
                             Low
-                            <img id="lowIcon" src="../../img/lowIcon.png">
+                            <img id="lowIconOverlay" src="../../img/lowIcon.png">
                         </button>
                     </div>
                 </div>
@@ -138,7 +138,7 @@ function generateContentLeftAndRightContainerOverlay() {
 function generateTwoButtonsContainerOverlay() {
     return /*html*/ `
         <div class="twoButtons">
-            <button id="reset" type="reset" class="clearButton" onclick="clearFieldsOverlay()">
+            <button id="resetOverlay" type="reset" class="clearButton" onclick="clearFieldsOverlay()">
                 Clear
                 <img src="../../img/cancelIcon.png">
             </button>
