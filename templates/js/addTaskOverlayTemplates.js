@@ -138,9 +138,10 @@ function generateContentLeftAndRightContainerOverlay() {
 function generateTwoButtonsContainerOverlay() {
     return /*html*/ `
         <div class="twoButtons">
-            <button id="resetOverlay" type="reset" class="clearButton" onclick="clearFieldsOverlay()">
+            <button id="resetOverlay" type="reset" class="clearButton" onclick="clearFieldsOverlay()" onmouseover="changeClearBtnIconToHover('clearIconDefaultOverlay', 'clearIconHoverOverlay')" onmouseout="changeClearBtnIconToDefault('clearIconHoverOverlay', 'clearIconDefaultOverlay')">
                 Clear
-                <img src="../../img/cancelIcon.png">
+                <img src="../../img/cancelIcon.png" id="clearIconDefaultOverlay">
+                <img src="../../img/clearIconHover.png" id="clearIconHoverOverlay" class="d-none">
             </button>
 
             <button type="submit" class="createTaskButton" id="createTask">

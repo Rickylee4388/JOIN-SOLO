@@ -149,9 +149,10 @@ function generateContentLeftAndRightContainer() {
 function generateTwoButtonsContainer() {
     return /*html*/ `
         <div class="twoButtons">
-            <button id="reset" type="reset" class="clearButton" onclick="clearFields()">
+            <button id="reset" type="reset" class="clearButton" onclick="clearFields()" onmouseover="changeClearBtnIconToHover('clearIconDefault', 'clearIconHover')" onmouseout="changeClearBtnIconToDefault('clearIconHover', 'clearIconDefault')">
                 Clear
-                <img src="../../img/cancelIcon.png">
+                <img src="../../img/cancelIcon.png" id="clearIconDefault">
+                <img src="../../img/clearIconHover.png" id="clearIconHover" class="d-none">
             </button>
 
             <button type="submit" class="createTaskButton" id="createTask">

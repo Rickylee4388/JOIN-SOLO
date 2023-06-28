@@ -322,6 +322,18 @@ function enableContactsForAssignedTo() {
 }
 
 
+function changeClearBtnIconToHover(IdDefault, IdHover) {
+    document.getElementById(IdDefault).classList.add('d-none');
+    document.getElementById(IdHover).classList.remove('d-none');
+}
+
+
+function changeClearBtnIconToDefault(IdHover, IdDefault) {
+    document.getElementById(IdHover).classList.add('d-none');
+    document.getElementById(IdDefault).classList.remove('d-none');
+}
+
+
 function createTask() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
