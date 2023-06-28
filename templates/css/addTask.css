@@ -549,6 +549,10 @@ button {
 }
 
 @media (max-width: 1135px) {
+    .addTaskMainContainer {
+        position: absolute;
+        top: inherit;
+    }
 
     .borderline {
         display: none;
