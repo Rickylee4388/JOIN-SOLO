@@ -5,8 +5,23 @@
     padding: 0px 70px 0px 70px;
     overflow-x: hidden;
 }
+.boardBody::-webkit-scrollbar{
+    display: none;
+  }
+.taskOverviewPopUp::-webkit-scrollbar{
+    display: none;
+  }
 
+.statusContent::-webkit-scrollbar{
+    display: none;
+  }
 
+.taskModifyPopUp::-webkit-scrollbar{
+    display: none;
+  }
+.addTaskOverlay::-webkit-scrollbar{
+    display: none;
+  }
 .design-bg {
     background-color: orange !important;
 }
@@ -797,7 +812,6 @@
     .taskPopUpAssignmentsList {
         height: 200px;
         width: 220px;
-        background-color: #FF7A00;
     }
 
     .taskPopUpHeadline {
