@@ -68,6 +68,10 @@
     transition: ease-in-out 125ms;
 }
 
+.borderlineOverlay {
+    border: 1px solid #D1D1D1;
+}
+
 
 @media (max-width: 1290px) {
     .addTaskOverlay {

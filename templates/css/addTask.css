@@ -10,16 +10,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
 }
 
 .d-none {
     display: none;
-}
-
-.headlineContainer {
-    padding-left: 125px;
-    padding-right: 125px;
 }
 
 .headlineContainer h1 {
@@ -27,18 +21,6 @@
     margin-top: 10px;
     margin-bottom: 0;
     width: 100%;
-}
-
-.contentLeftAndRightContainer {
-    padding-left: 125px;
-    padding-right: 125px;
-}
-
-.twoButtonsContainer {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 125px;
-    padding-right: 125px;
 }
 
 span {
@@ -108,6 +90,7 @@ button {
 
 .borderline {
     border: 1px solid #D1D1D1;
+    margin: 0px 50px;
 }
 
 /*
@@ -501,57 +484,14 @@ button {
     }
 }
 
-@media (max-width: 2560px) {
-    .contentSectionAddTask {
-        padding: 0px 300px;
-    }
-}
 
-@media (max-width: 1950px) {
-    .contentSectionAddTask {
-        padding: 0px 150px;
-    }
-}
 
-@media (max-width: 1650px) {
-    .contentSectionAddTask {
-        padding: 0px 75px;
-    }
-}
-
-@media (max-width: 1500px) {
-    .contentSectionAddTask {
-        padding: 0px 35px;
-    }
-}
-
-@media (max-width: 1400px) {
-    .headlineContainer {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-
-    .contentLeftAndRightContainer {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-
-    .twoButtonsContainer {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-}
-
-@media (max-width: 1210px) {
-    .contentSectionAddTask {
-        padding: 0px 0px;
-    }
-}
-
-@media (max-width: 1135px) {
+@media (max-width: 1250px) {
     .addTaskMainContainer {
         position: absolute;
         top: inherit;
+        width: 90%;
+        margin-top: -80px;
     }
 
     .borderline {

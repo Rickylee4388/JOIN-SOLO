@@ -87,7 +87,7 @@ function generateContentLeftAndRightContainerOverlay() {
                 </div>
             </div>
 
-            <div class="borderline borderlineOverlay"></div>
+            <div class="borderlineOverlay"></div>
 
             <div class="contentRight">
                 <div class="dueDateAndInput">
