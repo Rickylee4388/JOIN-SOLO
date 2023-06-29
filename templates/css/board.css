@@ -5,23 +5,33 @@
     padding: 0px 70px 0px 70px;
     overflow-x: hidden;
 }
+
+
 .boardBody::-webkit-scrollbar{
     display: none;
-  }
+}
+
+
 .taskOverviewPopUp::-webkit-scrollbar{
     display: none;
-  }
+}
+
 
 .statusContent::-webkit-scrollbar{
     display: none;
-  }
+}
+
 
 .taskModifyPopUp::-webkit-scrollbar{
     display: none;
-  }
+}
+
+
 .addTaskOverlay::-webkit-scrollbar{
     display: none;
-  }
+}
+
+
 .design-bg {
     background-color: orange !important;
 }
@@ -261,7 +271,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 260px;
     cursor: pointer;
 }
 
@@ -316,11 +326,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 35px;
-    min-height: 280px;
-    height: 280px;
+    gap: 20px;
+    min-height: 50vh;
+    height: 50vh;
     width: 100%;
-    padding-top: 35px;
+    padding-top: 20px;
     padding-bottom: 35px;
     overflow-x: hidden;
 }
@@ -757,6 +767,14 @@
 }
 
 
+@media(max-width: 1500px) {
+    .statContainer {
+        width: 45%;
+        margin-bottom: 24px;
+    }
+}
+
+
 @media(max-width: 1350px) {
     .boardContentContainer {
 
@@ -766,6 +784,9 @@
     }
     .statContainer {
        width: 420px;
+    }
+    .boardStatusHeadContainer {
+        width: 300px;
     }
 
 }
@@ -800,6 +821,10 @@
         align-items: center;
         width: 100% !important;
         justify-content: space-between;
+    }
+    .statusContent {
+        min-height: 20vh;
+        height: fit-content;
     }
 
 }
