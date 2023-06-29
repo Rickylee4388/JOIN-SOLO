@@ -351,6 +351,7 @@
     border-radius: 30px;
     cursor: pointer;
     z-index: 99;
+    position: relative;
 }
 
 
@@ -890,6 +891,9 @@
     }
     .boardContentContainer {
         justify-content: center;
+    }
+    .statChangeContainer {
+        display: flex !important;
     }
 
 

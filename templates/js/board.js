@@ -332,12 +332,9 @@ function renderSubtasksOverview(Id) {
         const subtask = task['subtasks'][i];
         let isChecked = task['isChecked'][i];
 
-        if(isChecked == true) {
-            content.innerHTML += renderCheckedBoxTemplateHTML(i, Id, subtask);
-        } 
-        if(isChecked == false) {
-            content.innerHTML += renderUncheckedBoxTemplateHTML(i, Id, subtask);
-        }
+            content.innerHTML += /*html*/`
+                <div>${i + 1}. ${subtask}</div>
+            `;
     }
 }
 
@@ -409,10 +406,16 @@ function renderContactsModifyAddTask(Id) {
         const allData = allContacts[i];
         const { name } = getJoinData(allData);
         const { color } = getJoinData(allData);
-        content.innerHTML += /*html*/ `
-            <option id="${color}" value="${Id}">${name}</option>
-        `;  
-    }
+
+        if(newTaskArray['assignedTo'].includes(name)) {
+            content.innerHTML += /*html*/ `
+                <option disabled id="${color}" value="${Id}">${name}</option>
+        ` } else {
+            content.innerHTML += /*html*/ `
+                    <option disabled id="${color}" value="${Id}">${name}</option>
+                `
+        }
+    } 
 }
 
 /**
@@ -452,9 +455,8 @@ function changeStat(Id, direction) {
     if(direction == 'down' && index > 0) {
         currentTask['stat'] = taskStatusClasses[index - 1];
     } 
-
-    console.log(index);
-    console.log(currentTask['stat']);
+    saveTasks();
+    updateBoardTasks();
 }
 
 /**
@@ -467,6 +469,14 @@ function deleteAssignmentOption(i, Id) {
 
     currentTask['assignedTo'].splice(i, 1);
     renderModifyAssignmentsHTML(Id);
+
+    let assignee = document.getElementById("modifyAssignedTo");
+    let selectedAssignee2 = assignee.options[i];
+    selectedAssignee2.disabled = false;
+
+    if (assignedToNames.length === 0) {
+        assignee.selectedIndex = 0;
+    }
 }
 
 /**

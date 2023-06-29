@@ -65,11 +65,6 @@ function renderModifyTaskTemplateHTML(currentTask) {
             </button>
         </div>
 
-        <div class="statChangeContainer">
-            <img onclick="changeStat(${currentTask['id']}, 'up')" class="statChangeImgUp" src="../../img/urgentWhiteIcon.png" alt="">
-            <img onclick="changeStat(${currentTask['id']}, 'down')" class="statChangeImgDown" src="../../img/lowWhiteIcon.png" alt="">
-        </div>
-
         <div class="modifySubtaskList" id="modifysubtasksList">
 
         </div>
@@ -154,6 +149,12 @@ function generatePinnedTaskHTML(task, progressInPercent) {
     return /*html*/`
     <div onclick="openExistingTaskPopUp(${task['id']})">
         <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task['id']}">
+
+        <div class="statChangeContainer d-none" onclick="doNotClose(event)">
+            <img onclick="changeStat(${task['id']}, 'up')" class="statChangeImgUp" src="../../img/urgentWhiteIcon.png" alt="">
+            <img onclick="changeStat(${task['id']}, 'down')" class="statChangeImgDown" src="../../img/lowWhiteIcon.png" alt="">
+        </div>
+
         <div class="taskCategory ${task['category'].toLowerCase()}-bg">
             ${task['category']}
         </div>
