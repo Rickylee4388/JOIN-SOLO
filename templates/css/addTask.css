@@ -7,6 +7,9 @@
 }
 
 .addTaskMainContainer {
+    position: absolute;
+    top: inherit;
+    margin-top: -80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -410,6 +413,7 @@ button {
     justify-content: end;
     padding: 0px;
     gap: 25px;
+    margin-bottom: 15px;
 }
 
 .clearButton {
