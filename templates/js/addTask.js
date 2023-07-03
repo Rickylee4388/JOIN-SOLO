@@ -59,6 +59,7 @@ function clearDisabledState() {
 
 function renderTwoButtonsContainer() {
     document.getElementById('twoButtonsContainer').innerHTML = generateTwoButtonsContainer();
+    clearFields();
 }
 
 

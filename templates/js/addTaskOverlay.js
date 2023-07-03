@@ -49,6 +49,7 @@ function renderContactsAddTaskOverlay() {
 
 function renderTwoButtonsContainerOverlay() {
     document.getElementById('twoButtonsContainerOverlay').innerHTML = generateTwoButtonsContainerOverlay();
+    clearFieldsOverlay();
 }
 
 

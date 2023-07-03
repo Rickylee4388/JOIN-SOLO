@@ -129,6 +129,7 @@ button {
 }
 
 .newCategoryColorContainer {
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -461,7 +462,6 @@ button {
 
 .taskAddedPopUp {
     height: 60px;
-    
     position: absolute;
     animation-name: slideUp;
     animation-duration: 2s;
