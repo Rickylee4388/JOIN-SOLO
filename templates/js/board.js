@@ -360,13 +360,25 @@ function modifyPrio(currentPriority) {
     document.getElementById(`modify${otherPrio2}Icon`).src = `./img/${otherPrios[1]}Icon.png`;
 }
 
+
+
+function newModifySubtask(Id) {
+    let newSubtask = document.getElementById('subtasks').value;
+
+    newTaskArray[Id]['subtasks'].push(newSubtask);
+    document.getElementById('subtasks').value = '';
+    renderModifySubtaskList(Id);
+}
+
 /**
  * Renders all Subtasks for the current Task.
  * @param {number} Id - index of the current Task.
  */
 function renderModifySubtaskList(Id) {
-    let content = document.getElementById('modifysubtasksList');
+    let content = document.getElementById('subtasksList');
     let task = newTaskArray[Id];
+
+    content.innerHTML = '';
 
     for (let i = 0; i < task['subtasks'].length; i++) {
         const subtask = task['subtasks'][i];
@@ -394,7 +406,7 @@ function changeImg() {
  */
 function renderContactsModifyAddTask(Id) {
     activateEvent();
-    let content = document.getElementById('modifyAssignedTo');
+    let content = document.getElementById('assignedTo');
 
     content.innerHTML = '';
 

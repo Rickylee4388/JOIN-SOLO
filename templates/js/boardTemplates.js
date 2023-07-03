@@ -51,21 +51,21 @@ function renderModifyTaskTemplateHTML(currentTask) {
 
         <div class="assignedToAndSelect">
             <span>Assigned to</span>
-            <select class="modifyInput" id="modifyAssignedTo" required onclick="renderContactsModifyAddTask(${currentTask['id']})"> 
-
-            </select>
+            <select id="assignedTo" required onclick="renderContactsAddTask('assignedTo')"> 
+                    <option value="" disabled selected>Select contacts to assign</option>
+                </select>
 
             <div id="modifyPopUpAssignmentContainer${currentTask['id']}" class="d-flex mt"></div>
         </div>
 
         <div class="inputAndButton">
-            <input id="modifysubtasks" placeholder="Add new subtask">
-            <button type="button" onclick="newSubtask()">
+            <input id="subtasks" placeholder="Add new subtask">
+            <button type="button" onclick="newModifySubtask(${currentTask['id']})">
                 <img src="../../img/subtaskIcon.png">
             </button>
         </div>
 
-        <div class="modifySubtaskList" id="modifysubtasksList">
+        <div class="modifySubtaskList" id="subtasksList">
 
         </div>
 
