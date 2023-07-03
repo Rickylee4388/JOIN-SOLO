@@ -188,7 +188,7 @@
     border: 1px solid #2A3647;
     border-radius: 10px;
     font-size: 21px;
-
+    margin-top: -32px;
 }
 
 
@@ -808,10 +808,6 @@
         gap: 30px;
     }
 
-    .addTaskBtn {
-        display: none;
-    }
-
     .mobileAddTask {
         display: flex !important;
         background-color: #2A3647;
@@ -882,7 +878,6 @@
 
     .taskOverviewPopUp,
     .taskModifyPopUp {
-        width: 350px;
         padding: 20px;
     }
 
@@ -895,6 +890,23 @@
     .statChangeContainer {
         display: flex !important;
     }
+    
+    .addTaskBtn {
+        margin-top: 0px;
+    }
+
+    #modifyMedium,
+    #modifyUrgent,
+    #modifyLow {
+        font-size: 18px;
+    }
+    #modifyMediumIcon,
+    #modifyUrgentIcon,
+    #modifyLowIcon {
+        height: 10px;
+        width: 15px;
+    }
+    
 
 
 

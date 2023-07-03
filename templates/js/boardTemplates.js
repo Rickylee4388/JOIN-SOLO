@@ -51,7 +51,7 @@ function renderModifyTaskTemplateHTML(currentTask) {
 
         <div class="assignedToAndSelect">
             <span>Assigned to</span>
-            <select id="assignedTo" required onclick="renderContactsAddTask('assignedTo')"> 
+            <select class="modifyInput" id="assignedTo" required onclick="renderContactsModifyAddTask(${currentTask['id']})"> 
                     <option value="" disabled selected>Select contacts to assign</option>
                 </select>
 
@@ -151,8 +151,8 @@ function generatePinnedTaskHTML(task, progressInPercent) {
         <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task['id']}">
 
         <div class="statChangeContainer d-none" onclick="doNotClose(event)">
-            <img onclick="changeStat(${task['id']}, 'up')" class="statChangeImgUp" src="../../img/urgentWhiteIcon.png" alt="">
-            <img onclick="changeStat(${task['id']}, 'down')" class="statChangeImgDown" src="../../img/lowWhiteIcon.png" alt="">
+            <img onclick="changeStat(${task['id']}, 'down')" class="statChangeImgUp" src="../../img/urgentWhiteIcon.png" alt="">
+            <img onclick="changeStat(${task['id']}, 'up')" class="statChangeImgDown" src="../../img/lowWhiteIcon.png" alt="">
         </div>
 
         <div class="taskCategory ${task['category'].toLowerCase()}-bg">

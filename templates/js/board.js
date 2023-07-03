@@ -408,7 +408,6 @@ function renderContactsModifyAddTask(Id) {
     activateEvent();
     let content = document.getElementById('assignedTo');
 
-    content.innerHTML = '';
 
     content.innerHTML = /*html*/`
         <option value="" disabled selected>Select contacts to assign</option>
@@ -419,12 +418,12 @@ function renderContactsModifyAddTask(Id) {
         const { name } = getJoinData(allData);
         const { color } = getJoinData(allData);
 
-        if(newTaskArray['assignedTo'].includes(name)) {
+        if(newTaskArray[Id]['assignedTo'].includes(name)) {
             content.innerHTML += /*html*/ `
                 <option disabled id="${color}" value="${Id}">${name}</option>
         ` } else {
             content.innerHTML += /*html*/ `
-                    <option disabled id="${color}" value="${Id}">${name}</option>
+                    <option id="${color}" value="${Id}">${name}</option>
                 `
         }
     } 
@@ -434,13 +433,13 @@ function renderContactsModifyAddTask(Id) {
  * Calls the function modifyAssignedTo(), when an option is pressed.
  */
 function activateEvent() {
-    let modifyAssignBtn = document.getElementById('modifyAssignedTo');
+    let modifyAssignBtn = document.getElementById('assignedTo');
     modifyAssignBtn.addEventListener("change", modifyAssignedTo);
 }
 
 
 function modifyAssignedTo() {
-    let assignee = document.getElementById("modifyAssignedTo");
+    let assignee = document.getElementById("assignedTo");
     let Id = assignee.options[assignee.selectedIndex].value;
     let color = assignee.options[assignee.selectedIndex].id;
     let name = assignee.options[assignee.selectedIndex].innerHTML;
@@ -486,7 +485,7 @@ function deleteAssignmentOption(i, Id) {
     let selectedAssignee2 = assignee.options[i];
     selectedAssignee2.disabled = false;
 
-    if (assignedToNames.length === 0) {
+    if (currentTask['assignedTo'].length === 0) {
         assignee.selectedIndex = 0;
     }
 }
