@@ -569,9 +569,6 @@
 }
 
 
-.taskPopUpLeftTd {}
-
-
 .taskPopUpRightTd {
     display: flex;
     align-items: center;
@@ -775,9 +772,6 @@
 
 
 @media(max-width: 1350px) {
-    .boardContentContainer {
-
-    }
     .pinnedTaskContainer{
         width: 350px;
     }
