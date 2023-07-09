@@ -393,12 +393,23 @@ function renderModifySubtaskList(Id) {
     }
 }
 
-/*
-function changeImg() {
-    let imageTag = document.getElementById('deleteTask-Img');
 
-    imageTag.src = './img/delete.png';
-}*/
+function changeImg() {
+    let deleteImg = document.getElementById('deleteTask-Img');
+    let deleteImgLight = document.getElementById('deleteTask-light-Img');
+
+    deleteImg.classList.add('d-none');
+    deleteImgLight.classList.remove('d-none');
+}
+
+
+function changeImgBack() {
+    let deleteImg = document.getElementById('deleteTask-Img');
+    let deleteImgLight = document.getElementById('deleteTask-light-Img');
+
+    deleteImg.classList.remove('d-none');
+    deleteImgLight.classList.add('d-none');
+}
 
 /**
  * Renders all contacts in the select-area.

@@ -134,7 +134,11 @@ function renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id) {
 
         <div class="overviwButtons">
             <div class="popUpButtonsContainer">
-                <div class="taskPopUpButton leftBtn btn-border" onclick="deleteTask('${Id}')"><img id="deleteTask-Img" src="../../img/delete.png" alt=""></div>
+                <div class="taskPopUpButton leftBtn btn-border" onclick="deleteTask('${Id}')" onmouseover="changeImg()" onmouseout="changeImgBack()">
+                    <img class="" id="deleteTask-Img" src="../../img/delete.png" alt="">
+                    <img class="d-none" id="deleteTask-light-Img" src="../../img/delete-light.png" alt="">
+
+                </div>
 
                 <div class="taskPopUpButton rightBtn btn-bg" onclick="openModifyTaskPopUp('${Id}')">
                     <img class="popUpPen" src="../../img/pen.png" alt="">

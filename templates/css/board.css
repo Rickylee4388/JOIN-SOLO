@@ -833,7 +833,7 @@
         right: 15PX;
     }
     .taskPopUpAssignmentsList {
-        height: 200px;
+        height: auto;
         width: 220px;
     }
 
