@@ -188,7 +188,6 @@
     border: 1px solid #2A3647;
     border-radius: 10px;
     font-size: 21px;
-    margin-top: -32px;
 }
 
 
@@ -618,10 +617,16 @@
 }
 
 
+.overviwButtons {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+
 .popUpButtonsContainer {
     display: flex;
     align-items: center;
-    position: absolute;
     bottom: 60px;
     right: 47px;
     border-collapse: collapse;
@@ -804,6 +809,10 @@
         display: flex !important;
         background-color: #2A3647;
     }
+    
+    .addTaskBtn {
+        display: none !important;
+    }
 
     .boardHeadlineLeftContainer {
         display: flex;
@@ -864,7 +873,8 @@
     .boardManagementText {
         width: 350px;
         text-align: left;
-        display: block;
+        display: flex;
+        justify-content: center;
         font-size: 20px;
     }
 
@@ -873,9 +883,6 @@
         padding: 20px;
     }
 
-    .modifyInput {
-        width: 300px !important;
-    }
     .boardContentContainer {
         justify-content: center;
     }
@@ -908,6 +915,10 @@
 @media(max-width: 500px) {
     .boardBpdy {
         padding: 0 24px 0 24px;
+    }
+    
+    .modifyInput {
+        width: 400px !important;
     }
 }
 

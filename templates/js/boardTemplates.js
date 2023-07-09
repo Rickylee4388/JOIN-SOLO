@@ -58,7 +58,7 @@ function renderModifyTaskTemplateHTML(currentTask) {
             <div id="modifyPopUpAssignmentContainer${currentTask['id']}" class="d-flex mt"></div>
         </div>
 
-        <div class="inputAndButton">
+        <div class="inputAndButton modifyInput">
             <input id="subtasks" placeholder="Add new subtask">
             <button type="button" onclick="newModifySubtask(${currentTask['id']})">
                 <img src="../../img/subtaskIcon.png">
@@ -132,12 +132,14 @@ function renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id) {
             
         </div>
 
-        <div class="popUpButtonsContainer">
-            <div class="taskPopUpButton leftBtn btn-border" onclick="deleteTask('${Id}')"><img id="deleteTask-Img" src="../../img/delete.png" alt=""></div>
+        <div class="overviwButtons">
+            <div class="popUpButtonsContainer">
+                <div class="taskPopUpButton leftBtn btn-border" onclick="deleteTask('${Id}')"><img id="deleteTask-Img" src="../../img/delete.png" alt=""></div>
 
-            <div class="taskPopUpButton rightBtn btn-bg" onclick="openModifyTaskPopUp('${Id}')">
-                <img class="popUpPen" src="../../img/pen.png" alt="">
-                <img class="popUpPenTriangel" src="./img/pen_triangel.png" alt="">
+                <div class="taskPopUpButton rightBtn btn-bg" onclick="openModifyTaskPopUp('${Id}')">
+                    <img class="popUpPen" src="../../img/pen.png" alt="">
+                    <img class="popUpPenTriangel" src="./img/pen_triangel.png" alt="">
+                </div>
             </div>
         </div>
     </div>

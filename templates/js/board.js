@@ -459,7 +459,7 @@ function changeStat(Id, direction) {
     let currentTask = newTaskArray[Id];
     let index = taskStatusClasses.indexOf(currentTask['stat']);
 
-    if(direction == 'up' && index < 2) {
+    if(direction == 'up' && index <= 2) {
         currentTask['stat'] = taskStatusClasses[index + 1];
     } 
 
