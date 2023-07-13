@@ -814,6 +814,10 @@
         display: none !important;
     }
 
+    .confirmBtn {
+        display: flex !important;
+    }
+
     .boardHeadlineLeftContainer {
         display: flex;
         align-items: center;
@@ -904,6 +908,14 @@
     #modifyLowIcon {
         height: 10px;
         width: 15px;
+    }
+
+    .taskModifyPopUp {
+        align-items: center !important;
+    }
+
+    .modifySubtaskList {
+        width: 100%;
     }
     
 
