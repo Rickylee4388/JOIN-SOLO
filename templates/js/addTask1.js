@@ -224,6 +224,7 @@ function newCategory() {
 
 /**
  * This function lets the user choose the color for the new category.
+ * 
  * @param {string} color - The color that gets added to the new category.
  */
 function addColorToNewCategory(color) {
@@ -232,7 +233,7 @@ function addColorToNewCategory(color) {
 
 
 /**
- * This function cancel the new category and close the input field.
+ * This function cancels the new category and close the input field.
  */
 function cancelNewCategory() {
     document.getElementById('newCategoryInput').value = '';

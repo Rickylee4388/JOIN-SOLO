@@ -142,7 +142,7 @@ function changeClearBtnIconToDefault(IdHover, IdDefault) {
 }
 
 /**
- * This function creates a new Task, push it in the 'newTaskArray' and executes 3 other functions.
+ * This function creates a new Task, pushes it in the 'newTaskArray' and executes 3 other functions.
  */
 function createTask() {
     let title = document.getElementById('title').value;

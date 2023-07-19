@@ -1,3 +1,8 @@
+/**
+ * This function opens the AddTask overlay and executes another function.
+ * 
+ * @param {string} stat - This is the status that orders the task on the board.
+ */
 function openAddTaskOverlay(stat) {
     chosenStat = stat;
     document.getElementById('overlaySection').classList.remove('d-none');
@@ -12,6 +17,9 @@ function openAddTaskOverlay(stat) {
 }
 
 
+/**
+ * This function renders the headline in the overlay and executes 3 other functions.
+ */
 function renderHeadlineOverlay() {
     document.getElementById('headlineContainerOverlay').innerHTML = /*html*/ `
         <h1>Add Task</h1>
@@ -23,11 +31,17 @@ function renderHeadlineOverlay() {
 }
 
 
+/**
+ * This function closes the overlay.
+ */
 function closeOverlay() {
     document.getElementById('overlaySection').classList.add('d-none');
 }
 
 
+/**
+ * This function renders a div-container in the overlay called 'contentLeftAndRightContainerOverlay' and executes 2 other functions.
+ */
 function renderContentLeftAndRightOverlay() {
     document.getElementById('contentLeftAndRightContainerOverlay').innerHTML = generateContentLeftAndRightContainerOverlay();
     renderTwoButtonsContainerOverlay();
@@ -35,6 +49,9 @@ function renderContentLeftAndRightOverlay() {
 }
 
 
+/**
+ * This function renders the contacts as an option-tag to the assignedTo-List.
+ */
 function renderContactsAddTaskOverlay() {
     for (let i = 0; i < allContacts.length; i++) {
         const allData = allContacts[i];
@@ -47,18 +64,27 @@ function renderContactsAddTaskOverlay() {
 }
 
 
+/**
+ * This function renders a div-container with a 'clear' button and a 'create task' button and executes another function.
+ */
 function renderTwoButtonsContainerOverlay() {
     document.getElementById('twoButtonsContainerOverlay').innerHTML = generateTwoButtonsContainerOverlay();
     clearFieldsOverlay();
 }
 
 
+/**
+ * This function updates the date in the dateArray with the new due date.
+ */
 function pushDateOverlay() {
     let dueDate = document.getElementById('dateOverlay').value;
     dateArray.splice(0, 1, dueDate);
 }
 
 
+/**
+ * This function first executes the low-function so the prio button 'low' ist active and sets up event listeners.
+ */
 function activatePrioButtonsOverlay() {
     lowOverlay();
     let urgentBtn = document.getElementById('urgentOverlay');
@@ -83,6 +109,9 @@ function activatePrioButtonsOverlay() {
 }
 
 
+/**
+ * This function activates the urgent button and deactivates the other two prio buttons.
+ */
 function urgentOverlay() {
     let prioValue = document.getElementById('urgentOverlay').value;
     prio = prioValue;
@@ -98,6 +127,9 @@ function urgentOverlay() {
 }
 
 
+/**
+ * This function activates the medium button and deactivates the other two prio buttons.
+ */
 function mediumOverlay() {
     let prioValue = document.getElementById('mediumOverlay').value;
     prio = prioValue;
@@ -113,6 +145,9 @@ function mediumOverlay() {
 }
 
 
+/**
+ * This function activates the low button and deactivates the other two prio buttons.
+ */
 function lowOverlay() {
     let prioValue = document.getElementById('lowOverlay').value;
     prio = prioValue;
@@ -128,6 +163,9 @@ function lowOverlay() {
 }
 
 
+/**
+ * This function opens the dropdown menu to select a category.
+ */
 function openCategoryDropdownOverlay() {
     document.getElementById('categoryDropdownOverlay').classList.remove('d-none');
     document.getElementById('categoryOverlay').style.cssText = `
@@ -139,6 +177,9 @@ function openCategoryDropdownOverlay() {
 }
 
 
+/**
+ * This function allows the user to create a new category.
+ */
 function newCategoryOverlay() {
     closeCategoryDropdownOverlay();
     document.getElementById('newCategoryContainerOverlay').classList.remove('d-none');
@@ -147,11 +188,19 @@ function newCategoryOverlay() {
 }
 
 
+/**
+ * This function lets the user choose the color for the new category.
+ * 
+ * @param {string} color - The color that gets added to the new category.
+ */
 function addColorToNewCategoryOverlay(color) {
     document.getElementById('newCategoryColorOverlay').style.backgroundColor = color;
 }
 
 
+/**
+ * This function cancels the new category and close the input field.
+ */
 function cancelNewCategoryOverlay() {
     document.getElementById('newCategoryInputOverlay').value = '';
     document.getElementById('newCategoryColorOverlay').style.backgroundColor = '';
@@ -162,6 +211,9 @@ function cancelNewCategoryOverlay() {
 }
 
 
+/**
+ * This function confirms the new category if the input field isn't empty.
+ */
 function confirmNewCategoryOverlay() {
     let newCategory = document.getElementById('newCategoryInputOverlay').value;
     let newCategoryColor = document.getElementById('newCategoryColorOverlay').style.backgroundColor;
@@ -180,6 +232,12 @@ function confirmNewCategoryOverlay() {
 }
 
 
+/**
+ * This function shows the selected category and executes another function.
+ * 
+ * @param {string} category - This is the name of the selected category.
+ * @param {string} color - This is the color of the selected category.
+ */
 function selectedCategoryOverlay(category, color) {
     category = category.charAt(0).toUpperCase() + category.slice(1);
     document.getElementById('categoryOverlay').innerHTML = /*html*/ `
@@ -190,6 +248,9 @@ function selectedCategoryOverlay(category, color) {
 }
 
 
+/**
+ * This function closes the dropdown menu that shows the categories that are selectable.
+ */
 function closeCategoryDropdownOverlay() {
     document.getElementById('categoryDropdownOverlay').classList.add('d-none');
     document.getElementById('categoryOverlay').style.cssText = `
@@ -201,6 +262,9 @@ function closeCategoryDropdownOverlay() {
 }
 
 
+/**
+ * This function disables the selected contact and if it's not already existend it will be pushed in arrays, and also another function will executed.
+ */
 function assignedToOverlay() {
     let assignee = document.getElementById("assignedToOverlay");
     let selectedAssignee = assignee.options[assignee.selectedIndex].value;
@@ -219,6 +283,9 @@ function assignedToOverlay() {
 }
 
 
+/**
+ * This function shows a list of the assigned contacts.
+ */
 function showAssignedToListOverlay() {
     let content = document.getElementById("assignedToListOverlay");
     content.innerHTML = "";
@@ -237,6 +304,12 @@ function showAssignedToListOverlay() {
 }
 
 
+/**
+ * This function remove an assigned contact when clicked on and enables it again.
+ * 
+ * @param {number} position - This is the position in the assignee in the assignedToNames array. 
+ * @param {number} objId - This is the position in the objIds array.
+ */
 function removeAssigneeOverlay(position, objId) {
     assignedToNames.splice(position, 1);
     contactsColors.splice(position, 1);
@@ -253,6 +326,9 @@ function removeAssigneeOverlay(position, objId) {
 }
 
 
+/**
+ * This function clears all selectable fields, input fields and arrays, and resets all buttons.
+ */
 function clearFieldsOverlay() {
     allSubtasks = [];
     assignedToNames = [];
@@ -268,6 +344,9 @@ function clearFieldsOverlay() {
 }
 
 
+/**
+ * This function enables a contact.
+ */
 function enableContactsForAssignedToOverlay() {
     let assignee = document.getElementById("assignedToOverlay");
     for (let i = 1; i < assignee.options.length; i++) {
@@ -277,6 +356,9 @@ function enableContactsForAssignedToOverlay() {
 }
 
 
+/**
+ * This function creates a new Task, pushes it in the 'newTaskArray' and executes 3 other functions.
+ */
 function createTaskOverlay() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
