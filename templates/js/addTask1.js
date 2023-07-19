@@ -8,6 +8,9 @@ let dateArray = [];
 let isChecked = [];
 
 
+/**
+ * This asynchronous function initializes the add task functionality and executes 4 other functions.
+ */
 async function initAddTask() {
     document.getElementById('contentSection').innerHTML = generateAddTaskContent();
     await loadTasks();
@@ -17,11 +20,17 @@ async function initAddTask() {
 }
 
 
+/**
+ * This asynchronous function loads the 'createdTask' item from the remote storage.
+ */
 async function loadTasks() {
     newTaskArray = JSON.parse(await getItem('createdTask'));
 }
 
 
+/**
+ * This function renders the headline and executes 2 other functions.
+ */
 function renderHeadline() {
     document.getElementById('headlineContainer').innerHTML = /*html*/ `
         <h1>Add Task</h1>
@@ -31,6 +40,9 @@ function renderHeadline() {
 }
 
 
+/**
+ * This function renders a div-container called 'contentLeftAndRightContainer' and executes 2 other functions.
+ */
 function renderContentLeftAndRight() {
     document.getElementById('contentLeftAndRightContainer').innerHTML = generateContentLeftAndRightContainer();
     renderTwoButtonsContainer();
@@ -38,6 +50,11 @@ function renderContentLeftAndRight() {
 }
 
 
+/**
+ * This function renders the contacts as an option-tag to the assignedTo-List.
+ * 
+ * @param {string} Id - The ID of the HTML element that gets the option-tag.
+ */
 function renderContactsAddTask(Id) {
     for (let i = 0; i < allContacts.length; i++) {
         const allData = allContacts[i];
@@ -48,6 +65,10 @@ function renderContactsAddTask(Id) {
     }
 }
 
+
+/**
+ * This function enables the contact that was removed as an assignee.
+ */
 function clearDisabledState() {
     for (let i = 0; i < allContacts.length; i++) {
         let position = i;
@@ -57,29 +78,46 @@ function clearDisabledState() {
 }
 
 
+/**
+ * This function renders a div-container with a 'clear' button and a 'create task' button and executes another function.
+ */
 function renderTwoButtonsContainer() {
     document.getElementById('twoButtonsContainer').innerHTML = generateTwoButtonsContainer();
     clearFields();
 }
 
 
+/**
+ * This function adds the css-class 'contentSectionAddTask' to the div-container 'contentSection'.
+ */
 function addClassContentSectionAddTask() {
     document.getElementById('contentSection').classList.add('contentSectionAddTask')
 }
 
 
+/**
+ * This function doesn't let the user select a date that is in the past.
+ * 
+ * @param {string} id - The ID of the HTML element.
+ */
 function setMinDate(id) {
     let today = new Date().toISOString().split('T')[0];
     document.getElementById(id).setAttribute('min', today);
 }
 
 
+/**
+ * This function updates the date in the dateArray with the new due date.
+ */
 function pushDate() {
     let dueDate = document.getElementById('date').value;
     dateArray.splice(0, 1, dueDate);
 }
 
 
+/**
+ * This function first executes the low-function so the prio button 'low' ist active and sets up event listeners.
+ */
 function activatePrioButtons() {
     low();
     let urgentBtn = document.getElementById('urgent');
@@ -105,6 +143,9 @@ function activatePrioButtons() {
 }
 
 
+/**
+ * This function activates the urgent button and deactivates the other two prio buttons.
+ */
 function urgent() {
     let prioValue = document.getElementById('urgent').value;
     prio = prioValue;
@@ -120,6 +161,9 @@ function urgent() {
 }
 
 
+/**
+ * This function activates the medium button and deactivates the other two prio buttons.
+ */
 function medium() {
     let prioValue = document.getElementById('medium').value;
     prio = prioValue;
@@ -135,6 +179,9 @@ function medium() {
 }
 
 
+/**
+ * This function activates the low button and deactivates the other two prio buttons.
+ */
 function low() {
     let prioValue = document.getElementById('low').value;
     prio = prioValue;
@@ -150,6 +197,9 @@ function low() {
 }
 
 
+/**
+ * This function opens the dropdown menu to select a category.
+ */
 function openCategoryDropdown() {
     document.getElementById('categoryDropdown').classList.remove('d-none');
     document.getElementById('category').style.cssText = `
@@ -161,6 +211,9 @@ function openCategoryDropdown() {
 }
 
 
+/**
+ * This function allows the user to create a new category.
+ */
 function newCategory() {
     closeCategoryDropdown();
     document.getElementById('newCategoryContainer').classList.remove('d-none');
@@ -169,11 +222,18 @@ function newCategory() {
 }
 
 
+/**
+ * This function lets the user choose the color for the new category.
+ * @param {string} color - The color that gets added to the new category.
+ */
 function addColorToNewCategory(color) {
     document.getElementById('newCategoryColor').style.backgroundColor = color;
 }
 
 
+/**
+ * This function cancel the new category and close the input field.
+ */
 function cancelNewCategory() {
     document.getElementById('newCategoryInput').value = '';
     document.getElementById('newCategoryColor').style.backgroundColor = '';
@@ -184,6 +244,9 @@ function cancelNewCategory() {
 }
 
 
+/**
+ * This function confirms the new category if the input field isn't empty.
+ */
 function confirmNewCategory() {
     let newCategory = document.getElementById('newCategoryInput').value;
     let newCategoryColor = document.getElementById('newCategoryColor').style.backgroundColor;
@@ -202,6 +265,12 @@ function confirmNewCategory() {
 }
 
 
+/**
+ * This function shows the selected category and executes another function.
+ * 
+ * @param {string} category - This is the name of the selected category.
+ * @param {string} color - This is the color of the selected category.
+ */
 function selectedCategory(category, color) {
     category = category.charAt(0).toUpperCase() + category.slice(1);
     document.getElementById('category').innerHTML = /*html*/ `
@@ -212,6 +281,9 @@ function selectedCategory(category, color) {
 }
 
 
+/**
+ * This function closes the dropdown menu that shows the categories that can be selectable.
+ */
 function closeCategoryDropdown() {
     document.getElementById('categoryDropdown').classList.add('d-none');
     document.getElementById('category').style.cssText = `
@@ -220,164 +292,4 @@ function closeCategoryDropdown() {
         border-bottom: 1px solid #D1D1D1;
     `;
     document.getElementById('category').onclick = openCategoryDropdown;
-}
-
-
-function assignedTo() {
-    let assignee = document.getElementById("assignedTo");
-    let selectedAssignee = assignee.options[assignee.selectedIndex].value;
-    let color = assignee.options[assignee.selectedIndex].id;
-    let selectedAssignee2 = assignee.options[assignee.selectedIndex];
-    selectedAssignee2.disabled = true;
-    let i = assignee.selectedIndex - 1;
-    let objId = i + 1;
-
-    if (assignedToNames.indexOf(selectedAssignee) === -1) {
-        assignedToNames.push(selectedAssignee);
-        contactsColors.push(color);
-        objIds.push(objId);
-    }
-    showAssignedToList();
-}
-
-
-function showAssignedToList() {
-    let content = document.getElementById("assignedToList");
-    content.innerHTML = "";
-
-    for (let i = 0; i < assignedToNames.length; i++) {
-        const name = assignedToNames[i];
-        let bgColor = contactsColors[i];
-        let objId = objIds[i];
-        let initials = getInitials(name);
-        content.innerHTML += /*html*/ `
-            <div class="assigneeContainer" style="background-color: ${bgColor}" onclick="removeAssignee(${i}, ${objId})">
-                ${initials}
-            </div>
-        `;
-    }
-}
-
-
-function removeAssignee(position, objId) {
-    assignedToNames.splice(position, 1);
-    contactsColors.splice(position, 1);
-    objIds.splice(position, 1);
-    showAssignedToList();
-
-    let assignee = document.getElementById("assignedTo");
-    let selectedAssignee2 = assignee.options[objId];
-    selectedAssignee2.disabled = false;
-
-    if (assignedToNames.length === 0) {
-        assignee.selectedIndex = 0;
-    }
-}
-
-
-function newSubtask() {
-    let newSubtask = document.getElementById('subtasks').value;
-
-    if (newSubtask == '') {
-        document.getElementById('subtasks').focus();
-    } else {
-        allSubtasks.push(newSubtask);
-        isChecked.push(false);
-        document.getElementById('subtasksList').innerHTML = '';
-        for (let i = 0; i < allSubtasks.length; i++) {
-            let subtask = allSubtasks[i];
-            document.getElementById('subtasksList').innerHTML += /*html*/ `
-                <div class="subtask">
-                    <input type="checkbox">
-                    <p>${subtask}</p>
-                </div>
-            `;
-        }
-    }
-    document.getElementById('subtasks').value = '';
-}
-
-
-function clearFields() {
-    allSubtasks = [];
-    assignedToNames = [];
-    contactsColors = [];
-    objIds = [];
-    dateArray = [];
-    document.getElementById('category').innerHTML = 'Select task category';
-    document.getElementById('assignedToList').innerHTML = '';
-    document.getElementById('subtasksList').innerHTML = '';
-    closeCategoryDropdown();
-    cancelNewCategory();
-    enableContactsForAssignedTo();
-}
-
-
-function enableContactsForAssignedTo() {
-    let assignee = document.getElementById("assignedTo");
-
-    for (let i = 1; i < assignee.options.length; i++) {
-        let option = assignee.options[i];
-        option.disabled = false;
-    }
-}
-
-
-function changeClearBtnIconToHover(IdDefault, IdHover) {
-    document.getElementById(IdDefault).classList.add('d-none');
-    document.getElementById(IdHover).classList.remove('d-none');
-}
-
-
-function changeClearBtnIconToDefault(IdHover, IdDefault) {
-    document.getElementById(IdHover).classList.add('d-none');
-    document.getElementById(IdDefault).classList.remove('d-none');
-}
-
-
-function createTask() {
-    let title = document.getElementById('title').value;
-    let description = document.getElementById('description').value;
-    let category = document.getElementById('category').innerText;
-    let date = dateArray;
-
-    let newTask = {
-        'id': '',
-        'title': title,
-        'description': description,
-        'category': category,
-        'assignedTo': assignedToNames,
-        'date': date,
-        'prio': prio,
-        'stat': chosenStat,
-        'subtasks': allSubtasks,
-        'isChecked': isChecked,
-        'doneSubTasks': 0,
-        'color': contactsColors
-    };
-
-    newTaskArray.push(newTask);
-    saveTasks();
-    clearFields();
-    taskAddedToBoard();
-}
-
-
-async function saveTasks() {
-    await setItem('createdTask', JSON.stringify(newTaskArray));
-    renderBoard();
-}
-
-
-function taskAddedToBoard() {
-    document.getElementById('overlaySection').classList.remove('d-none');
-    document.getElementById('overlaySection').innerHTML = /*html*/ `
-        <img src="../../img/taskAddedToBoard.png" class="taskAddedPopUp" id="taskAddedPopUp">
-    `;
-    setTimeout(function () { closePopUp() }, 2000);
-}
-
-
-function closePopUp() {
-    document.getElementById('overlaySection').classList.add('d-none');
 }
