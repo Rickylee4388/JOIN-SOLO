@@ -282,7 +282,7 @@ function selectedCategory(category, color) {
 
 
 /**
- * This function closes the dropdown menu that shows the categories that can be selectable.
+ * This function closes the dropdown menu that shows the categories that are selectable.
  */
 function closeCategoryDropdown() {
     document.getElementById('categoryDropdown').classList.add('d-none');

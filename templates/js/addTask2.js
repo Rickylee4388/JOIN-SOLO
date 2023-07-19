@@ -1,3 +1,6 @@
+/**
+ * This function disables the selected contact and if it's not already existend it will be pushed in arrays, and also another function will executed.
+ */
 function assignedTo() {
     let assignee = document.getElementById("assignedTo");
     let selectedAssignee = assignee.options[assignee.selectedIndex].value;
@@ -16,6 +19,9 @@ function assignedTo() {
 }
 
 
+/**
+ * This function shows a list of the assigned contacts.
+ */
 function showAssignedToList() {
     let content = document.getElementById("assignedToList");
     content.innerHTML = "";
@@ -34,6 +40,12 @@ function showAssignedToList() {
 }
 
 
+/**
+ * This function remove an assigned contact when clicked on and enables it again.
+ * 
+ * @param {number} position - This is the position in the assignee in the assignedToNames array. 
+ * @param {number} objId - This is the position in the objIds array.
+ */
 function removeAssignee(position, objId) {
     assignedToNames.splice(position, 1);
     contactsColors.splice(position, 1);
@@ -50,6 +62,9 @@ function removeAssignee(position, objId) {
 }
 
 
+/**
+ * This function lets the user add subtasks.
+ */
 function newSubtask() {
     let newSubtask = document.getElementById('subtasks').value;
 
@@ -73,6 +88,9 @@ function newSubtask() {
 }
 
 
+/**
+ * This function clears all selectable fields, input fields and arrays, and resets all buttons.
+ */
 function clearFields() {
     allSubtasks = [];
     assignedToNames = [];
@@ -88,6 +106,9 @@ function clearFields() {
 }
 
 
+/**
+ * This function enables a contact.
+ */
 function enableContactsForAssignedTo() {
     let assignee = document.getElementById("assignedTo");
 
@@ -97,19 +118,32 @@ function enableContactsForAssignedTo() {
     }
 }
 
-
+ /**
+  * This function changes the clear button icon when the clear button gets hovered.
+  * 
+  * @param {string} IdDefault - This is the ID of the icon when it's in default.
+  * @param {string} IdHover - This is the ID of the icon when it's hovered.
+  */
 function changeClearBtnIconToHover(IdDefault, IdHover) {
     document.getElementById(IdDefault).classList.add('d-none');
     document.getElementById(IdHover).classList.remove('d-none');
 }
 
 
+/**
+ * This function changes the clear button icon when the clear button is in default.
+ * 
+ * @param {string} IdHover - This is the ID of the icon when it's hovered.
+ * @param {string} IdDefault - This is the ID of the icon when it's in default.
+ */
 function changeClearBtnIconToDefault(IdHover, IdDefault) {
     document.getElementById(IdHover).classList.add('d-none');
     document.getElementById(IdDefault).classList.remove('d-none');
 }
 
-
+/**
+ * This function creates a new Task, push it in the 'newTaskArray' and executes 3 other functions.
+ */
 function createTask() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
@@ -138,12 +172,18 @@ function createTask() {
 }
 
 
+/**
+ * This asynchronous function saves the new created task in the remote storage and the user will get to the board page.
+ */
 async function saveTasks() {
     await setItem('createdTask', JSON.stringify(newTaskArray));
     renderBoard();
 }
 
 
+/**
+ * This function shows a popup as a confirm to secure the user that his new created task has been added to the board.
+ */
 function taskAddedToBoard() {
     document.getElementById('overlaySection').classList.remove('d-none');
     document.getElementById('overlaySection').innerHTML = /*html*/ `
@@ -153,6 +193,9 @@ function taskAddedToBoard() {
 }
 
 
+/**
+ * This function closes a popup.
+ */
 function closePopUp() {
     document.getElementById('overlaySection').classList.add('d-none');
 }
