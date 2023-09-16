@@ -14,7 +14,7 @@ function leadToSignUp() {
   window.location.href = "signUp.html";
 }
 function guestLogIn() {
-  window.location.replace("/../index.html");
+  window.location.replace("https://gruppenarbeit-join-578.developerakademie.net/Join/index.html");
 }
 
 async function login() {
@@ -30,7 +30,7 @@ async function login() {
   console.log(user);
   if (user) {
     console.log("user gefunden");
-    window.location.replace("/../index.html");
+    window.location.replace("https://gruppenarbeit-join-578.developerakademie.net/Join/index.html");
   } else {
     document.getElementById("msgBox").innerHTML = `Email oder Passwort nicht korrekt!`;
     document.getElementById("msgBoxDiv").classList.remove("d-none");

@@ -3,7 +3,7 @@ function generateHelpScreenHTML() {
     <div class="helpScreenSection">
         <div class="helpScreenSectionHeadline">
             <h1>Help</h1>
-            <img onclick="returnToLastActivePage()" class="contactsDetailHeadPic2" src="/../img/returnArrowDark.svg" alt="returnToListBtn">
+            <img onclick="returnToLastActivePage()" class="contactsDetailHeadPic2" src="./img/returnArrowDark.svg" alt="returnToListBtn">
         </div>
         <h2>What is Join?</h2>
         <span>This tool is a versatile solution that incorporates a Kanban board.
@@ -33,7 +33,7 @@ function generateLegalNoticeScreenHTML() {
     <div class="helpScreenSection">
     <div class="helpScreenSectionHeadline">
     <h1>Impressum</h1>
-    <img onclick="returnToLastActivePage()" class="contactsDetailHeadPic2" src="/../img/returnArrowDark.svg" alt="returnToListBtn">
+    <img onclick="returnToLastActivePage()" class="contactsDetailHeadPic2" src="./img/returnArrowDark.svg" alt="returnToListBtn">
     </div>
     <h3>Angaben gemäß § 5 TMG</h3>
     <p>Philipp Klinger<br>

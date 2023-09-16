@@ -23,7 +23,7 @@ function openAddTaskOverlay(stat) {
 function renderHeadlineOverlay() {
     document.getElementById('headlineContainerOverlay').innerHTML = /*html*/ `
         <h1>Add Task</h1>
-        <img src="../../img/cancelIcon.png" onclick="closeOverlay()">
+        <img src="./img/cancelIcon.png" onclick="closeOverlay()">
     `;
     renderContentLeftAndRightOverlay();
     renderContactsAddTask('assignedToOverlay');
@@ -117,13 +117,13 @@ function urgentOverlay() {
     prio = prioValue;
 
     document.getElementById('urgentOverlay').classList.add('urgent');
-    document.getElementById('urgentIconOverlay').src = '../../img/urgentWhiteIcon.png';
+    document.getElementById('urgentIconOverlay').src = './img/urgentWhiteIcon.png';
 
     document.getElementById('mediumOverlay').classList.remove('medium');
-    document.getElementById('mediumIconOverlay').src = '../../img/mediumIcon.png';
+    document.getElementById('mediumIconOverlay').src = './img/mediumIcon.png';
 
     document.getElementById('lowOverlay').classList.remove('low');
-    document.getElementById('lowIconOverlay').src = '../../img/lowIcon.png';
+    document.getElementById('lowIconOverlay').src = './img/lowIcon.png';
 }
 
 
@@ -135,13 +135,13 @@ function mediumOverlay() {
     prio = prioValue;
 
     document.getElementById('mediumOverlay').classList.add('medium');
-    document.getElementById('mediumIconOverlay').src = '../../img/mediumWhiteIcon.png';
+    document.getElementById('mediumIconOverlay').src = './img/mediumWhiteIcon.png';
 
     document.getElementById('urgentOverlay').classList.remove('urgent');
-    document.getElementById('urgentIconOverlay').src = '../../img/urgentIcon.png';
+    document.getElementById('urgentIconOverlay').src = './img/urgentIcon.png';
 
     document.getElementById('lowOverlay').classList.remove('low');
-    document.getElementById('lowIconOverlay').src = '../../img/lowIcon.png';
+    document.getElementById('lowIconOverlay').src = './img/lowIcon.png';
 }
 
 
@@ -153,13 +153,13 @@ function lowOverlay() {
     prio = prioValue;
 
     document.getElementById('lowOverlay').classList.add('low');
-    document.getElementById('lowIconOverlay').src = '../../img/lowWhiteIcon.png';
+    document.getElementById('lowIconOverlay').src = './img/lowWhiteIcon.png';
 
     document.getElementById('mediumOverlay').classList.remove('medium');
-    document.getElementById('mediumIconOverlay').src = '../../img/mediumIcon.png';
+    document.getElementById('mediumIconOverlay').src = './img/mediumIcon.png';
 
     document.getElementById('urgentOverlay').classList.remove('urgent');
-    document.getElementById('urgentIconOverlay').src = '../../img/urgentIcon.png';
+    document.getElementById('urgentIconOverlay').src = './img/urgentIcon.png';
 }
 
 

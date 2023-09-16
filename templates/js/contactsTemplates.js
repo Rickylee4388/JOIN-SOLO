@@ -10,10 +10,10 @@ function generateContactsHTML() {
                 <div class="contactsDetailHead">
                     <div class="contactsDetailHeadCaption">
                         <h2>Contacts</h2>
-                        <img src="/../img/contactsHeadIcon.svg" alt="contactsHeadIcon">
+                        <img src="./img/contactsHeadIcon.svg" alt="contactsHeadIcon">
                         <p>Better with a team</p>
                     </div>
-                <img onclick="returnToContactslist()" class="contactsDetailHeadPic" src="/../img/returnArrow.svg" alt="returnToListBtn">
+                <img onclick="returnToContactslist()" class="contactsDetailHeadPic" src="./img/returnArrow.svg" alt="returnToListBtn">
             </div>
         </div>
         <div class="contactsDetailInfo" id="contactsDetailInfo">
@@ -22,7 +22,7 @@ function generateContactsHTML() {
     <div class="contactsDetailBottom">
         <div class="contactsDetailBottomBtn hideBtn" onclick="addNewContact()">
             <p>New Contact</p>
-            <img src="/../img/newContactIcon.svg" alt="newContactIconBig">
+            <img src="./img/newContactIcon.svg" alt="newContactIconBig">
         </div>
     </div>
 </div>
@@ -34,7 +34,7 @@ function generateContactsListMobileButton() {
     return /*html*/ `
     <div class="contactsDetailBottomBtn btnMobile" onclick="addNewContact()">
     <p>New Contact</p>
-    <img src="/../img/newContactIcon.svg" alt="newContactIconBig">
+    <img src="./img/newContactIcon.svg" alt="newContactIconBig">
 </div>`;
 }
 
@@ -57,13 +57,13 @@ function generateContactsDetailContentHTML(name, email, phone, color, initials, 
                 </div>
                 <div class="contactsDetailInfoContentRight" onmouseover="btnHoverEffect2(true)" onmouseout="btnHoverEffect2(false)">
                     <div class="contactsDetailInfoContentRightEdit" onclick="editContact(${i})">
-                    <img id="cancelCheckmarkContacts2" src="/../img/editContactIcon.svg" style="display:block" alt="editContactIcon">
-                    <img id="cancelCheckmarkContactsHover2" src="/../img/editContactIconHover2.svg" style="display:none" alt="editContactIcon">
+                    <img id="cancelCheckmarkContacts2" src="./img/editContactIcon.svg" style="display:block" alt="editContactIcon">
+                    <img id="cancelCheckmarkContactsHover2" src="./img/editContactIconHover2.svg" style="display:none" alt="editContactIcon">
                         <h3>Edit Contact</h3>
                     </div>
                     <div class="contactsDetailBottomMobileSection">
-                        <img onclick="deleteContact(${i})" class="contactsDetailBottomMobile" src="/../img/editContactIconDeleteMobile.svg" alt="editContactIcon">
-                        <img onclick="editContact(${i})" class="contactsDetailBottomMobile" src="/../img/editContactIconMobile.svg" alt="editContactIcon">
+                        <img onclick="deleteContact(${i})" class="contactsDetailBottomMobile" src="./img/editContactIconDeleteMobile.svg" alt="editContactIcon">
+                        <img onclick="editContact(${i})" class="contactsDetailBottomMobile" src="./img/editContactIconMobile.svg" alt="editContactIcon">
                     </div>
                     </div>
             </div>`
@@ -95,23 +95,23 @@ function generateContactsOverlayAddHTML() {
 <div class="overlayAddContact" id="overlayAddContact" onclick="doNotClose(event)">
             <div class="overlayAddContactLeft">
                 <div class="overlayAddContactRightInputSectionHeadMobile">
-                        <img onclick="closeContactOverlay()" src="/../img/addContactOverlayCloseWhite.svg" alt="closeButton">
+                        <img onclick="closeContactOverlay()" src="./img/addContactOverlayCloseWhite.svg" alt="closeButton">
                     </div>
                 <div class="overlayAddContactLeftContent">
-                    <img class="overlayAddContactLeftContentLogo" src="/../img/sidebarLogo.svg" alt="sidebarLogo">
+                    <img class="overlayAddContactLeftContentLogo" src="./img/sidebarLogo.svg" alt="sidebarLogo">
                     <p class="overlayAddContactLeftHeadline">Add Contact</p>
                     <p class="overlayAddContactLeftCaption">Tasks are better with a team!</p>
-                    <img class="overlayAddContactLeftContentLine" src="/../img/addContactOverlayLine.svg"
+                    <img class="overlayAddContactLeftContentLine" src="./img/addContactOverlayLine.svg"
                         alt="underline">
                 </div>
             </div>
             <div class="overlayAddContactRight">
                 <div class="overlayAddContactRightProfilepic">
-                    <img src="/../img/addContactOverlayEmptyProfile.svg" alt="ProfilePicEmpty">
+                    <img src="./img/addContactOverlayEmptyProfile.svg" alt="ProfilePicEmpty">
                 </div>
                 <div class="overlayAddContactRightInputSection">
                     <div class="overlayAddContactRightInputSectionHead">
-                        <img onclick="closeContactOverlay()" src="/../img/addContactOverlayClose.svg" alt="closeButton">
+                        <img onclick="closeContactOverlay()" src="./img/addContactOverlayClose.svg" alt="closeButton">
                     </div>
                     <form onsubmit="createContact(); return false;">
                         <input id="addContactName" class="contactOverlayNameIcon" required pattern="^(?:[A-ZÄÖÜ][a-zäöüß]+ )+[A-ZÄÖÜ][a-zäöüß]+$" type="text" placeholder="Name" title="Please enter a valid name e.g.: 'John Doe' ">
@@ -120,12 +120,12 @@ function generateContactsOverlayAddHTML() {
                         <div class="overlayAddContactRightButtonSection">
                             <button type="reset" class="contactsDetailBottomBtnAlt cancelBtn2" onmouseover="btnHoverEffect(true)" onmouseout="btnHoverEffect(false)">
                                 <p>Cancel</p>
-                                <img id="cancelCheckmarkContacts" src="/../img/cancelCheckmarkContacts.svg" style ="display:block" alt="newContactIconBig">
-                                <img id="cancelCheckmarkContactsHover" src="/../img/cancelCheckmarkContactsHover.svg" style="display:none" alt="newContactIconBig">
+                                <img id="cancelCheckmarkContacts" src="./img/cancelCheckmarkContacts.svg" style ="display:block" alt="newContactIconBig">
+                                <img id="cancelCheckmarkContactsHover" src="./img/cancelCheckmarkContactsHover.svg" style="display:none" alt="newContactIconBig">
                             </button > 
                             <button type="submit" class="contactsDetailBottomBtn">
                                 <p>Create Contact</p>
-                                <img src="/../img/checkmarkContacts.svg" alt="newContactIconBig">
+                                <img src="./img/checkmarkContacts.svg" alt="newContactIconBig">
                             </button>  
                         </div>
                     </form>
@@ -139,12 +139,12 @@ function generateContactsOverlayEditHTML(name, email, phone, color, initials, i)
     <div class="overlayAddContact" id="overlayAddContact" onclick="doNotClose(event)">
             <div class="overlayAddContactLeft">
             <div class="overlayAddContactRightInputSectionHeadMobile">
-                        <img onclick="closeContactOverlay()" src="/../img/addContactOverlayCloseWhite.svg" alt="closeButton">
+                        <img onclick="closeContactOverlay()" src="./img/addContactOverlayCloseWhite.svg" alt="closeButton">
                     </div>
                 <div class="overlayAddContactLeftContent">
-                    <img class="overlayAddContactLeftContentLogo" src="/../img/sidebarLogo.svg" alt="sidebarLogo">
+                    <img class="overlayAddContactLeftContentLogo" src="./img/sidebarLogo.svg" alt="sidebarLogo">
                     <p class="overlayAddContactLeftHeadline">Edit Contact</p>
-                    <img class="overlayAddContactLeftContentLine" src="/../img/addContactOverlayLine.svg"
+                    <img class="overlayAddContactLeftContentLine" src="./img/addContactOverlayLine.svg"
                         alt="underline">
                 </div>
             </div>
@@ -154,7 +154,7 @@ function generateContactsOverlayEditHTML(name, email, phone, color, initials, i)
                 </div>
                 <div class="overlayAddContactRightInputSection">
                 <div class="overlayAddContactRightInputSectionHead">
-                        <img onclick="closeContactOverlay()" src="/../img/addContactOverlayClose.svg" alt="closeButton">
+                        <img onclick="closeContactOverlay()" src="./img/addContactOverlayClose.svg" alt="closeButton">
                     </div>
                     <form onsubmit="createEditedContact(${i}); return false;">
                         <input id="editContactName" class="contactOverlayNameIcon" required pattern="^(?:[A-ZÄÖÜ][a-zäöüß]+ )+[A-ZÄÖÜ][a-zäöüß]+$" type="text" placeholder="Name" title="Please enter a valid name e.g.: 'John Doe' " value="${name}">
@@ -163,12 +163,12 @@ function generateContactsOverlayEditHTML(name, email, phone, color, initials, i)
                         <div class="overlayAddContactRightButtonSection editBtn">
                             <button type="reset" class="contactsDetailBottomBtnAlt" onclick="deleteContact(${i})" onmouseover="btnHoverEffect(true)" onmouseout="btnHoverEffect(false)">
                                 <p>Delete</p>
-                                <img id="cancelCheckmarkContacts" src="/../img/cancelCheckmarkContacts.svg" style ="display:block" alt="newContactIconBig">
-                                <img id="cancelCheckmarkContactsHover" src="/../img/cancelCheckmarkContactsHover.svg" style="display:none" alt="newContactIconBig">
+                                <img id="cancelCheckmarkContacts" src="./img/cancelCheckmarkContacts.svg" style ="display:block" alt="newContactIconBig">
+                                <img id="cancelCheckmarkContactsHover" src="./img/cancelCheckmarkContactsHover.svg" style="display:none" alt="newContactIconBig">
                              </button >
                             <button type="submit" class="contactsDetailBottomBtn">
                                 <p>Save Contact</p>
-                                <img src="/../img/checkmarkContacts.svg" alt="newContactIconBig">
+                                <img src="./img/checkmarkContacts.svg" alt="newContactIconBig">
                             </button> 
                         </div>
                     </form>
@@ -179,5 +179,5 @@ function generateContactsOverlayEditHTML(name, email, phone, color, initials, i)
 }
 
 function generateContactSuccessHTML() {
-    return /*html*/ `<img class="overlayAddContactSuccess" src="/../img/newContactSuccess.svg">`;
+    return /*html*/ `<img class="overlayAddContactSuccess" src="./img/newContactSuccess.svg">`;
 }

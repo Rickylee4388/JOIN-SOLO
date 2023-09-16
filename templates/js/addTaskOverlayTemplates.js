@@ -21,10 +21,10 @@ function generateContentLeftAndRightContainerOverlay() {
                             <div class="categoryColor" id="newCategoryColorOverlay"></div>
                         </div>
                         <button type="button" class="cancelButton" onclick="cancelNewCategoryOverlay()">
-                            <img src="../../img/cancelIcon.png">
+                            <img src="./img/cancelIcon.png">
                         </button>
                         <button type="button" class="checkButton" onclick="confirmNewCategoryOverlay()">
-                            <img src="../../img/blackCheckIcon.png">
+                            <img src="./img/blackCheckIcon.png">
                         </button>
                     </div>
 
@@ -100,17 +100,17 @@ function generateContentLeftAndRightContainerOverlay() {
                     <div class="prioButtons">
                         <button type="button" id="urgentOverlay" value="urgent">
                             Urgent
-                            <img id="urgentIconOverlay" src="../../img/urgentIcon.png">
+                            <img id="urgentIconOverlay" src="./img/urgentIcon.png">
                         </button>
 
                         <button type="button" id="mediumOverlay" value="medium">
                             Medium
-                            <img id="mediumIconOverlay" src="../../img/mediumIcon.png">
+                            <img id="mediumIconOverlay" src="./img/mediumIcon.png">
                         </button>
 
                         <button type="button" id="lowOverlay" value="low">
                             Low
-                            <img id="lowIconOverlay" src="../../img/lowIcon.png">
+                            <img id="lowIconOverlay" src="./img/lowIcon.png">
                         </button>
                     </div>
                 </div>
@@ -121,7 +121,7 @@ function generateContentLeftAndRightContainerOverlay() {
                     <div class="inputAndButton">
                         <input id="subtasks" placeholder="Add new subtask">
                         <button type="button" onclick="newSubtask()">
-                            <img src="../../img/subtaskIcon.png">
+                            <img src="./img/subtaskIcon.png">
                         </button>
                     </div>
                 </div>
@@ -140,13 +140,13 @@ function generateTwoButtonsContainerOverlay() {
         <div class="twoButtons">
             <button id="resetOverlay" type="reset" class="clearButton" onclick="clearFieldsOverlay()" onmouseover="changeClearBtnIconToHover('clearIconDefaultOverlay', 'clearIconHoverOverlay')" onmouseout="changeClearBtnIconToDefault('clearIconHoverOverlay', 'clearIconDefaultOverlay')">
                 Clear
-                <img src="../../img/cancelIcon.png" id="clearIconDefaultOverlay">
-                <img src="../../img/clearIconHover.png" id="clearIconHoverOverlay" class="d-none">
+                <img src="./img/cancelIcon.png" id="clearIconDefaultOverlay">
+                <img src="./img/clearIconHover.png" id="clearIconHoverOverlay" class="d-none">
             </button>
 
             <button type="submit" class="createTaskButton" id="createTask">
                 Create Task
-                <img src="../../img/checkIcon.png">
+                <img src="./img/checkIcon.png">
             </button>
         </div>
     `;

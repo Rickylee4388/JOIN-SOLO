@@ -33,17 +33,17 @@ function renderModifyTaskTemplateHTML(currentTask) {
             <div class="prioButtons modifyInput">
                 <button type="button" id="modifyUrgent" value="urgent" onclick=" modifyPrio(value)">
                     Urgent
-                    <img id="modifyUrgentIcon" src="../../img/urgentIcon.png">
+                    <img id="modifyUrgentIcon" src="./img/urgentIcon.png">
                 </button>
 
                 <button type="button" id="modifyMedium" value="medium" onclick=" modifyPrio(value)">
                     Medium
-                    <img id="modifyMediumIcon" src="../../img/mediumIcon.png">
+                    <img id="modifyMediumIcon" src="./img/mediumIcon.png">
                 </button>
 
                 <button type="button" id="modifyLow" value="low" onclick=" modifyPrio(value)">
                     Low
-                    <img id="modifyLowIcon" src="../../img/lowIcon.png">
+                    <img id="modifyLowIcon" src="./img/lowIcon.png">
                 </button>
             </div>
         </div>
@@ -61,7 +61,7 @@ function renderModifyTaskTemplateHTML(currentTask) {
         <div class="inputAndButton modifyInput">
             <input id="subtasks" placeholder="Add new subtask">
             <button type="button" onclick="newModifySubtask(${currentTask['id']})">
-                <img src="../../img/subtaskIcon.png">
+                <img src="./img/subtaskIcon.png">
             </button>
         </div>
 
@@ -72,7 +72,7 @@ function renderModifyTaskTemplateHTML(currentTask) {
         <div class="configBtnContainer">
             <div class="addTaskBtn confirmBtn btn-bg" onclick="confirmChangesOnTask('${currentTask['id']}')">
                 Ok 
-                <img src="../../img/checkIcon.png" alt="">
+                <img src="./img/checkIcon.png" alt="">
             </div>
         </div>
 
@@ -101,7 +101,7 @@ function renderTaskPopUpTableTemplateHTML(clickedTask) {
         <div class="taskPopUpLeftTd"><b>Priority:</b></div>
 
         <div id="modifyMedium" class="${clickedTask['prio']} prioContainer">
-            ${clickedTask['prio']} <img id="modifyMediumIcon" src="../../img/${clickedTask['prio']}WhiteIcon.png">
+            ${clickedTask['prio']} <img id="modifyMediumIcon" src="./img/${clickedTask['prio']}WhiteIcon.png">
         </div>
     </div>
     <div class="closeTaskPopUpButton" onclick="closeTaskPopUp()">X</div>
@@ -135,13 +135,13 @@ function renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id) {
         <div class="overviwButtons">
             <div class="popUpButtonsContainer">
                 <div class="taskPopUpButton leftBtn btn-border" onclick="deleteTask('${Id}')" onmouseover="changeImg()" onmouseout="changeImgBack()">
-                    <img class="" id="deleteTask-Img" src="../../img/delete.png" alt="">
-                    <img class="d-none" id="deleteTask-light-Img" src="../../img/delete-light.png" alt="">
+                    <img class="" id="deleteTask-Img" src="./img/delete.png" alt="">
+                    <img class="d-none" id="deleteTask-light-Img" src="./img/delete-light.png" alt="">
 
                 </div>
 
                 <div class="taskPopUpButton rightBtn btn-bg" onclick="openModifyTaskPopUp('${Id}')">
-                    <img class="popUpPen" src="../../img/pen.png" alt="">
+                    <img class="popUpPen" src="./img/pen.png" alt="">
                     <img class="popUpPenTriangel" src="./img/pen_triangel.png" alt="">
                 </div>
             </div>
@@ -157,8 +157,8 @@ function generatePinnedTaskHTML(task, progressInPercent) {
         <div draggable="true" ondragstart="startDragging(${task['id']})" class="pinnedTaskContainer" id="pinnedTaskContainer${task['id']}">
 
         <div class="statChangeContainer d-none" onclick="doNotClose(event)">
-            <img onclick="changeStat(${task['id']}, 'down')" class="statChangeImgUp" src="../../img/urgentWhiteIcon.png" alt="">
-            <img onclick="changeStat(${task['id']}, 'up')" class="statChangeImgDown" src="../../img/lowWhiteIcon.png" alt="">
+            <img onclick="changeStat(${task['id']}, 'down')" class="statChangeImgUp" src="./img/urgentWhiteIcon.png" alt="">
+            <img onclick="changeStat(${task['id']}, 'up')" class="statChangeImgDown" src="./img/lowWhiteIcon.png" alt="">
         </div>
 
         <div class="taskCategory ${task['category'].toLowerCase()}-bg">
@@ -182,7 +182,7 @@ function generatePinnedTaskHTML(task, progressInPercent) {
             </div>
 
             <div class="arrowButton">
-                <img src="../../img/${task['prio']}Icon.png" alt="">
+                <img src="./img/${task['prio']}Icon.png" alt="">
             </div>
         </div>
         </div>
@@ -242,7 +242,7 @@ function renderBoardHeaderTemplateHTML() {
             <input oninput="searchTask()" id="searchInput" class="searchInput" type="text" placeholder="Find task">
 
         <div class="searchBtn">
-            <img src="../../img/Vector.png" alt="">
+            <img src="./img/Vector.png" alt="">
         </div>
     </div>
     

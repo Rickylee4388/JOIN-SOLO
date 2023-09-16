@@ -32,10 +32,10 @@ function generateContentLeftAndRightContainer() {
                             <div class="categoryColor" id="newCategoryColor"></div>
                         </div>
                         <button type="button" class="cancelButton" onclick="cancelNewCategory()">
-                            <img src="../../img/cancelIcon.png">
+                            <img src="./img/cancelIcon.png">
                         </button>
                         <button type="button" class="checkButton" onclick="confirmNewCategory()">
-                            <img src="../../img/blackCheckIcon.png">
+                            <img src="./img/blackCheckIcon.png">
                         </button>
                     </div>
 
@@ -111,17 +111,17 @@ function generateContentLeftAndRightContainer() {
                     <div class="prioButtons">
                         <button type="button" id="urgent" value="urgent">
                             Urgent
-                            <img id="urgentIcon" src="../../img/urgentIcon.png">
+                            <img id="urgentIcon" src="./img/urgentIcon.png">
                         </button>
 
                         <button type="button" id="medium" value="medium">
                             Medium
-                            <img id="mediumIcon" src="../../img/mediumIcon.png">
+                            <img id="mediumIcon" src="./img/mediumIcon.png">
                         </button>
 
                         <button type="button" id="low" value="low">
                             Low
-                            <img id="lowIcon" src="../../img/lowIcon.png">
+                            <img id="lowIcon" src="./img/lowIcon.png">
                         </button>
                     </div>
                 </div>
@@ -132,7 +132,7 @@ function generateContentLeftAndRightContainer() {
                     <div class="inputAndButton">
                         <input id="subtasks" placeholder="Add new subtask">
                         <button type="button" onclick="newSubtask()">
-                            <img src="../../img/subtaskIcon.png">
+                            <img src="./img/subtaskIcon.png">
                         </button>
                     </div>
                 </div>
@@ -151,13 +151,13 @@ function generateTwoButtonsContainer() {
         <div class="twoButtons">
             <button id="reset" type="reset" class="clearButton" onclick="clearFields()" onmouseover="changeClearBtnIconToHover('clearIconDefault', 'clearIconHover')" onmouseout="changeClearBtnIconToDefault('clearIconHover', 'clearIconDefault')">
                 Clear
-                <img src="../../img/cancelIcon.png" id="clearIconDefault">
-                <img src="../../img/clearIconHover.png" id="clearIconHover" class="d-none">
+                <img src="./img/cancelIcon.png" id="clearIconDefault">
+                <img src="./img/clearIconHover.png" id="clearIconHover" class="d-none">
             </button>
 
             <button type="submit" class="createTaskButton" id="createTask">
                 Create Task
-                <img src="../../img/checkIcon.png">
+                <img src="./img/checkIcon.png">
             </button>
         </div>
     `;

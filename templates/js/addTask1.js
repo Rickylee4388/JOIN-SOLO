@@ -151,13 +151,13 @@ function urgent() {
     prio = prioValue;
 
     document.getElementById('urgent').classList.add('urgent');
-    document.getElementById('urgentIcon').src = '../../img/urgentWhiteIcon.png';
+    document.getElementById('urgentIcon').src = './img/urgentWhiteIcon.png';
 
     document.getElementById('medium').classList.remove('medium');
-    document.getElementById('mediumIcon').src = '../../img/mediumIcon.png';
+    document.getElementById('mediumIcon').src = './img/mediumIcon.png';
 
     document.getElementById('low').classList.remove('low');
-    document.getElementById('lowIcon').src = '../../img/lowIcon.png';
+    document.getElementById('lowIcon').src = './img/lowIcon.png';
 }
 
 
@@ -169,13 +169,13 @@ function medium() {
     prio = prioValue;
 
     document.getElementById('medium').classList.add('medium');
-    document.getElementById('mediumIcon').src = '../../img/mediumWhiteIcon.png';
+    document.getElementById('mediumIcon').src = './img/mediumWhiteIcon.png';
 
     document.getElementById('urgent').classList.remove('urgent');
-    document.getElementById('urgentIcon').src = '../../img/urgentIcon.png';
+    document.getElementById('urgentIcon').src = './img/urgentIcon.png';
 
     document.getElementById('low').classList.remove('low');
-    document.getElementById('lowIcon').src = '../../img/lowIcon.png';
+    document.getElementById('lowIcon').src = './img/lowIcon.png';
 }
 
 
@@ -187,13 +187,13 @@ function low() {
     prio = prioValue;
 
     document.getElementById('low').classList.add('low');
-    document.getElementById('lowIcon').src = '../../img/lowWhiteIcon.png';
+    document.getElementById('lowIcon').src = './img/lowWhiteIcon.png';
 
     document.getElementById('medium').classList.remove('medium');
-    document.getElementById('mediumIcon').src = '../../img/mediumIcon.png';
+    document.getElementById('mediumIcon').src = './img/mediumIcon.png';
 
     document.getElementById('urgent').classList.remove('urgent');
-    document.getElementById('urgentIcon').src = '../../img/urgentIcon.png';
+    document.getElementById('urgentIcon').src = './img/urgentIcon.png';
 }
 
 
