@@ -34,7 +34,7 @@ body {
 
 .hideScrollBarY {
     overflow-y: hidden;
-}
+} 
 
 .helpScreenSection {
     display: flex;
@@ -84,6 +84,13 @@ body {
     font-weight: 400;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar
+{
 	display: none;
 }
+
+
+
+
+
+

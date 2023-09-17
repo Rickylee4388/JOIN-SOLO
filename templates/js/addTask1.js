@@ -60,7 +60,7 @@ function renderContactsAddTask(Id) {
         const allData = allContacts[i];
         const { name, color } = getJoinData(allData);
         document.getElementById(Id).innerHTML += /*html*/ `
-            <option value="${color}">${name}</option>
+            <option id="${color}" value="${name}">${name}</option>
         `;
     }
 }

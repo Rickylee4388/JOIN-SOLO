@@ -322,6 +322,7 @@
 
     .taskSection {
         gap: 15px;
+        justify-content: center;
     }
 
     .taskbox {
@@ -346,6 +347,7 @@
         width: 360px;
         border-radius: 15px;
         margin-top: 25px;
+        margin-right: 0;
     }
 
     .personalTaskBox {
