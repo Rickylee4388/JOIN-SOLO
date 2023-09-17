@@ -13,14 +13,8 @@
     animation: slideIn 0.8s ease-in-out;
 }
 
-.addTaskOverlay::-webkit-scrollbar {
-    background-color: transparent;
-    width: 8px;
-}
-
-.addTaskOverlay::-webkit-scrollbar-track {
-    margin-top: 25px;
-    margin-bottom: 25px;
+.addTaskOverlay::-webkit-scrollbar{
+    display: none;
 }
 
 #categoryOverlay {

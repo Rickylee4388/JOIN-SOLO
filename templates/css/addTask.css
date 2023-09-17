@@ -7,11 +7,6 @@
 }
 
 .addTaskMainContainer {
-    /*
-    position: absolute;
-    top: inherit;
-    margin-top: -80px;
-    */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -213,13 +208,11 @@ button {
 }
 
 .categoryDropdown::-webkit-scrollbar {
-    width: 5px;
-    background-color: transparent;
+    display: none;
 }
 
 .categoryDropdown::-webkit-scrollbar-track {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    display: none;
 }
 
 .categoryOption {
