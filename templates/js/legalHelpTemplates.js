@@ -81,9 +81,9 @@ function generateLegalNoticeScreenHTML() {
 <p>Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
 <h3>Hinweis zur verantwortlichen Stelle</h3> 
 <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p> 
-<p>Denise Schmidt<br />
-Erftstraße 29<br />
-41517 Grevenbroich</p>
+<p>Denise Schmidt<br>
+    Erftstraße 29<br>
+    41517 Grevenbroich</p>
 
 <p>Telefon: +491632791409<br />
 E-Mail: d.schmidt1988@web.de</p>

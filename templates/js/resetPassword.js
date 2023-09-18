@@ -1,22 +1,11 @@
 let index = localStorage.getItem('index');
-
-/**
- * loads popUp message email
- */
 function popUpMessageEmail() {
     document.getElementById('buttonAnimationEmail').classList.remove('d-none');
 }
-
-/**
- * loads popUp message password
- */
 function popUpMessagePw() {
     document.getElementById('buttonAnimationPw').classList.remove('d-none');
 }
 
-/**
- * resets password and creates new
- */
 function resetPassword() {
     let email = document.getElementById('forgotPwEmail').value;
     popUpMessagePw();
@@ -26,10 +15,6 @@ function resetPassword() {
     }, 1800);
     localStorage.setItem('index', i);
 }
-
-/**
- * leads back to login page
- */
 async function backToLogin() {
     popUpMessageEmail();
     await setNewPassword();
@@ -38,11 +23,6 @@ async function backToLogin() {
     }, 1800);
 }
 
-/**
- * 
- * @param {string} email 
- * @returns email index which needs new password
- */
 function resetUserPassword(email) {
 
     let i = userLogin.findIndex(function (a) {
@@ -53,9 +33,6 @@ function resetUserPassword(email) {
 
 }
 
-/**
- * sets new password and saves it
- */
 async function setNewPassword() {
     let password = document.getElementById('resetPassword').value;
     let passwordRepeat = document.getElementById('repeatPassword').value;

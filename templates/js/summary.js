@@ -1,8 +1,5 @@
 let earliest = [];
 
-/**
- * initializes summary page
- */
 async function initSummary() {
   await loadUserLogin();
   let currentUser = getCurrentUser();
@@ -16,10 +13,7 @@ async function initSummary() {
   removeClassContentSectionAddTask();
 }
 
-/**
- * 
- * @returns data of current users
- */
+
 function getCurrentUser() {
   let name;
   let email = localStorage.getItem('currentEmail');
@@ -34,9 +28,7 @@ function getCurrentUser() {
   return name;
 }
 
-/**
- * loads urgent tasks
- */
+
 function searchUrgentTasks() {
   let prio = 'urgent';
   let urgentTasks = newTaskArray.filter(function (a) {
@@ -48,11 +40,10 @@ function searchUrgentTasks() {
   `;
 }
 
-/**
- * search actual date
- */
+
 function searchDate() {
   if(newTaskArray.length == 0){
+
   }
   else{
   const minDate =
@@ -67,29 +58,26 @@ function searchDate() {
 }
 }
 
-/**
- * start point for calender
- * @param {number} earliest actual date
- */
+
 function generateDate(earliest) {
   document.getElementById('insertDate').innerHTML = /*html*/`
    ${earliest}
     `
 }
 
-/**
- * load all tasks from backend
- */
+
 function loadTaskStat() {
   let stat = '';
   for (let i = 0; i < newTaskArray.length; i++) {
     const element = newTaskArray[i];
+
     stat = newTaskArray[i]['stat'];
     let taskStat = newTaskArray.filter(function (a) {
       return a.stat === stat;
     });
     taskStats = taskStat.length;
-    document.getElementById(stat).innerHTML = `${taskStats}`
+    document.getElementById(stat).innerHTML = `    
+    ${taskStats}`
   }
 }
 
@@ -104,6 +92,7 @@ function getSummaryHeadlineDiv() {
           <p id="nutshelltext" class="nutshelltext">Everything in a nutshell!</p>
   `
 }
+
 
 function getSummaryinnerContent() {
   return /*html*/`
@@ -153,6 +142,7 @@ function getSummaryinnerContent() {
   `
 }
 
+
 function getSummarySection() {
     return /*html*/`
       <div id="summarySection" class="summarySection">
@@ -166,10 +156,11 @@ function getSummarySection() {
   `;
   }
 
-function getSummaryGreeting(currentUser) {
-  return /*html*/`
-            <div id="greeting" class="d-flex center greeting">
-            <p class="goodMorning">Good Morning <br><b class="blueText">${currentUser}!<b></p>
-          </div>
-  `
+
+  function getSummaryGreeting(currentUser) {
+    return /*html*/`
+              <div id="greeting" class="d-flex center greeting">
+              <p class="goodMorning">Good Morning <br><b class="blueText">${currentUser}!<b></p>
+            </div>
+    `
  }

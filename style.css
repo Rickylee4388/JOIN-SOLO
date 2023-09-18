@@ -34,7 +34,7 @@ body {
 
 .hideScrollBarY {
     overflow-y: hidden;
-} 
+}
 
 .helpScreenSection {
     display: flex;
@@ -71,6 +71,7 @@ body {
 .helpScreenSection span {
     font-size: 16px;
     font-weight: 400;
+
 }
 
 .helpScreenSection ol ::marker {
@@ -84,13 +85,22 @@ body {
     font-weight: 400;
 }
 
-::-webkit-scrollbar
+::-webkit-scrollbar-track
 {
-	display: none;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #FFFFFF;
 }
 
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #FFFFFF;
+}
 
-
-
-
-
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #A8A8A8;
+}

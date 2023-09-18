@@ -62,6 +62,10 @@
 
 @media (max-width: 1000px) {
 
+    .contactsform{
+        margin-top: -10%;
+    }
+
     .contactsDetailHead h2 {
         margin-top: 20px;
     }
@@ -217,6 +221,10 @@
 
 @media (max-width: 768px) {
 
+    .contactsform{
+        margin-top: -10%;
+    }
+
     .sidebarBtn {
         flex-direction: column;
         align-items: center;
@@ -264,6 +272,10 @@
 }
 
 @media (max-width: 576px) {
+
+    .contactsform{
+        margin-top: -10%;
+    }
 
     .overlayAddContact {
         width: 90%;
@@ -353,6 +365,10 @@
 
 @media (max-height: 730px) {
 
+    .contactsform{
+        margin-top: -10%;
+    }
+    
     .sidebarLegal {
         padding-top: 50px;
     }

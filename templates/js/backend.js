@@ -1,18 +1,12 @@
 const BACKEND_TOKEN = 'FRE0UTOZCHFF8Z8N6T3DXIIG7KHYOC6NF0EJY419';
 const BACKEND_URL = 'https://remote-storage.developerakademie.org/item';
 
-/**
- * sets variable in backend
- */
 async function setItem(key, value) {
     const payload = { key, value, token: BACKEND_TOKEN };
     return fetch(BACKEND_URL, { method: 'POST', body: JSON.stringify(payload)})
     .then(res => res.json());
 }
 
-/**
- * loads variable from backend
- */
 async function getItem(key) {
     const url = `${BACKEND_URL}?key=${key}&token=${BACKEND_TOKEN}`;
     return fetch(url).then(res => res.json()).then(res => {
