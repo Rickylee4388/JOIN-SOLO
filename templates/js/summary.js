@@ -1,5 +1,8 @@
 let earliest = [];
 
+/**
+ * intializes summary
+ */
 async function initSummary() {
   await loadUserLogin();
   let currentUser = getCurrentUser();
@@ -13,7 +16,10 @@ async function initSummary() {
   removeClassContentSectionAddTask();
 }
 
-
+/**
+ * 
+ * @returns name of current user
+ */
 function getCurrentUser() {
   let name;
   let email = localStorage.getItem('currentEmail');
@@ -28,7 +34,9 @@ function getCurrentUser() {
   return name;
 }
 
-
+/**
+ * searchs for urgent tasks an inserts amount in html
+ */
 function searchUrgentTasks() {
   let prio = 'urgent';
   let urgentTasks = newTaskArray.filter(function (a) {
@@ -40,7 +48,9 @@ function searchUrgentTasks() {
   `;
 }
 
-
+/**
+ * searchs for earliest deadline
+ */
 function searchDate() {
   if(newTaskArray.length == 0){
 
@@ -58,19 +68,23 @@ function searchDate() {
 }
 }
 
-
+/**
+ * 
+ * @param {date} earliest 
+ */
 function generateDate(earliest) {
   document.getElementById('insertDate').innerHTML = /*html*/`
    ${earliest}
     `
 }
 
-
+/**
+ * loads tasks from backend and filters for status
+ */
 function loadTaskStat() {
   let stat = '';
   for (let i = 0; i < newTaskArray.length; i++) {
     const element = newTaskArray[i];
-
     stat = newTaskArray[i]['stat'];
     let taskStat = newTaskArray.filter(function (a) {
       return a.stat === stat;
@@ -80,8 +94,6 @@ function loadTaskStat() {
     ${taskStats}`
   }
 }
-
-
 
 // GENERATE HTML CODE
 

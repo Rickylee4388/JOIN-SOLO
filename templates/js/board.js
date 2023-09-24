@@ -14,12 +14,11 @@ let chosenStat = 'todo';
 function giveTaskId() {
     for (let i = 0; i < newTaskArray.length; i++) {
         const currentTask = newTaskArray[i];
-        
+
         currentTask['id'] = i;
     }
     removeClassContentSectionAddTask();
 }
-
 
 ///////////////RenderFunktionen////////////////////////
 /**
@@ -38,7 +37,6 @@ function updateBoardTasks() {
  */
 function renderBoardHTML() {
     let content = document.getElementById('contentSection');
-    
     content.innerHTML = '';
     content.innerHTML += renderBoardTemplateHTML();
     document.getElementById('body').classList.add('hideScrollBarY');
@@ -63,7 +61,6 @@ function renderBoardHeaderHTML() {
  */
 function renderStatusFieldsHTML() {
     let content = document.getElementById('boardContentContainer');
-
     content.innerHTML = '';
 
     for (let i = 0; i < taskStatus.length; i++) {
@@ -82,10 +79,7 @@ function renderStatusFieldsHTML() {
 function renderTodoTasksHTML(arrayName) {
     let content = document.getElementById('statContainer0');
     let todos = arrayName.filter(task => task['stat'] == 'todo');
-
     content.innerHTML = '';
-
-
     for (let i = 0; i < todos.length; i++) {
         const task = todos[i];
         let subtasksAmount = task['subtasks'].length;
@@ -104,9 +98,7 @@ function renderTodoTasksHTML(arrayName) {
 function renderInProgressHTML(arrayName) {
     let content = document.getElementById('statContainer1');
     let inProgress = arrayName.filter(task => task['stat'] == 'inProgress');
-
     content.innerHTML = '';
-
     for (let i = 0; i < inProgress.length; i++) {
         const task = inProgress[i];
         let subtasksAmount = task['subtasks'].length;
@@ -125,18 +117,16 @@ function renderInProgressHTML(arrayName) {
 function renderAwaitingFeedbackHTML(arrayName) {
     let content = document.getElementById('statContainer2');
     let awaitingFeedback = arrayName.filter(task => task['stat'] == 'awaitingFeedback');
-
     content.innerHTML = '';
+    for (let i = 0; i < awaitingFeedback.length; i++) {
+        const task = awaitingFeedback[i];
+        let subtasksAmount = task['subtasks'].length;
+        let doneSubtasks = task['doneSubTasks'];
+        let ProgressPercent = calculateProgress(subtasksAmount, doneSubtasks);
 
-        for (let i = 0; i < awaitingFeedback.length; i++) {
-            const task = awaitingFeedback[i];
-            let subtasksAmount = task['subtasks'].length;
-            let doneSubtasks = task['doneSubTasks'];
-            let ProgressPercent = calculateProgress(subtasksAmount, doneSubtasks);
-    
-            content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
-            renderAssignedToHTML(task);
-        }
+        content.innerHTML += generatePinnedTaskHTML(task, ProgressPercent);
+        renderAssignedToHTML(task);
+    }
 }
 
 /**
@@ -146,9 +136,7 @@ function renderAwaitingFeedbackHTML(arrayName) {
 function renderDoneHTML(arrayName) {
     let content = document.getElementById('statContainer3');
     let done = arrayName.filter(task => task['stat'] == 'done');
-
     content.innerHTML = '';
-
     for (let i = 0; i < done.length; i++) {
         const task = done[i];
         let subtasksAmount = task['subtasks'].length;
@@ -166,16 +154,14 @@ function renderDoneHTML(arrayName) {
  */
 function renderAssignedToHTML(task) {
     let content = document.getElementById(`assignedToContainer${task['id']}`);
-    let assignmentCount = task['assignedTo'].length -3;
-
+    let assignmentCount = task['assignedTo'].length - 3;
     content.innerHTML = '';
     if (task['assignedTo'].length <= 3) {
         renderTaskAssignmentListHTML(task, task['assignedTo'].length);
     } else {
         renderTaskAssignmentListHTML(task, '3');
     }
-
-    if(task['assignedTo'].length > 3) {
+    if (task['assignedTo'].length > 3) {
         content.innerHTML += renderTaskAssignmentCountHTML(assignmentCount);
     }
 }
@@ -187,12 +173,10 @@ function renderAssignedToHTML(task) {
  */
 function renderTaskAssignmentListHTML(task, count) {
     let content = document.getElementById(`assignedToContainer${task['id']}`);
-
     for (let i = 0; i < count; i++) {
         const assignment = task['assignedTo'][i];
         let initials = getInitials(assignment);
         let bgColor = task['color'][i];
-   
         content.innerHTML += renderTaskAssignmentsTemplateHTML(task, bgColor, initials);
     }
 }
@@ -203,13 +187,11 @@ function renderTaskAssignmentListHTML(task, count) {
 function showProgressbar() {
     for (let i = 0; i < newTaskArray.length; i++) {
         const task = newTaskArray[i];
-
-        if(task['subtasks'].length > 0) {
+        if (task['subtasks'].length > 0) {
             document.getElementById(`progressContainer${task['id']}`).classList.remove('d-none');
         }
     }
 }
-
 
 ///////////////////////Task-Pop-Up/////////////////////////////////
 
@@ -237,9 +219,7 @@ function renderClickedTaskPopUpHTML(Id) {
     let content = document.getElementById('overlaySection');
     let clickedTask = newTaskArray[Id];
     content.innerHTML = '';
-
     content.innerHTML += renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id);
-
     renderTaskPopUpTableHTML(clickedTask);
     renderTaskPopUpAssignmentsHTML(clickedTask);
     renderSubtasksOverview(Id);
@@ -251,9 +231,7 @@ function renderClickedTaskPopUpHTML(Id) {
  */
 function renderTaskPopUpTableHTML(clickedTask) {
     let content = document.getElementById('taskPopUpTable');
-
     content.innerHTML = '';
-
     content.innerHTML += renderTaskPopUpTableTemplateHTML(clickedTask);
 }
 
@@ -263,16 +241,13 @@ function renderTaskPopUpTableHTML(clickedTask) {
  */
 function renderTaskPopUpAssignmentsHTML(clickedTask) {
     let content = document.getElementById('taskPopUpAssignmentsList');
-
     content.innerHTML = '';
-
     for (let i = 0; i < clickedTask['assignedTo'].length; i++) {
         const assignment = clickedTask['assignedTo'][i];
         let initials = getInitials(assignment);
         let bgColor = clickedTask['color'][i];
-        
         content.innerHTML += renderTaskAssignmentsPlusInitialsTemplateHTML(assignment, initials, bgColor);
-    } 
+    }
 }
 
 /**
@@ -291,15 +266,12 @@ function modifyCurrentTaskHTML(Id) {
     let content = document.getElementById('overlaySection');
     let currentTask = newTaskArray[Id];
     let prio = currentTask['prio'];
-    
     content.innerHTML = '';
     content.innerHTML = renderModifyTaskTemplateHTML(currentTask);
-
     renderModifyAssignmentsHTML(Id);
     setMinDate('modifyDate');
     modifyPrio(prio);
     renderModifySubtaskList(Id);
-
 }
 
 /**
@@ -309,30 +281,23 @@ function modifyCurrentTaskHTML(Id) {
 function renderModifyAssignmentsHTML(Id) {
     let currentTask = newTaskArray[Id];
     let content = document.getElementById(`modifyPopUpAssignmentContainer${currentTask['id']}`);
-
     content.innerHTML = '';
-
     for (let i = 0; i < currentTask['assignedTo'].length; i++) {
         const assignment = currentTask['assignedTo'][i];
         let initials = getInitials(assignment);
         let bgColor = currentTask['color'][i];
-        
         content.innerHTML += modifyAssignmentsTemplateHTML(i, Id, bgColor, initials);
     }
 }
 
-
 function renderSubtasksOverview(Id) {
     let content = document.getElementById('subtasksOverview');
-
     content.innerHTML = '';
     let task = newTaskArray[Id];
-
     for (let i = 0; i < task['subtasks'].length; i++) {
         const subtask = task['subtasks'][i];
         let isChecked = task['isChecked'][i];
-
-            content.innerHTML += /*html*/`
+        content.innerHTML += /*html*/`
                 <div>${i + 1}. ${subtask}</div>
             `;
     }
@@ -349,23 +314,18 @@ function modifyPrio(currentPriority) {
     let otherPrios = priories.filter(currentPriority => currentPriority !== `${prioValue}`);
     let otherPrio1 = capitalizeFirstLetter(otherPrios[0]);
     let otherPrio2 = capitalizeFirstLetter(otherPrios[1]);
-
     document.getElementById(`modify${currentPrio}`).classList.add(`${prioValue}`);
     document.getElementById(`modify${currentPrio}Icon`).src = `./img/${prioValue}WhiteIcon.png`;
-
     document.getElementById(`modify${otherPrio1}`).classList.remove(`${otherPrios[0]}`);
     document.getElementById(`modify${otherPrio1}Icon`).src = `./img/${otherPrios[0]}Icon.png`;
-
     document.getElementById(`modify${otherPrio2}`).classList.remove(`${otherPrios[1]}`);
     document.getElementById(`modify${otherPrio2}Icon`).src = `./img/${otherPrios[1]}Icon.png`;
 }
 
-
-
 function newModifySubtask(Id) {
     let newSubtask = document.getElementById('subtasks').value;
-
     newTaskArray[Id]['subtasks'].push(newSubtask);
+    newTaskArray[Id]['isChecked'].push(false);
     document.getElementById('subtasks').value = '';
     renderModifySubtaskList(Id);
 }
@@ -377,36 +337,29 @@ function newModifySubtask(Id) {
 function renderModifySubtaskList(Id) {
     let content = document.getElementById('subtasksList');
     let task = newTaskArray[Id];
-
     content.innerHTML = '';
-
     for (let i = 0; i < task['subtasks'].length; i++) {
         const subtask = task['subtasks'][i];
         let isChecked = task['isChecked'][i];
-
-        if(isChecked == true) {
+        if (isChecked == true) {
             content.innerHTML += renderCheckedBoxTemplateHTML(i, Id, subtask);
-        } 
-        if(isChecked == false) {
+        }
+        if (isChecked == false) {
             content.innerHTML += renderUncheckedBoxTemplateHTML(i, Id, subtask);
         }
     }
 }
 
-
 function changeImg() {
     let deleteImg = document.getElementById('deleteTask-Img');
     let deleteImgLight = document.getElementById('deleteTask-light-Img');
-
     deleteImg.classList.add('d-none');
     deleteImgLight.classList.remove('d-none');
 }
 
-
 function changeImgBack() {
     let deleteImg = document.getElementById('deleteTask-Img');
     let deleteImgLight = document.getElementById('deleteTask-light-Img');
-
     deleteImg.classList.remove('d-none');
     deleteImgLight.classList.add('d-none');
 }
@@ -418,18 +371,14 @@ function changeImgBack() {
 function renderContactsModifyAddTask(Id) {
     activateEvent();
     let content = document.getElementById('assignedTo');
-
-
     content.innerHTML = /*html*/`
         <option value="" disabled selected>Select contacts to assign</option>
     `;
-
     for (let i = 0; i < allContacts.length; i++) {
         const allData = allContacts[i];
         const { name } = getJoinData(allData);
         const { color } = getJoinData(allData);
-
-        if(newTaskArray[Id]['assignedTo'].includes(name)) {
+        if (newTaskArray[Id]['assignedTo'].includes(name)) {
             content.innerHTML += /*html*/ `
                 <option disabled id="${color}" value="${Id}">${name}</option>
         ` } else {
@@ -437,7 +386,7 @@ function renderContactsModifyAddTask(Id) {
                     <option id="${color}" value="${Id}">${name}</option>
                 `
         }
-    } 
+    }
 }
 
 /**
@@ -448,7 +397,6 @@ function activateEvent() {
     modifyAssignBtn.addEventListener("change", modifyAssignedTo);
 }
 
-
 function modifyAssignedTo() {
     let assignee = document.getElementById("assignedTo");
     let Id = assignee.options[assignee.selectedIndex].value;
@@ -457,7 +405,6 @@ function modifyAssignedTo() {
     let selectedAssignee2 = assignee.options[assignee.selectedIndex];
     selectedAssignee2.disabled = true;
     let i = (assignee.selectedIndex) - 1;
-
     if (newTaskArray[Id]['assignedTo'].indexOf(name) === -1) {
         newTaskArray[Id]['assignedTo'].push(name);
         newTaskArray[Id]['color'].push(color);
@@ -465,18 +412,15 @@ function modifyAssignedTo() {
     renderModifyAssignmentsHTML(Id);
 }
 
-
 function changeStat(Id, direction) {
     let currentTask = newTaskArray[Id];
     let index = taskStatusClasses.indexOf(currentTask['stat']);
-
-    if(direction == 'up' && index <= 2) {
+    if (direction == 'up' && index <= 2) {
         currentTask['stat'] = taskStatusClasses[index + 1];
-    } 
-
-    if(direction == 'down' && index > 0) {
+    }
+    if (direction == 'down' && index > 0) {
         currentTask['stat'] = taskStatusClasses[index - 1];
-    } 
+    }
     saveTasks();
     updateBoardTasks();
 }
@@ -488,14 +432,11 @@ function changeStat(Id, direction) {
  */
 function deleteAssignmentOption(i, Id) {
     let currentTask = newTaskArray[Id];
-
     currentTask['assignedTo'].splice(i, 1);
     renderModifyAssignmentsHTML(Id);
-
     let assignee = document.getElementById("modifyAssignedTo");
     let selectedAssignee2 = assignee.options[i];
     selectedAssignee2.disabled = false;
-
     if (currentTask['assignedTo'].length === 0) {
         assignee.selectedIndex = 0;
     }
@@ -509,11 +450,9 @@ function deleteAssignmentOption(i, Id) {
 function configDoneSubtask(i, Id) {
     let task = newTaskArray[Id];
     let currentStatus = document.getElementById(`subtaskCheckBox${i}`).checked;
-
-    if(currentStatus == true) {
+    if (currentStatus == true) {
         task['doneSubTasks']++;
-    } 
-    
+    }
     if (currentStatus == false) {
         task['doneSubTasks']--;
         console.log(task['doneSubTasks']);
@@ -532,7 +471,6 @@ function calculateProgress(subTaskAmount, doneAmount) {
         doneAmount = subTaskAmount;
     }
     let progressInPercent = 100 / subTaskAmount * doneAmount;
-
     return progressInPercent;
 }
 
@@ -541,15 +479,24 @@ function calculateProgress(subTaskAmount, doneAmount) {
 */
 function confirmChangesOnTask(Id) {
     let currentTask = newTaskArray[Id];
+    let modifyCategory = document.getElementById('categoryOverlay').innerText;
+    if (modifyCategory === 'Select task category') {
+        modifyCatColor = currentTask['categoryColor'];
+    }
+    else {
+        currentTask['category'] = modifyCategory;
+        let readColourCategory = document.getElementById("categoryOverlay").childNodes[1];
+        style = window.getComputedStyle(readColourCategory);
+        modifyCatColor = style.getPropertyValue('background-color');
+    }  
     let newTitle = document.getElementById('modifyTitle').value;
     let newDescription = document.getElementById('modifyDescription').value;
     let newDate = document.getElementById('modifyDate').value;
-
+    currentTask['categoryColor'] = modifyCatColor;
     currentTask['title'] = newTitle;
     currentTask['description'] = newDescription;
     currentTask['date'] = newDate;
     currentTask['prio'] = newPrio;
-
     closeTaskPopUp();
     saveTasks();
     updateBoardTasks();
@@ -560,14 +507,12 @@ function confirmChangesOnTask(Id) {
  * @param {number} Id - index of the current Task.
  */
 function deleteTask(Id) {
-
     newTaskArray.splice(Id, 1);
     giveTaskId();
     closeTaskPopUp();
     saveTasks();
     updateBoardTasks();
 }
-
 
 ///////////////////////Drag & Drop/////////////////////////////////
 
@@ -586,7 +531,6 @@ function startDragging(id) {
  */
 function allowDrop(ev) {
     ev.preventDefault();
-
 }
 
 /**
@@ -594,7 +538,7 @@ function allowDrop(ev) {
  * @param {string} stat - status of the statusbar above which the dragged element is dropped off.
  */
 function drop(stat) {
-    newTaskArray[currentDraggedTask]['stat']  = stat;
+    newTaskArray[currentDraggedTask]['stat'] = stat;
     document.getElementById(`pinnedTaskContainer${currentDraggedTask}`).classList.remove('rotateDeg');
     saveTasks();
     updateBoardTasks();
@@ -607,19 +551,17 @@ function drop(stat) {
  */
 function searchTask() {
     let searchInput = document.getElementById('searchInput').value;
-
     for (let i = 0; i < newTaskArray.length; i++) {
         const currentTask = newTaskArray[i];
         let search = searchInput.toLowerCase();
-        let search2 =  capitalizeFirstLetter(search);
-
+        let search2 = capitalizeFirstLetter(search);
         if (currentTask['title'].includes(search) || currentTask['description'].includes(search)) {
             filteredTasks.push(currentTask);
-            } else if(currentTask['title'].includes(search2) || currentTask['description'].includes(search2)) {
-                filteredTasks.push(currentTask);
-            }
+        } else if (currentTask['title'].includes(search2) || currentTask['description'].includes(search2)) {
+            filteredTasks.push(currentTask);
         }
-        renderFilteredTasks('filteredTasks');
+    }
+    renderFilteredTasks('filteredTasks');
 }
 
 /**
@@ -639,7 +581,6 @@ function renderFilteredTasks() {
     renderInProgressHTML(filteredTasks);
     renderAwaitingFeedbackHTML(filteredTasks);
     renderDoneHTML(filteredTasks);
-
     filteredTasks = [];
 }
 

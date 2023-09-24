@@ -6,7 +6,6 @@ function modifyAssignmentsTemplateHTML(i, Id, bgColor, initials) {
 `
 }
 
-
 function renderModifyTaskTemplateHTML(currentTask) {
     return /*html*/`
     <div class="taskModifyPopUp" onclick="doNotClose(event)">
@@ -58,6 +57,50 @@ function renderModifyTaskTemplateHTML(currentTask) {
             <div id="modifyPopUpAssignmentContainer${currentTask['id']}" class="d-flex mt"></div>
         </div>
 
+        <div class="assignedToAndSelect modifyInput">
+            <span>Category</span>
+            <div id="selectCategoryOverlay" style="color:red;" class="d-none">Please select a category</div>
+
+                <div class="categoryOverlay" id="categoryOverlay" onclick="openCategoryDropdownOverlay()">Select task category</div>
+                    <div id="categoryDropdownOverlay" class="categoryDropdown d-none">
+                        <div id="createdCategoryOverlay" class="createdCategory">
+                            
+                        </div>
+
+                        <div class="categoryOption" value="development" onclick="selectedCategoryOverlay('development', 'red')">
+                            Development
+                            <div class="categoryColor" style="background-color: red"></div>
+                        </div>
+
+                        <div class="categoryOption" value="design" onclick="selectedCategoryOverlay('design', 'orange')">
+                            Design
+                            <div class="categoryColor" style="background-color: orange"></div>
+                        </div>
+
+                        <div class="categoryOption" value="sales" onclick="selectedCategoryOverlay('sales', 'pink')">
+                            Sales
+                            <div class="categoryColor" style="background-color: pink"></div>
+                        </div>
+
+                        <div class="categoryOption" value="backoffice" onclick="selectedCategoryOverlay('backoffice', 'turquoise')">
+                            Backoffice
+                            <div class="categoryColor" style="background-color: turquoise"></div>
+                        </div>
+
+                        <div class="categoryOption" value="media" onclick="selectedCategoryOverlay('media', 'goldenrod')">
+                            Media
+                            <div class="categoryColor" style="background-color: goldenrod"></div>
+                        </div>
+
+                        <div class="categoryOption" value="marketing" onclick="selectedCategoryOverlay('marketing', 'blue')">
+                            Marketing
+                            <div class="categoryColor" style="background-color: blue"></div>
+                        </div>
+                    </div>
+
+            <div id="modifyPopUpAssignmentContainer${currentTask['id']}" class="d-flex mt"></div>
+        </div>
+
         <div class="inputAndButton modifyInput">
             <input id="subtasks" placeholder="Add new subtask">
             <button type="button" onclick="newModifySubtask(${currentTask['id']})">
@@ -79,7 +122,6 @@ function renderModifyTaskTemplateHTML(currentTask) {
     </div>`
 }
 
-
 function renderTaskAssignmentsPlusInitialsTemplateHTML(assignment, initials, bgColor) {
     return /*html*/`
     <div class="taskPopUpSingleAssignmentContainer">
@@ -88,7 +130,6 @@ function renderTaskAssignmentsPlusInitialsTemplateHTML(assignment, initials, bgC
     </div>
 `
 }
-
 
 function renderTaskPopUpTableTemplateHTML(clickedTask) {
     return /*html*/`
@@ -108,12 +149,10 @@ function renderTaskPopUpTableTemplateHTML(clickedTask) {
 `
 }
 
-
-
 function renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id) {
     return /*html*/`
     <div class="taskOverviewPopUp" onclick="doNotClose(event)">
-        <div class="taskCategory ${clickedTask['category'].toLowerCase()}-bg">
+        <div class="taskCategory " style="background-color: ${clickedTask['categoryColor']}">
             ${clickedTask['category']}
         </div>
 
@@ -150,7 +189,6 @@ function renderClickedTaskOverviewPopUpTemplateHTML(clickedTask, Id) {
 `
 }
 
-
 function generatePinnedTaskHTML(task, progressInPercent) {
     return /*html*/`
     <div onclick="openExistingTaskPopUp(${task['id']})">
@@ -161,7 +199,7 @@ function generatePinnedTaskHTML(task, progressInPercent) {
             <img onclick="changeStat(${task['id']}, 'up')" class="statChangeImgDown" src="./img/lowWhiteIcon.png" alt="">
         </div>
 
-        <div class="taskCategory ${task['category'].toLowerCase()}-bg">
+        <div class="taskCategory " style="background-color: ${task['categoryColor']}">
             ${task['category']}
         </div>
 
@@ -191,20 +229,17 @@ function generatePinnedTaskHTML(task, progressInPercent) {
 `;
 }
 
-
 function renderTaskAssignmentsTemplateHTML(task, bgColor, initials) {
     return /*html*/`
     <div class="contactContainer" id="" style="background-color:${bgColor}">${initials}</div>
     `; 
 }
 
-
 function renderTaskAssignmentCountHTML(assignmentCount) {
     return /*html*/`
     <div class="contactContainer" style="background-color: rgb(0, 0, 0)">+${assignmentCount}</div>
     `;
 }
-
 
 function renderStatusfieldsTemplateHTML(i, stat, statClass) {
     return /*html*/`
@@ -222,7 +257,6 @@ function renderStatusfieldsTemplateHTML(i, stat, statClass) {
     </div>
 `
 }
-
 
 function renderBoardHeaderTemplateHTML() {
     return /*html*/`
@@ -255,7 +289,6 @@ function renderBoardHeaderTemplateHTML() {
 `
 }
 
-
 function renderBoardTemplateHTML() {
     return /*html*/`
     <div class="boardBody" id="boardBody">
@@ -266,7 +299,6 @@ function renderBoardTemplateHTML() {
     `
 }
 
-
 function renderCheckedBoxTemplateHTML(i, Id, subtask) {
     return /*html*/`
     <div class="subtask modifySubtask">
@@ -275,7 +307,6 @@ function renderCheckedBoxTemplateHTML(i, Id, subtask) {
     </div>
     `
 }
-
 
 function renderUncheckedBoxTemplateHTML(i, Id, subtask) {
     return /*html*/`

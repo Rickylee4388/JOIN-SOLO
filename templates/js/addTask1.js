@@ -6,6 +6,9 @@ let contactsColors = [];
 let objIds = [];
 let dateArray = [];
 let isChecked = [];
+let localCategory;
+let localColor;
+let createdCategories = [];
 
 
 /**
@@ -17,8 +20,16 @@ async function initAddTask() {
     renderHeadline();
     activatePrioButtons();
     addClassContentSectionAddTask();
+    loadCreatedCategory();
 }
 
+/**
+ * load created categories
+ */
+async function loadCreatedCategory() {
+    let cat = JSON.parse(await getItem("createdCategory"));
+    createdCategories = cat;
+}
 
 /**
  * This asynchronous function loads the 'createdTask' item from the remote storage.
@@ -26,7 +37,6 @@ async function initAddTask() {
 async function loadTasks() {
     newTaskArray = JSON.parse(await getItem('createdTask'));
 }
-
 
 /**
  * This function renders the headline and executes 2 other functions.
@@ -39,7 +49,6 @@ function renderHeadline() {
     renderContactsAddTask('assignedTo');
 }
 
-
 /**
  * This function renders a div-container called 'contentLeftAndRightContainer' and executes 2 other functions.
  */
@@ -48,7 +57,6 @@ function renderContentLeftAndRight() {
     renderTwoButtonsContainer();
     setMinDate('date');
 }
-
 
 /**
  * This function renders the contacts as an option-tag to the assignedTo-List.
@@ -65,7 +73,6 @@ function renderContactsAddTask(Id) {
     }
 }
 
-
 /**
  * This function enables the contact that was removed as an assignee.
  */
@@ -77,7 +84,6 @@ function clearDisabledState() {
     }
 }
 
-
 /**
  * This function renders a div-container with a 'clear' button and a 'create task' button and executes another function.
  */
@@ -86,14 +92,12 @@ function renderTwoButtonsContainer() {
     clearFields();
 }
 
-
 /**
  * This function adds the css-class 'contentSectionAddTask' to the div-container 'contentSection'.
  */
 function addClassContentSectionAddTask() {
     document.getElementById('contentSection').classList.add('contentSectionAddTask')
 }
-
 
 /**
  * This function doesn't let the user select a date that is in the past.
@@ -105,7 +109,6 @@ function setMinDate(id) {
     document.getElementById(id).setAttribute('min', today);
 }
 
-
 /**
  * This function updates the date in the dateArray with the new due date.
  */
@@ -113,7 +116,6 @@ function pushDate() {
     let dueDate = document.getElementById('date').value;
     dateArray.splice(0, 1, dueDate);
 }
-
 
 /**
  * This function first executes the low-function so the prio button 'low' ist active and sets up event listeners.
@@ -142,7 +144,6 @@ function activatePrioButtons() {
     });
 }
 
-
 /**
  * This function activates the urgent button and deactivates the other two prio buttons.
  */
@@ -159,7 +160,6 @@ function urgent() {
     document.getElementById('low').classList.remove('low');
     document.getElementById('lowIcon').src = './img/lowIcon.png';
 }
-
 
 /**
  * This function activates the medium button and deactivates the other two prio buttons.
@@ -178,7 +178,6 @@ function medium() {
     document.getElementById('lowIcon').src = './img/lowIcon.png';
 }
 
-
 /**
  * This function activates the low button and deactivates the other two prio buttons.
  */
@@ -196,7 +195,6 @@ function low() {
     document.getElementById('urgentIcon').src = './img/urgentIcon.png';
 }
 
-
 /**
  * This function opens the dropdown menu to select a category.
  */
@@ -207,9 +205,26 @@ function openCategoryDropdown() {
         border-bottom-right-radius: 0px;
         border-bottom: none;
     `;
+    if (createdCategories) {
+        insertCreatedCategoryHtml();
+    }
     document.getElementById('category').onclick = closeCategoryDropdown;
 }
 
+/**
+ * inserts all created categories to dropdown
+ */
+function insertCreatedCategoryHtml() {
+    document.getElementById('createdCategory').innerHTML = '';
+    for (let i = 0; i < createdCategories.length; i++) {
+        const catLoad = createdCategories[i];
+        document.getElementById('createdCategory').innerHTML += `                        
+        <div id="cat${i}" class="categoryOption" value="${catLoad['setnewCategory']}" onclick="selectedCategory('${catLoad['setnewCategory']}', '${catLoad['newCategoryColor']}')">
+        ${catLoad['setnewCategory']}
+        <div class="categoryColor" id="catColor${i}}" style="background-color: ${catLoad['newCategoryColor']}"></div>
+        </div>`
+    }
+}
 
 /**
  * This function allows the user to create a new category.
@@ -221,7 +236,6 @@ function newCategory() {
     document.getElementById('category').style.display = 'none';
 }
 
-
 /**
  * This function lets the user choose the color for the new category.
  * 
@@ -230,7 +244,6 @@ function newCategory() {
 function addColorToNewCategory(color) {
     document.getElementById('newCategoryColor').style.backgroundColor = color;
 }
-
 
 /**
  * This function cancels the new category and close the input field.
@@ -244,27 +257,36 @@ function cancelNewCategory() {
     document.getElementById('category').innerHTML = 'Select task category';
 }
 
-
 /**
  * This function confirms the new category if the input field isn't empty.
  */
-function confirmNewCategory() {
-    let newCategory = document.getElementById('newCategoryInput').value;
+async function confirmNewCategory() {
+    let setnewCategory = document.getElementById('newCategoryInput').value;
     let newCategoryColor = document.getElementById('newCategoryColor').style.backgroundColor;
     let newCategoryInput = document.getElementById('newCategoryInput');
-
+    createdCategories.push({
+        setnewCategory: setnewCategory,
+        newCategoryColor: newCategoryColor,
+    });
+    await setItem("createdCategory", JSON.stringify(createdCategories));
     if (newCategoryInput.value == '') {
         newCategoryInput.focus();
     } else {
-        selectedCategory(newCategory, newCategoryColor);
-        document.getElementById('newCategoryInput').value = '';
-        document.getElementById('newCategoryColor').style.backgroundColor = '';
-        document.getElementById('newCategoryContainer').classList.add('d-none');
-        document.getElementById('newCategoryColors').classList.add('d-none');
-        document.getElementById('category').style.display = 'flex';
+        selectedCategory(setnewCategory, newCategoryColor);
+        closeNewCategoryField();
     }
 }
 
+/**
+ * clear new category field
+ */
+function closeNewCategoryField() {
+    document.getElementById('newCategoryInput').value = '';
+    document.getElementById('newCategoryColor').style.backgroundColor = '';
+    document.getElementById('newCategoryContainer').classList.add('d-none');
+    document.getElementById('newCategoryColors').classList.add('d-none');
+    document.getElementById('category').style.display = 'flex';
+}
 
 /**
  * This function shows the selected category and executes another function.
@@ -272,6 +294,7 @@ function confirmNewCategory() {
  * @param {string} category - This is the name of the selected category.
  * @param {string} color - This is the color of the selected category.
  */
+
 function selectedCategory(category, color) {
     category = category.charAt(0).toUpperCase() + category.slice(1);
     document.getElementById('category').innerHTML = /*html*/ `
@@ -280,7 +303,6 @@ function selectedCategory(category, color) {
     `;
     closeCategoryDropdown();
 }
-
 
 /**
  * This function closes the dropdown menu that shows the categories that are selectable.

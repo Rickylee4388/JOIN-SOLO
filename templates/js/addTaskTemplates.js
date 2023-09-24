@@ -25,7 +25,7 @@ function generateContentLeftAndRightContainer() {
 
                 <div class="categoryAndSelect">
                     <span>Category</span>
-                    
+                    <div id="selectCategory" style="color:red;" class="d-none">Please select a category</div>
                     <div class="newCategoryContainer d-none" id="newCategoryContainer">
                         <input placeholder="New category name" id="newCategoryInput">
                         <div class="newCategoryColorContainer">
@@ -52,6 +52,9 @@ function generateContentLeftAndRightContainer() {
                     <div id="categoryDropdown" class="categoryDropdown d-none">
                         <div class="categoryOption" onclick="newCategory()">
                             New category
+                        </div>
+                        <div id="createdCategory" class="createdCategory">
+                            
                         </div>
 
                         <div class="categoryOption" value="development" onclick="selectedCategory('development', 'red')">

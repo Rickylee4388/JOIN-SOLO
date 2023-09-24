@@ -14,6 +14,7 @@ function generateContentLeftAndRightContainerOverlay() {
 
                 <div class="categoryAndSelect">
                     <span>Category</span>
+                    <div id="selectCategoryOverlay" style="color:red;" class="d-none">Please select a category</div>
                     
                     <div class="newCategoryContainer d-none" id="newCategoryContainerOverlay">
                         <input placeholder="New category name" id="newCategoryInputOverlay">
@@ -42,7 +43,8 @@ function generateContentLeftAndRightContainerOverlay() {
                         <div class="categoryOption" onclick="newCategoryOverlay()">
                             New category
                         </div>
-
+                        <div id="createdCategoryOverlay" class="createdCategory">    
+                        </div>
                         <div class="categoryOption" value="development" onclick="selectedCategoryOverlay('development', 'red')">
                             Development
                             <div class="categoryColor" style="background-color: red"></div>

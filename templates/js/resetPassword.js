@@ -1,11 +1,22 @@
 let index = localStorage.getItem('index');
+
+/**
+ * show popup message email
+ */
 function popUpMessageEmail() {
     document.getElementById('buttonAnimationEmail').classList.remove('d-none');
 }
+
+/**
+ * show popup message password
+ */
 function popUpMessagePw() {
     document.getElementById('buttonAnimationPw').classList.remove('d-none');
 }
 
+/**
+ * resets password 
+ */
 function resetPassword() {
     let email = document.getElementById('forgotPwEmail').value;
     popUpMessagePw();
@@ -15,6 +26,10 @@ function resetPassword() {
     }, 1800);
     localStorage.setItem('index', i);
 }
+
+/**
+ * leads back to login
+ */
 async function backToLogin() {
     popUpMessageEmail();
     await setNewPassword();
@@ -23,16 +38,22 @@ async function backToLogin() {
     }, 1800);
 }
 
+/**
+ * finds user by email
+ * @param {string} email 
+ * @returns user index
+ */
 function resetUserPassword(email) {
-
     let i = userLogin.findIndex(function (a) {
         return a.email === email;
     });
     console.log(i);
     return i;
-
 }
 
+/**
+ * saves new password
+ */
 async function setNewPassword() {
     let password = document.getElementById('resetPassword').value;
     let passwordRepeat = document.getElementById('repeatPassword').value;

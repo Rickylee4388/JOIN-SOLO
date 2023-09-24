@@ -115,6 +115,7 @@
     }
 
     .overlayAddContactRightInputSection {
+        margin-top: -10%;
         width: 80%;
         padding: 0;
     }
